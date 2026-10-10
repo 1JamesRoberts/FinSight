@@ -30,6 +30,8 @@ build/
 !/models/README.md
 /reports/figures/*
 !/reports/figures/.gitkeep
+!/reports/figures/phase1/
+!/reports/figures/phase1/*.png
 /reports/experiments/*
 !/reports/experiments/.gitkeep
 !/reports/experiments/*.md

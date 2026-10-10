@@ -27,6 +27,7 @@ def main() -> None:
             "review-annotations",
             "prepare-splits",
             "freeze-benchmark",
+            "eda",
         ),
     )
     parser.add_argument(
@@ -47,6 +48,7 @@ def main() -> None:
         type=Path,
         help="Override the command's default Markdown report destination",
     )
+    parser.add_argument("--report-dir", type=Path, default=Path("reports"))
     args = parser.parse_args()
     if args.command == "acquire":
         receipt = acquire_datasets(args.manifest, args.data_dir)
@@ -61,6 +63,24 @@ def main() -> None:
         destination.write_text(json.dumps(summary, indent=2) + "\n")
         print(json.dumps(summary, indent=2))
         print(f"Integrity report saved to {destination}")
+    elif args.command == "eda":
+        from finsight.data.eda import generate_eda
+
+        try:
+            summary = generate_eda(
+                args.data_dir, args.manifest, args.freeze_receipt, args.report_dir
+            )
+        except ModuleNotFoundError as error:
+            if error.name == "matplotlib":
+                parser.error(
+                    "EDA requires: uv run --locked --group eda "
+                    "python -m finsight.data eda"
+                )
+            raise
+        print(
+            f"Development EDA saved to {args.report_dir}; "
+            f"{sum(group['records'] for group in summary['corpora'].values())} texts"
+        )
     elif args.command == "freeze-benchmark":
         receipt = freeze_benchmark(
             args.manifest,

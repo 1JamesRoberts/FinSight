@@ -15,6 +15,10 @@ The subsequent [evaluation contract](evaluation-contract.md) records the curated
 SEntFiN freeze for local offline research; membership and gold digests are pinned
 in `configs/benchmark-freeze.json`. Known accessible-corpus overlap is excluded;
 full checkpoint pretraining exposure remains unknown.
+Completed cards summarize the selected artifacts: [PhraseBank](dataset-cards/phrasebank.md),
+[SEntFiN](dataset-cards/sentfin.md), and [FiQA copy](dataset-cards/fiqa.md).
+Development-only figures and completion evidence are in
+[Phase 1 findings](phase1-findings.md).
 **Other asset approvals and public-text rights remain pending.** This checklist
 is not a legal conclusion or authorization to acquire or redistribute an asset.
 

@@ -176,7 +176,7 @@ has not run yet; the CI acceptance criterion remains pending until pushed to Git
 - [x] Normalize label mappings; preserve original labels/metadata (PhraseBank and SEntFiN).
 - [x] Define train/validation/test partition strategy and hash-based duplicate checks (parent split; final benchmark frozen separately).
 - [x] Select/curate an **independent** final evaluation set for pretrained FinBERT comparisons (held-out SEntFiN; no known accessible-corpus overlap, checkpoint pretraining exposure unknown).
-- [ ] Write dataset cards and EDA figures.
+- [x] Write dataset cards and EDA figures (three artifact-specific cards; development-only notebook, aggregate JSON, and five reviewed PNGs).
 
 **Comparison verification (2026-10-10):** Public cards, the PhraseBank loader,
 research papers, original FiQA challenge, and published license terms were reviewed.
@@ -275,7 +275,27 @@ claim is supported. Model weight terms remain unresolved. Dataset cards/figures
 and model implementation are still pending. Local tests and Ruff pass; hosted CI
 has not been run for this change.
 
-**Deliverables:** Data-preparation code, EDA notebook, dataset card, split manifest.
+**Dataset-card/EDA verification (2026-10-10):** Three cards in
+`docs/dataset-cards/` document source identity, terms, schemas, labels, annotation
+quality, intended roles, partitions, and limitations. The development-only notebook
+`notebooks/01_dataset_eda.ipynb` calls the tested EDA command; all three code cells
+executed in a fresh project kernel. Five exported figures were visually inspected.
+`reports/eda-summary.json` pins the source/freeze/development identities and exact
+aggregate values; `reports/phase1-eda.md` and `docs/phase1-findings.md` explain the
+14,963 retained development texts and distinct counting units. Repeated local
+generation produces identical figures/aggregate files and preserves the frozen
+receipt. Optional Matplotlib/ipykernel dependencies are locked in the EDA group;
+ingestion and domain logic still use the standard library. All 136 tests, Ruff,
+and the package build pass locally; hosted Actions remain unverified.
+
+**Phase 1 status: complete within the documented local research scope.** All eight
+tasks and the code/notebook/cards/split-manifest deliverables are verified.
+Known duplicate boundaries and immutable holdout checks pass. Unresolved rights,
+pretraining exposure, annotation quality, and five-company coverage limitations
+remain documented rather than treated as resolved. No model or prediction work
+has started; Phase 2 is the next separately requested phase.
+
+**Deliverables:** Data-preparation code, EDA notebook, dataset cards, split manifest.
 
 **Acceptance criteria:** Runs from raw authorized inputs reproducibly; partitions have no known duplicate overlap; independent-test limitations documented.
 

@@ -25,12 +25,12 @@ jobs:
           python-version: ${{ matrix.python-version }}
           enable-cache: true
       - name: Install locked dependencies
-        run: uv sync --locked
+        run: uv sync --locked --group eda
       - name: Lint
-        run: uv run --locked ruff check .
+        run: uv run --locked --group eda ruff check .
       - name: Check formatting
-        run: uv run --locked ruff format --check .
+        run: uv run --locked --group eda ruff format --check .
       - name: Test
-        run: uv run --locked pytest
+        run: uv run --locked --group eda pytest
       - name: Build package
         run: uv build

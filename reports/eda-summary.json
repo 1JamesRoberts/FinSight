@@ -1,0 +1,210 @@
+{
+  "analysis_version": 1,
+  "scope": "verified train + validation only; all test candidates excluded",
+  "benchmark_manifest_sha256": "b7cc249017ddd87f0b2c52a3abf3ff5b96f6920832b411f18eac547fec0b0f1c",
+  "parent_split_manifest_sha256": "a9a67c231903bc2e3e71afead1d6daaf6b7201211fc25a05efd2bb2ee2d5e898",
+  "asset_manifest_sha256": "e937655fe70b8db4576b9e1652a6d574e4c172dcf4a80f2b759fd17540df4793",
+  "development_records_sha256": "ee260ad7ba262237752aacb96e0629dfcee7479e54e4b0b977283dd77cc9cb1b",
+  "corpora": {
+    "phrasebank": {
+      "records": 4303,
+      "partitions": {
+        "train": 3785,
+        "validation": 518
+      },
+      "lengths": {
+        "records": 4303,
+        "characters": {
+          "min": 9,
+          "mean": 127.99442249593307,
+          "median": 119,
+          "p90": 210.0,
+          "p95": 233.0,
+          "p99": 276.97999999999956,
+          "max": 315
+        },
+        "words": {
+          "min": 2,
+          "mean": 23.07250755287009,
+          "median": 21,
+          "p90": 37.0,
+          "p95": 42.0,
+          "p99": 50.0,
+          "max": 81
+        },
+        "word_histogram": {
+          "1-5": 20,
+          "6-10": 276,
+          "11-20": 1696,
+          "21-50": 2277,
+          "51-100": 34,
+          ">100": 0
+        },
+        "word_flags": {
+          "at_most_3": 4,
+          "over_50": 34,
+          "over_100": 0
+        }
+      },
+      "labels": {
+        "total": 4303,
+        "counts": {
+          "negative": 537,
+          "neutral": 2554,
+          "positive": 1212
+        },
+        "percentages": {
+          "negative": 12.479665349755985,
+          "neutral": 59.35393911224727,
+          "positive": 28.166395537996745
+        },
+        "majority_share_percent": 59.35393911224727,
+        "largest_to_smallest_class_ratio": 4.756052141527002
+      }
+    },
+    "sentfin": {
+      "records": 9651,
+      "partitions": {
+        "train": 8598,
+        "validation": 1053
+      },
+      "lengths": {
+        "records": 9651,
+        "characters": {
+          "min": 18,
+          "mean": 58.70158532794529,
+          "median": 57,
+          "p90": 78.0,
+          "p95": 86.5,
+          "p99": 101.0,
+          "max": 135
+        },
+        "words": {
+          "min": 3,
+          "mean": 9.909232203916693,
+          "median": 10,
+          "p90": 13.0,
+          "p95": 14.0,
+          "p99": 17.0,
+          "max": 23
+        },
+        "word_histogram": {
+          "1-5": 137,
+          "6-10": 5927,
+          "11-20": 3580,
+          "21-50": 7,
+          "51-100": 0,
+          ">100": 0
+        },
+        "word_flags": {
+          "at_most_3": 1,
+          "over_50": 0,
+          "over_100": 0
+        }
+      },
+      "labels": {
+        "total": 12957,
+        "counts": {
+          "negative": 3463,
+          "neutral": 4918,
+          "positive": 4576
+        },
+        "percentages": {
+          "negative": 26.726865786833372,
+          "neutral": 37.956317048699546,
+          "positive": 35.31681716446708
+        },
+        "majority_share_percent": 37.956317048699546,
+        "largest_to_smallest_class_ratio": 1.420155934161132
+      },
+      "target_multiplicity": {
+        "1": 7080,
+        "2": 2004,
+        "3+": 567
+      },
+      "multi_target_sentiments": {
+        "uniform": 1455,
+        "mixed": 1116
+      }
+    },
+    "fiqa": {
+      "records": 1009,
+      "partitions": {
+        "train": 907,
+        "validation": 102
+      },
+      "lengths": {
+        "records": 1009,
+        "characters": {
+          "min": 10,
+          "mean": 74.6402378592666,
+          "median": 67,
+          "p90": 123.0,
+          "p95": 135.5999999999999,
+          "p99": 140.0,
+          "max": 142
+        },
+        "words": {
+          "min": 2,
+          "mean": 11.945490584737364,
+          "median": 11,
+          "p90": 20.0,
+          "p95": 23.0,
+          "p99": 25.0,
+          "max": 30
+        },
+        "word_histogram": {
+          "1-5": 64,
+          "6-10": 438,
+          "11-20": 424,
+          "21-50": 83,
+          "51-100": 0,
+          ">100": 0
+        },
+        "word_flags": {
+          "at_most_3": 19,
+          "over_50": 0,
+          "over_100": 0
+        }
+      },
+      "scores": {
+        "total": 1068,
+        "minimum": -0.938,
+        "q25": -0.2435,
+        "median": 0.237,
+        "q75": 0.437,
+        "maximum": 0.905,
+        "mean": 0.12126591760299625,
+        "population_stddev": 0.39572921652113036,
+        "numeric_sign_counts": {
+          "negative": 364,
+          "zero": 13,
+          "positive": 691
+        },
+        "numeric_sign_percentages": {
+          "negative": 34.08239700374532,
+          "zero": 1.2172284644194757,
+          "positive": 64.70037453183521
+        },
+        "histogram": {
+          "[-1, -0.5)": 92,
+          "[-0.5, 0)": 272,
+          "[0, 0.5)": 530,
+          "[0.5, 1]": 174
+        }
+      },
+      "source_types": {
+        "headline": 395,
+        "post": 614
+      },
+      "flagged_snippet_annotations": 48
+    }
+  },
+  "phrasebank_agreement_membership": {
+    "50": 4303,
+    "66": 3754,
+    "75": 3087,
+    "all": 2023
+  },
+  "agreement_counting": "development text/label matches in overlapping source subsets; not independent samples or individual votes"
+}

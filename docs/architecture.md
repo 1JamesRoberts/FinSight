@@ -76,3 +76,18 @@ FiQA’s original nested schema has a dedicated `data/fiqa.py` loader. It retain
 continuous target scores and unscored test inputs rather than forcing all sources
 into a classification record. Acquisition reuses the manifest/checksum workflow;
 no new runtime dependencies or model interfaces are introduced.
+
+## Phase 1 extension: development EDA and freeze boundaries
+
+The protected split and benchmark receipts bind local records to reviewed source
+revisions and duplicate-group assignments. Development consumers verify checksums
+and load only train/validation records; frozen/candidate groups remain withheld.
+The benchmark contract keeps unknown pretraining exposure explicit.
+
+EDA separates pure aggregate counting from verified input loading and optional
+plot rendering. The CLI and notebook call the same functions, so figures do not
+depend on manually edited notebook state. Matplotlib and ipykernel are in the
+optional `eda` group; imports are deferred until plotting is requested. No plotting
+framework enters ingestion or domain records. Five aggregate PNGs and JSON are
+committed under a narrow ignore exception, while raw/processed text and notebook
+outputs remain uncommitted. CI uses synthetic plotting examples with no downloads.

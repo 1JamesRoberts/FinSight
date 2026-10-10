@@ -6,7 +6,7 @@ is comparing traditional NLP methods, FinBERT, and company-specific sentiment.
 A secondary study will test whether sentiment improves stock prediction over
 market-only baselines, using time-respecting evaluation.
 
-**Status: Phase 0 foundation and Phase 1 loading, curation, and benchmark freeze implemented.**
+**Status: Phase 1 complete — datasets, development EDA, and benchmark freeze verified locally.**
 Reviewed PhraseBank, SEntFiN, and original-format FiQA files are available in ignored local storage.
 No sentiment models, news-provider ingestion, stock prediction, API, or dashboard
 are implemented. See [ROADMAP.md](ROADMAP.md)
@@ -67,7 +67,7 @@ tests/unit/              # Configuration and dataset behavior tests
 tests/integration/       # Synthetic offline acquisition/loading workflow
 data/{raw,interim,processed}/  # Ignored local research data
  models/                  # Ignored model artifacts
- notebooks/               # Future exploration
+ notebooks/               # Reproducible development-only Phase 1 EDA
  scripts/                 # Future command entry points
  reports/{figures,experiments}/ # Research outputs
  frontend/                # Reserved for Phase 8
@@ -107,6 +107,7 @@ uv run --locked python -m finsight.data analyze-lengths
 uv run --locked python -m finsight.data review-annotations
 uv run --locked python -m finsight.data prepare-splits
 uv run --locked python -m finsight.data freeze-benchmark
+uv run --locked --group eda python -m finsight.data eda
 ```
 
 The first command acquires reviewed pinned files, verifies checksums, and reuses a
@@ -149,3 +150,22 @@ groups remain excluded. Use the verified development loader documented in the
 after freezing fails. This is held out from FinSight development with no known
 accessible-corpus overlap. Complete FinBERT pretraining exposure remains unknown,
 and this corpus does not establish performance on all five MVP companies.
+
+## Phase 1 dataset cards and EDA
+
+Read the [PhraseBank](docs/dataset-cards/phrasebank.md),
+[SEntFiN](docs/dataset-cards/sentfin.md), and [FiQA copy](docs/dataset-cards/fiqa.md)
+cards for schemas, provenance, rights, roles, partitions, and limitations.
+The [Phase 1 findings](docs/phase1-findings.md) record completion evidence;
+the [EDA report](reports/phase1-eda.md) contains five reviewed aggregate figures.
+The figures use only the 14,963 retained train/validation texts.
+
+Install optional plotting/notebook tools with `uv sync --locked --group eda`.
+Regenerate the report with `uv run --locked --group eda python -m finsight.data eda`.
+Open `notebooks/01_dataset_eda.ipynb` in a Jupyter-compatible editor using the
+project `.venv/bin/python` kernel. CLI plotting does not need a notebook server.
+Use `uv run --locked --group eda pytest` to include the synthetic plotting check.
+Source datasets and notebook outputs stay uncommitted; the five aggregate PNGs,
+summary JSON, and Markdown report are safe research outputs. Runtime dependencies
+remain empty; Matplotlib and ipykernel belong only to the optional EDA group.
+Phase 2 traditional NLP baselines are next and remain unimplemented.
