@@ -8,12 +8,15 @@ from finsight.config import Settings
 from finsight.data.acquisition import acquire_datasets
 from finsight.data.audit import audit_datasets
 from finsight.data.labels import analyze_labels, render_label_report
+from finsight.data.lengths import analyze_lengths, render_length_report
 
 
 def main() -> None:
     """Run one bounded dataset operation; network access requires acquire command."""
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("command", choices=("acquire", "validate", "analyze-labels"))
+    parser.add_argument(
+        "command", choices=("acquire", "validate", "analyze-labels", "analyze-lengths")
+    )
     parser.add_argument(
         "--manifest", type=Path, default=Path("configs/asset-revisions.json")
     )
@@ -21,8 +24,7 @@ def main() -> None:
     parser.add_argument(
         "--report-path",
         type=Path,
-        default=Path("reports/label-analysis.md"),
-        help="Markdown destination for analyze-labels",
+        help="Markdown destination for analysis (default: reports/<kind>-analysis.md)",
     )
     args = parser.parse_args()
     if args.command == "acquire":
@@ -39,13 +41,21 @@ def main() -> None:
         print(json.dumps(summary, indent=2))
         print(f"Integrity report saved to {destination}")
     else:
-        summary = analyze_labels(args.manifest, args.data_dir)
-        destination = args.data_dir / "interim/label-analysis.json"
+        if args.command == "analyze-labels":
+            summary = analyze_labels(args.manifest, args.data_dir)
+            markdown = render_label_report(summary)
+            kind = "label"
+        else:
+            summary = analyze_lengths(args.manifest, args.data_dir)
+            markdown = render_length_report(summary)
+            kind = "length"
+        destination = args.data_dir / f"interim/{kind}-analysis.json"
         destination.parent.mkdir(parents=True, exist_ok=True)
         destination.write_text(json.dumps(summary, indent=2) + "\n")
-        args.report_path.parent.mkdir(parents=True, exist_ok=True)
-        args.report_path.write_text(render_label_report(summary), encoding="utf-8")
-        print(f"Label reports saved to {destination} and {args.report_path}")
+        report_path = args.report_path or Path(f"reports/{kind}-analysis.md")
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(markdown, encoding="utf-8")
+        print(f"Analysis reports saved to {destination} and {report_path}")
 
 
 if __name__ == "__main__":

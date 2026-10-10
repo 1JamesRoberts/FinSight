@@ -224,6 +224,17 @@ are assigned and unscored test inputs are excluded. See
 duplicate/ambiguity investigation, and annotation-quality analysis are incomplete.
 No new partitions, final-test selection, or models were implemented.
 
+**Text-length verification (2026-10-10):** Original character and whitespace-word
+length summaries, inclusive percentiles, and fixed descriptive length flags are
+complete for each PhraseBank agreement subset/label, SEntFiN overall/per-target-
+label headline groups, and FiQA training texts by source type. See
+`reports/length-analysis.md`. SEntFiN label groups count a headline once per
+distinct label; FiQA counts source texts rather than annotations. The supplied
+SEntFiN word counts differ from our rule for 88 headlines and remain preserved.
+No records were filtered and no model tokenization, thresholds, or splits were
+implemented. The broader EDA checkbox remains open for duplicate/ambiguity and
+annotation-quality review.
+
 **Deliverables:** Data-preparation code, EDA notebook, dataset card, split manifest.
 
 **Acceptance criteria:** Runs from raw authorized inputs reproducibly; partitions have no known duplicate overlap; independent-test limitations documented.

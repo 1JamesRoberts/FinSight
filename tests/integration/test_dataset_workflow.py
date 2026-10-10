@@ -7,12 +7,18 @@ import json
 from pathlib import Path
 from zipfile import ZipFile
 
+import pytest
+
+from finsight.data.__main__ import main
 from finsight.data.acquisition import acquire_datasets
 from finsight.data.audit import audit_datasets
 from finsight.data.labels import analyze_labels, render_label_report
+from finsight.data.lengths import analyze_lengths
 
 
-def test_offline_workflow_with_verified_files(tmp_path: Path) -> None:
+def test_offline_workflow_with_verified_files(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
     data = tmp_path / "data"
     phrasebank_dir = data / "raw/financial_phrasebank"
     sentfin_dir = data / "raw/sentfin"
@@ -48,8 +54,8 @@ def test_offline_workflow_with_verified_files(tmp_path: Path) -> None:
                 [
                     "0",
                     "EXAMPLE improves",
-                    "{'Example': 'positive', 'Other': 'negative'}",
-                    "2",
+                    "{'Example': 'positive', 'Other': 'negative', 'Third': 'positive'}",
+                    "3",
                 ],
                 ["1", "Another headline", "{'Example': 'neutral'}", "2"],
             ],
@@ -101,7 +107,7 @@ def test_offline_workflow_with_verified_files(tmp_path: Path) -> None:
     summary = audit_datasets(manifest_path, data)
     assert summary["phrasebank"]["50"]["normalized_duplicate_rows"] == 1
     assert summary["phrasebank_conflicting_label_texts"] == 1
-    assert summary["sentfin"]["entity_annotations"] == 3
+    assert summary["sentfin"]["entity_annotations"] == 4
     assert summary["sentfin"]["conflicting_sentiment_headlines"] == 1
     assert summary["cross_corpus_normalized_exact_text_matches"] == 1
     assert summary["final_test_frozen"] is False
@@ -112,7 +118,7 @@ def test_offline_workflow_with_verified_files(tmp_path: Path) -> None:
     assert summary["fiqa_overlap"]["phrasebank_exact_matches"] == 1
     labels = analyze_labels(manifest_path, data)
     assert labels["phrasebank"]["50"]["percentages"]["neutral"] == 50
-    assert labels["sentfin"]["annotation_labels"]["total"] == 3
+    assert labels["sentfin"]["annotation_labels"]["total"] == 4
     assert labels["sentfin"]["mixed_share_of_multi_target_headlines_percent"] == 100
     assert labels["fiqa_training"]["combined"]["scores"]["total"] == 2
     assert labels["fiqa_training"]["combined"]["scores"]["mean"] == 0.25
@@ -123,3 +129,33 @@ def test_offline_workflow_with_verified_files(tmp_path: Path) -> None:
     assert "50.00%" in markdown
     assert "EXAMPLE improves" not in markdown
     assert "synthetic-revision" in markdown
+    lengths = analyze_lengths(manifest_path, data)
+    assert lengths["phrasebank"]["50"]["overall"]["records"] == 2
+    assert lengths["phrasebank"]["50"]["by_label"]["negative"]["records"] == 0
+    assert lengths["sentfin"]["overall"]["records"] == 2
+    assert lengths["sentfin"]["source_word_count_mismatches"] == 1
+    assert lengths["sentfin"]["by_target_label"]["positive"]["records"] == 1
+    assert lengths["sentfin"]["by_target_label"]["negative"]["records"] == 1
+    assert lengths["fiqa_training"]["combined"]["records"] == 2
+    assert lengths["filtering_applied"] is False
+    monkeypatch.chdir(tmp_path)
+    label_path = tmp_path / "reports/label-analysis.md"
+    label_path.parent.mkdir()
+    label_path.write_text("Existing label report")
+    monkeypatch.setattr(
+        "sys.argv",
+        [
+            "finsight.data",
+            "analyze-lengths",
+            "--manifest",
+            str(manifest_path),
+            "--data-dir",
+            str(data),
+        ],
+    )
+    main()
+    assert label_path.read_text() == "Existing label report"
+    length_report = (tmp_path / "reports/length-analysis.md").read_text()
+    assert "EXAMPLE improves" not in length_report
+    assert "synthetic-revision" in length_report
+    assert json.loads((data / "interim/length-analysis.json").read_text()) == lengths

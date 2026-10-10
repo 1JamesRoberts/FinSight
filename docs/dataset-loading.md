@@ -159,3 +159,45 @@ Two repeated analyses produced identical aggregate reports; source-class counts
 also matched the earlier real-artifact integrity audit. Tests cover percentage
 and annotation denominators, absent classes, histogram endpoints, inclusive
 quartiles, invalid scores, single-value inputs, and training-only FiQA totals.
+
+## Text-length analysis
+
+```sh
+uv run --locked python -m finsight.data analyze-lengths
+```
+
+The command verifies pinned files and writes `data/interim/length-analysis.json`
+and the aggregate [length report](../reports/length-analysis.md). Use
+`--report-path PATH` to choose the Markdown destination; the default is separate
+from the label report. It works offline and adds no dependencies.
+
+Character length counts original Unicode code points including whitespace.
+Word length counts whitespace-separated units, not transformer subword tokens.
+Summary statistics include mean, median, minimum, P90/P95/P99, maximum, word
+histograms, and fixed <=3/>50/>100-word flags. Percentiles use inclusive linear
+interpolation. Empty label groups explicitly have zero records and null length
+statistics. No flags are used to filter or modify records.
+
+PhraseBank agreement subsets and labels remain separate. SEntFiN overall counts
+headlines once; per-label groups include each headline once for each distinct
+label across targets. Mixed-label groups overlap. Its supplied `Words` field
+differs from our counting rule for 88 headlines; both the original value and
+original text remain unchanged. FiQA counts original training texts once each,
+regardless of annotation count, and reports headlines/posts separately. Test
+texts are not parsed for this analysis and no FiQA class thresholds are chosen.
+
+The median word counts are 21 (PhraseBank >=50%), 10 (SEntFiN), 9 (FiQA training
+headlines), and 13 (FiQA training posts). PhraseBank has 35 sentences over 50
+words; the other sources have none. FiQA training posts have 22 texts of at most
+three words. These deserve later contextual review, not automatic rejection.
+PhraseBank >=50% class medians are 22/21/23 words for negative/neutral/positive;
+SEntFiN label-group medians are all 10. These descriptive differences do not
+establish model bias or label quality. Model truncation requires later tokenizer
+measurements rather than a conversion from these word counts.
+
+Length-analysis verification: 92 pytest cases, Ruff lint/format, and package
+builds pass. Repeated real-artifact analyses produced identical reports; source
+row counts and histogram totals were checked. Tests cover preserved whitespace,
+Unicode code points, percentile interpolation, histogram/flag boundaries, empty
+and single-row groups, SEntFiN label grouping, FiQA training-only totals, source
+word-count differences, and separate CLI report destinations.

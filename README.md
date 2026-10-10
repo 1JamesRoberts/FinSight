@@ -102,6 +102,7 @@ against baselines; prevent look-ahead bias. Negative research results are valid.
 uv run --locked python -m finsight.data acquire
 uv run --locked python -m finsight.data validate
 uv run --locked python -m finsight.data analyze-labels
+uv run --locked python -m finsight.data analyze-lengths
 ```
 
 The first command acquires reviewed pinned files, verifies checksums, and reuses a
@@ -119,3 +120,7 @@ The [label analysis report](reports/label-analysis.md) compares source-class
 frequencies and FiQA training-score distributions. Its machine-readable output
 is ignored local data; its checked-in Markdown contains aggregate statistics only.
 No FiQA class thresholds or new partitions are assigned.
+
+The [text-length report](reports/length-analysis.md) summarizes characters and
+whitespace-separated words, with label/source-type comparisons. These counts
+are descriptive and do not determine model token limits or filtering rules.
