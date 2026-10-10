@@ -2,7 +2,10 @@
 
 Reviewed: 2026-10-10. Reviewer: coding agent; evidence-based project scope decision.
 Scope: SEntFiN terms/revision and candidate FinBERT checkpoint provenance.
-No dataset files or model weights were acquired. No training, inference, duplicate
+This record describes the metadata-only review. The subsequent
+[loading task](dataset-loading.md) acquired and validated the reviewed CSVs;
+model weights remain unacquired. At the original review, no dataset files or
+model weights were acquired. No training, inference, duplicate
 analysis, or test-set freezing took place. Read-only metadata access was sufficient
 for this bounded task. See [asset-revisions.json](../configs/asset-revisions.json).
 

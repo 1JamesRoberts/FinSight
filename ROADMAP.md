@@ -171,9 +171,9 @@ has not run yet; the CI acceptance criterion remains pending until pushed to Git
 ### Tasks
 - [x] Compare Financial PhraseBank and FiQA schemas, labels, target entities, licensing, and source provenance.
 - [ ] Document redistribution/training terms and pin exact dataset revisions.
-- [ ] Implement repeatable ingestion and schema validation.
+- [x] Implement repeatable ingestion and schema validation (PhraseBank and SEntFiN; FiQA deferred).
 - [ ] Analyze labels, lengths, duplicates, ambiguous examples, and annotation agreement.
-- [ ] Normalize label mappings; preserve original labels/metadata.
+- [x] Normalize label mappings; preserve original labels/metadata (PhraseBank and SEntFiN).
 - [ ] Define train/validation/test partition strategy and hash-based duplicate checks.
 - [ ] Select/curate an **independent** final evaluation set for pretrained FinBERT comparisons.
 - [ ] Write dataset cards and EDA figures.
@@ -196,6 +196,14 @@ See `docs/sentfin-asset-review.md` for the local-research scope assessment and
 unresolved public-text rights, model-weight license, and overlap evidence. No
 CSV files or weights were acquired. The broader terms/revisions task and final
 independent-test task remain unchecked.
+
+**Dataset loading verification (2026-10-10):** PhraseBank asset terms/revision
+review and local acquisition of PhraseBank/SEntFiN are complete. Typed source
+loaders, checksummed acquisition, and schema validation pass on real pinned
+artifacts; synthetic tests run offline. See `docs/dataset-loading.md` for counts,
+source discrepancies, duplicates, and the limited exact-overlap check. The terms
+checkbox remains open because FiQA is deferred with unresolved terms. Full EDA,
+split design, and independent final-test selection remain incomplete.
 
 **Deliverables:** Data-preparation code, EDA notebook, dataset card, split manifest.
 

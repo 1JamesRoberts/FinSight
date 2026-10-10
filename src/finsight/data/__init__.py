@@ -1,1 +1,1 @@
-"""Reserved for future data functionality; Phase 0 placeholder."""
+"""Reviewed dataset acquisition, source-format loading, and integrity validation."""

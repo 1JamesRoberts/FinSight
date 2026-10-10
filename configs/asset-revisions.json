@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "review_date": "2026-10-10",
-  "scope": "Phase 1 metadata and terms review; no dataset or model-weight acquisition",
+  "scope": "Phase 1 reviewed local dataset acquisition and model metadata; no weights acquired",
   "assets": {
     "sentfin_1_0": {
       "repository": "https://github.com/pyRis/SEntFiN",
@@ -12,19 +12,19 @@
       "license_spdx": "MIT",
       "local_research_decision": "supported_under_repository_license",
       "public_text_redistribution_decision": "not_cleared",
-      "downloaded": false,
+      "downloaded": true,
       "files": [
         {
           "path": "SEntFiN.csv",
           "git_blob_sha1": "df9ef12c1d91058a682c623e8fe9154be0dc44d5",
           "size_bytes": 1118162,
-          "sha256": null
+          "sha256": "570af7ba58f724f3fcc414dd5ba80da5b1a3b342134d76c6ebdf53a32c54a92f"
         },
         {
           "path": "entity_list_comprehensive.csv",
           "git_blob_sha1": "a94603b846f2b6c2810da55f0880635bbce0af87",
           "size_bytes": 90424,
-          "sha256": null
+          "sha256": "6ace045edc54c90bc0695ee5a78afec9f7a5294844ccfd0c9e85a14aeea4916b"
         }
       ],
       "reviewed_metadata": [
@@ -35,6 +35,38 @@
         {
           "path": "LICENSE",
           "sha256": "961d32986ac3fa2fe2e55ebc7bbae1ba8d632412e98493d73bdf59f0ad8fc65f"
+        }
+      ],
+      "acquisition_files": [
+        {
+          "path": "SEntFiN.csv",
+          "git_blob_sha1": "df9ef12c1d91058a682c623e8fe9154be0dc44d5",
+          "size_bytes": 1118162,
+          "sha256": "570af7ba58f724f3fcc414dd5ba80da5b1a3b342134d76c6ebdf53a32c54a92f",
+          "local_path": "raw/sentfin/SEntFiN.csv",
+          "source_url": "https://raw.githubusercontent.com/pyRis/SEntFiN/eba43610fe3cb57a3e5773cd6c037da1f8992ad5/SEntFiN.csv"
+        },
+        {
+          "path": "entity_list_comprehensive.csv",
+          "git_blob_sha1": "a94603b846f2b6c2810da55f0880635bbce0af87",
+          "size_bytes": 90424,
+          "sha256": "6ace045edc54c90bc0695ee5a78afec9f7a5294844ccfd0c9e85a14aeea4916b",
+          "local_path": "raw/sentfin/entity_list_comprehensive.csv",
+          "source_url": "https://raw.githubusercontent.com/pyRis/SEntFiN/eba43610fe3cb57a3e5773cd6c037da1f8992ad5/entity_list_comprehensive.csv"
+        },
+        {
+          "path": "LICENSE",
+          "local_path": "raw/sentfin/LICENSE",
+          "source_url": "https://raw.githubusercontent.com/pyRis/SEntFiN/eba43610fe3cb57a3e5773cd6c037da1f8992ad5/LICENSE",
+          "size_bytes": 1110,
+          "sha256": "961d32986ac3fa2fe2e55ebc7bbae1ba8d632412e98493d73bdf59f0ad8fc65f"
+        },
+        {
+          "path": "README.md",
+          "local_path": "raw/sentfin/README.md",
+          "source_url": "https://raw.githubusercontent.com/pyRis/SEntFiN/eba43610fe3cb57a3e5773cd6c037da1f8992ad5/README.md",
+          "size_bytes": 48,
+          "sha256": "543e1779ccb4e13b23107b3c4443891f581041d56adf676daa8db173c730e03a"
         }
       ]
     },
@@ -68,6 +100,36 @@
         "license_sha256": "58d1e17ffe5109a7ae296caafcadfdbe6a7d176f0bc4ab01e12a689b0499d8bd",
         "license_scope": "source code; not assumed to license hosted model weights"
       }
+    },
+    "financial_phrasebank": {
+      "repository": "https://huggingface.co/datasets/takala/financial_phrasebank",
+      "revision": "8d3fe0c36d5feec6b3cc5e455b0fcb4820fb9964",
+      "revision_verified_via": "https://huggingface.co/api/datasets/takala/financial_phrasebank",
+      "license_spdx": "CC-BY-NC-SA-3.0",
+      "local_research_decision": "supported_under_repository_license",
+      "public_text_redistribution_decision": "not_cleared",
+      "downloaded": true,
+      "primary_agreement": "50",
+      "acquisition_files": [
+        {
+          "path": "data/FinancialPhraseBank-v1.0.zip",
+          "local_path": "raw/financial_phrasebank/FinancialPhraseBank-v1.0.zip",
+          "source_url": "https://huggingface.co/datasets/takala/financial_phrasebank/resolve/8d3fe0c36d5feec6b3cc5e455b0fcb4820fb9964/data/FinancialPhraseBank-v1.0.zip",
+          "size_bytes": 681890,
+          "sha256": "0e1a06c4900fdae46091d031068601e3773ba067c7cecb5b0da1dcba5ce989a6"
+        },
+        {
+          "path": "README.md",
+          "local_path": "raw/financial_phrasebank/README.md",
+          "source_url": "https://huggingface.co/datasets/takala/financial_phrasebank/resolve/8d3fe0c36d5feec6b3cc5e455b0fcb4820fb9964/README.md",
+          "size_bytes": 9582,
+          "sha256": "274523f90fee5ef947c24bd95388818a551dbd2c1d9ee55469446329cb6c82e0"
+        }
+      ]
     }
-  }
+  },
+  "local_dataset_assets": [
+    "financial_phrasebank",
+    "sentfin_1_0"
+  ]
 }

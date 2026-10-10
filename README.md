@@ -6,8 +6,10 @@ is comparing traditional NLP methods, FinBERT, and company-specific sentiment.
 A secondary study will test whether sentiment improves stock prediction over
 market-only baselines, using time-respecting evaluation.
 
-**Status: Phase 0 foundation implemented; Phase 1 dataset review underway.** No datasets, sentiment models, ingestion,
-stock prediction, API, or dashboard are implemented. See [ROADMAP.md](ROADMAP.md)
+**Status: Phase 0 foundation and Phase 1 local dataset loading implemented.**
+Reviewed PhraseBank and SEntFiN files are available in ignored local storage.
+No sentiment models, news-provider ingestion, stock prediction, API, or dashboard
+are implemented. See [ROADMAP.md](ROADMAP.md)
 for the phase sequence and acceptance criteria.
 
 ## Setup
@@ -55,14 +57,14 @@ redacted variable examples when a later phase introduces a provider.
 configs/                  # Future experiment configuration; no presets yet
 src/finsight/
   config.py               # Typed environment settings
-  data/                   # Future data adapters and preparation
+  data/                   # Reviewed acquisition, loaders, and integrity checks
   sentiment/              # Future sentiment research
   features/               # Future aggregation and features
   prediction/             # Future downstream prediction study
   pipelines/              # Future workflow orchestration
   api/                    # Future delivery adapters
-tests/unit/              # Configuration tests
-tests/integration/       # Reserved for later external integrations
+tests/unit/              # Configuration and dataset behavior tests
+tests/integration/       # Synthetic offline acquisition/loading workflow
 data/{raw,interim,processed}/  # Ignored local research data
  models/                  # Ignored model artifacts
  notebooks/               # Future exploration
@@ -76,7 +78,8 @@ data/{raw,interim,processed}/  # Ignored local research data
 The module folders are empty boundaries, not implemented services. Details and
 tradeoffs are in [docs/architecture.md](docs/architecture.md). Review the
 [dataset/model/API checklist](docs/datasets.md) before acquiring any research
-assets. No third-party data or model licenses have been approved by this setup.
+assets. PhraseBank and SEntFiN are reviewed for local noncommercial research; public
+source-text redistribution and model-weight license scope remain unresolved.
 The [evaluation dataset shortlist](docs/evaluation-dataset-shortlist.md) records
 candidate findings and the provisional recommendation; no final test is frozen.
 
@@ -92,3 +95,18 @@ Work one roadmap task at a time, add tests for reusable behavior, and update
 checkboxes only after verification. Keep the final test set separate from
 training and tuning; record dataset provenance and model versions; compare
 against baselines; prevent look-ahead bias. Negative research results are valid.
+
+## Local research datasets
+
+```sh
+uv run --locked python -m finsight.data acquire
+uv run --locked python -m finsight.data validate
+```
+
+The first command acquires reviewed pinned files, verifies checksums, and reuses a
+valid cache. The second validates schemas and writes an ignored aggregate integrity
+report. See [loading instructions and findings](docs/dataset-loading.md),
+[PhraseBank terms](docs/phrasebank-asset-review.md), and
+[SEntFiN terms](docs/sentfin-asset-review.md). No dataset contents are committed;
+CI uses synthetic examples and requires no dataset downloads. No final test set
+has been frozen and no models have been trained.

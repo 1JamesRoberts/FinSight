@@ -1,6 +1,9 @@
 # Dataset, model, and API review checklist
 
-No datasets or model weights have been downloaded and no provider is integrated.
+PhraseBank and SEntFiN have now been acquired for reviewed local noncommercial
+research; all source files remain in ignored storage. No model weights or provider
+integration are present. See [dataset-loading.md](dataset-loading.md) for checksums,
+loading instructions, and measured integrity results.
 Phase 1's public-source candidate comparison is recorded in
 [dataset-comparison.md](dataset-comparison.md), reviewed on 2026-10-10.
 An independent-evaluation shortlist is recorded in
@@ -57,9 +60,9 @@ product before downloading, persisting, training on, or republishing content.
 
 | Candidate | Purpose in later phases | Status |
 | --- | --- | --- |
-| Financial PhraseBank | Three-class baseline candidate | Compared; terms/revision review pending; no acquisition |
+| Financial PhraseBank | Three-class baseline development | Reviewed for local noncommercial research; pinned, acquired, validated |
 | FiQA Task 1 | Target-aware/external evaluation candidate | Compared; mirror/original terms conflict unresolved; no acquisition |
-| SEntFiN 1.0 | Preferred external/target-aware test candidate | Revision pinned; local research supported under repository MIT; public text and overlap unresolved |
+| SEntFiN 1.0 | Preferred external/target-aware test candidate | Pinned, acquired, validated locally; public text and full overlap audit unresolved |
 | SemEval-2017 Task 5 headlines | Backup target-aware news test | Shortlisted; release agreement unresolved |
 | Twitter Financial News Sentiment | Optional social-media robustness test | Shortlisted; annotation provenance/counts/rights pending |
 | FNSPID | News/price corpus | Excluded from human gold benchmark; generated sentiment |

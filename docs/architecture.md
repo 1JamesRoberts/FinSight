@@ -59,3 +59,15 @@ isolation, immutability, validation, and absence of filesystem side effects.
 GitHub Actions uses a small two-version matrix, read-only repository permissions,
 locked dependencies, and a package-build check. Hosted CI success requires an
 actual run after the repository is pushed.
+
+
+## Phase 1 extension: reviewed source files (2026-10-10)
+
+Acquisition, source parsing, and integrity auditing now live in `finsight.data`.
+They use the standard library and immutable typed records; no new runtime
+framework or dependency is introduced. The explicit acquisition command uses
+pinned manifest identities, preserves raw files, and verifies downloads before
+atomic persistence. Source loaders preserve original metadata and expose common
+string labels without assigning splits. A separate offline audit produces
+aggregate integrity counts. Tests use synthetic source formats; CI never depends
+on research data, network access, or model weights.

@@ -1,5 +1,7 @@
-# Local data artifacts
+# Local research artifacts
 
-`raw/`, `interim/`, and `processed/` are placeholders for later phases. Their
-contents are ignored by Git. No datasets are included. Complete the review in
-`docs/datasets.md` before acquiring data; document provenance and split versions.
+Only this README and placeholders belong in Git; actual files remain ignored.
+Reviewed PhraseBank and SEntFiN source artifacts live in `raw/`, with a pinned
+acquisition receipt. `interim/dataset-integrity.json` holds local validation
+counts. See `docs/dataset-loading.md` for reproducible acquisition and loading,
+usage scope, and limitations. No train/validation/test splits exist yet.
