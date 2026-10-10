@@ -184,6 +184,12 @@ See `docs/dataset-comparison.md`. Comparison is complete; acquisition approval,
 exact revision pinning, empirical inspection, and independent-test selection remain
 pending. FiQA mirror/original terms differ and require resolution.
 
+**Evaluation shortlist (2026-10-10):** SEntFiN, SemEval financial headlines,
+Twitter Financial News Sentiment, and FNSPID were reviewed using published
+sources. See `docs/evaluation-dataset-shortlist.md`. SEntFiN is the provisional
+preferred candidate; rights, exact revisions, duplicate/model-overlap checks,
+and final-test freezing remain pending. No additional checkbox is complete.
+
 **Deliverables:** Data-preparation code, EDA notebook, dataset card, split manifest.
 
 **Acceptance criteria:** Runs from raw authorized inputs reproducibly; partitions have no known duplicate overlap; independent-test limitations documented.

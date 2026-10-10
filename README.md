@@ -6,7 +6,7 @@ is comparing traditional NLP methods, FinBERT, and company-specific sentiment.
 A secondary study will test whether sentiment improves stock prediction over
 market-only baselines, using time-respecting evaluation.
 
-**Status: Phase 0 foundation only.** No datasets, sentiment models, ingestion,
+**Status: Phase 0 foundation implemented; Phase 1 dataset review underway.** No datasets, sentiment models, ingestion,
 stock prediction, API, or dashboard are implemented. See [ROADMAP.md](ROADMAP.md)
 for the phase sequence and acceptance criteria.
 
@@ -77,6 +77,8 @@ The module folders are empty boundaries, not implemented services. Details and
 tradeoffs are in [docs/architecture.md](docs/architecture.md). Review the
 [dataset/model/API checklist](docs/datasets.md) before acquiring any research
 assets. No third-party data or model licenses have been approved by this setup.
+The [evaluation dataset shortlist](docs/evaluation-dataset-shortlist.md) records
+candidate findings and the provisional recommendation; no final test is frozen.
 
 ## Verification and CI
 

@@ -3,6 +3,8 @@
 No datasets or model weights have been downloaded and no provider is integrated.
 Phase 1's public-source candidate comparison is recorded in
 [dataset-comparison.md](dataset-comparison.md), reviewed on 2026-10-10.
+An independent-evaluation shortlist is recorded in
+[evaluation-dataset-shortlist.md](evaluation-dataset-shortlist.md).
 **Acquisition approval and exact revision pinning remain pending.** This checklist
 is not a legal conclusion or authorization to acquire or redistribute an asset.
 
@@ -54,6 +56,10 @@ product before downloading, persisting, training on, or republishing content.
 | --- | --- | --- |
 | Financial PhraseBank | Three-class baseline candidate | Compared; terms/revision review pending; no acquisition |
 | FiQA Task 1 | Target-aware/external evaluation candidate | Compared; mirror/original terms conflict unresolved; no acquisition |
+| SEntFiN 1.0 | Preferred external/target-aware test candidate | Shortlisted; rights, revision, and overlap audit pending |
+| SemEval-2017 Task 5 headlines | Backup target-aware news test | Shortlisted; release agreement unresolved |
+| Twitter Financial News Sentiment | Optional social-media robustness test | Shortlisted; annotation provenance/counts/rights pending |
+| FNSPID | News/price corpus | Excluded from human gold benchmark; generated sentiment |
 | ProsusAI/finbert | Financial transformer candidate | Pending; no acquisition |
 | News provider | Article metadata/text access | Not selected |
 | Market data provider | Daily prices | Not selected |

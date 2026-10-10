@@ -89,7 +89,11 @@ authorized, pinned artifact directly rather than copying outdated loader example
   test yet. [ProsusAI's FinBERT card](https://huggingface.co/ProsusAI/finbert)
   confirms PhraseBank fine-tuning. A new random PhraseBank split does not remove
   that contamination. FiQA independence still needs a checkpoint-specific training
-  data audit and cross-corpus duplicate checks.
+  data audit and cross-corpus duplicate checks. The
+  [original FinBERT paper](https://arxiv.org/html/1908.10063) includes FiQA
+  regression experiments; this does not identify the published classifier's
+  training samples. See the
+  [evaluation shortlist](evaluation-dataset-shortlist.md) for alternative candidates.
 
 These are recommendations inferred from task fit, not measured performance.
 Do not pool the corpora immediately: sentence-wide classes and target/aspect scores
