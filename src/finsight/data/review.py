@@ -11,7 +11,7 @@ from typing import Any
 
 from finsight.data.acquisition import artifact_path, verify_artifact
 from finsight.data.audit import text_identity
-from finsight.data.fiqa import load_fiqa
+from finsight.data.fiqa import FiQAAnnotation, load_fiqa
 from finsight.data.loaders import load_phrasebank, load_sentfin
 
 
@@ -36,6 +36,21 @@ def snippet_mismatches(text: str, snippets: Iterable[str | None]) -> tuple[str, 
         snippet
         for snippet in snippets
         if snippet is not None and text_identity(snippet) not in identity
+    )
+
+
+def fiqa_annotation_context(annotation: FiQAAnnotation) -> str:
+    """Identify target/aspect/snippet context consistently across review and splits."""
+    return json.dumps(
+        [
+            text_identity(annotation.target),
+            sorted(text_identity(value) for value in annotation.aspects or ()),
+            [
+                text_identity(value) if value is not None else None
+                for value in annotation.snippets
+            ],
+        ],
+        ensure_ascii=False,
     )
 
 
@@ -198,22 +213,7 @@ def review_datasets(manifest_path: Path, data_dir: Path) -> dict[str, Any]:
                 for row in rows:
                     annotations = tuple(
                         (
-                            json.dumps(
-                                [
-                                    text_identity(a.target),
-                                    sorted(
-                                        text_identity(value)
-                                        for value in a.aspects or ()
-                                    ),
-                                    [
-                                        text_identity(value)
-                                        if value is not None
-                                        else None
-                                        for value in a.snippets
-                                    ],
-                                ],
-                                ensure_ascii=False,
-                            ),
+                            fiqa_annotation_context(a),
                             # Signed numeric zeros are the same gold score.
                             str(a.score or 0.0) if a.score is not None else None,
                         )

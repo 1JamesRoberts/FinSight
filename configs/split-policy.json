@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "seed": 42,
+  "partition_weights": {"train": 80, "validation": 10, "test_candidate": 10},
+  "phrasebank_agreement": "50",
+  "near_duplicates": {"word_shingle_size": 3, "jaccard_threshold": 0.8, "minimum_words": 6},
+  "quarantine": ["exact_gold_conflict", "near_gold_difference", "original_unscored_holdout_overlap"],
+  "development_only": ["cross_corpus_overlap", "target_coverage_difference", "fiqa_snippet_review"],
+  "deduplicate": "same corpus, normalized text, and equivalent annotation contexts/values",
+  "fiqa_snippet_supervision": "exclude annotations with missing or nonmatching snippets",
+  "final_test_frozen": false
+}

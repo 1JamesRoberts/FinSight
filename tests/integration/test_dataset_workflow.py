@@ -15,6 +15,9 @@ from finsight.data.audit import audit_datasets
 from finsight.data.labels import analyze_labels, render_label_report
 from finsight.data.lengths import analyze_lengths
 from finsight.data.review import review_datasets
+from finsight.data.splits import prepare_splits
+
+SPLIT_POLICY = Path(__file__).resolve().parents[2] / "configs/split-policy.json"
 
 
 def test_offline_workflow_with_verified_files(
@@ -156,6 +159,52 @@ def test_offline_workflow_with_verified_files(
     )
     main()
     assert label_path.read_text() == "Existing label report"
+    policy_path = tmp_path / "split-policy.json"
+    policy_path.write_text(SPLIT_POLICY.read_text())
+    monkeypatch.setattr(
+        "sys.argv",
+        [
+            "finsight.data",
+            "prepare-splits",
+            "--manifest",
+            str(manifest_path),
+            "--data-dir",
+            str(data),
+            "--split-policy",
+            str(policy_path),
+        ],
+    )
+    main()
+    splits = json.loads((data / "interim/split-preparation.json").read_text())
+    assert splits["corpora"]["phrasebank"]["prepared_records"] == 0
+    assert splits["corpora"]["fiqa"]["source_statuses"] == {
+        "quarantined": 2,
+        "unscored": 2,
+    }
+    assert splits["corpora"]["sentfin"]["prepared_records"] == 1
+    directory = Path(splits["directory"])
+    original_bytes = {path.name: path.read_bytes() for path in directory.iterdir()}
+    assert prepare_splits(manifest_path, policy_path, data) == splits
+    assert original_bytes == {
+        path.name: path.read_bytes() for path in directory.iterdir()
+    }
+    split_report = (tmp_path / "reports/split-preparation.md").read_text()
+    assert "EXAMPLE improves" not in split_report
+    assert "No final test is frozen" in split_report
+    changed_policy = json.loads(policy_path.read_text()) | {"seed": 7}
+    policy_path.write_text(json.dumps(changed_policy))
+    changed_splits = prepare_splits(manifest_path, policy_path, data)
+    assert changed_splits["directory"] != splits["directory"]
+    assert original_bytes == {
+        path.name: path.read_bytes() for path in directory.iterdir()
+    }
+    policy_path.write_text(SPLIT_POLICY.read_text())
+    (directory / "prepared-records.jsonl").write_text("corrupt cache")
+    with pytest.raises(ValueError, match="immutable split artifact differs"):
+        prepare_splits(manifest_path, policy_path, data)
+    (directory / "prepared-records.jsonl").write_bytes(
+        original_bytes["prepared-records.jsonl"]
+    )
     # Equivalent regression zeros must not become apparent gold conflicts.
     for specification in assets["fiqa_task1_original"]["acquisition_files"]:
         path = data / specification["local_path"]

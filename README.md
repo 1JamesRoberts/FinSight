@@ -54,7 +54,7 @@ redacted variable examples when a later phase introduces a provider.
 
 ```text
 .github/workflows/ci.yml   # Formatting, lint, tests, and package build
-configs/                  # Future experiment configuration; no presets yet
+configs/                  # Asset identities and provisional split policy
 src/finsight/
   config.py               # Typed environment settings
   data/                   # Reviewed acquisition, loaders, and integrity checks
@@ -104,6 +104,7 @@ uv run --locked python -m finsight.data validate
 uv run --locked python -m finsight.data analyze-labels
 uv run --locked python -m finsight.data analyze-lengths
 uv run --locked python -m finsight.data review-annotations
+uv run --locked python -m finsight.data prepare-splits
 ```
 
 The first command acquires reviewed pinned files, verifies checksums, and reuses a
@@ -120,7 +121,7 @@ has been frozen and no models have been trained.
 The [label analysis report](reports/label-analysis.md) compares source-class
 frequencies and FiQA training-score distributions. Its machine-readable output
 is ignored local data; its checked-in Markdown contains aggregate statistics only.
-No FiQA class thresholds or new partitions are assigned.
+No FiQA class thresholds are assigned by label analysis.
 
 The [text-length report](reports/length-analysis.md) summarizes characters and
 whitespace-separated words, with label/source-type comparisons. These counts
@@ -129,4 +130,11 @@ are descriptive and do not determine model token limits or filtering rules.
 The [duplicate/annotation report](reports/annotation-review.md) records exact and
 lexical near-duplicate candidates. [Qualitative findings](docs/annotation-review-findings.md)
 document conflicts, target-coverage differences, and FiQA snippet issues. Detailed
-source examples remain in ignored local storage; no rows are removed or relabeled.
+source examples remain in ignored local storage; review itself changes no rows.
+
+The [split policy](docs/split-policy.md) applies reversible filtering and groups
+known exact/near duplicates before seeded provisional partitioning. The
+[split preparation report](reports/split-preparation.md) records retained counts
+and class distributions. Raw data stays intact; detailed processed records and
+lineage are ignored. Test candidates remain separate from training and tuning,
+but the independent final benchmark still requires curation and freezing.

@@ -1,8 +1,9 @@
 # Reviewed dataset acquisition and validation
 
 Scope: Phase 1, Financial PhraseBank, SEntFiN, and an original-format FiQA
-challenge participant copy reviewed for local noncommercial research. No sentiment model, prediction function, or split is
-implemented. The runtime still uses only Python's standard library.
+challenge participant copy reviewed for local noncommercial research. Provisional
+split preparation is now available as a separate command; no sentiment model or
+prediction function is implemented. The runtime uses Python's standard library.
 
 ## Reproduce from the repository root
 
@@ -10,6 +11,7 @@ implemented. The runtime still uses only Python's standard library.
 uv sync --locked
 uv run --locked python -m finsight.data acquire
 uv run --locked python -m finsight.data validate
+uv run --locked python -m finsight.data prepare-splits
 ```
 
 `acquire` downloads the eleven pinned archive/CSV/JSON/notice files listed in
@@ -20,7 +22,7 @@ overwritten: inspect/remove the affected ignored artifact, then reacquire.
 The checked-in manifest contains no source text or credentials and downloads no
 model weights. A partial run can be rerun; completed verified files are reused.
 
-Both commands accept `--manifest PATH` and `--data-dir PATH`. The default data
+These commands accept `--manifest PATH` and `--data-dir PATH`. The default data
 root comes from `FINSIGHT_DATA_DIR` (otherwise `data`). Run from the repository
 root or pass the manifest's absolute path. For local environment overrides use
 `uv run --locked --env-file .env python -m finsight.data ...`.
@@ -30,6 +32,14 @@ The acquisition receipt is `data/raw/acquisition-receipt.json`; the validation
 summary is `data/interim/dataset-integrity.json`. These are ignored artifacts.
 The validator verifies every manifest file again before parsing; changing source
 bytes prevents validation. Summary output contains aggregate counts, no headlines.
+
+`prepare-splits` applies the [documented filtering/grouping policy](split-policy.md)
+and writes content-addressed local processed records with source lineage. Its
+`--split-policy PATH` defaults to `configs/split-policy.json`; `--report-path PATH`
+overrides the aggregate Markdown report. It revalidates sources independently.
+The [measured report](../reports/split-preparation.md) distinguishes quarantine,
+redundant copies, unscored originals, and provisional supervised partitions.
+No independent final test is frozen.
 
 ## Source formats and preservation
 

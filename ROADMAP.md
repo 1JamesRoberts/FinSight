@@ -174,7 +174,7 @@ has not run yet; the CI acceptance criterion remains pending until pushed to Git
 - [x] Implement repeatable ingestion and schema validation (PhraseBank, SEntFiN, and original-format FiQA participant copy).
 - [x] Analyze labels, lengths, duplicates, ambiguous examples, and available annotation-agreement metadata (descriptive review; unresolved cases retained).
 - [x] Normalize label mappings; preserve original labels/metadata (PhraseBank and SEntFiN).
-- [ ] Define train/validation/test partition strategy and hash-based duplicate checks.
+- [x] Define train/validation/test partition strategy and hash-based duplicate checks (provisional candidates; independent final test not frozen).
 - [ ] Select/curate an **independent** final evaluation set for pretrained FinBERT comparisons.
 - [ ] Write dataset cards and EDA figures.
 
@@ -246,6 +246,19 @@ across 45 training annotations; raw values and scores are preserved. Agreement
 subset metadata was reviewed; individual rater statistics are unavailable. The
 descriptive analysis task is complete, while adjudication, partition design,
 final-test selection, dataset cards, and figures remain pending.
+
+**Partition preparation verification (2026-10-10):** The versioned filtering policy
+and deterministic seed-42 group assignment are implemented and verified. See
+`docs/split-policy.md` and `reports/split-preparation.md`. Processed views retain
+4,830 PhraseBank sentences, 10,682 SEntFiN headlines, and 1,112 scored FiQA texts;
+27 source records are quarantined, 61 redundant copies preserve lineage, and all
+192 original unscored FiQA inputs remain outside supervised partitions. All 48
+flagged FiQA annotations are excluded from snippet supervision and test candidates.
+Known exact/group/near-edge overlap and lineage checks pass. Repeated real-data
+runs produce identical content-addressed artifacts; synthetic tests verify policy
+changes preserve prior artifacts and corrupted caches fail. This completes the
+partition strategy task only. Independent benchmark curation/freezing, ambiguity
+adjudication, dataset cards, and EDA figures remain incomplete; no models exist.
 
 **Deliverables:** Data-preparation code, EDA notebook, dataset card, split manifest.
 

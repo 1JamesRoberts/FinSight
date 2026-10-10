@@ -10,6 +10,7 @@ from finsight.data.audit import audit_datasets
 from finsight.data.labels import analyze_labels, render_label_report
 from finsight.data.lengths import analyze_lengths, render_length_report
 from finsight.data.review import render_review_report, review_datasets
+from finsight.data.splits import prepare_splits, render_split_report
 
 
 def main() -> None:
@@ -23,12 +24,16 @@ def main() -> None:
             "analyze-labels",
             "analyze-lengths",
             "review-annotations",
+            "prepare-splits",
         ),
     )
     parser.add_argument(
         "--manifest", type=Path, default=Path("configs/asset-revisions.json")
     )
     parser.add_argument("--data-dir", type=Path, default=Settings.from_env().data_dir)
+    parser.add_argument(
+        "--split-policy", type=Path, default=Path("configs/split-policy.json")
+    )
     parser.add_argument(
         "--report-path",
         type=Path,
@@ -48,6 +53,16 @@ def main() -> None:
         destination.write_text(json.dumps(summary, indent=2) + "\n")
         print(json.dumps(summary, indent=2))
         print(f"Integrity report saved to {destination}")
+    elif args.command == "prepare-splits":
+        summary = prepare_splits(args.manifest, args.split_policy, args.data_dir)
+        destination = args.data_dir / "interim/split-preparation.json"
+        destination.parent.mkdir(parents=True, exist_ok=True)
+        destination.write_text(json.dumps(summary, indent=2) + "\n")
+        report_path = args.report_path or Path("reports/split-preparation.md")
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(render_split_report(summary), encoding="utf-8")
+        print(f"Prepared split artifacts saved to {summary['directory']}")
+        print(f"Reports saved to {destination} and {report_path}")
     elif args.command == "review-annotations":
         review = review_datasets(args.manifest, args.data_dir)
         destination = args.data_dir / "interim/annotation-review.json"
