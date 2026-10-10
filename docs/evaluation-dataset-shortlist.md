@@ -2,6 +2,9 @@
 
 Reviewed: 2026-10-10. Scope: Phase 1, evaluation candidate review.
 Recommendation is provisional; no final test set is selected or frozen.
+The follow-up [release review](sentfin-asset-review.md) now pins SEntFiN and
+FinBERT revisions and records a scoped local-research usage assessment. Terms
+findings below describe the shortlist stage; follow-up decisions take precedence.
 No datasets or weights were downloaded and no access agreement was submitted.
 Published statistics below are not measurements of pinned local artifacts.
 

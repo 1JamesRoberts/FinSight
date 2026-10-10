@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "review_date": "2026-10-10",
+  "scope": "Phase 1 metadata and terms review; no dataset or model-weight acquisition",
+  "assets": {
+    "sentfin_1_0": {
+      "repository": "https://github.com/pyRis/SEntFiN",
+      "revision": "eba43610fe3cb57a3e5773cd6c037da1f8992ad5",
+      "revision_verified_via": "https://api.github.com/repos/pyRis/SEntFiN/commits/main",
+      "commit_date_utc": "2023-05-31T08:34:08Z",
+      "tree_git_sha1": "23db600450c53676f88da653441338aeaf668c20",
+      "license_spdx": "MIT",
+      "local_research_decision": "supported_under_repository_license",
+      "public_text_redistribution_decision": "not_cleared",
+      "downloaded": false,
+      "files": [
+        {
+          "path": "SEntFiN.csv",
+          "git_blob_sha1": "df9ef12c1d91058a682c623e8fe9154be0dc44d5",
+          "size_bytes": 1118162,
+          "sha256": null
+        },
+        {
+          "path": "entity_list_comprehensive.csv",
+          "git_blob_sha1": "a94603b846f2b6c2810da55f0880635bbce0af87",
+          "size_bytes": 90424,
+          "sha256": null
+        }
+      ],
+      "reviewed_metadata": [
+        {
+          "path": "README.md",
+          "sha256": "543e1779ccb4e13b23107b3c4443891f581041d56adf676daa8db173c730e03a"
+        },
+        {
+          "path": "LICENSE",
+          "sha256": "961d32986ac3fa2fe2e55ebc7bbae1ba8d632412e98493d73bdf59f0ad8fc65f"
+        }
+      ]
+    },
+    "prosusai_finbert": {
+      "repository": "https://huggingface.co/ProsusAI/finbert",
+      "revision": "4556d13015211d73dccd3fdd39d39232506f3e43",
+      "revision_verified_via": "https://huggingface.co/api/models/ProsusAI/finbert",
+      "last_modified_utc": "2023-05-23T12:43:35Z",
+      "weights_license_spdx": null,
+      "weight_acquisition_decision": "pending_explicit_license_scope",
+      "weights_downloaded": false,
+      "id2label": {
+        "0": "positive",
+        "1": "negative",
+        "2": "neutral"
+      },
+      "reviewed_metadata": [
+        {
+          "path": "README.md",
+          "sha256": "23bf85400efe1e88cbe2bf79cec8c5ff81fe9806c599f3ca85e18288ab871008"
+        },
+        {
+          "path": "config.json",
+          "sha256": "f6449ddda85eb726207a40be59c0cd3bd4b142ccb27298d5e45f9ae3396b1abe"
+        }
+      ],
+      "separate_source_code": {
+        "repository": "https://github.com/ProsusAI/finBERT",
+        "revision": "44995e0c5870c4ab37a189d756550654ae87cdf0",
+        "license_spdx": "Apache-2.0",
+        "license_sha256": "58d1e17ffe5109a7ae296caafcadfdbe6a7d176f0bc4ab01e12a689b0499d8bd",
+        "license_scope": "source code; not assumed to license hosted model weights"
+      }
+    }
+  }
+}

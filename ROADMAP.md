@@ -190,6 +190,13 @@ sources. See `docs/evaluation-dataset-shortlist.md`. SEntFiN is the provisional
 preferred candidate; rights, exact revisions, duplicate/model-overlap checks,
 and final-test freezing remain pending. No additional checkbox is complete.
 
+**SEntFiN release review (2026-10-10):** Immutable dataset/model repository
+revisions and metadata/file identities are recorded in `configs/asset-revisions.json`.
+See `docs/sentfin-asset-review.md` for the local-research scope assessment and
+unresolved public-text rights, model-weight license, and overlap evidence. No
+CSV files or weights were acquired. The broader terms/revisions task and final
+independent-test task remain unchecked.
+
 **Deliverables:** Data-preparation code, EDA notebook, dataset card, split manifest.
 
 **Acceptance criteria:** Runs from raw authorized inputs reproducibly; partitions have no known duplicate overlap; independent-test limitations documented.
