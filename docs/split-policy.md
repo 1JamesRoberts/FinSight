@@ -1,7 +1,9 @@
 # Provisional sentiment split policy
 
 Phase 1 prepares reversible filtering decisions and provisional partitions from
-the pinned local research inputs. No independent final benchmark is frozen.
+the pinned local research inputs. This describes the parent split. The subsequent
+[evaluation contract](evaluation-contract.md) freezes curated SEntFiN candidates;
+that committed receipt takes precedence for official evaluation and development.
 The machine-readable policy is `configs/split-policy.json`; the measured output
 is [the split preparation report](../reports/split-preparation.md).
 
@@ -80,7 +82,8 @@ until benchmark curation and an evaluation contract are complete. The class
 distribution is imbalanced and the SEntFiN targets are broader than our five-company
 MVP. FiQA source-copy provenance and suspect annotation limitations still apply.
 
-The next task is selecting and freezing the independent sentiment benchmark,
-including its target-level evaluation protocol. Keep provisional test candidates
-out of training and tuning while that decision is pending. No models are trained
-or evaluated by this preparation command.
+The subsequent benchmark task selected and froze the qualified external SEntFiN
+holdout with a target-level evaluation protocol. All provisional test candidates
+remain outside training and tuning. `prepare-splits` verifies its parent fingerprint
+against `configs/benchmark-freeze.json` and fails if inputs or seed change.
+No models are trained or evaluated by this preparation command.

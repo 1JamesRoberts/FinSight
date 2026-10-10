@@ -6,7 +6,7 @@ is comparing traditional NLP methods, FinBERT, and company-specific sentiment.
 A secondary study will test whether sentiment improves stock prediction over
 market-only baselines, using time-respecting evaluation.
 
-**Status: Phase 0 foundation and Phase 1 local dataset loading implemented.**
+**Status: Phase 0 foundation and Phase 1 loading, curation, and benchmark freeze implemented.**
 Reviewed PhraseBank, SEntFiN, and original-format FiQA files are available in ignored local storage.
 No sentiment models, news-provider ingestion, stock prediction, API, or dashboard
 are implemented. See [ROADMAP.md](ROADMAP.md)
@@ -81,7 +81,8 @@ tradeoffs are in [docs/architecture.md](docs/architecture.md). Review the
 assets. PhraseBank, SEntFiN, and the selected FiQA copy are reviewed for local noncommercial research; public
 source-text redistribution and model-weight license scope remain unresolved.
 The [evaluation dataset shortlist](docs/evaluation-dataset-shortlist.md) records
-candidate findings and the provisional recommendation; no final test is frozen.
+candidate findings. The subsequent [evaluation contract](docs/evaluation-contract.md)
+defines the frozen SEntFiN holdout and its independence/coverage limitations.
 
 ## Verification and CI
 
@@ -105,6 +106,7 @@ uv run --locked python -m finsight.data analyze-labels
 uv run --locked python -m finsight.data analyze-lengths
 uv run --locked python -m finsight.data review-annotations
 uv run --locked python -m finsight.data prepare-splits
+uv run --locked python -m finsight.data freeze-benchmark
 ```
 
 The first command acquires reviewed pinned files, verifies checksums, and reuses a
@@ -115,8 +117,8 @@ report. See [loading instructions and findings](docs/dataset-loading.md),
 [FiQA release and terms](docs/fiqa-asset-review.md).
 FiQA training annotations retain continuous scores; its original test inputs
 have no gold scores and cannot be used for supervised evaluation. No dataset contents are committed;
-CI uses synthetic examples and requires no dataset downloads. No final test set
-has been frozen and no models have been trained.
+CI uses synthetic examples and requires no dataset downloads. The curated
+SEntFiN final holdout is frozen; no models have been trained.
 
 The [label analysis report](reports/label-analysis.md) compares source-class
 frequencies and FiQA training-score distributions. Its machine-readable output
@@ -137,4 +139,13 @@ known exact/near duplicates before seeded provisional partitioning. The
 [split preparation report](reports/split-preparation.md) records retained counts
 and class distributions. Raw data stays intact; detailed processed records and
 lineage are ignored. Test candidates remain separate from training and tuning,
-but the independent final benchmark still requires curation and freezing.
+and the subsequent benchmark release freezes the curated SEntFiN membership.
+
+The [frozen benchmark report](reports/frozen-benchmark.md) describes 1,029 headlines
+and 1,360 native target labels. The [freeze receipt](configs/benchmark-freeze.json)
+pins exact local artifacts without publishing dataset text. Two malformed-target
+groups remain excluded. Use the verified development loader documented in the
+[evaluation contract](docs/evaluation-contract.md); changing the official split
+after freezing fails. This is held out from FinSight development with no known
+accessible-corpus overlap. Complete FinBERT pretraining exposure remains unknown,
+and this corpus does not establish performance on all five MVP companies.

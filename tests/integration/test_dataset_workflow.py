@@ -195,6 +195,16 @@ def test_offline_workflow_with_verified_files(
     policy_path.write_text(json.dumps(changed_policy))
     changed_splits = prepare_splits(manifest_path, policy_path, data)
     assert changed_splits["directory"] != splits["directory"]
+    freeze_path = tmp_path / "synthetic-freeze.json"
+    freeze_path.write_text(
+        json.dumps(
+            {
+                "parent_split_manifest_sha256": splits["split_manifest_sha256"],
+            }
+        )
+    )
+    with pytest.raises(ValueError, match="resplitting prohibited"):
+        prepare_splits(manifest_path, policy_path, data, freeze_path=freeze_path)
     assert original_bytes == {
         path.name: path.read_bytes() for path in directory.iterdir()
     }

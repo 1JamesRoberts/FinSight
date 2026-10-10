@@ -13,3 +13,9 @@ dataset acquisition command. Weight metadata is never part of that allowlist.
 near-duplicate screen, and provisional partition weights. Supported changes are
 validated explicitly. See `docs/split-policy.md`; this is not a final-test freeze
 or a model experiment configuration.
+
+`benchmark-policy.json` declares holdout curation, cohorts, label order, and
+descriptive coverage-name checks. `benchmark-freeze.json` is the authoritative
+receipt pinning the final local membership/labels and its parent split by digest.
+Neither contains source headlines. Preserve the receipt; do not alter the seed,
+membership, or labels after inspecting results. See `docs/evaluation-contract.md`.

@@ -39,7 +39,8 @@ and writes content-addressed local processed records with source lineage. Its
 overrides the aggregate Markdown report. It revalidates sources independently.
 The [measured report](../reports/split-preparation.md) distinguishes quarantine,
 redundant copies, unscored originals, and provisional supervised partitions.
-No independent final test is frozen.
+The subsequent [benchmark freeze](evaluation-contract.md) reserves curated SEntFiN
+groups; loading or provisional splitting alone does not freeze a final test.
 
 ## Source formats and preservation
 

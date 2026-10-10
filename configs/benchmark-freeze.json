@@ -1,0 +1,68 @@
+{
+  "benchmark_id": "sentfin-independent-v1",
+  "benchmark_manifest_sha256": "b7cc249017ddd87f0b2c52a3abf3ff5b96f6920832b411f18eac547fec0b0f1c",
+  "final_test_frozen": true,
+  "parent_split_manifest_sha256": "a9a67c231903bc2e3e71afead1d6daaf6b7201211fc25a05efd2bb2ee2d5e898",
+  "policy_sha256": "8e3bd7190d98826c124199749d75f69a28af819ddda33199a647ca60ff5569bb",
+  "records_sha256": "144db27f984376867a04dae3724ad69ab4de9e6dbca8fdd43f41d1bca558f3ab",
+  "schema_version": 1,
+  "summary": {
+    "cohorts": {
+      "all": {
+        "class_counts": {
+          "negative": 333,
+          "neutral": 548,
+          "positive": 479
+        },
+        "headlines": 1029,
+        "target_annotations": 1360
+      },
+      "mixed_target_sentiment": {
+        "class_counts": {
+          "negative": 51,
+          "neutral": 113,
+          "positive": 89
+        },
+        "headlines": 110,
+        "target_annotations": 253
+      },
+      "multi_target": {
+        "class_counts": {
+          "negative": 118,
+          "neutral": 289,
+          "positive": 187
+        },
+        "headlines": 263,
+        "target_annotations": 594
+      },
+      "single_target": {
+        "class_counts": {
+          "negative": 215,
+          "neutral": 259,
+          "positive": 292
+        },
+        "headlines": 766,
+        "target_annotations": 766
+      }
+    },
+    "curation_excluded_candidate_records": 2,
+    "curation_excluded_groups": 2,
+    "duplicate_groups": 1028,
+    "headlines": 1029,
+    "mvp_exact_target_name_annotations": {
+      "AAPL": 2,
+      "AMZN": 0,
+      "GOOGL": 0,
+      "MSFT": 0,
+      "NVDA": 0
+    },
+    "nonliteral_target_annotations": 0,
+    "target_annotations": 1360,
+    "target_class_counts": {
+      "negative": 333,
+      "neutral": 548,
+      "positive": 479
+    },
+    "unique_normalized_targets": 833
+  }
+}

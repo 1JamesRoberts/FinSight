@@ -11,7 +11,11 @@ An independent-evaluation shortlist is recorded in
 SEntFiN's scoped local-research assessment and immutable revision are recorded in
 [sentfin-asset-review.md](sentfin-asset-review.md) and
 [asset-revisions.json](../configs/asset-revisions.json).
-**Other asset approvals, public-text rights, and final-test selection remain pending.** This checklist
+The subsequent [evaluation contract](evaluation-contract.md) records the curated
+SEntFiN freeze for local offline research; membership and gold digests are pinned
+in `configs/benchmark-freeze.json`. Known accessible-corpus overlap is excluded;
+full checkpoint pretraining exposure remains unknown.
+**Other asset approvals and public-text rights remain pending.** This checklist
 is not a legal conclusion or authorization to acquire or redistribute an asset.
 
 Complete one record per exact dataset revision, model checkpoint, or provider
@@ -62,7 +66,7 @@ product before downloading, persisting, training on, or republishing content.
 | --- | --- | --- |
 | Financial PhraseBank | Three-class baseline development | Reviewed for local noncommercial research; pinned, acquired, validated |
 | FiQA Task 1 | Target/aspect-aware research candidate | Original-format participant copy reviewed, pinned, acquired, validated for noncommercial research; test inputs unscored; mirror terms unresolved |
-| SEntFiN 1.0 | Preferred external/target-aware test candidate | Pinned, acquired, validated locally; public text and full overlap audit unresolved |
+| SEntFiN 1.0 | Frozen external/target-aware holdout | Curated local release frozen; public text rights and full pretraining overlap unresolved |
 | SemEval-2017 Task 5 headlines | Backup target-aware news test | Shortlisted; release agreement unresolved |
 | Twitter Financial News Sentiment | Optional social-media robustness test | Shortlisted; annotation provenance/counts/rights pending |
 | FNSPID | News/price corpus | Excluded from human gold benchmark; generated sentiment |
@@ -71,8 +75,8 @@ product before downloading, persisting, training on, or republishing content.
 | Market data provider | Daily prices | Not selected |
 
 See ROADMAP.md for candidate references and the linked comparison for evidence.
-Final selection, terms verification, and artifact revision pinning remain separate
-Phase 1 tasks; no access, training, or redistribution rights are assumed here.
+Selection, terms verification, and artifact pinning are separate assessments;
+benchmark freezing does not extend the existing local research permissions.
 
 FiQA release selection, original noncommercial-use terms, participant-copy
 provenance, unscored test inputs, and mirror limitations are recorded in

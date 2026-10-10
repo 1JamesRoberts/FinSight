@@ -50,4 +50,6 @@ checks pass. This covers the current lexical screen, not all semantic
 overlap or inaccessible model-training corpora. PhraseBank test
 candidates remain unsuitable as independent pretrained FinBERT evidence.
 SEntFiN candidates still need independent-benchmark curation and review.
-No final test is frozen and no model training or tuning is performed.
+No final test is frozen by this provisional preparation command.
+The separate benchmark receipt and `docs/evaluation-contract.md` define
+the subsequent frozen release. No model training or tuning is performed.

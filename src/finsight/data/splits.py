@@ -382,7 +382,11 @@ def validate_split_plan(
 
 
 def prepare_splits(
-    manifest_path: Path, policy_path: Path, data_dir: Path
+    manifest_path: Path,
+    policy_path: Path,
+    data_dir: Path,
+    *,
+    freeze_path: Path = Path("configs/benchmark-freeze.json"),
 ) -> dict[str, Any]:
     """Recompute source review and save content-addressed local split artifacts."""
     review = review_datasets(manifest_path, data_dir)
@@ -393,6 +397,12 @@ def prepare_splits(
     plan["prepared_records_sha256"] = hashlib.sha256(body.encode()).hexdigest()
     plan_body = _json(plan) + "\n"
     fingerprint = hashlib.sha256(plan_body.encode()).hexdigest()
+    if freeze_path.exists():
+        receipt = json.loads(freeze_path.read_text(encoding="utf-8"))
+        if receipt["parent_split_manifest_sha256"] != fingerprint:
+            raise ValueError(
+                "split differs from frozen benchmark parent; resplitting prohibited"
+            )
     directory = data_dir / "processed/splits" / fingerprint
     directory.mkdir(parents=True, exist_ok=True)
     files = (
@@ -547,6 +557,8 @@ def render_split_report(summary: dict[str, Any]) -> str:
         "overlap or inaccessible model-training corpora. PhraseBank test",
         "candidates remain unsuitable as independent pretrained FinBERT evidence.",
         "SEntFiN candidates still need independent-benchmark curation and review.",
-        "No final test is frozen and no model training or tuning is performed.",
+        "No final test is frozen by this provisional preparation command.",
+        "The separate benchmark receipt and `docs/evaluation-contract.md` define",
+        "the subsequent frozen release. No model training or tuning is performed.",
     ]
     return "\n".join(lines) + "\n"

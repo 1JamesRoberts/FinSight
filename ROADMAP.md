@@ -174,8 +174,8 @@ has not run yet; the CI acceptance criterion remains pending until pushed to Git
 - [x] Implement repeatable ingestion and schema validation (PhraseBank, SEntFiN, and original-format FiQA participant copy).
 - [x] Analyze labels, lengths, duplicates, ambiguous examples, and available annotation-agreement metadata (descriptive review; unresolved cases retained).
 - [x] Normalize label mappings; preserve original labels/metadata (PhraseBank and SEntFiN).
-- [x] Define train/validation/test partition strategy and hash-based duplicate checks (provisional candidates; independent final test not frozen).
-- [ ] Select/curate an **independent** final evaluation set for pretrained FinBERT comparisons.
+- [x] Define train/validation/test partition strategy and hash-based duplicate checks (parent split; final benchmark frozen separately).
+- [x] Select/curate an **independent** final evaluation set for pretrained FinBERT comparisons (held-out SEntFiN; no known accessible-corpus overlap, checkpoint pretraining exposure unknown).
 - [ ] Write dataset cards and EDA figures.
 
 **Comparison verification (2026-10-10):** Public cards, the PhraseBank loader,
@@ -259,6 +259,21 @@ runs produce identical content-addressed artifacts; synthetic tests verify polic
 changes preserve prior artifacts and corrupted caches fail. This completes the
 partition strategy task only. Independent benchmark curation/freezing, ambiguity
 adjudication, dataset cards, and EDA figures remain incomplete; no models exist.
+
+**Benchmark freeze verification (2026-10-10):** `sentfin-independent-v1` is curated
+and frozen before models: 1,029 headlines, 1,360 target annotations, 1,028 duplicate
+groups. Two malformed-target headline groups are excluded without repairing gold.
+See `docs/evaluation-contract.md`, `configs/benchmark-freeze.json`, and
+`reports/frozen-benchmark.md`. Fixed cohorts separate single-target controls,
+multi-target examples, and mixed-target sentiment. Repeat runs reproduce the same
+receipt/artifacts; corruption and resplitting are rejected. The verified development
+loader returns only train/validation records and excludes frozen/curation groups.
+This completes the external-test curation task with qualified independence:
+accessible-corpus checks pass, but complete FinBERT pretraining exposure remains
+unknown. Five-company US-market coverage is insufficient; no such performance
+claim is supported. Model weight terms remain unresolved. Dataset cards/figures
+and model implementation are still pending. Local tests and Ruff pass; hosted CI
+has not been run for this change.
 
 **Deliverables:** Data-preparation code, EDA notebook, dataset card, split manifest.
 
@@ -488,7 +503,7 @@ A task is complete only when:
 | Date | Decision | Alternatives | Reason | Impact |
 |---|---|---|---|---|
 | TBD | News provider and license | TBD | TBD | Phase 1/7 |
-| TBD | Independent sentiment evaluation set | TBD | TBD | Phase 3 |
+| 2026-10-10 | Freeze curated SEntFiN test groups as `sentfin-independent-v1` | PhraseBank (known supervision overlap); FiQA (continuous scores/provenance uncertainty) | Native human target labels; no known accessible-corpus overlap | Phase 1/3; unknown pretraining exposure and limited US-company coverage |
 | TBD | Target-sentiment data annotation strategy | TBD | TBD | Phase 4 |
 | TBD | Sentiment aggregation definition | TBD | TBD | Phase 5 |
 | TBD | Market data source and cutoff handling | TBD | TBD | Phase 6 |

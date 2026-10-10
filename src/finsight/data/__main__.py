@@ -7,6 +7,7 @@ from pathlib import Path
 from finsight.config import Settings
 from finsight.data.acquisition import acquire_datasets
 from finsight.data.audit import audit_datasets
+from finsight.data.benchmark import freeze_benchmark, render_benchmark_report
 from finsight.data.labels import analyze_labels, render_label_report
 from finsight.data.lengths import analyze_lengths, render_length_report
 from finsight.data.review import render_review_report, review_datasets
@@ -25,6 +26,7 @@ def main() -> None:
             "analyze-lengths",
             "review-annotations",
             "prepare-splits",
+            "freeze-benchmark",
         ),
     )
     parser.add_argument(
@@ -33,6 +35,12 @@ def main() -> None:
     parser.add_argument("--data-dir", type=Path, default=Settings.from_env().data_dir)
     parser.add_argument(
         "--split-policy", type=Path, default=Path("configs/split-policy.json")
+    )
+    parser.add_argument(
+        "--benchmark-policy", type=Path, default=Path("configs/benchmark-policy.json")
+    )
+    parser.add_argument(
+        "--freeze-receipt", type=Path, default=Path("configs/benchmark-freeze.json")
     )
     parser.add_argument(
         "--report-path",
@@ -53,8 +61,26 @@ def main() -> None:
         destination.write_text(json.dumps(summary, indent=2) + "\n")
         print(json.dumps(summary, indent=2))
         print(f"Integrity report saved to {destination}")
+    elif args.command == "freeze-benchmark":
+        receipt = freeze_benchmark(
+            args.manifest,
+            args.split_policy,
+            args.benchmark_policy,
+            args.data_dir,
+            args.freeze_receipt,
+        )
+        report_path = args.report_path or Path("reports/frozen-benchmark.md")
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(render_benchmark_report(receipt), encoding="utf-8")
+        print(f"Frozen benchmark receipt verified at {args.freeze_receipt}")
+        print(f"Aggregate report saved to {report_path}")
     elif args.command == "prepare-splits":
-        summary = prepare_splits(args.manifest, args.split_policy, args.data_dir)
+        summary = prepare_splits(
+            args.manifest,
+            args.split_policy,
+            args.data_dir,
+            freeze_path=args.freeze_receipt,
+        )
         destination = args.data_dir / "interim/split-preparation.json"
         destination.parent.mkdir(parents=True, exist_ok=True)
         destination.write_text(json.dumps(summary, indent=2) + "\n")
