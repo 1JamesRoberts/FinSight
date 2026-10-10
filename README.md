@@ -7,7 +7,7 @@ A secondary study will test whether sentiment improves stock prediction over
 market-only baselines, using time-respecting evaluation.
 
 **Status: Phase 0 foundation and Phase 1 local dataset loading implemented.**
-Reviewed PhraseBank and SEntFiN files are available in ignored local storage.
+Reviewed PhraseBank, SEntFiN, and original-format FiQA files are available in ignored local storage.
 No sentiment models, news-provider ingestion, stock prediction, API, or dashboard
 are implemented. See [ROADMAP.md](ROADMAP.md)
 for the phase sequence and acceptance criteria.
@@ -78,7 +78,7 @@ data/{raw,interim,processed}/  # Ignored local research data
 The module folders are empty boundaries, not implemented services. Details and
 tradeoffs are in [docs/architecture.md](docs/architecture.md). Review the
 [dataset/model/API checklist](docs/datasets.md) before acquiring any research
-assets. PhraseBank and SEntFiN are reviewed for local noncommercial research; public
+assets. PhraseBank, SEntFiN, and the selected FiQA copy are reviewed for local noncommercial research; public
 source-text redistribution and model-weight license scope remain unresolved.
 The [evaluation dataset shortlist](docs/evaluation-dataset-shortlist.md) records
 candidate findings and the provisional recommendation; no final test is frozen.
@@ -107,6 +107,9 @@ The first command acquires reviewed pinned files, verifies checksums, and reuses
 valid cache. The second validates schemas and writes an ignored aggregate integrity
 report. See [loading instructions and findings](docs/dataset-loading.md),
 [PhraseBank terms](docs/phrasebank-asset-review.md), and
-[SEntFiN terms](docs/sentfin-asset-review.md). No dataset contents are committed;
+[SEntFiN terms](docs/sentfin-asset-review.md), and
+[FiQA release and terms](docs/fiqa-asset-review.md).
+FiQA training annotations retain continuous scores; its original test inputs
+have no gold scores and cannot be used for supervised evaluation. No dataset contents are committed;
 CI uses synthetic examples and requires no dataset downloads. No final test set
 has been frozen and no models have been trained.

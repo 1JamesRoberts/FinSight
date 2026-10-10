@@ -126,10 +126,72 @@
           "sha256": "274523f90fee5ef947c24bd95388818a551dbd2c1d9ee55469446329cb6c82e0"
         }
       ]
+    },
+    "fiqa_task1_original": {
+      "repository": "https://github.com/dayanfcosta/fiqa-2018-task1",
+      "revision": "acd0f4cfafa6421774bc8f009e8fa3e0ec441357",
+      "revision_verified_via": "https://api.github.com/repos/dayanfcosta/fiqa-2018-task1/commits/master",
+      "release_role": "challenge participant copy; original organizer bytes unavailable for comparison",
+      "license_spdx": null,
+      "terms_source": "https://sites.google.com/view/fiqa/home",
+      "local_research_decision": "supported_under_original_noncommercial_terms",
+      "public_text_redistribution_decision": "not_cleared",
+      "downloaded": true,
+      "original_test_has_gold_scores": false,
+      "benchmark_mirror": {
+        "repository": "https://huggingface.co/datasets/TheFinAI/en-fiqa-absa",
+        "revision": "2484314781c82018dc97057c3d9165b390815d30",
+        "gated": "auto",
+        "downloaded": false
+      },
+      "acquisition_files": [
+        {
+          "path": "datasets/task1_headline_ABSA_train.json",
+          "local_path": "raw/fiqa/task1_headline_ABSA_train.json",
+          "source_url": "https://raw.githubusercontent.com/dayanfcosta/fiqa-2018-task1/acd0f4cfafa6421774bc8f009e8fa3e0ec441357/datasets/task1_headline_ABSA_train.json",
+          "size_bytes": 151039,
+          "sha256": "24bfd3dd662a22c95dbe2d2c86ac2ea75408dafb1027246ed27b53b5c7bad821",
+          "git_blob_sha1": "ffc862223241c94433063bd8aee85b8311739eee"
+        },
+        {
+          "path": "datasets/task1_post_ABSA_train.json",
+          "local_path": "raw/fiqa/task1_post_ABSA_train.json",
+          "source_url": "https://raw.githubusercontent.com/dayanfcosta/fiqa-2018-task1/acd0f4cfafa6421774bc8f009e8fa3e0ec441357/datasets/task1_post_ABSA_train.json",
+          "size_bytes": 227069,
+          "sha256": "7a6490b1b765ac74a8933355d482c3ce7994780b2d961027d4b28a9c751b4998",
+          "git_blob_sha1": "de4eecdd26cac7755745917a40b1712caf95375b"
+        },
+        {
+          "path": "datasets/task1_headline_ABSA_test.json",
+          "local_path": "raw/fiqa/task1_headline_ABSA_test.json",
+          "source_url": "https://raw.githubusercontent.com/dayanfcosta/fiqa-2018-task1/acd0f4cfafa6421774bc8f009e8fa3e0ec441357/datasets/task1_headline_ABSA_test.json",
+          "size_bytes": 21219,
+          "sha256": "a5ab90b9c6b5768a199bb1ffd377fa809af3e1418b2df6bf3f19123f10d7eb85",
+          "git_blob_sha1": "c4e45002e59a379f28004ba1f77507f2a20d69d3"
+        },
+        {
+          "path": "datasets/task1_post_ABSA_test.json",
+          "local_path": "raw/fiqa/task1_post_ABSA_test.json",
+          "source_url": "https://raw.githubusercontent.com/dayanfcosta/fiqa-2018-task1/acd0f4cfafa6421774bc8f009e8fa3e0ec441357/datasets/task1_post_ABSA_test.json",
+          "size_bytes": 22626,
+          "sha256": "bc734a2bf3cc6ef37a28b3e249305607f04d4085b1cce5a0e2cdcc71c69ffaa8",
+          "git_blob_sha1": "2267cd6e806ec2e22fe0d2a605f154a6b36e3d77"
+        },
+        {
+          "path": "README.md",
+          "local_path": "raw/fiqa/README.md",
+          "source_url": "https://raw.githubusercontent.com/dayanfcosta/fiqa-2018-task1/acd0f4cfafa6421774bc8f009e8fa3e0ec441357/README.md",
+          "size_bytes": 581,
+          "sha256": "ea3cc99dbe25636706e985e064fdaea26c94528c04f2ccf572cee4ccb2007112"
+        }
+      ],
+      "commit_date_utc": "2018-08-16T12:33:59Z",
+      "tree_git_sha1": "d84865405834a4c5f1913f2880486319b321a25d"
     }
   },
   "local_dataset_assets": [
     "financial_phrasebank",
-    "sentfin_1_0"
+    "sentfin_1_0",
+    "fiqa_task1_original"
   ]
 }

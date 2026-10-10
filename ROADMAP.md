@@ -170,8 +170,8 @@ has not run yet; the CI acceptance criterion remains pending until pushed to Git
 
 ### Tasks
 - [x] Compare Financial PhraseBank and FiQA schemas, labels, target entities, licensing, and source provenance.
-- [ ] Document redistribution/training terms and pin exact dataset revisions.
-- [x] Implement repeatable ingestion and schema validation (PhraseBank and SEntFiN; FiQA deferred).
+- [x] Document redistribution/training terms and pin exact selected dataset revisions (local noncommercial scope; public redistribution not cleared).
+- [x] Implement repeatable ingestion and schema validation (PhraseBank, SEntFiN, and original-format FiQA participant copy).
 - [ ] Analyze labels, lengths, duplicates, ambiguous examples, and annotation agreement.
 - [x] Normalize label mappings; preserve original labels/metadata (PhraseBank and SEntFiN).
 - [ ] Define train/validation/test partition strategy and hash-based duplicate checks.
@@ -202,8 +202,18 @@ review and local acquisition of PhraseBank/SEntFiN are complete. Typed source
 loaders, checksummed acquisition, and schema validation pass on real pinned
 artifacts; synthetic tests run offline. See `docs/dataset-loading.md` for counts,
 source discrepancies, duplicates, and the limited exact-overlap check. The terms
-checkbox remains open because FiQA is deferred with unresolved terms. Full EDA,
+checkbox was left open at that stage because FiQA was deferred. Full EDA,
 split design, and independent final-test selection remain incomplete.
+
+**FiQA loading verification (2026-10-10):** The original noncommercial-use
+terms support local research. An accessible participant-hosted original-format
+copy was pinned, acquired, and validated; see `docs/fiqa-asset-review.md`. Its
+1,113 training texts contain 1,178 scored annotations, and 192 test inputs have
+no gold scores. Scores, targets, aspects, snippets, groups, and source splits are
+preserved. One normalized original train/test text overlap is documented. The
+selected dataset terms/revisions task is complete in the stated local scope;
+the gated mirror’s MIT scope and organizer-byte equivalence remain unresolved.
+No final test was selected, no thresholds assigned, and no models implemented.
 
 **Deliverables:** Data-preparation code, EDA notebook, dataset card, split manifest.
 

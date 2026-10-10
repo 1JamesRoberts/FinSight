@@ -2,7 +2,10 @@
 
 Reviewed: 2026-10-10. Scope: Phase 1, candidate comparison only.
 This is a documentation review of public sources, not an empirical dataset audit.
-No data files were downloaded, gated terms accepted, or processing implemented.
+At the initial comparison stage, no data files were downloaded, gated terms
+accepted, or processing implemented. Follow-up acquisition of an original-format
+FiQA participant copy is documented in [FiQA asset review](fiqa-asset-review.md).
+The mirror schema below describes a different release.
 Exact artifact revisions, checksums, class distributions, duplicate rates, and
 company coverage remain unverified. Neither candidate is approved for acquisition.
 
@@ -107,8 +110,12 @@ coverage of AAPL, MSFT, NVDA, AMZN, and GOOGL. Company coverage, full-article
 performance, and multi-company evaluation remain future empirical questions.
 Neither corpus should be assumed suitable for stock-prediction backtesting.
 
-## Next bounded task
+## Follow-up status
 
-Complete the asset terms records in `datasets.md`, resolve FiQA's licensing/access
-questions, and pin exact authorized revisions. Then implement loading and validation
-as a separate task. Leave the final test untouched during EDA and tuning.
+The selected original-format FiQA copy has since been reviewed, pinned, acquired,
+and validated; see [FiQA asset review](fiqa-asset-review.md). The mirror findings
+above remain relevant to that separate, unacquired release.
+
+The initial next task was to complete the asset terms records in `datasets.md`, resolve FiQA's licensing/access
+questions, and pin exact authorized revisions. Loading and validation are now implemented for the selected copy. Final-test
+selection remains pending.

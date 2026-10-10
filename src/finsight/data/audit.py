@@ -8,6 +8,7 @@ from pathlib import Path
 from typing import Any
 
 from finsight.data.acquisition import artifact_path, verify_artifact
+from finsight.data.fiqa import load_fiqa
 from finsight.data.loaders import load_entity_aliases, load_phrasebank, load_sentfin
 
 
@@ -53,7 +54,7 @@ def audit_datasets(manifest_path: Path, data_dir: Path) -> dict[str, Any]:
         labels_per_text.setdefault(text_identity(record.sentence), set()).add(
             record.label
         )
-    return {
+    summary = {
         "revisions": {
             name: assets[name]["revision"] for name in manifest["local_dataset_assets"]
         },
@@ -106,3 +107,53 @@ def audit_datasets(manifest_path: Path, data_dir: Path) -> dict[str, Any]:
         "splits_assigned": False,
         "final_test_frozen": False,
     }
+    if "fiqa_task1_original" in manifest["local_dataset_assets"]:
+        fiqa = assets["fiqa_task1_original"]
+        groups = {
+            f"{kind}_{split}": load_fiqa(
+                data_dir / f"raw/fiqa/task1_{kind}_ABSA_{split}.json",
+                revision=fiqa["revision"],
+                source_type=kind,
+                source_split=split,
+            )
+            for kind in ("headline", "post")
+            for split in ("train", "test")
+        }
+        summary["fiqa"] = {
+            name: {
+                "records": len(records),
+                "annotations": sum(len(r.annotations) for r in records),
+                "scored_annotations": sum(
+                    a.score is not None for r in records for a in r.annotations
+                ),
+                "missing_snippet_values": sum(
+                    snippet is None
+                    for r in records
+                    for a in r.annotations
+                    for snippet in a.snippets
+                ),
+                "normalized_duplicate_rows": duplicate_count(
+                    r.sentence for r in records
+                ),
+            }
+            for name, records in groups.items()
+        }
+        train_keys = {
+            text_identity(r.sentence)
+            for name, records in groups.items()
+            if name.endswith("_train")
+            for r in records
+        }
+        test_keys = {
+            text_identity(r.sentence)
+            for name, records in groups.items()
+            if name.endswith("_test")
+            for r in records
+        }
+        fiqa_keys = train_keys | test_keys
+        summary["fiqa_overlap"] = {
+            "original_train_test_exact_matches": len(train_keys & test_keys),
+            "phrasebank_exact_matches": len(fiqa_keys & primary_keys),
+            "sentfin_exact_matches": len(fiqa_keys & headline_keys),
+        }
+    return summary

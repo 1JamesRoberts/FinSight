@@ -74,7 +74,10 @@ def acquire_datasets(manifest_path: Path, data_dir: Path) -> list[dict[str, str]
     receipt = []
     for name in manifest["local_dataset_assets"]:
         asset = manifest["assets"][name]
-        if asset["local_research_decision"] != "supported_under_repository_license":
+        if asset["local_research_decision"] not in {
+            "supported_under_repository_license",
+            "supported_under_original_noncommercial_terms",
+        }:
             raise ValueError("dataset is not reviewed for local research")
         for specification in asset["acquisition_files"]:
             path = acquire_file(data_dir, specification)

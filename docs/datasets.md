@@ -1,6 +1,6 @@
 # Dataset, model, and API review checklist
 
-PhraseBank and SEntFiN have now been acquired for reviewed local noncommercial
+PhraseBank, SEntFiN, and an original-format FiQA participant copy have been acquired for reviewed local noncommercial
 research; all source files remain in ignored storage. No model weights or provider
 integration are present. See [dataset-loading.md](dataset-loading.md) for checksums,
 loading instructions, and measured integrity results.
@@ -61,7 +61,7 @@ product before downloading, persisting, training on, or republishing content.
 | Candidate | Purpose in later phases | Status |
 | --- | --- | --- |
 | Financial PhraseBank | Three-class baseline development | Reviewed for local noncommercial research; pinned, acquired, validated |
-| FiQA Task 1 | Target-aware/external evaluation candidate | Compared; mirror/original terms conflict unresolved; no acquisition |
+| FiQA Task 1 | Target/aspect-aware research candidate | Original-format participant copy reviewed, pinned, acquired, validated for noncommercial research; test inputs unscored; mirror terms unresolved |
 | SEntFiN 1.0 | Preferred external/target-aware test candidate | Pinned, acquired, validated locally; public text and full overlap audit unresolved |
 | SemEval-2017 Task 5 headlines | Backup target-aware news test | Shortlisted; release agreement unresolved |
 | Twitter Financial News Sentiment | Optional social-media robustness test | Shortlisted; annotation provenance/counts/rights pending |
@@ -73,3 +73,8 @@ product before downloading, persisting, training on, or republishing content.
 See ROADMAP.md for candidate references and the linked comparison for evidence.
 Final selection, terms verification, and artifact revision pinning remain separate
 Phase 1 tasks; no access, training, or redistribution rights are assumed here.
+
+FiQA release selection, original noncommercial-use terms, participant-copy
+provenance, unscored test inputs, and mirror limitations are recorded in
+[FiQA asset review](fiqa-asset-review.md). Acquisition of that copy does not
+resolve the gated mirror’s broader MIT claim.

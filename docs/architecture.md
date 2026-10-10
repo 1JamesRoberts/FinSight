@@ -71,3 +71,8 @@ atomic persistence. Source loaders preserve original metadata and expose common
 string labels without assigning splits. A separate offline audit produces
 aggregate integrity counts. Tests use synthetic source formats; CI never depends
 on research data, network access, or model weights.
+
+FiQA’s original nested schema has a dedicated `data/fiqa.py` loader. It retains
+continuous target scores and unscored test inputs rather than forcing all sources
+into a classification record. Acquisition reuses the manifest/checksum workflow;
+no new runtime dependencies or model interfaces are introduced.

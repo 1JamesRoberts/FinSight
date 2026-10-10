@@ -17,6 +17,21 @@ def test_offline_workflow_with_verified_files(tmp_path: Path) -> None:
     sentfin_dir = data / "raw/sentfin"
     phrasebank_dir.mkdir(parents=True)
     sentfin_dir.mkdir(parents=True)
+    fiqa_dir = data / "raw/fiqa"
+    fiqa_dir.mkdir(parents=True)
+    fiqa_paths = []
+    for kind in ("headline", "post"):
+        for split in ("train", "test"):
+            annotation = {"target": "Example", "snippets": "[nan, 'improves']"}
+            if split == "train":
+                annotation |= {"aspects": "['Stock/Price']", "sentiment_score": "0.25"}
+            path = fiqa_dir / f"task1_{kind}_ABSA_{split}.json"
+            path.write_text(
+                json.dumps(
+                    {"1": {"sentence": "Example improves", "info": [annotation]}}
+                )
+            )
+            fiqa_paths.append(path)
     archive_path = phrasebank_dir / "FinancialPhraseBank-v1.0.zip"
     with ZipFile(archive_path, "w") as archive:
         for agreement in ("50", "66", "75", "All"):
@@ -58,6 +73,7 @@ def test_offline_workflow_with_verified_files(tmp_path: Path) -> None:
             sentfin_dir / "SEntFiN.csv",
             sentfin_dir / "entity_list_comprehensive.csv",
         ],
+        "fiqa_task1_original": fiqa_paths,
     }.items():
         assets[name] = {
             "revision": "synthetic-revision",
@@ -72,12 +88,15 @@ def test_offline_workflow_with_verified_files(tmp_path: Path) -> None:
                 for path in paths
             ],
         }
+    assets["fiqa_task1_original"]["local_research_decision"] = (
+        "supported_under_original_noncommercial_terms"
+    )
     manifest_path = tmp_path / "manifest.json"
     manifest_path.write_text(
         json.dumps({"assets": assets, "local_dataset_assets": list(assets)})
     )
     receipt = acquire_datasets(manifest_path, data)
-    assert len(receipt) == 3
+    assert len(receipt) == 7
     summary = audit_datasets(manifest_path, data)
     assert summary["phrasebank"]["50"]["normalized_duplicate_rows"] == 1
     assert summary["phrasebank_conflicting_label_texts"] == 1
@@ -85,3 +104,8 @@ def test_offline_workflow_with_verified_files(tmp_path: Path) -> None:
     assert summary["sentfin"]["conflicting_sentiment_headlines"] == 1
     assert summary["cross_corpus_normalized_exact_text_matches"] == 1
     assert summary["final_test_frozen"] is False
+    assert summary["fiqa"]["headline_train"]["scored_annotations"] == 1
+    assert summary["fiqa"]["post_test"]["scored_annotations"] == 0
+    assert summary["fiqa"]["headline_train"]["missing_snippet_values"] == 1
+    assert summary["fiqa_overlap"]["original_train_test_exact_matches"] == 1
+    assert summary["fiqa_overlap"]["phrasebank_exact_matches"] == 1

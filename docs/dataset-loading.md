@@ -1,7 +1,7 @@
 # Reviewed dataset acquisition and validation
 
-Scope: Phase 1, Financial PhraseBank and SEntFiN only. FiQA is deferred while its
-terms remain unresolved. No sentiment model, prediction function, or split is
+Scope: Phase 1, Financial PhraseBank, SEntFiN, and an original-format FiQA
+challenge participant copy reviewed for local noncommercial research. No sentiment model, prediction function, or split is
 implemented. The runtime still uses only Python's standard library.
 
 ## Reproduce from the repository root
@@ -12,9 +12,9 @@ uv run --locked python -m finsight.data acquire
 uv run --locked python -m finsight.data validate
 ```
 
-`acquire` downloads the six pinned archive/CSV/notice files listed in
+`acquire` downloads the eleven pinned archive/CSV/JSON/notice files listed in
 `configs/asset-revisions.json`. It verifies sizes and SHA-256 before atomically
-saving each file; SEntFiN CSVs also match their Git blob identities. A valid cache
+saving each file; SEntFiN CSVs and FiQA JSONs also match their Git blob identities. A valid cache
 is reused without network access. A corrupted cache fails rather than being
 overwritten: inspect/remove the affected ignored artifact, then reacquire.
 The checked-in manifest contains no source text or credentials and downloads no
@@ -25,7 +25,7 @@ root comes from `FINSIGHT_DATA_DIR` (otherwise `data`). Run from the repository
 root or pass the manifest's absolute path. For local environment overrides use
 `uv run --locked --env-file .env python -m finsight.data ...`.
 
-Files are stored below `data/raw/financial_phrasebank/` and `data/raw/sentfin/`.
+Files are stored below `data/raw/financial_phrasebank/` and `data/raw/sentfin/`, plus `data/raw/fiqa/`.
 The acquisition receipt is `data/raw/acquisition-receipt.json`; the validation
 summary is `data/interim/dataset-integrity.json`. These are ignored artifacts.
 The validator verifies every manifest file again before parsing; changing source
@@ -60,6 +60,23 @@ Common labels are string enum values `negative`, `neutral`, and `positive`; orig
 labels remain available. Do not transfer integer label IDs between datasets and
 models: FinBERT's configured integer order differs from PhraseBank's historical order.
 
+## FiQA source format
+
+The selected participant copy uses original nested JSON: each source ID maps to
+`sentence` and an `info` annotation list. IDs are opaque strings; test IDs include
+target names/tickers. The typed loader preserves groups, targets, aspects,
+snippets, continuous scores, revision, filename, type, and original split.
+Duplicate JSON keys, empty sources/fields, incorrect schemas, invalid lists, and
+nonfinite/out-of-range scores fail validation. Source test inputs have no gold
+scores or aspects and retain `None`. No sentiment classes are derived.
+Four bare `nan` snippet values map to missing values with raw strings preserved.
+The parser inspects constant lists without executing expressions.
+
+See [FiQA asset review](fiqa-asset-review.md) for measured counts, source terms,
+and the distinction from the gated 1,173-row benchmark mirror. The audit reports
+one original train/test normalized exact match and zero exact matches with
+PhraseBank/SEntFiN. No partitions are repaired or frozen during loading.
+
 ## Initial integrity findings (2026-10-10)
 
 | Source | Loaded rows | Entity annotations | Normalized duplicate rows |
@@ -91,7 +108,8 @@ bounded tasks. Do not tune models using a subsequently reserved test partition.
 ## Usage scope
 
 See [PhraseBank asset review](phrasebank-asset-review.md) and
-[SEntFiN asset review](sentfin-asset-review.md). Local noncommercial research is the
+[SEntFiN asset review](sentfin-asset-review.md), and
+[FiQA asset review](fiqa-asset-review.md). Local noncommercial research is the
 reviewed scope; preserve source notices. Dataset contents and public headline demos
 are not included in this repository. This workflow does not settle underlying
 publisher rights, commercial deployment rights, or FinBERT weight-license scope.
@@ -103,5 +121,7 @@ integrity mismatches, cache behavior, and rejected paths. The integration test
 uses synthetic files to exercise acquisition, validation, duplicate counting,
 and overlap reporting without remote downloads. Real-artifact validation is a
 separate reproducible local check; a fresh-directory download and validation also
-passed for all six pinned files. Ruff lint/format, 55 pytest cases, and package
-builds passed. CI never downloads these research corpora.
+passed for the six initial pinned files. The FiQA follow-up acquired and
+validated five additional pinned files; a fresh download and validation passed
+for all eleven files. Ruff lint/format, 77 pytest cases, and
+package builds passed. CI never downloads these research corpora.
