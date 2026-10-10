@@ -1,0 +1,61 @@
+# Phase 0 architecture decisions
+
+Recorded: 2026-10-10. Scope: repository foundation only.
+
+## One package, explicit boundaries
+
+FinSight starts as one Python package in a `src/` layout. Tests import the installed
+package rather than modifying the import path, so packaging mistakes can surface
+early. Empty subpackages mirror the roadmap's data, sentiment, features,
+prediction, pipelines, and API areas. They contain no business behavior yet.
+
+As later phases introduce behavior, keep research/domain logic independent of
+HTTP frameworks, database clients, and providers. Pipelines coordinate use cases;
+data and API adapters handle external I/O and translate to internal types.
+Inject external collaborators at those boundaries when a real use case needs
+them. Add interfaces only when they clarify a concrete integration or test.
+No dependency-injection framework, generic repositories, microservices, or empty
+class hierarchies are needed in Phase 0.
+
+## Minimal dependencies
+
+Python 3.11+ supplies dataclasses, pathlib, and typed environment access.
+`uv_build` builds the installable package. Runtime dependencies are empty;
+Ruff and pytest form the development dependency group. `uv.lock` records exact
+resolved versions; `uv sync --locked` refuses to silently change that lock.
+Local development defaults to Python 3.12; CI covers 3.11 and 3.12.
+
+Defer pandas, scikit-learn, Transformers, PyTorch, LightGBM, MLflow, FastAPI,
+PostgreSQL clients, and scheduling tools until their roadmap phases require
+them. Frontend and infrastructure directories reserve locations only.
+
+## Configuration at the boundary
+
+`Settings` is an immutable typed dataclass. `Settings.from_env()` validates
+nonempty paths and known logging levels, accepts a mapping for isolated tests,
+and reads process environment variables only on demand. Relative paths use the
+working directory; there is no guessed repository root, automatic `.env` loading,
+or import-time filesystem/logging initialization. Callers load `.env` through
+uv locally. Nonsecret experiment configuration belongs in `configs/` once those
+experiments exist; no speculative YAML schema or parsing dependency is added.
+
+Secrets belong in the environment and never in committed configuration. Add
+provider-specific settings only when selecting a provider in a later phase.
+
+## Artifact and research boundaries
+
+Code, tests, configuration examples, and reviewed Markdown reports belong in Git.
+Data and model artifacts are ignored except for explanatory files/placeholders.
+The dataset/model/API checklist records unresolved licensing decisions before
+acquisition. Future training and inference stay separate; final test sets must
+remain independent of tuning, with FinBERT/PhraseBank overlap explicitly audited.
+Stock research must use information available at the stated prediction cutoff.
+
+## Quality gates
+
+Ruff checks style, imports, modern Python usage, and common bugs; its formatter
+provides one consistent layout. pytest verifies configuration behavior, environment
+isolation, immutability, validation, and absence of filesystem side effects.
+GitHub Actions uses a small two-version matrix, read-only repository permissions,
+locked dependencies, and a package-build check. Hosted CI success requires an
+actual run after the repository is pushed.

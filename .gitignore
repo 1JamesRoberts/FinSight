@@ -1,0 +1,41 @@
+# Python environments, caches, and build outputs
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+.coverage.*
+htmlcov/
+dist/
+build/
+
+# Local configuration and credentials
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Research artifacts: keep only scaffolding and documentation
+/data/**
+!/data/**/
+!/data/**/.gitkeep
+!/data/README.md
+/models/**
+!/models/**/
+!/models/.gitkeep
+!/models/README.md
+/reports/figures/*
+!/reports/figures/.gitkeep
+/reports/experiments/*
+!/reports/experiments/.gitkeep
+!/reports/experiments/*.md
+.ipynb_checkpoints/
+
+# Editors and OS
+.DS_Store
+.idea/
+.vscode/
