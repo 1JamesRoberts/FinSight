@@ -1,8 +1,10 @@
 # Dataset, model, and API review checklist
 
-Phase 0 contains no downloaded datasets, model weights, or provider integration.
-**Every candidate remains unreviewed and unapproved.** This is a review template,
-not a legal conclusion or authorization to acquire or redistribute an asset.
+No datasets or model weights have been downloaded and no provider is integrated.
+Phase 1's public-source candidate comparison is recorded in
+[dataset-comparison.md](dataset-comparison.md), reviewed on 2026-10-10.
+**Acquisition approval and exact revision pinning remain pending.** This checklist
+is not a legal conclusion or authorization to acquire or redistribute an asset.
 
 Complete one record per exact dataset revision, model checkpoint, or provider
 product before downloading, persisting, training on, or republishing content.
@@ -50,12 +52,12 @@ product before downloading, persisting, training on, or republishing content.
 
 | Candidate | Purpose in later phases | Status |
 | --- | --- | --- |
-| Financial PhraseBank | Sentiment dataset candidate | Pending; no acquisition |
-| FiQA | Sentiment dataset candidate | Pending; no acquisition |
+| Financial PhraseBank | Three-class baseline candidate | Compared; terms/revision review pending; no acquisition |
+| FiQA Task 1 | Target-aware/external evaluation candidate | Compared; mirror/original terms conflict unresolved; no acquisition |
 | ProsusAI/finbert | Financial transformer candidate | Pending; no acquisition |
 | News provider | Article metadata/text access | Not selected |
 | Market data provider | Daily prices | Not selected |
 
-See ROADMAP.md for candidate references. Selecting sources and verifying their
-current terms are later tasks; no access, training, or redistribution rights are
-assumed here.
+See ROADMAP.md for candidate references and the linked comparison for evidence.
+Final selection, terms verification, and artifact revision pinning remain separate
+Phase 1 tasks; no access, training, or redistribution rights are assumed here.

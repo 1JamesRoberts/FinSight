@@ -169,7 +169,7 @@ has not run yet; the CI acceptance criterion remains pending until pushed to Git
 **Goal:** Auditable sentiment datasets and leakage-aware splits.
 
 ### Tasks
-- [ ] Compare Financial PhraseBank and FiQA schemas, labels, target entities, licensing, and source provenance.
+- [x] Compare Financial PhraseBank and FiQA schemas, labels, target entities, licensing, and source provenance.
 - [ ] Document redistribution/training terms and pin exact dataset revisions.
 - [ ] Implement repeatable ingestion and schema validation.
 - [ ] Analyze labels, lengths, duplicates, ambiguous examples, and annotation agreement.
@@ -177,6 +177,12 @@ has not run yet; the CI acceptance criterion remains pending until pushed to Git
 - [ ] Define train/validation/test partition strategy and hash-based duplicate checks.
 - [ ] Select/curate an **independent** final evaluation set for pretrained FinBERT comparisons.
 - [ ] Write dataset cards and EDA figures.
+
+**Comparison verification (2026-10-10):** Public cards, the PhraseBank loader,
+research papers, original FiQA challenge, and published license terms were reviewed.
+See `docs/dataset-comparison.md`. Comparison is complete; acquisition approval,
+exact revision pinning, empirical inspection, and independent-test selection remain
+pending. FiQA mirror/original terms differ and require resolution.
 
 **Deliverables:** Data-preparation code, EDA notebook, dataset card, split manifest.
 
