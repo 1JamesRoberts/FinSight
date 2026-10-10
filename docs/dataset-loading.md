@@ -201,3 +201,45 @@ row counts and histogram totals were checked. Tests cover preserved whitespace,
 Unicode code points, percentile interpolation, histogram/flag boundaries, empty
 and single-row groups, SEntFiN label grouping, FiQA training-only totals, source
 word-count differences, and separate CLI report destinations.
+
+## Duplicate and annotation review
+
+```sh
+uv run --locked python -m finsight.data review-annotations
+```
+
+The command verifies pinned artifacts, writes detailed ignored
+`data/interim/annotation-review.json`, and produces aggregate-only
+[review Markdown](../reports/annotation-review.md). The local JSON includes source
+text and contexts for inspection; keep it ignored. `--report-path PATH` can
+choose an aggregate Markdown destination. No new dependencies or network calls
+are required. No source rows are modified or removed.
+
+Exact grouping uses the existing NFKC/casefold/whitespace identity plus SHA-256.
+Gold comparisons require the same corpus, normalized text, and annotation unit:
+whole sentence for PhraseBank, normalized target for SEntFiN, target/aspects/
+snippets for scored FiQA. Absent test gold and different annotation units are not
+conflicting labels. PhraseBank uses >=50% only for duplicate counts; overlapping
+agreement subsets are metadata rather than additional examples.
+
+Near-candidate screening uses exact Jaccard >=0.80 on sets of whitespace-word
+trigrams for texts of at least six words. It retains numbers and punctuation,
+collapses exact text identities before searching, and indexes shared trigrams
+rather than comparing every pair. Numeric differences and gold differences on
+shared contexts are review flags, never automatic merge or relabel decisions.
+Fixed scope/thresholds are logged in the JSON; lexical screening cannot establish
+complete semantic disjointness or model independence.
+
+FiQA test inputs participate only in duplicate checks. Training-only indicators
+cover missing/nonmatching snippets and abs(score)<=0.1; the latter is a descriptive
+marker, not a neutral class band. A nonmatching snippet may be a paraphrase or
+comment, so inspect it before concluding that the field is erroneous. See
+[qualitative findings](annotation-review-findings.md) for completed inspection,
+source-quality concerns, and recommendations for partition design/adjudication.
+
+Review verification: 102 pytest cases, Ruff lint/format, and package builds pass.
+The inverted-index near search matches a brute-force check on synthetic texts.
+Tests cover deterministic grouping, retained numeric/punctuation distinctions,
+same-context versus different-target conflicts, missing gold, signed numeric
+zeros, nonliteral snippets, and an offline CLI workflow. Repeated real-artifact
+reviews matched saved JSON/Markdown. The detailed review JSON is ignored by Git.

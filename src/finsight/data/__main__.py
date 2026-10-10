@@ -9,13 +9,21 @@ from finsight.data.acquisition import acquire_datasets
 from finsight.data.audit import audit_datasets
 from finsight.data.labels import analyze_labels, render_label_report
 from finsight.data.lengths import analyze_lengths, render_length_report
+from finsight.data.review import render_review_report, review_datasets
 
 
 def main() -> None:
     """Run one bounded dataset operation; network access requires acquire command."""
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
-        "command", choices=("acquire", "validate", "analyze-labels", "analyze-lengths")
+        "command",
+        choices=(
+            "acquire",
+            "validate",
+            "analyze-labels",
+            "analyze-lengths",
+            "review-annotations",
+        ),
     )
     parser.add_argument(
         "--manifest", type=Path, default=Path("configs/asset-revisions.json")
@@ -24,7 +32,7 @@ def main() -> None:
     parser.add_argument(
         "--report-path",
         type=Path,
-        help="Markdown destination for analysis (default: reports/<kind>-analysis.md)",
+        help="Override the command's default Markdown report destination",
     )
     args = parser.parse_args()
     if args.command == "acquire":
@@ -40,6 +48,17 @@ def main() -> None:
         destination.write_text(json.dumps(summary, indent=2) + "\n")
         print(json.dumps(summary, indent=2))
         print(f"Integrity report saved to {destination}")
+    elif args.command == "review-annotations":
+        review = review_datasets(args.manifest, args.data_dir)
+        destination = args.data_dir / "interim/annotation-review.json"
+        destination.parent.mkdir(parents=True, exist_ok=True)
+        destination.write_text(json.dumps(review, indent=2, ensure_ascii=False) + "\n")
+        report_path = args.report_path or Path("reports/annotation-review.md")
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(
+            render_review_report(review["summary"]), encoding="utf-8"
+        )
+        print(f"Review reports saved to {destination} and {report_path}")
     else:
         if args.command == "analyze-labels":
             summary = analyze_labels(args.manifest, args.data_dir)

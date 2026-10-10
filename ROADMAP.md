@@ -172,7 +172,7 @@ has not run yet; the CI acceptance criterion remains pending until pushed to Git
 - [x] Compare Financial PhraseBank and FiQA schemas, labels, target entities, licensing, and source provenance.
 - [x] Document redistribution/training terms and pin exact selected dataset revisions (local noncommercial scope; public redistribution not cleared).
 - [x] Implement repeatable ingestion and schema validation (PhraseBank, SEntFiN, and original-format FiQA participant copy).
-- [ ] Analyze labels, lengths, duplicates, ambiguous examples, and annotation agreement.
+- [x] Analyze labels, lengths, duplicates, ambiguous examples, and available annotation-agreement metadata (descriptive review; unresolved cases retained).
 - [x] Normalize label mappings; preserve original labels/metadata (PhraseBank and SEntFiN).
 - [ ] Define train/validation/test partition strategy and hash-based duplicate checks.
 - [ ] Select/curate an **independent** final evaluation set for pretrained FinBERT comparisons.
@@ -234,6 +234,18 @@ SEntFiN word counts differ from our rule for 88 headlines and remain preserved.
 No records were filtered and no model tokenization, thresholds, or splits were
 implemented. The broader EDA checkbox remains open for duplicate/ambiguity and
 annotation-quality review.
+
+**Duplicate/annotation review verification (2026-10-10):** Exact grouping,
+context-aware gold-conflict checks, and conservative word-trigram near-duplicate
+screening are complete. See `reports/annotation-review.md` and
+`docs/annotation-review-findings.md` for qualitative inspection and limitations.
+PhraseBank has eight exact groups (two conflicting); SEntFiN has 67 (seven
+same-target conflicts). FiQA has one original train/test overlap. The 25 near
+pairs include one FiQA–SEntFiN overlap. FiQA has 49 nonmatching snippet values
+across 45 training annotations; raw values and scores are preserved. Agreement
+subset metadata was reviewed; individual rater statistics are unavailable. The
+descriptive analysis task is complete, while adjudication, partition design,
+final-test selection, dataset cards, and figures remain pending.
 
 **Deliverables:** Data-preparation code, EDA notebook, dataset card, split manifest.
 

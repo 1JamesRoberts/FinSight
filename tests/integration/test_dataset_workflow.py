@@ -14,6 +14,7 @@ from finsight.data.acquisition import acquire_datasets
 from finsight.data.audit import audit_datasets
 from finsight.data.labels import analyze_labels, render_label_report
 from finsight.data.lengths import analyze_lengths
+from finsight.data.review import review_datasets
 
 
 def test_offline_workflow_with_verified_files(
@@ -155,7 +156,60 @@ def test_offline_workflow_with_verified_files(
     )
     main()
     assert label_path.read_text() == "Existing label report"
+    # Equivalent regression zeros must not become apparent gold conflicts.
+    for specification in assets["fiqa_task1_original"]["acquisition_files"]:
+        path = data / specification["local_path"]
+        if "train" not in path.name:
+            continue
+        body = json.loads(path.read_text())
+        body["1"]["info"][0]["sentiment_score"] = (
+            "-0.0" if "headline" in path.name else "0.0"
+        )
+        path.write_text(json.dumps(body))
+        specification["size_bytes"] = len(path.read_bytes())
+        specification["sha256"] = hashlib.sha256(path.read_bytes()).hexdigest()
+    manifest_path.write_text(
+        json.dumps({"assets": assets, "local_dataset_assets": list(assets)})
+    )
+    zero_review = review_datasets(manifest_path, data)
+    assert (
+        zero_review["summary"]["corpora"]["fiqa"][
+            "groups_with_conflicting_gold_contexts"
+        ]
+        == 0
+    )
     length_report = (tmp_path / "reports/length-analysis.md").read_text()
     assert "EXAMPLE improves" not in length_report
     assert "synthetic-revision" in length_report
     assert json.loads((data / "interim/length-analysis.json").read_text()) == lengths
+    review = review_datasets(manifest_path, data)
+    assert review["summary"]["corpora"]["phrasebank"]["exact_duplicate_groups"] == 1
+    assert (
+        review["summary"]["corpora"]["phrasebank"][
+            "groups_with_conflicting_gold_contexts"
+        ]
+        == 1
+    )
+    assert (
+        review["summary"]["corpora"]["fiqa"]["groups_with_conflicting_gold_contexts"]
+        == 0
+    )
+    assert review["summary"]["sentfin_mixed_target_label_headlines"] == 1
+    assert review["summary"]["records_removed_or_relabeled"] is False
+    monkeypatch.setattr(
+        "sys.argv",
+        [
+            "finsight.data",
+            "review-annotations",
+            "--manifest",
+            str(manifest_path),
+            "--data-dir",
+            str(data),
+        ],
+    )
+    main()
+    persisted_review = json.loads((data / "interim/annotation-review.json").read_text())
+    assert persisted_review == json.loads(json.dumps(review))
+    public_report = (tmp_path / "reports/annotation-review.md").read_text()
+    assert "EXAMPLE improves" not in public_report
+    assert label_path.read_text() == "Existing label report"

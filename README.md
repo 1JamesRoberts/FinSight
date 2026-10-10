@@ -103,6 +103,7 @@ uv run --locked python -m finsight.data acquire
 uv run --locked python -m finsight.data validate
 uv run --locked python -m finsight.data analyze-labels
 uv run --locked python -m finsight.data analyze-lengths
+uv run --locked python -m finsight.data review-annotations
 ```
 
 The first command acquires reviewed pinned files, verifies checksums, and reuses a
@@ -124,3 +125,8 @@ No FiQA class thresholds or new partitions are assigned.
 The [text-length report](reports/length-analysis.md) summarizes characters and
 whitespace-separated words, with label/source-type comparisons. These counts
 are descriptive and do not determine model token limits or filtering rules.
+
+The [duplicate/annotation report](reports/annotation-review.md) records exact and
+lexical near-duplicate candidates. [Qualitative findings](docs/annotation-review-findings.md)
+document conflicts, target-coverage differences, and FiQA snippet issues. Detailed
+source examples remain in ignored local storage; no rows are removed or relabeled.
