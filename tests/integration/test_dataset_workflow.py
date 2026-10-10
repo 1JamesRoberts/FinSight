@@ -9,6 +9,7 @@ from zipfile import ZipFile
 
 from finsight.data.acquisition import acquire_datasets
 from finsight.data.audit import audit_datasets
+from finsight.data.labels import analyze_labels, render_label_report
 
 
 def test_offline_workflow_with_verified_files(tmp_path: Path) -> None:
@@ -109,3 +110,16 @@ def test_offline_workflow_with_verified_files(tmp_path: Path) -> None:
     assert summary["fiqa"]["headline_train"]["missing_snippet_values"] == 1
     assert summary["fiqa_overlap"]["original_train_test_exact_matches"] == 1
     assert summary["fiqa_overlap"]["phrasebank_exact_matches"] == 1
+    labels = analyze_labels(manifest_path, data)
+    assert labels["phrasebank"]["50"]["percentages"]["neutral"] == 50
+    assert labels["sentfin"]["annotation_labels"]["total"] == 3
+    assert labels["sentfin"]["mixed_share_of_multi_target_headlines_percent"] == 100
+    assert labels["fiqa_training"]["combined"]["scores"]["total"] == 2
+    assert labels["fiqa_training"]["combined"]["scores"]["mean"] == 0.25
+    assert "fiqa_test" not in labels
+    assert labels["class_thresholds_assigned"] is False
+    assert labels["new_splits_assigned"] is False
+    markdown = render_label_report(labels)
+    assert "50.00%" in markdown
+    assert "EXAMPLE improves" not in markdown
+    assert "synthetic-revision" in markdown

@@ -125,3 +125,37 @@ passed for the six initial pinned files. The FiQA follow-up acquired and
 validated five additional pinned files; a fresh download and validation passed
 for all eleven files. Ruff lint/format, 77 pytest cases, and
 package builds passed. CI never downloads these research corpora.
+
+## Label analysis
+
+```sh
+uv run --locked python -m finsight.data analyze-labels
+```
+
+This verifies pinned files and writes `data/interim/label-analysis.json` plus the
+aggregate [label report](../reports/label-analysis.md). Use `--report-path PATH`
+to choose the Markdown destination; `--manifest` and `--data-dir` work as above.
+No network access or new dependencies are needed. Repeated runs produce the same
+outputs for the same manifest and source bytes.
+
+PhraseBank distributions are reported separately by agreement subset. SEntFiN
+counts target annotations and reports mixed-label headline shares. FiQA uses only
+original training scores, with mean, population standard deviation, inclusive
+quartiles, fixed histogram bins, and numeric sign counts. No neutral band or
+class conversion is chosen. Raw duplicate rows remain in these descriptive
+counts; downstream deduplication and grouping decisions are still pending.
+
+PhraseBank's neutral share (59.41% at >=50% agreement) means overall accuracy can
+hide weak negative-class performance. Later evaluation should include macro F1
+and per-class precision/recall alongside accuracy. SEntFiN's 43.31% mixed-label
+share among multi-target headlines illustrates why a single headline label can
+lose target-specific information. Higher PhraseBank agreement subsets remain
+neutral-heavy; consensus filtering alone does not balance the classes. FiQA's
+positive numeric skew is descriptive and does not determine a classification
+threshold. These findings guide later development; no model settings are tuned.
+
+Label-analysis verification: 86 pytest cases and Ruff lint/format checks pass.
+Two repeated analyses produced identical aggregate reports; source-class counts
+also matched the earlier real-artifact integrity audit. Tests cover percentage
+and annotation denominators, absent classes, histogram endpoints, inclusive
+quartiles, invalid scores, single-value inputs, and training-only FiQA totals.

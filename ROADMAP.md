@@ -215,6 +215,15 @@ selected dataset terms/revisions task is complete in the stated local scope;
 the gated mirror’s MIT scope and organizer-byte equivalence remain unresolved.
 No final test was selected, no thresholds assigned, and no models implemented.
 
+**Label analysis verification (2026-10-10):** Reproducible class counts,
+percentages, and imbalance ratios are complete for all PhraseBank agreement
+variants and SEntFiN target annotations. FiQA original training scores have
+continuous descriptive statistics and numeric sign counts; no class thresholds
+are assigned and unscored test inputs are excluded. See
+`reports/label-analysis.md`. The broader EDA checkbox remains open: lengths,
+duplicate/ambiguity investigation, and annotation-quality analysis are incomplete.
+No new partitions, final-test selection, or models were implemented.
+
 **Deliverables:** Data-preparation code, EDA notebook, dataset card, split manifest.
 
 **Acceptance criteria:** Runs from raw authorized inputs reproducibly; partitions have no known duplicate overlap; independent-test limitations documented.

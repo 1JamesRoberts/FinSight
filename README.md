@@ -101,6 +101,7 @@ against baselines; prevent look-ahead bias. Negative research results are valid.
 ```sh
 uv run --locked python -m finsight.data acquire
 uv run --locked python -m finsight.data validate
+uv run --locked python -m finsight.data analyze-labels
 ```
 
 The first command acquires reviewed pinned files, verifies checksums, and reuses a
@@ -113,3 +114,8 @@ FiQA training annotations retain continuous scores; its original test inputs
 have no gold scores and cannot be used for supervised evaluation. No dataset contents are committed;
 CI uses synthetic examples and requires no dataset downloads. No final test set
 has been frozen and no models have been trained.
+
+The [label analysis report](reports/label-analysis.md) compares source-class
+frequencies and FiQA training-score distributions. Its machine-readable output
+is ignored local data; its checked-in Markdown contains aggregate statistics only.
+No FiQA class thresholds or new partitions are assigned.
