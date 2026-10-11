@@ -107,3 +107,20 @@ hashes, source/freeze digests, code provenance, and timing accompany aggregates;
 source IDs/gold/predictions remain local. No threshold tuning or frozen-test
 inference is performed. The pinned VADER dependency contains its own lexicon;
 inference is offline and does not require NLTK or resource downloads.
+
+## Phase 2 extension: TF-IDF + Logistic Regression
+
+`sentiment/tfidf.py` owns the typed training/inference interface and a scikit-learn
+pipeline. The vectorizer and classifier fit together on training only; inference
+uses frozen vocabulary/IDF. `tfidf_validation.py` coordinates verified split
+loading, separate corpus-specific fits, saved-model validation, baseline metrics,
+and artifact logging. It reuses sentence cohort selection and fixed-class metrics
+from the VADER check rather than duplicating evaluation logic.
+
+One reviewed runtime dependency, scikit-learn, supplies sparse features and
+logistic regression. No pandas, model-service hierarchy, MLflow, or custom
+optimizer is required. JSON stores settings and aggregate run metadata; standard
+pickle stores trusted local fitted pipelines with version/checksum checks.
+Artifact paths use serialized-content digests to preserve older runs. Models,
+vocabularies, and per-record outputs stay ignored; aggregate reports are committed.
+No target-aware behavior, hyperparameter search, or final-test scoring is added.

@@ -121,7 +121,7 @@ report. See [loading instructions and findings](docs/dataset-loading.md),
 FiQA training annotations retain continuous scores; its original test inputs
 have no gold scores and cannot be used for supervised evaluation. No dataset contents are committed;
 CI uses synthetic examples and requires no dataset downloads. The curated
-SEntFiN final holdout is frozen; no models have been trained.
+SEntFiN final holdout is frozen and stays withheld from Phase 2 development.
 
 The [label analysis report](reports/label-analysis.md) compares source-class
 frequencies and FiQA training-score distributions. Its machine-readable output
@@ -170,7 +170,7 @@ Use `uv run --locked --group eda pytest` to include the synthetic plotting check
 Source datasets and notebook outputs stay uncommitted; the five aggregate PNGs,
 summary JSON, and Markdown report are safe research outputs. Matplotlib and
 ipykernel belong only to the optional EDA group; VADER is a runtime dependency.
-Phase 2 has started with the VADER baseline below; TF-IDF classifiers remain next.
+Phase 2 includes VADER and TF-IDF + Logistic Regression; Linear SVM remains next.
 
 ## VADER baseline
 
@@ -188,3 +188,19 @@ the [validation results](reports/experiments/vader-validation.md). Aggregate JSO
 records configurations, scoring-resource hashes, split identity, code provenance,
 and timing; per-record predictions stay ignored. VADER's proportions are not
 calibrated class probabilities, and its predictions are not company-specific.
+
+## TF-IDF + Logistic Regression
+
+```sh
+uv sync --locked
+uv run --locked python -m finsight.sentiment validate-tfidf-logreg
+```
+
+The pipeline learns word/phrase weights and sentiment coefficients from training
+only, then scores validation with separate PhraseBank and single-target SEntFiN
+models. Read [how it works and setup](docs/tfidf-logreg.md) and the
+[comparison report](reports/experiments/tfidf-logreg-validation.md). Validation
+macro F1 is 0.6696 / 0.8165, compared with VADER's 0.4895 / 0.4787 on the same
+rows. Fitted models and per-record outputs remain ignored local artifacts.
+The frozen test benchmark remains withheld, and this initial configuration has
+not been tuned. Probabilities have not been assessed for calibration.

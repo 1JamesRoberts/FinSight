@@ -1,8 +1,9 @@
 # Dataset, model, and API review checklist
 
 PhraseBank, SEntFiN, and an original-format FiQA participant copy have been acquired for reviewed local noncommercial
-research; all source files remain in ignored storage. No model weights or provider
-integration are present. See [dataset-loading.md](dataset-loading.md) for checksums,
+research; all source files remain in ignored storage. Local TF-IDF models are
+stored only in ignored directories; no pretrained weights or provider integration
+are present. See [dataset-loading.md](dataset-loading.md) for checksums,
 loading instructions, and measured integrity results.
 Phase 1's public-source candidate comparison is recorded in
 [dataset-comparison.md](dataset-comparison.md), reviewed on 2026-10-10.
@@ -30,6 +31,15 @@ is unchanged. No upstream evaluation datasets or model weights are acquired.
 
 Complete one record per exact dataset revision, model checkpoint, or provider
 product before downloading, persisting, training on, or republishing content.
+
+TF-IDF + Logistic Regression review (2026-10-11): use scikit-learn 1.7.2
+under its [BSD-3-Clause license](https://github.com/scikit-learn/scikit-learn/blob/1.7.2/COPYING).
+Retain installed notices. Existing PhraseBank noncommercial research and SEntFiN
+local-development training assessments support fitting on their verified training
+partitions and storing fitted pipelines locally. Vocabulary/IDF and coefficients
+remain ignored model artifacts; their public redistribution is not cleared.
+Validation is development evaluation only. FiQA and all held-out records are
+excluded; no new source assets or pretrained weights are acquired.
 
 ## Asset record template
 

@@ -52,7 +52,7 @@ def classification_metrics(gold: list[str], predictions: list[str]) -> dict[str,
 def sentence_cohorts(records: list[dict[str, Any]]) -> dict[str, list[dict[str, Any]]]:
     """Never admit test candidates, FiQA scores, or mixed-target sentence gold."""
     if any(row["partition"] not in {"train", "validation"} for row in records):
-        raise ValueError("VADER check requires development records only")
+        raise ValueError("sentence checks require development records only")
     return {
         "phrasebank": [row for row in records if row["corpus"] == "phrasebank"],
         "sentfin_single_target": [

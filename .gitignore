@@ -36,6 +36,7 @@ build/
 !/reports/experiments/.gitkeep
 !/reports/experiments/*.md
 !/reports/experiments/vader-validation.json
+!/reports/experiments/tfidf-logreg-validation.json
 .ipynb_checkpoints/
 
 # Editors and OS

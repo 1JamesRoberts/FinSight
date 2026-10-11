@@ -305,7 +305,8 @@ has started; Phase 2 is the next separately requested phase.
 
 ### Tasks
 - [x] Implement VADER with explicitly documented 3-class thresholds.
-- [ ] Train TF-IDF + Logistic Regression and TF-IDF + Linear SVM pipelines.
+- [x] Train TF-IDF + Logistic Regression pipeline (fixed initial configuration; train-only fit, validation-only check).
+- [ ] Train TF-IDF + Linear SVM pipeline.
 - [ ] Fit all learned preprocessing **only on training data**.
 - [ ] Tune using validation/CV on training data, never final test.
 - [ ] Compute accuracy, macro F1, per-class precision/recall, confusion matrix, latency.
@@ -331,6 +332,25 @@ implementation checkbox is complete: other baseline models, tuning, broader
 comparisons, preprocessing tests, and qualitative error analysis remain pending.
 
 **Acceptance criteria:** Every metric traceable to split, configuration, and model version.
+
+**Logistic Regression verification (2026-10-11):** Reviewed BSD-3-Clause
+scikit-learn 1.7.2 is locked. Separate word unigram/bigram TF-IDF pipelines fit
+vocabulary, IDF, and classifier on 3,785 PhraseBank / 6,299 single-target SEntFiN
+training texts only; 518 / 781 validation texts are scored with persisted models.
+One fixed configuration is recorded in `configs/tfidf-logreg.json`; no tuning,
+FiQA classification, mixed-target sentence gold, or final-test evaluation occurs.
+Validation accuracy is 0.7490 / 0.8182 and macro F1 is 0.6696 / 0.8165, versus
+VADER's 0.4895 / 0.4787 macro F1 on the same rows. See `docs/tfidf-logreg.md`
+and `reports/experiments/tfidf-logreg-validation.md` plus aggregate JSON.
+Versioned fitted pipelines and per-record predictions stay ignored; artifact
+hashes, split/freeze/config/lock/code identities, parameters, and timings are
+logged. Repeated predictions/metrics match, and earlier artifacts remain valid.
+All 191 tests (including optional plotting), required Ruff checks, and sdist/wheel
+builds pass locally; hosted CI remains unverified. Train-only vocabulary/IDF,
+preprocessing/labels, convergence handling, local round trips, holdout rejection,
+and output privacy have synthetic tests. Only the Logistic Regression task is
+newly complete; the remaining broader Phase 2 tasks await SVM, development-only
+tuning, full comparisons, and qualitative error analysis.
 
 ## Phase 3 — Financial transformer experiments
 

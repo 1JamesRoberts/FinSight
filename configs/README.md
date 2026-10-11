@@ -1,7 +1,7 @@
 # Experiment configuration
 
 Reserved for versioned, nonsecret experiment settings in later roadmap phases.
-No sentiment or prediction experiment presets are defined. Runtime
+Sentiment presets are documented below; no prediction presets are defined. Runtime
 settings use environment variables documented in `.env.example`.
 
 `asset-revisions.json` records reviewed, pinned dataset/model identities and usage
@@ -23,3 +23,8 @@ membership, or labels after inspecting results. See `docs/evaluation-contract.md
 `vader.json` declares the Phase 2 baseline's inclusive compound-score boundaries
 (-0.05 negative, +0.05 positive). It does not tune them or alter the frozen split.
 See `docs/vader.md` for inference and the validation-only check.
+
+`tfidf-logreg.json` records the first fixed Logistic Regression configuration,
+including regularization, document-frequency floor, feature cap, iteration limit,
+and seed. Preprocessing defaults and all estimator parameters are also logged
+in each run. It performs no parameter search. See `docs/tfidf-logreg.md`.
