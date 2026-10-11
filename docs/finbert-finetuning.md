@@ -90,3 +90,29 @@ private and ignored. The source checkpoint and frozen test are preserved.
 The [experiment report](../reports/experiments/finbert-finetuning.md) records the
 actual result. This bounded task does not complete Phase 3's grid, MLflow,
 calibration/error analysis, or final evaluation.
+
+## First verified result
+
+Five epochs took 196.55 seconds on the RTX 4070 SUPER. Epoch 3 was selected:
+validation accuracy 0.8771, macro F1 0.8762, compared with pretrained FinBERT
+0.7478/0.7492 and selected Logistic Regression 0.8195/0.8181. Neutral F1 improved
+from 0.6922 to 0.8378. Later epochs reduce training loss but worsen validation
+macro F1. Patience triggers at epoch 5, which also reaches the configured cap;
+this run does not save epochs through early stopping.
+
+Validation loss is lowest at epoch 2 and then rises despite higher classification
+F1 at epoch 3. Selection follows the predefined macro F1 rule. Calibration and
+confidence errors deserve separate review before any final evaluation.
+
+The selected Windows directory is:
+
+```text
+C:\Hope\Project\financial-news-intelligence\data\interim\finbert-finetuned-models\276b014dec08139a12ec8ea85f5ba94d6f271148c62b49f26d37ea8e472936a7
+```
+
+Its manifest SHA-256 is the directory name. Mac storage has the manifest and
+private prediction/run records for verification; weights remain on Windows.
+Ruff passes on both machines. Mac has 269 passing tests and one skipped optional
+backend test; Windows passes all 270, including actual tiny-BERT training,
+validation gradient isolation and saved-checkpoint reload. Frozen-test bytes
+and the original checkpoint hashes are unchanged.

@@ -13,8 +13,11 @@ bounded tuning, saved local models, and qualitative error review. See the
 [Phase 2 comparison](reports/experiments/phase2-comparison.md). The frozen final
 test remains unscored. Phase 3 has begun with an unchanged pretrained FinBERT
 validation run on the Windows GPU; see [results](reports/experiments/finbert-validation.md)
-and [run instructions](docs/finbert.md). Transformer fine-tuning, news ingestion,
-stock prediction, API, and dashboard remain unimplemented.
+and [run instructions](docs/finbert.md). The first SEntFiN FinBERT adaptation
+selects epoch 3 with validation macro F1 0.8762; see the
+[fine-tuning report](reports/experiments/finbert-finetuning.md) and
+[training/loading guide](docs/finbert-finetuning.md). Phase 3 remains in progress.
+News ingestion, stock prediction, API, and dashboard remain unimplemented.
 See [ROADMAP.md](ROADMAP.md)
 for the phase sequence and acceptance criteria.
 

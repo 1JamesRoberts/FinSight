@@ -482,7 +482,7 @@ model task was complete. The subsequent verified pretrained run is recorded belo
 ### Tasks
 - [x] Build batched inference for `ProsusAI/finbert` with class-probability output.
 - [x] Record evaluation overlap caveat with Financial PhraseBank.
-- [ ] Decide whether to fine-tune a base financial-language model or adapt an existing sentiment checkpoint; document difference.
+- [x] Decide whether to fine-tune a base financial-language model or adapt an existing sentiment checkpoint; document difference.
 - [ ] Run controlled training experiments (learning rate, length, batch size); early stopping on validation only.
 - [ ] Track dataset version, seeds, model checkpoint, metrics, latency in MLflow.
 - [ ] Evaluate on independent frozen test set once final configuration is selected.
@@ -502,6 +502,24 @@ membership digests, and historical baseline lineage are logged in
 on Windows; private run/predictions/receipt are retained in ignored storage on
 both machines. Mac and Windows Ruff checks and all 257 tests pass. Fine-tuning,
 MLflow, calibration analysis, and final evaluation remain open.
+
+First adaptation verified (2026-10-11): continue training all parameters of the
+existing sentiment checkpoint on 6,299 single-target SEntFiN training headlines;
+781 validation headlines select the epoch. No corpus pooling. One fixed setup
+(learning rate 2e-5, batch 16, max length 128, seed 42, FP32 AdamW) ran five epochs.
+Epoch 3 achieves validation accuracy/macro F1 **0.8771/0.8762**, versus pretrained
+0.7478/0.7492 and selected LR 0.8195/0.8181. Epochs 4–5 fail to improve macro F1;
+patience triggers at the five-epoch limit. Best Safetensors/tokenizer artifacts
+are saved under ignored Windows storage and reloaded with identical validation
+metrics. Original checkpoint and frozen-test bytes are unchanged. Public
+aggregate report: `reports/experiments/finbert-finetuning.md`/JSON; setup,
+architecture choice and code explanation: `docs/finbert-finetuning.md`.
+Mac Ruff passes with 269 tests passing and one optional-backend test skipped;
+Windows Ruff and all 270 tests pass, including actual tiny-model training/reload.
+The broad training-experiments task remains open: this is one configuration,
+not the learning-rate/length/batch comparison. MLflow, calibration/error review
+and final test evaluation also remain open. Validation is used for selection
+and does not establish unbiased test performance. Phase 3 remains in progress.
 
 **Deliverables:** Inference module, training pipeline, comparison report, versioned best model.
 
