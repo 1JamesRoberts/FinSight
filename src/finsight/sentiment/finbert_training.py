@@ -8,6 +8,7 @@ import random
 import subprocess
 import uuid
 from collections import Counter
+from collections.abc import Callable
 from dataclasses import asdict, dataclass
 from importlib.metadata import version
 from pathlib import Path
@@ -184,6 +185,11 @@ def fit_checkpoint(
     training: list[dict],
     validation: list[dict],
     data_dir: Path,
+    *,
+    checkpoint_loader: Callable | None = None,
+    artifact_saver: Callable | None = None,
+    checkpoint_files: tuple[str, ...] = CHECKPOINT_FILES,
+    run_namespace: str = "finbert",
 ) -> dict[str, Any]:
     """Adapt all parameters; select checkpoints using validation only."""
     checked_train, checked_validation = sentfin_partitions(training + validation)
@@ -194,7 +200,7 @@ def fit_checkpoint(
 
     random.seed(config.seed)
     np.random.seed(config.seed)
-    torch, tokenizer, model, snapshot = _load_checkpoint(
+    torch, tokenizer, model, snapshot = (checkpoint_loader or _load_checkpoint)(
         config.inference_config(), data_dir / "interim/finbert-checkpoint-cache"
     )
     if {int(k): v for k, v in model.config.id2label.items()} != dict(
@@ -209,7 +215,7 @@ def fit_checkpoint(
             "size_bytes": (snapshot / name).stat().st_size,
             "sha256": file_sha256(snapshot / name),
         }
-        for name in CHECKPOINT_FILES
+        for name in checkpoint_files
     }
     examples = [
         (sentence_and_label(row)[0], INDEX_LABELS.index(sentence_and_label(row)[1]))
@@ -268,7 +274,9 @@ def fit_checkpoint(
     scheduler = get_linear_schedule_with_warmup(optimizer, warmup_steps, maximum_steps)
     stopping = EarlyStopping(config.patience)
     history, optimizer_steps = [], 0
-    progress_dir = data_dir / "interim/finbert-training-progress" / uuid.uuid4().hex
+    progress_dir = (
+        data_dir / "interim" / f"{run_namespace}-training-progress" / uuid.uuid4().hex
+    )
     progress_dir.mkdir(parents=True)
     best_directory, best_identifier = None, None
     if config.device == "cuda":
@@ -324,7 +332,7 @@ def fit_checkpoint(
         scores = classification_metrics(gold, predicted)
         improved = stopping.observe(epoch, scores["macro_f1"])
         if improved:
-            best_directory, best_identifier = save_artifact(
+            best_directory, best_identifier = (artifact_saver or save_artifact)(
                 model,
                 tokenizer,
                 data_dir / "interim/finbert-finetuned-models",

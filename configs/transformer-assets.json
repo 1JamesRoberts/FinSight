@@ -1,0 +1,157 @@
+{
+  "models": {
+    "deberta_base": {
+      "files": {
+        "README.md": {
+          "sha256": "7e9ea69ca00d0609cc0e0b9cec76f9ba6ae71601244c4136a3f25bd02dce4c4d",
+          "size_bytes": 3472
+        },
+        "config.json": {
+          "sha256": "649f6a1ec33c6bdd9a6486d5c66019d461139e54957073eafe9bbc2d34c75b0b",
+          "size_bytes": 579
+        },
+        "pytorch_model.bin": {
+          "sha256": "691d48a2800b926a19e3051def466fc2cca4f59a15e42ce4a0cf7f1b380b5e33",
+          "size_bytes": 371146213
+        },
+        "spm.model": {
+          "sha256": "c679fbf93643d19aab7ee10c0b99e460bdbc02fedf34b92b05af343b4af586fd",
+          "size_bytes": 2464616
+        },
+        "tokenizer_config.json": {
+          "sha256": "3f3978e0c036f2c2588cac34a6047cbb0af0b0dc1814254e291028529805496d",
+          "size_bytes": 52
+        }
+      },
+      "id2label": null,
+      "license": "mit",
+      "mode": "fine_tune_base",
+      "model_id": "microsoft/deberta-v3-base",
+      "model_type": "deberta-v2",
+      "revision": "8ccc9b6f36199bec6961081d44eb72fb3f7353f3"
+    },
+    "financial_deberta": {
+      "files": {
+        "README.md": {
+          "sha256": "a4c9264ad96777b5c2ecdef2d1159a50c73090404c2b857d6034e8ccd92878cc",
+          "size_bytes": 4380
+        },
+        "config.json": {
+          "sha256": "d7b9b097c0ac5da894de6906ab00662c7df7ec313bfef830d4fa9cf71b0d2a9c",
+          "size_bytes": 1038
+        },
+        "model.safetensors": {
+          "sha256": "96a27b12ec06202bb959c66b774e7ead6e99ce227d150c0d777ecf974524c139",
+          "size_bytes": 567601628
+        },
+        "special_tokens_map.json": {
+          "sha256": "9463f61e1b109a8eb4688b829260d7c6b1e6dff04c98ff7269bb89e2b92369b9",
+          "size_bytes": 286
+        },
+        "spm.model": {
+          "sha256": "c679fbf93643d19aab7ee10c0b99e460bdbc02fedf34b92b05af343b4af586fd",
+          "size_bytes": 2464616
+        },
+        "tokenizer.json": {
+          "sha256": "05402ffae6dd382a8491b1d29bfc139bec5d332662e86a026f433ce54c25c202",
+          "size_bytes": 8656646
+        },
+        "tokenizer_config.json": {
+          "sha256": "557b3d33d3f41b81ad769244e506549e98a1857d41dd58160aacd4d98d710b5a",
+          "size_bytes": 1284
+        }
+      },
+      "id2label": {
+        "0": "negative",
+        "1": "neutral",
+        "2": "positive"
+      },
+      "license": "mit",
+      "mode": "unchanged_sentiment",
+      "model_id": "mrm8488/deberta-v3-ft-financial-news-sentiment-analysis",
+      "model_type": "deberta-v2",
+      "revision": "9e10915c245a80a89b18d1ac51350e093c7bb35a"
+    },
+    "financial_roberta": {
+      "files": {
+        "README.md": {
+          "sha256": "9c6b573f831805d6b71c51c48a480a2e9ddb9a97ac54b34d840cf700cb0435fd",
+          "size_bytes": 2135
+        },
+        "config.json": {
+          "sha256": "7335131810d5cbb13d6cd8a6291d8827babf06abca9ef31741faae835c8b0f7e",
+          "size_bytes": 936
+        },
+        "merges.txt": {
+          "sha256": "fe36cab26d4f4421ed725e10a2e9ddb7f799449c603a96e7f29b5a3c82a95862",
+          "size_bytes": 456356
+        },
+        "pytorch_model.bin": {
+          "sha256": "7b3541b7659518f118ffeb667a9386cdae3068b5c2b4d630ce74d52140465868",
+          "size_bytes": 1421615405
+        },
+        "special_tokens_map.json": {
+          "sha256": "378eb3bf733eb16e65792d7e3fda5b8a4631387ca04d2015199c4d4f22ae554d",
+          "size_bytes": 239
+        },
+        "tokenizer.json": {
+          "sha256": "d4fc85277c11a50d6bfcbbe0c18be47931983d52686f7ab12dce0b0e0a249ac2",
+          "size_bytes": 1356047
+        },
+        "vocab.json": {
+          "sha256": "ed19656ea1707df69134c4af35c8ceda2cc9860bf2c3495026153a133670ab5e",
+          "size_bytes": 798293
+        }
+      },
+      "id2label": {
+        "0": "negative",
+        "1": "neutral",
+        "2": "positive"
+      },
+      "license": "apache-2.0",
+      "mode": "unchanged_sentiment",
+      "model_id": "soleimanian/financial-roberta-large-sentiment",
+      "model_type": "roberta",
+      "revision": "f8804d31111d7c3569e88abaad6969918e858fbd"
+    },
+    "roberta_base": {
+      "files": {
+        "README.md": {
+          "sha256": "139c5c5c8d734a8841928308cf7f083018aa5cc49f903c5199e3f1563b3ded51",
+          "size_bytes": 9079
+        },
+        "config.json": {
+          "sha256": "ef0185e2aae6e06c5f105a285006952c340e20c7dbf43c86ec82601b13fc45e9",
+          "size_bytes": 481
+        },
+        "merges.txt": {
+          "sha256": "1ce1664773c50f3e0cc8842619a93edc4624525b728b188a9e0be33b7726adc5",
+          "size_bytes": 456318
+        },
+        "model.safetensors": {
+          "sha256": "5bde1d28afb363d0103324efeb5afc8b2b397fe5e04beabb9b1ef355255ade81",
+          "size_bytes": 498818054
+        },
+        "tokenizer.json": {
+          "sha256": "847bbeab6174d66a88898f729d52fa8d355fafe1bea101cf960dd404581df70e",
+          "size_bytes": 1355863
+        },
+        "tokenizer_config.json": {
+          "sha256": "994f46754c5bf4014f1aa92d34b1374319c3a6b3f702105cd5b742beaecd18ce",
+          "size_bytes": 25
+        },
+        "vocab.json": {
+          "sha256": "9e7f63c2d15d666b52e21d250d2e513b87c9b713cfa6987a82ed89e5e6e50655",
+          "size_bytes": 898823
+        }
+      },
+      "id2label": null,
+      "license": "mit",
+      "mode": "fine_tune_base",
+      "model_id": "FacebookAI/roberta-base",
+      "model_type": "roberta",
+      "revision": "e2da8e2f811d1448a5b465c236feacd80ffbac7b"
+    }
+  },
+  "schema_version": 1
+}

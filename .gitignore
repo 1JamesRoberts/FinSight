@@ -53,3 +53,8 @@ build/
 !/reports/experiments/finbert-validation.json
 
 !/reports/experiments/finbert-finetuning.json
+!/reports/experiments/financial_roberta.json
+!/reports/experiments/financial_deberta.json
+!/reports/experiments/roberta_base.json
+!/reports/experiments/deberta_base.json
+!/reports/experiments/transformer-comparison.json

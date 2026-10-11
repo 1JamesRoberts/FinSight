@@ -197,3 +197,27 @@ reviewed single-target SEntFiN training records; keep validation for checkpoint
 selection and withhold the frozen test. Safetensors/tokenizer artifacts and
 record-level predictions remain ignored. Historical asset/freeze manifests stay
 unchanged. See [training guide](finbert-finetuning.md).
+
+RoBERTa/DeBERTa review (2026-10-11): the user authorized unchanged inference on
+financial sentiment checkpoints and SEntFiN training of two base models. Exact
+revisions, file sizes and upstream SHA-256 digests are pinned in
+`configs/transformer-assets.json`. Financial RoBERTa Large's model card declares
+Apache-2.0 and describes further financial pretraining/fine-tuning, without
+complete supervised sample provenance; SEntFiN exposure cannot be ruled out.
+Financial DeBERTa-v3 Small declares MIT and describes 4,840 financial sentences
+with 5–8 annotators, matching PhraseBank; its split provenance is incomplete.
+Neither model's published score establishes independent performance here.
+FacebookAI/RoBERTa Base and Microsoft/DeBERTa-v3 Base declare MIT and have no
+trained sentiment head. Full raw-text pretraining exposure is unknown for all
+four. Reviewed model cards support private local acquisition/inference and,
+for the bases, fine-tuning. Keep all downloaded/derived weights and predictions
+ignored; publish aggregate metadata only. No source text or weights are cleared
+for redistribution in this task. The reviewed SEntFiN research terms and frozen
+split remain unchanged. SentencePiece 0.2.1 (Apache-2.0) is added only to the
+optional transformer extra for the base DeBERTa tokenizer.
+
+Sources: [Financial RoBERTa](https://huggingface.co/soleimanian/financial-roberta-large-sentiment),
+[Financial DeBERTa](https://huggingface.co/mrm8488/deberta-v3-ft-financial-news-sentiment-analysis),
+[RoBERTa Base](https://huggingface.co/FacebookAI/roberta-base),
+[DeBERTa Base](https://huggingface.co/microsoft/deberta-v3-base),
+[SentencePiece license](https://github.com/google/sentencepiece/blob/master/LICENSE).
