@@ -352,6 +352,23 @@ and output privacy have synthetic tests. Only the Logistic Regression task is
 newly complete; the remaining broader Phase 2 tasks await SVM, development-only
 tuning, full comparisons, and qualitative error analysis.
 
+**PhraseBank class-weight verification (2026-10-11):** Configuration now accepts
+`class_weight: null` (unweighted default) or `"balanced"`; the CLI cohort selector
+runs PhraseBank alone. A separate balanced preset changes no other settings.
+Two fresh runs use identical 3,785 training / 518 validation records, preserving
+the original preset/report and frozen split. Balanced weights are calculated
+from training counts only and logged (negative 2.6959, neutral 0.5590, positive
+1.1903). Validation accuracy improves 0.7490 to 0.7645 and macro F1 0.6696 to
+0.7378; negative/positive recall rises while precision falls. See
+`docs/phrasebank-class-weights.md` for commands, input flow, and aggregate reports.
+Repeated balanced predictions/metrics match. All 199 tests, required Ruff checks,
+and sdist/wheel builds pass locally. Tests cover strict weight configuration,
+unchanged training-only features, weighted coefficients, saved-model round trips,
+cohort filtering, effective weights, and invalid selector handling. This bounded
+validation comparison is complete; broader tuning, SVM, full comparisons, and
+qualitative error analysis remain open. No final-test metric or automatic default
+replacement is introduced, and no additional Phase 2 checkbox is marked complete.
+
 ## Phase 3 — Financial transformer experiments
 
 **Goal:** Reproducible transformer benchmarking and meaningful fine-tuning.

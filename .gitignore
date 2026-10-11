@@ -37,6 +37,8 @@ build/
 !/reports/experiments/*.md
 !/reports/experiments/vader-validation.json
 !/reports/experiments/tfidf-logreg-validation.json
+!/reports/experiments/tfidf-logreg-phrasebank-unweighted.json
+!/reports/experiments/tfidf-logreg-phrasebank-balanced.json
 .ipynb_checkpoints/
 
 # Editors and OS

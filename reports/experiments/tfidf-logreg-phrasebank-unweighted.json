@@ -1,0 +1,289 @@
+{
+  "benchmark_manifest_sha256": "b7cc249017ddd87f0b2c52a3abf3ff5b96f6920832b411f18eac547fec0b0f1c",
+  "code_revision": "cbf89346aeb9ba52b5ac7190e59dcc97b88ecc6c",
+  "cohort_selection": "phrasebank",
+  "config_sha256": "29436d9220fc06216c1ceb25aedd9cbd62f67b4ac519c2dbe807cd84cc330f45",
+  "configuration": {
+    "c": 1.0,
+    "class_weight": null,
+    "max_features": 50000,
+    "max_iter": 1000,
+    "min_df": 2,
+    "seed": 42
+  },
+  "environment": {
+    "platform": "macOS-26.5.2-arm64-arm-64bit",
+    "python": "3.12.2"
+  },
+  "experiment": "tfidf-logreg-validation-v1",
+  "final_test_evaluated": false,
+  "freeze_receipt_sha256": "ab0c9f0581612ee52f3c03a5bbbc03e7ebc621fdf76bb00d7d85bc2973b593f7",
+  "hyperparameters_tuned": false,
+  "implementation_sha256": {
+    "tfidf.py": "b67afafb3ccbd4abfc4851ac156ecaa57579e15d9a3c49dc1ddf46ad3ed3d968",
+    "tfidf_validation.py": "f54babca2a8b4819e1b1f7d8a8527493b72a60ed15c3e12a2df1a1c6ff5dec65",
+    "vader.py": "f3519f888510ff52f5cdf18aa796e2985bde662b7a7dfe3ff7febe4707c6f572",
+    "validation.py": "f64ab7990ebe720d0580be411f0b1f8e6812671f4b3fb0d7de818bb1735049ab"
+  },
+  "lockfile_sha256": "762a8ba206bc165ea18b53f9a7293217a9c6c90e0eb5fc7db725d26c84a8716d",
+  "metrics": {
+    "phrasebank": {
+      "artifact_relative_path": "interim/tfidf-logreg-models/2ba90cf1134570a8b8ebacd43c16779b09a7636fab6d7c63659252d0168eb18f/model.pkl",
+      "artifact_sha256": "2ba90cf1134570a8b8ebacd43c16779b09a7636fab6d7c63659252d0168eb18f",
+      "effective_class_weights": {
+        "negative": 1.0,
+        "neutral": 1.0,
+        "positive": 1.0
+      },
+      "inference_seconds": 0.10945119173265994,
+      "logistic_regression": {
+        "accuracy": 0.749034749034749,
+        "class_order": [
+          "negative",
+          "neutral",
+          "positive"
+        ],
+        "confusion_matrix": [
+          [
+            30,
+            30,
+            9
+          ],
+          [
+            2,
+            288,
+            7
+          ],
+          [
+            0,
+            82,
+            70
+          ]
+        ],
+        "confusion_matrix_axes": "rows=gold, columns=predicted",
+        "macro_f1": 0.6695645174273525,
+        "per_class": {
+          "negative": {
+            "f1": 0.594059405940594,
+            "precision": 0.9375,
+            "recall": 0.43478260869565216,
+            "support": 69
+          },
+          "neutral": {
+            "f1": 0.8263988522238164,
+            "precision": 0.72,
+            "recall": 0.9696969696969697,
+            "support": 297
+          },
+          "positive": {
+            "f1": 0.5882352941176471,
+            "precision": 0.813953488372093,
+            "recall": 0.4605263157894737,
+            "support": 152
+          }
+        },
+        "samples": 518
+      },
+      "majority_label": "neutral",
+      "mean_inference_ms_per_text": 0.21129573693563694,
+      "model": {
+        "classes": [
+          "negative",
+          "neutral",
+          "positive"
+        ],
+        "classifier_parameters": {
+          "C": 1.0,
+          "class_weight": null,
+          "dual": false,
+          "fit_intercept": true,
+          "intercept_scaling": 1,
+          "l1_ratio": null,
+          "max_iter": 1000,
+          "multi_class": "deprecated",
+          "n_jobs": null,
+          "penalty": "l2",
+          "random_state": 42,
+          "solver": "lbfgs",
+          "tol": 0.0001,
+          "verbose": 0,
+          "warm_start": false
+        },
+        "config": {
+          "c": 1.0,
+          "class_weight": null,
+          "max_features": 50000,
+          "max_iter": 1000,
+          "min_df": 2,
+          "seed": 42
+        },
+        "dependencies": {
+          "numpy": "2.5.3",
+          "scikit-learn": "1.7.2",
+          "scipy": "1.18.1"
+        },
+        "iterations": [
+          41
+        ],
+        "probabilities_calibrated": false,
+        "tfidf_parameters": {
+          "analyzer": "word",
+          "binary": false,
+          "decode_error": "strict",
+          "dtype": "<class 'numpy.float64'>",
+          "encoding": "utf-8",
+          "input": "content",
+          "lowercase": true,
+          "max_df": 1.0,
+          "max_features": 50000,
+          "min_df": 2,
+          "ngram_range": [
+            1,
+            2
+          ],
+          "norm": "l2",
+          "preprocessor": null,
+          "smooth_idf": true,
+          "stop_words": null,
+          "strip_accents": null,
+          "sublinear_tf": true,
+          "token_pattern": "(?u)\\b\\w\\w+\\b",
+          "tokenizer": null,
+          "use_idf": true,
+          "vocabulary": null
+        },
+        "vocabulary_size": 12351
+      },
+      "model_id": "882e7dd7c8dd8be4b8f42636c542b02b5f7aab9103dbb3284aecc3b85184969a",
+      "training_class_counts": {
+        "negative": 468,
+        "neutral": 2257,
+        "positive": 1060
+      },
+      "training_majority": {
+        "accuracy": 0.5733590733590733,
+        "class_order": [
+          "negative",
+          "neutral",
+          "positive"
+        ],
+        "confusion_matrix": [
+          [
+            0,
+            69,
+            0
+          ],
+          [
+            0,
+            297,
+            0
+          ],
+          [
+            0,
+            152,
+            0
+          ]
+        ],
+        "confusion_matrix_axes": "rows=gold, columns=predicted",
+        "macro_f1": 0.24294478527607363,
+        "per_class": {
+          "negative": {
+            "f1": 0.0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "support": 69
+          },
+          "neutral": {
+            "f1": 0.7288343558282209,
+            "precision": 0.5733590733590733,
+            "recall": 1.0,
+            "support": 297
+          },
+          "positive": {
+            "f1": 0.0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "support": 152
+          }
+        },
+        "samples": 518
+      },
+      "training_membership_sha256": "3ddc565f099062365a13338894cbbc8355a0ab0cf8fa672a85b6ba0687822a29",
+      "training_samples": 3785,
+      "training_seconds": 0.17914241598919034,
+      "vader": {
+        "accuracy": 0.555984555984556,
+        "class_order": [
+          "negative",
+          "neutral",
+          "positive"
+        ],
+        "confusion_matrix": [
+          [
+            16,
+            23,
+            30
+          ],
+          [
+            15,
+            157,
+            125
+          ],
+          [
+            4,
+            33,
+            115
+          ]
+        ],
+        "confusion_matrix_axes": "rows=gold, columns=predicted",
+        "macro_f1": 0.4894674262948587,
+        "per_class": {
+          "negative": {
+            "f1": 0.3076923076923077,
+            "precision": 0.45714285714285713,
+            "recall": 0.2318840579710145,
+            "support": 69
+          },
+          "neutral": {
+            "f1": 0.615686274509804,
+            "precision": 0.7370892018779343,
+            "recall": 0.5286195286195287,
+            "support": 297
+          },
+          "positive": {
+            "f1": 0.5450236966824644,
+            "precision": 0.42592592592592593,
+            "recall": 0.756578947368421,
+            "support": 152
+          }
+        },
+        "samples": 518
+      },
+      "vader_mean_inference_ms_per_text": 0.034409819231961916
+    }
+  },
+  "parent_split_manifest_sha256": "a9a67c231903bc2e3e71afead1d6daaf6b7201211fc25a05efd2bb2ee2d5e898",
+  "predictions_sha256": "c8736d0201537eee42c9e31e51f05ee4fb5d134cdf9920922adc3e5042c631b5",
+  "schema_version": 1,
+  "scope": "Training-only fits; validation-only scores for phrasebank",
+  "seed": 42,
+  "timing": "batch size 1; synthetic warm-up; inference only; one local pass",
+  "vader": {
+    "config": {
+      "negative_threshold": -0.05,
+      "positive_threshold": 0.05
+    },
+    "license_notice_sha256": {
+      "vaderSentiment-3.3.2.dist-info/LICENSE.txt": "74cfe41cdbf7f6925aeb4c18c148ec8db042540edb6739fd81069aa4e3c8b118"
+    },
+    "package": "vaderSentiment",
+    "proportions_are_calibrated_probabilities": false,
+    "resources_sha256": {
+      "emoji_utf8_lexicon.txt": "b8d54223ae1ce22a3e12c1f745316b71678c328eb5f5d3063a842f37cfbe2823",
+      "vaderSentiment.py": "25cd814d23000b41c0e242d99960832c6620b3f1b844469173404500ce63206b",
+      "vader_lexicon.txt": "1ec9c6e9ee19aade328f8beb393a6afa71a5bb3acf7d3cc22d4ef568df374bf5"
+    },
+    "version": "3.3.2"
+  },
+  "working_tree_dirty": true
+}

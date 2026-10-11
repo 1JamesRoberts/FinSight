@@ -17,11 +17,19 @@ def main() -> None:
     parser.add_argument("--config", type=Path)
     parser.add_argument("--vader-config", type=Path, default=Path("configs/vader.json"))
     parser.add_argument(
+        "--cohort",
+        choices=("all", "phrasebank", "sentfin_single_target"),
+        default="all",
+        help="TF-IDF sentence cohort (default: both separately)",
+    )
+    parser.add_argument(
         "--report-path",
         type=Path,
     )
     args = parser.parse_args()
     if args.command == "validate-vader":
+        if args.cohort != "all":
+            parser.error("--cohort is supported for validate-tfidf-logreg only")
         config = args.config or Path("configs/vader.json")
         report = args.report_path or Path("reports/experiments/vader-validation.md")
         run = run_validation(args.data_dir, args.freeze_receipt, config, report)
@@ -34,7 +42,12 @@ def main() -> None:
             "reports/experiments/tfidf-logreg-validation.md"
         )
         run = run_tfidf_validation(
-            args.data_dir, args.freeze_receipt, config, report, args.vader_config
+            args.data_dir,
+            args.freeze_receipt,
+            config,
+            report,
+            args.vader_config,
+            cohort=args.cohort,
         )
         key = "logistic_regression"
     count = sum(result[key]["samples"] for result in run["metrics"].values())

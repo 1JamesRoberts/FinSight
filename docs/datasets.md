@@ -41,6 +41,10 @@ remain ignored model artifacts; their public redistribution is not cleared.
 Validation is development evaluation only. FiQA and all held-out records are
 excluded; no new source assets or pretrained weights are acquired.
 
+The subsequent PhraseBank class-weight comparison uses the same reviewed local
+training/storage scope and the same frozen parent split. No terms or acquisition
+decision changes. See [comparison and input-flow guide](phrasebank-class-weights.md).
+
 ## Asset record template
 
 - Name, asset type, canonical source, owner/provider:

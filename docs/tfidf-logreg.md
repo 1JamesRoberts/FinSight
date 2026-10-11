@@ -74,7 +74,7 @@ uv run --locked ruff format --check .
 uv run --locked pytest
 ```
 
-Options: `--data-dir`, `--freeze-receipt`, `--config`, `--report-path`, and
+Options: `--data-dir`, `--freeze-receipt`, `--config`, `--report-path`, `--cohort`, and
 `--vader-config` (defaults to the unchanged VADER baseline configuration).
 The report at `reports/experiments/tfidf-logreg-validation.md` compares against
 VADER rerun on exactly the same validation rows and a training-majority control.
@@ -137,3 +137,13 @@ development-only hyperparameter comparison, and qualitative error analysis are
 remaining Phase 2 tasks. Synthetic tests check train-only vocabulary/IDF,
 negation/bigrams, probabilities/labels, repeatability, artifact round trips,
 configuration validation, holdout rejection, CLI behavior, and output privacy.
+
+## Subsequent class-weight experiment
+
+`class_weight` now accepts `null` (default) or `"balanced"`. The original preset
+remains unweighted. `configs/tfidf-logreg-balanced.json` changes only that setting.
+`--cohort phrasebank` runs just PhraseBank; the default `all` still fits the two
+corpus models separately. See [class-weight comparison and input flow](phrasebank-class-weights.md)
+for the reproducible commands, training-only weights, and results. Balanced
+PhraseBank validation macro F1 is 0.7378, versus 0.6696 unweighted; this bounded
+comparison does not complete broader hyperparameter tuning or final evaluation.

@@ -8,7 +8,7 @@ import warnings
 from dataclasses import asdict, dataclass
 from importlib.metadata import version
 from pathlib import Path
-from typing import Any
+from typing import Any, Literal
 
 from sklearn.exceptions import ConvergenceWarning
 from sklearn.feature_extraction.text import TfidfVectorizer
@@ -23,15 +23,18 @@ LABELS = ("negative", "neutral", "positive")
 
 @dataclass(frozen=True)
 class TfidfConfig:
-    """One initial configuration; no validation search or class reweighting."""
+    """Explicit settings for a fixed run; weights are derived from training only."""
 
     c: float = 1.0
     min_df: int = 2
     max_features: int = 50_000
     max_iter: int = 1000
     seed: int = 42
+    class_weight: Literal["balanced"] | None = None
 
     def __post_init__(self) -> None:
+        if self.class_weight is not None and self.class_weight != "balanced":
+            raise ValueError("class_weight must be null or 'balanced'")
         if (
             isinstance(self.c, bool)
             or not isinstance(self.c, (float, int))
@@ -105,7 +108,7 @@ class TfidfSentiment:
                         solver="lbfgs",
                         max_iter=self.config.max_iter,
                         random_state=self.config.seed,
-                        class_weight=None,
+                        class_weight=self.config.class_weight,
                         tol=1e-4,
                     ),
                 ),

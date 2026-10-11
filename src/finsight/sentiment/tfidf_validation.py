@@ -38,8 +38,12 @@ def run_tfidf_validation(
     config_path: Path,
     report_path: Path,
     vader_config_path: Path = Path("configs/vader.json"),
+    *,
+    cohort: str = "all",
 ) -> dict[str, Any]:
     """Separate fitted models for matching VADER cohorts; no search or test scoring."""
+    if cohort not in {"all", "phrasebank", "sentfin_single_target"}:
+        raise ValueError("unknown sentence cohort")
     records = load_development_records(data_dir, receipt_path)
     receipt = json.loads(receipt_path.read_text(encoding="utf-8"))
     config = TfidfConfig.load(config_path)
@@ -52,14 +56,16 @@ def run_tfidf_validation(
     }
     metrics: dict[str, Any] = {}
     predictions = []
-    for name, cohort in sentence_cohorts(records).items():
-        training = [row for row in cohort if row["partition"] == "train"]
-        validation = [row for row in cohort if row["partition"] == "validation"]
+    for name, rows in sentence_cohorts(records).items():
+        if cohort != "all" and name != cohort:
+            continue
+        training = [row for row in rows if row["partition"] == "train"]
+        validation = [row for row in rows if row["partition"] == "validation"]
         if not training or not validation:
             raise ValueError("each cohort requires training and validation records")
-        train_texts, train_labels = map(
-            list, zip(*(sentence_and_label(row) for row in training), strict=True)
-        )
+        training_examples = [sentence_and_label(row) for row in training]
+        train_texts = [text for text, _ in training_examples]
+        train_labels = [label for _, label in training_examples]
         counts = Counter(train_labels)
         majority = max(LABELS, key=lambda label: counts[label])
         model = TfidfSentiment(config)
@@ -122,6 +128,12 @@ def run_tfidf_validation(
             "majority_label": majority,
             "training_samples": len(training),
             "training_class_counts": dict(sorted(counts.items())),
+            "effective_class_weights": {
+                label: len(training) / (len(LABELS) * counts[label])
+                if config.class_weight == "balanced"
+                else 1.0
+                for label in LABELS
+            },
             "training_seconds": training_seconds,
             "inference_seconds": elapsed,
             "mean_inference_ms_per_text": elapsed * 1000 / len(validation),
@@ -150,7 +162,8 @@ def run_tfidf_validation(
     run = {
         "schema_version": 1,
         "experiment": "tfidf-logreg-validation-v1",
-        "scope": "Separate train-only models; PhraseBank and single-target SEntFiN",
+        "scope": "Training-only fits; validation-only scores for " + ", ".join(metrics),
+        "cohort_selection": cohort,
         "configuration": asdict(config),
         "hyperparameters_tuned": False,
         "final_test_evaluated": False,
@@ -191,6 +204,7 @@ def render_report(run: dict[str, Any], run_id: str) -> str:
         run["scope"],
         "",
         "One fixed configuration; no tuning or final-test scoring.",
+        f"Class weighting: `{run['configuration']['class_weight']}`.",
         "Separate models fitted on each cohort's training texts/labels only.",
         "Vocabulary and IDF use training only. VADER scores the same validation rows.",
         "",

@@ -107,6 +107,9 @@ def test_document_frequency_floor_uses_training_only() -> None:
         {"max_features": -1},
         {"max_iter": 0},
         {"seed": True},
+        {"class_weight": "unsupported"},
+        {"class_weight": True},
+        {"class_weight": {}},
     ],
 )
 def test_invalid_config(kwargs: dict) -> None:
@@ -135,3 +138,43 @@ def test_nonconverged_fit_fails(monkeypatch: pytest.MonkeyPatch) -> None:
     monkeypatch.setattr(model.pipeline, "fit", unfinished_fit)
     with pytest.raises(ConvergenceWarning):
         model.fit(["losses", "meeting", "profits"], ["negative", "neutral", "positive"])
+
+
+def test_balanced_weight_changes_fit_but_not_training_features(tmp_path: Path) -> None:
+    texts = ["profits rise", "losses rise", "meeting today"] + ["meeting scheduled"] * 6
+    labels = ["positive", "negative", "neutral"] + ["neutral"] * 6
+    models = []
+    for weight in (None, "balanced"):
+        model = TfidfSentiment(TfidfConfig(min_df=1, class_weight=weight))
+        model.fit(texts, labels)
+        models.append(model)
+        assert model.metadata()["classifier_parameters"]["class_weight"] == weight
+    plain, balanced = models
+    assert (
+        plain.pipeline.named_steps["tfidf"].vocabulary_
+        == balanced.pipeline.named_steps["tfidf"].vocabulary_
+    )
+    np.testing.assert_array_equal(
+        plain.pipeline.named_steps["tfidf"].idf_,
+        balanced.pipeline.named_steps["tfidf"].idf_,
+    )
+    assert not np.allclose(
+        plain.pipeline.named_steps["classifier"].coef_,
+        balanced.pipeline.named_steps["classifier"].coef_,
+    )
+    path = tmp_path / "balanced.pkl"
+    digest = balanced.save(path)
+    restored = TfidfSentiment.load(path, expected_sha256=digest)
+    assert restored.config.class_weight == "balanced"
+    assert restored.predict("profits rise") == balanced.predict("profits rise")
+
+
+def test_class_weight_configuration_preserves_unweighted_default(
+    tmp_path: Path,
+) -> None:
+    path = tmp_path / "config.json"
+    for weight in (None, "balanced"):
+        path.write_text(json.dumps({"schema_version": 1, "class_weight": weight}))
+        assert TfidfConfig.load(path).class_weight == weight
+    path.write_text('{"schema_version": 1}')
+    assert TfidfConfig.load(path).class_weight is None

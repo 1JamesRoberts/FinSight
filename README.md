@@ -204,3 +204,17 @@ macro F1 is 0.6696 / 0.8165, compared with VADER's 0.4895 / 0.4787 on the same
 rows. Fitted models and per-record outputs remain ignored local artifacts.
 The frozen test benchmark remains withheld, and this initial configuration has
 not been tuned. Probabilities have not been assessed for calibration.
+
+For the subsequent PhraseBank-only class-weight experiment:
+
+```sh
+uv run --locked python -m finsight.sentiment validate-tfidf-logreg \
+  --cohort phrasebank \
+  --config configs/tfidf-logreg-balanced.json \
+  --report-path reports/experiments/tfidf-logreg-phrasebank-balanced.md
+```
+
+[The comparison and input-flow guide](docs/phrasebank-class-weights.md) explains
+how command arguments select settings and how prepared texts/labels enter the
+pipeline. Balanced weighting improves validation macro F1 from 0.6696 to 0.7378;
+the unweighted preset remains the default, and final-test data stays withheld.

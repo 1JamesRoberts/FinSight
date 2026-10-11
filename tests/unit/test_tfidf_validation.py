@@ -172,3 +172,92 @@ def test_test_candidate_is_rejected_before_training(
             Path("configs/tfidf-logreg.json"),
             tmp_path / "report.md",
         )
+
+
+def test_phrasebank_cli_scope_and_balanced_weights(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    monkeypatch.setattr(
+        "finsight.sentiment.tfidf_validation.load_development_records",
+        lambda *args: records(),
+    )
+    receipt = tmp_path / "receipt.json"
+    receipt.write_text(
+        json.dumps(
+            {
+                "benchmark_manifest_sha256": "synthetic-freeze",
+                "parent_split_manifest_sha256": "synthetic-parent",
+            }
+        )
+    )
+    config = tmp_path / "balanced.json"
+    config.write_text(
+        json.dumps(
+            {
+                "schema_version": 1,
+                "min_df": 1,
+                "class_weight": "balanced",
+            }
+        )
+    )
+    report = tmp_path / "balanced.md"
+    data = tmp_path / "data"
+    monkeypatch.setattr(
+        "sys.argv",
+        [
+            "finsight.sentiment",
+            "validate-tfidf-logreg",
+            "--data-dir",
+            str(data),
+            "--freeze-receipt",
+            str(receipt),
+            "--config",
+            str(config),
+            "--cohort",
+            "phrasebank",
+            "--report-path",
+            str(report),
+        ],
+    )
+    main()
+    run = json.loads(report.with_suffix(".json").read_text())
+    assert set(run["metrics"]) == {"phrasebank"}
+    assert run["cohort_selection"] == "phrasebank"
+    result = run["metrics"]["phrasebank"]
+    assert result["effective_class_weights"] == pytest.approx(
+        {
+            "negative": 4 / 6,
+            "neutral": 4 / 3,
+            "positive": 4 / 3,
+        }
+    )
+    assert result["model"]["classifier_parameters"]["class_weight"] == "balanced"
+    assert result["training_samples"] == 4
+    assert result["logistic_regression"]["samples"] == 2
+    assert run["final_test_evaluated"] is False
+    assert "balanced" in report.read_text()
+    run_path = next((data / "interim/tfidf-logreg-validation").glob("*/run.json"))
+    predicted = run_path.with_name("predictions.jsonl").read_text()
+    assert "sentfin/" not in predicted
+    assert "validationcanary" not in predicted
+
+
+def test_unknown_cohort_fails_before_reading_data(tmp_path: Path) -> None:
+    with pytest.raises(ValueError, match="cohort"):
+        run_tfidf_validation(
+            tmp_path,
+            tmp_path / "missing",
+            tmp_path / "missing",
+            tmp_path / "report.md",
+            cohort="unknown",
+        )
+
+
+def test_vader_rejects_tfidf_cohort_option(monkeypatch: pytest.MonkeyPatch) -> None:
+    monkeypatch.setattr(
+        "sys.argv", ["finsight.sentiment", "validate-vader", "--cohort", "phrasebank"]
+    )
+    with pytest.raises(SystemExit) as error:
+        main()
+    assert error.value.code == 2

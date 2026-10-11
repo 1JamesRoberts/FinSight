@@ -28,3 +28,9 @@ See `docs/vader.md` for inference and the validation-only check.
 including regularization, document-frequency floor, feature cap, iteration limit,
 and seed. Preprocessing defaults and all estimator parameters are also logged
 in each run. It performs no parameter search. See `docs/tfidf-logreg.md`.
+
+`tfidf-logreg-balanced.json` changes only `class_weight` to `"balanced"`.
+The original preset omits it and remains unweighted (`null` is also accepted).
+Use `--cohort phrasebank` with the balanced preset for the bounded PhraseBank
+comparison; without a cohort selector, the settings apply to both separate
+models. See `docs/phrasebank-class-weights.md` for inputs and results.
