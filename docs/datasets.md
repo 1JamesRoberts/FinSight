@@ -233,3 +233,11 @@ No pooled or sequential PhraseBank-to-SEntFiN training. PhraseBank-selected base
 models may score SEntFiN validation afterward as a transfer diagnostic, without
 using it for epoch selection. Neither corpus's reserved tests are used. Derived
 weights and individual predictions remain ignored. No redistribution clearance.
+
+PhraseBank inference extension (2026-10-12): reuse the already-reviewed, pinned
+financial RoBERTa/DeBERTa source checkpoints for unchanged inference on the 518
+PhraseBank validation records under the existing private research scope. No new
+acquisition, training, selection, test scoring or redistribution. Financial
+DeBERTa has apparent upstream PhraseBank supervision; report this as an exposure
+diagnostic. Financial RoBERTa's supervised provenance is incomplete, so no
+independent-evaluation claim. Only aggregate reports are published.

@@ -1,4 +1,4 @@
-"""Reviewed RoBERTa/DeBERTa validation and SEntFiN base-model fine-tuning."""
+"""Reviewed transformer validation, adaptation and separate corpus training."""
 
 import argparse
 import gc
@@ -34,6 +34,10 @@ FOLLOWUP_EXPERIMENTS = {
     "financial_deberta_adapted": ("financial_deberta", "sentfin_single_target"),
     "roberta_phrasebank": ("roberta_base", "phrasebank"),
     "deberta_phrasebank": ("deberta_base", "phrasebank"),
+}
+INFERENCE_EXPERIMENTS = {
+    "financial_roberta_phrasebank": ("financial_roberta", "phrasebank"),
+    "financial_deberta_phrasebank": ("financial_deberta", "phrasebank"),
 }
 RECEIPT = Path("configs/benchmark-freeze.json")
 REPORTS = Path("reports/experiments")
@@ -315,7 +319,9 @@ def predictions_bytes(rows: list[dict], predictions: list) -> bytes:
 
 def run_experiment(key: str, data_dir: Path, config_path: Path = CONFIG) -> dict:
     assets = json.loads(ASSETS.read_bytes())
-    source_key, cohort = FOLLOWUP_EXPERIMENTS.get(key, (key, "sentfin_single_target"))
+    source_key, cohort = (FOLLOWUP_EXPERIMENTS | INFERENCE_EXPERIMENTS).get(
+        key, (key, "sentfin_single_target")
+    )
     asset = assets["models"][source_key]
     trains = asset["mode"] == "fine_tune_base" or key.endswith("_adapted")
     strategy = (
@@ -376,8 +382,8 @@ def run_experiment(key: str, data_dir: Path, config_path: Path = CONFIG) -> dict
     )
     fit, artifact = None, None
     print(
-        f"Starting {key}: {asset['mode']}; train {len(training)}, validation "
-        f"{len(validation)}",
+        f"Starting {key}: {strategy}; train {len(training) if trains else 0}, "
+        f"validation {len(validation)}",
         flush=True,
     )
     if trains:
@@ -435,7 +441,7 @@ def run_experiment(key: str, data_dir: Path, config_path: Path = CONFIG) -> dict
         for row, p in zip(validation, predictions, strict=True)
     ).encode()
     transfer, transfer_body = None, None
-    if cohort == "phrasebank":
+    if fit and cohort == "phrasebank":
         _, transfer_rows = sentfin_partitions(records)
         if {row["group_id"] for row in training} & {
             row["group_id"] for row in transfer_rows
@@ -470,7 +476,8 @@ def run_experiment(key: str, data_dir: Path, config_path: Path = CONFIG) -> dict
     run = {
         "schema_version": 1,
         "experiment": key,
-        "training_cohort": cohort,
+        "training_cohort": cohort if fit else None,
+        "evaluation_cohort": cohort,
         "training_strategy": strategy,
         "transfer_validation": transfer,
         "asset": asset,
@@ -514,7 +521,12 @@ def run_experiment(key: str, data_dir: Path, config_path: Path = CONFIG) -> dict
         "selection": "validation macro F1; strict improvement; earliest exact tie"
         if fit
         else "none",
-        "scope": f"{cohort} selects trained epochs; development validation only; "
+        "scope": (
+            f"{cohort} selects trained epochs; "
+            if fit
+            else f"Unchanged checkpoint inference on {cohort}; no project training; "
+        )
+        + "development validation only; "
         "no final test; one seed/configuration. "
         "Models differ in size and prior training. "
         "Raw-text pretraining exposure unknown. Financial RoBERTa supervised "
@@ -620,7 +632,7 @@ def render_report(run: dict, identifier: str) -> str:
                 f"{epoch['validation']['accuracy']:.4f} | "
                 f"{epoch['validation']['macro_f1']:.4f} |"
             )
-    if run["training_cohort"] == "phrasebank":
+    if run["transfer_validation"] is not None:
         transfer = run["transfer_validation"]
         lines.extend(
             [
@@ -681,6 +693,7 @@ def main() -> None:
             "roberta_base",
             "deberta_base",
             *FOLLOWUP_EXPERIMENTS,
+            *INFERENCE_EXPERIMENTS,
         ),
     )
     parser.add_argument("--data-dir", type=Path, default=Path("data"))

@@ -168,3 +168,128 @@ def test_phrasebank_training_rejects_other_cohorts_and_reserved_data(tmp_path) -
         )
     with pytest.raises(ValueError, match="unsupported training cohort"):
         fit_checkpoint(FineTuneConfig(), [], [], tmp_path, training_cohort="fiqa")
+
+
+@pytest.mark.parametrize(
+    "key", ["financial_roberta_phrasebank", "financial_deberta_phrasebank"]
+)
+def test_phrasebank_inference_never_trains_or_scores_transfer(
+    tmp_path, monkeypatch, key
+) -> None:
+    import json
+    from types import SimpleNamespace
+
+    from finsight.sentiment import transformer_comparison as module
+    from finsight.sentiment.finbert_training import FineTuneConfig, membership_digest
+    from finsight.sentiment.validation import classification_metrics
+
+    rows = [
+        {
+            "corpus": "phrasebank",
+            "partition": partition,
+            "record_id": partition + label,
+            "group_id": partition + label,
+            "native_record": {"sentence": partition + label, "label": label},
+        }
+        for partition in ("train", "validation")
+        for label in ("negative", "neutral", "positive")
+    ]
+    receipt = {
+        "benchmark_manifest_sha256": "benchmark",
+        "parent_split_manifest_sha256": "parent",
+    }
+    receipt_path = tmp_path / "receipt.json"
+    receipt_path.write_text(json.dumps(receipt))
+    (tmp_path / "tfidf-tuning.json").write_text(
+        json.dumps(
+            {
+                "candidates": [
+                    {
+                        "run_id": "control",
+                        "run": {
+                            "metrics": {
+                                "phrasebank": {
+                                    "training_samples": 3,
+                                    "training_membership_sha256": membership_digest(
+                                        rows[:3]
+                                    ),
+                                }
+                            }
+                        },
+                    }
+                ]
+            }
+        )
+    )
+    gold = [r["native_record"]["label"] for r in rows[3:]]
+    metrics = classification_metrics(gold, gold)
+    (tmp_path / "finbert-validation.json").write_text(
+        json.dumps(
+            {
+                **receipt,
+                "final_test_evaluated": False,
+                "metrics": {
+                    "phrasebank": {
+                        "validation_membership_sha256": membership_digest(rows[3:]),
+                        "finbert": metrics,
+                    }
+                },
+            }
+        )
+    )
+    monkeypatch.setattr(module, "REPORTS", tmp_path)
+    monkeypatch.setattr(module, "RECEIPT", receipt_path)
+    monkeypatch.setattr(module, "load_development_records", lambda *_: rows)
+    monkeypatch.setattr(
+        module.FineTuneConfig, "load", lambda _: FineTuneConfig(device="cpu")
+    )
+    monkeypatch.setattr(
+        module,
+        "saved_controls",
+        lambda *_: {
+            "logistic_regression": {"source_run_id": "control", "metrics": metrics}
+        },
+    )
+    monkeypatch.setattr(
+        module.subprocess,
+        "check_output",
+        lambda args, **_: "revision" if "rev-parse" in args else "",
+    )
+
+    def forbidden(*args, **kwargs):
+        pytest.fail("inference must not train, load derived weights or score transfer")
+
+    monkeypatch.setattr(module, "fit_checkpoint", forbidden)
+    monkeypatch.setattr(module, "load_saved", forbidden)
+    monkeypatch.setattr(module, "sentfin_partitions", forbidden)
+    monkeypatch.setattr(module, "load_source", lambda *_: (None, None, None, tmp_path))
+    calls = []
+
+    def score(*args):
+        calls.append(args[3])
+        return [
+            SimpleNamespace(
+                label=SimpleNamespace(value=label),
+                probabilities={x: float(x == label) for x in gold},
+            )
+            for label in gold
+        ], {}
+
+    monkeypatch.setattr(module, "score_model", score)
+    monkeypatch.setattr(module, "render_report", lambda *_: "mock report")
+    monkeypatch.setattr(module, "version", lambda _: "test")
+    run = module.run_experiment(key, tmp_path)
+    assert calls == [[r["native_record"]["sentence"] for r in rows[3:]]]
+    assert run["training_samples"] == 0
+    assert run["training_membership_sha256"] is None
+    assert run["training_cohort"] is None
+    assert run["evaluation_cohort"] == "phrasebank"
+    assert run["training_strategy"] == "unchanged_inference"
+    assert (
+        run["fit"]
+        is run["artifact_relative_path"]
+        is run["transfer_validation"]
+        is None
+    )
+    assert not run["fine_tuned_in_project"] and not run["final_test_evaluated"]
+    assert run["metrics"] == metrics

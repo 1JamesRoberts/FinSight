@@ -130,3 +130,19 @@ independently verified. Source checkpoint and frozen-test hashes are unchanged.
 Later experiments truthfully record a dirty working tree from earlier untracked
 report outputs; recorded implementation/configuration/lockfile hashes match the
 Git commit. This task completes four experiments, not the full Phase 3 roadmap.
+
+## Unchanged financial checkpoints on PhraseBank
+
+Reuse the original financial sentiment checkpoints, without project training,
+on the 518 PhraseBank validation phrases:
+
+```powershell
+python -m uv run --locked --extra transformer --group eda python -m finsight.sentiment.transformer_comparison financial_roberta_phrasebank
+python -m uv run --locked --extra transformer --group eda python -m finsight.sentiment.transformer_comparison financial_deberta_phrasebank
+```
+
+These entries perform one inference evaluation, with zero training samples, no
+checkpoint selection, no derived weights and no additional SEntFiN scoring.
+Financial DeBERTa's apparent upstream PhraseBank supervision makes its score
+diagnostic; Financial RoBERTa has incomplete supervised provenance. No reserved
+PhraseBank or frozen SEntFiN test is scored. Original source pins stay unchanged.
