@@ -35,6 +35,10 @@ development dependencies from `uv.lock`. No environment activation is required.
 Commit `uv.lock`; use `uv lock` deliberately when changing dependencies, then
 rerun the checks. To apply formatting, run `uv run --locked ruff format .`.
 
+For the optional PyTorch/Transformers environment on the RTX 4070 SUPER research
+computer, see [Windows GPU setup and data integrity checks](docs/windows-gpu-setup.md).
+The runtime is optional; baseline installation and CI do not download it.
+
 ## Configuration
 
 Defaults work without a `.env` file. For local overrides:

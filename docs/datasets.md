@@ -66,8 +66,10 @@ and Transformers' [Apache-2.0 license](https://github.com/huggingface/transforme
 support local installation and research use; installed third-party notices
 remain intact. Windows uses the official
 [CUDA 12.8 wheel index](https://pytorch.org/get-started/previous-versions/#v2110).
-The CUDA binaries retain their included vendor terms; no binary redistribution
-is part of this task.
+The [CUDA 12.8 EULA](https://docs.nvidia.com/cuda/archive/12.8.0/eula/index.html)
+permits installation/use subject to its conditions. Bundled components retain
+their own accompanying terms and notices. Scope is local development on the
+user's NVIDIA GPU; no binary redistribution is part of this task.
 
 Rechecked the [FinBERT API metadata](https://huggingface.co/api/models/ProsusAI/finbert)
 and [pinned model card](https://huggingface.co/ProsusAI/finbert/blob/4556d13015211d73dccd3fdd39d39232506f3e43/README.md).

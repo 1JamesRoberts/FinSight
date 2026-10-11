@@ -467,6 +467,16 @@ remains frozen and unscored. No Phase 3 or prediction functionality is implement
 
 **Goal:** Reproducible transformer benchmarking and meaningful fine-tuning.
 
+Preparation verified (2026-10-11): the Windows RTX 4070 SUPER checkout has
+uv 0.11.20, the locked optional PyTorch 2.11.0/CUDA 12.8 and Transformers 4.57.6
+runtime, and 16 checksum-verified reviewed dataset/split/freeze files. Synthetic
+CUDA computation, BERT imports, and the 14,963-record development loader pass.
+Mac and Windows Ruff checks and all 233 tests pass. A discovered Windows newline
+hash issue is fixed in baseline artifact writers, with regression assertions
+and a Windows CI job. See [setup and verification](docs/windows-gpu-setup.md).
+FinBERT hosted-weight license scope remains pending; no weights are downloaded,
+no final-test scores are computed, and no model task below is complete.
+
 ### Tasks
 - [ ] Build batched inference for `ProsusAI/finbert` with class-probability output.
 - [ ] Record evaluation overlap caveat with Financial PhraseBank.
