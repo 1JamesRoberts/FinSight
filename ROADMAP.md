@@ -306,12 +306,12 @@ has started; Phase 2 is the next separately requested phase.
 ### Tasks
 - [x] Implement VADER with explicitly documented 3-class thresholds.
 - [x] Train TF-IDF + Logistic Regression pipeline (fixed initial configuration; train-only fit, validation-only check).
-- [ ] Train TF-IDF + Linear SVM pipeline.
-- [ ] Fit all learned preprocessing **only on training data**.
+- [x] Train TF-IDF + Linear SVM pipeline (unweighted/balanced on both sentence cohorts; validation only).
+- [x] Fit all learned preprocessing **only on training data** (verified for both TF-IDF classifiers).
 - [ ] Tune using validation/CV on training data, never final test.
-- [ ] Compute accuracy, macro F1, per-class precision/recall, confusion matrix, latency.
+- [x] Compute accuracy, macro F1, per-class precision/recall, confusion matrix, latency (development validation; serial local timing).
 - [ ] Perform qualitative error analysis; persist configs and model artifacts.
-- [ ] Add unit tests for preprocessing and label handling.
+- [x] Add unit tests for preprocessing and label handling.
 
 **Deliverables:** Model comparison report, baseline inference interface.
 
@@ -368,6 +368,28 @@ cohort filtering, effective weights, and invalid selector handling. This bounded
 validation comparison is complete; broader tuning, SVM, full comparisons, and
 qualitative error analysis remain open. No final-test metric or automatic default
 replacement is introduced, and no additional Phase 2 checkbox is marked complete.
+
+**Linear SVM verification (2026-10-11):** The existing reviewed scikit-learn
+1.7.2 dependency supplies LinearSVC; no dependencies/assets are added. Shared
+TF-IDF features and strict configuration support unweighted/balanced runs on
+both PhraseBank and single-target SEntFiN, giving four separate train-only fits.
+Presets use C=1, squared hinge loss, L2, one-versus-rest, dual=True, seed=42,
+and max_iter=10,000. Signed class decision scores are not probabilities.
+Validation accuracy / macro F1: PhraseBank unweighted 0.7799 / 0.7344, balanced
+0.7819 / 0.7444; SEntFiN unweighted 0.8092 / 0.8072, balanced 0.8092 / 0.8075.
+Both use the same 3,785/6,299 training and 518/781 validation records as the
+corresponding LR cohorts. Balanced weighting helps PhraseBank modestly; SEntFiN
+changes little and remains below unweighted LR's 0.8165 macro F1.
+See `docs/tfidf-svm.md` for SVM mechanics, configuration, inputs, limitations,
+and the two aggregate reports. Four fitted pipelines and per-record scores stay
+ignored; model/code/config/split/environment identities and metrics are logged.
+Repeat SVM predictions/metrics match; original LR and VADER metrics are unchanged.
+All 215 tests, required Ruff checks, and sdist/wheel builds pass locally. Feature
+parity, train-only vocabulary/IDF, margin/class handling, weighting, convergence,
+artifacts, holdout rejection, and report privacy are verified. SVM, training-only
+preprocessing, development metrics, and unit-test checkboxes are now complete.
+Broader tuning and qualitative error analysis remain open; no frozen-test scores,
+uncertainty/calibration study, or future phase is introduced. Hosted CI is unverified.
 
 ## Phase 3 — Financial transformer experiments
 

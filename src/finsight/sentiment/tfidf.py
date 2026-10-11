@@ -70,7 +70,7 @@ class TfidfPrediction:
     probabilities: dict[str, float]
 
 
-def _validate_texts(texts: list[str]) -> None:
+def validate_texts(texts: list[str]) -> None:
     if not texts or any(
         not isinstance(text, str) or not text.strip() for text in texts
     ):
@@ -79,6 +79,20 @@ def _validate_texts(texts: list[str]) -> None:
 
 def dependency_versions() -> dict[str, str]:
     return {name: version(name) for name in ("scikit-learn", "numpy", "scipy")}
+
+
+def build_vectorizer(config: TfidfConfig) -> TfidfVectorizer:
+    """Identical sparse word features for both traditional learned classifiers."""
+    return TfidfVectorizer(
+        lowercase=True,
+        stop_words=None,
+        ngram_range=(1, 2),
+        min_df=config.min_df,
+        max_features=config.max_features,
+        sublinear_tf=True,
+        norm="l2",
+        smooth_idf=True,
+    )
 
 
 class TfidfSentiment:
@@ -90,16 +104,7 @@ class TfidfSentiment:
             [
                 (
                     "tfidf",
-                    TfidfVectorizer(
-                        lowercase=True,
-                        stop_words=None,
-                        ngram_range=(1, 2),
-                        min_df=self.config.min_df,
-                        max_features=self.config.max_features,
-                        sublinear_tf=True,
-                        norm="l2",
-                        smooth_idf=True,
-                    ),
+                    build_vectorizer(self.config),
                 ),
                 (
                     "classifier",
@@ -117,7 +122,7 @@ class TfidfSentiment:
 
     def fit(self, texts: list[str], labels: list[str]) -> None:
         """Caller supplies training only. Both vocabulary and IDF are fitted here."""
-        _validate_texts(texts)
+        validate_texts(texts)
         if len(texts) != len(labels) or set(labels) != set(LABELS):
             raise ValueError("training requires matching texts and all three labels")
         with warnings.catch_warnings():
@@ -125,7 +130,7 @@ class TfidfSentiment:
             self.pipeline.fit(texts, labels)
 
     def predict_many(self, texts: list[str]) -> list[TfidfPrediction]:
-        _validate_texts(texts)
+        validate_texts(texts)
         check_is_fitted(self.pipeline.named_steps["classifier"])
         classes = self.pipeline.classes_.tolist()
         results = self.pipeline.predict_proba(texts)

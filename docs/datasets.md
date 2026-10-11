@@ -45,6 +45,14 @@ The subsequent PhraseBank class-weight comparison uses the same reviewed local
 training/storage scope and the same frozen parent split. No terms or acquisition
 decision changes. See [comparison and input-flow guide](phrasebank-class-weights.md).
 
+Linear SVM review (2026-10-11): `LinearSVC` uses the already reviewed and locked
+scikit-learn 1.7.2 BSD-3-Clause distribution. Existing PhraseBank noncommercial
+and SEntFiN local development-training assessments support weighted/unweighted
+fits on their training partitions, local fitted-model storage, and aggregate
+validation reports. No new assets or dependencies are acquired. Vocabularies,
+coefficients, and per-record outputs remain ignored; public weights/text rights
+remain unresolved. Reserved evaluation groups remain withheld.
+
 ## Asset record template
 
 - Name, asset type, canonical source, owner/provider:

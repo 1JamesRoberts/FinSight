@@ -124,3 +124,15 @@ pickle stores trusted local fitted pipelines with version/checksum checks.
 Artifact paths use serialized-content digests to preserve older runs. Models,
 vocabularies, and per-record outputs stay ignored; aggregate reports are committed.
 No target-aware behavior, hyperparameter search, or final-test scoring is added.
+
+## Phase 2 extension: Linear SVM
+
+`sentiment/svm.py` adds a concrete fitted model with typed label/decision-score
+outputs, using shared TF-IDF configuration, vectorizer construction, and input
+validation. Logistic Regression's probability interface remains distinct.
+The existing development runner supports an explicit classifier choice, reusing
+split verification, cohort selection, metrics, timing, controls, and artifact
+logging. There is no generic model registry or new service/framework dependency.
+Both weighted and unweighted presets run on each corpus separately. Source text,
+fitted vocabularies/coefficients, and per-record outputs stay local; aggregate
+validation reports are committed. The frozen benchmark is preserved.

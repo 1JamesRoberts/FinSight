@@ -1,0 +1,9 @@
+{
+  "schema_version": 1,
+  "c": 1.0,
+  "min_df": 2,
+  "max_features": 50000,
+  "max_iter": 10000,
+  "seed": 42,
+  "class_weight": "balanced"
+}

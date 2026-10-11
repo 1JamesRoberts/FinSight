@@ -170,7 +170,7 @@ Use `uv run --locked --group eda pytest` to include the synthetic plotting check
 Source datasets and notebook outputs stay uncommitted; the five aggregate PNGs,
 summary JSON, and Markdown report are safe research outputs. Matplotlib and
 ipykernel belong only to the optional EDA group; VADER is a runtime dependency.
-Phase 2 includes VADER and TF-IDF + Logistic Regression; Linear SVM remains next.
+Phase 2 includes VADER, TF-IDF + Logistic Regression, and TF-IDF + Linear SVM.
 
 ## VADER baseline
 
@@ -218,3 +218,20 @@ uv run --locked python -m finsight.sentiment validate-tfidf-logreg \
 how command arguments select settings and how prepared texts/labels enter the
 pipeline. Balanced weighting improves validation macro F1 from 0.6696 to 0.7378;
 the unweighted preset remains the default, and final-test data stays withheld.
+
+## TF-IDF + Linear SVM
+
+```sh
+uv run --locked python -m finsight.sentiment validate-tfidf-svm
+uv run --locked python -m finsight.sentiment validate-tfidf-svm \
+  --config configs/tfidf-svm-balanced.json \
+  --report-path reports/experiments/tfidf-svm-balanced-validation.md
+```
+
+These commands train four separate models: unweighted/balanced for PhraseBank and
+single-target SEntFiN. Validation macro F1 is 0.7344 / 0.7444 on PhraseBank and
+0.8072 / 0.8075 on SEntFiN. Read [how SVM works and setup](docs/tfidf-svm.md),
+the [unweighted report](reports/experiments/tfidf-svm-validation.md), and the
+[balanced report](reports/experiments/tfidf-svm-balanced-validation.md).
+Decision scores are signed margins, not probabilities. TF-IDF fits on training
+only; fitted artifacts stay ignored and the frozen final test remains withheld.

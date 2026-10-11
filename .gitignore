@@ -39,6 +39,8 @@ build/
 !/reports/experiments/tfidf-logreg-validation.json
 !/reports/experiments/tfidf-logreg-phrasebank-unweighted.json
 !/reports/experiments/tfidf-logreg-phrasebank-balanced.json
+!/reports/experiments/tfidf-svm-validation.json
+!/reports/experiments/tfidf-svm-balanced-validation.json
 .ipynb_checkpoints/
 
 # Editors and OS

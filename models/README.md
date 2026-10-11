@@ -7,3 +7,8 @@ Phase 2 TF-IDF fitted pipelines currently live under ignored
 `data/interim/tfidf-logreg-models/<artifact-sha256>/model.pkl`, tied to validation run
 metadata. Vocabulary/coefficients have not been cleared for public redistribution.
 See `docs/tfidf-logreg.md` for trusted local loading and reproduction.
+
+Linear SVM pipelines use ignored
+`data/interim/tfidf-svm-models/<artifact-sha256>/model.pkl`, with the same trusted
+local/version/checksum boundaries. They return signed decision scores, not class
+probabilities. See `docs/tfidf-svm.md` for the four validation experiments.

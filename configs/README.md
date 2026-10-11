@@ -34,3 +34,8 @@ The original preset omits it and remains unweighted (`null` is also accepted).
 Use `--cohort phrasebank` with the balanced preset for the bounded PhraseBank
 comparison; without a cohort selector, the settings apply to both separate
 models. See `docs/phrasebank-class-weights.md` for inputs and results.
+
+`tfidf-svm.json` / `tfidf-svm-balanced.json` use the shared TF-IDF configuration
+schema with unweighted / balanced LinearSVC. Both use C=1 and max_iter=10,000.
+The two presets otherwise match. `validate-tfidf-svm` runs both separate sentence
+cohorts by default; `--cohort` can select one. See `docs/tfidf-svm.md`.

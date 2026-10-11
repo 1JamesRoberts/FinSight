@@ -1,4 +1,4 @@
-"""Fit initial logistic baselines on training only; score validation only."""
+"""Fit TF-IDF classifiers on training only; score validation only."""
 
 import hashlib
 import json
@@ -12,6 +12,7 @@ from time import perf_counter
 from typing import Any
 
 from finsight.data.benchmark import load_development_records
+from finsight.sentiment.svm import TfidfSVM
 from finsight.sentiment.tfidf import TfidfConfig, TfidfSentiment
 from finsight.sentiment.vader import VaderConfig, VaderSentiment
 from finsight.sentiment.validation import (
@@ -40,10 +41,15 @@ def run_tfidf_validation(
     vader_config_path: Path = Path("configs/vader.json"),
     *,
     cohort: str = "all",
+    model_kind: str = "logistic_regression",
 ) -> dict[str, Any]:
     """Separate fitted models for matching VADER cohorts; no search or test scoring."""
     if cohort not in {"all", "phrasebank", "sentfin_single_target"}:
         raise ValueError("unknown sentence cohort")
+    if model_kind not in {"logistic_regression", "linear_svm"}:
+        raise ValueError("unknown TF-IDF classifier")
+    model_class = TfidfSentiment if model_kind == "logistic_regression" else TfidfSVM
+    prefix = "tfidf-logreg" if model_kind == "logistic_regression" else "tfidf-svm"
     records = load_development_records(data_dir, receipt_path)
     receipt = json.loads(receipt_path.read_text(encoding="utf-8"))
     config = TfidfConfig.load(config_path)
@@ -52,7 +58,14 @@ def run_tfidf_validation(
     root = Path(__file__).resolve().parents[3]
     snapshot = {
         name: hashlib.sha256(Path(__file__).with_name(name).read_bytes()).hexdigest()
-        for name in ("tfidf.py", "tfidf_validation.py", "validation.py", "vader.py")
+        for name in (
+            "tfidf.py",
+            "tfidf_validation.py",
+            "validation.py",
+            "vader.py",
+            "svm.py",
+            "__main__.py",
+        )
     }
     metrics: dict[str, Any] = {}
     predictions = []
@@ -68,7 +81,7 @@ def run_tfidf_validation(
         train_labels = [label for _, label in training_examples]
         counts = Counter(train_labels)
         majority = max(LABELS, key=lambda label: counts[label])
-        model = TfidfSentiment(config)
+        model = model_class(config)
         started = perf_counter()
         model.fit(train_texts, train_labels)
         training_seconds = perf_counter() - started
@@ -82,7 +95,7 @@ def run_tfidf_validation(
             "implementation_sha256": snapshot,
         }
         model_id = _digest(json.dumps(identity, sort_keys=True))
-        artifact_root = data_dir / "interim/tfidf-logreg-models"
+        artifact_root = data_dir / f"interim/{prefix}-models"
         artifact_root.mkdir(parents=True, exist_ok=True)
         # Address by serialized bytes: repeated fits must not overwrite an older
         # run's artifact even if identical configuration produces different bytes.
@@ -97,7 +110,7 @@ def run_tfidf_validation(
             else:
                 staging.replace(artifact)
         # Score the persisted model to verify the actual artifact used for inference.
-        model = TfidfSentiment.load(artifact, expected_sha256=artifact_digest)
+        model = model_class.load(artifact, expected_sha256=artifact_digest)
         model.predict("The outlook is good.")
         gold, predicted, vader_predicted = [], [], []
         elapsed, vader_elapsed = 0.0, 0.0
@@ -122,7 +135,7 @@ def run_tfidf_validation(
                 }
             )
         metrics[name] = {
-            "logistic_regression": classification_metrics(gold, predicted),
+            model_kind: classification_metrics(gold, predicted),
             "vader": classification_metrics(gold, vader_predicted),
             "training_majority": classification_metrics(gold, [majority] * len(gold)),
             "majority_label": majority,
@@ -161,7 +174,8 @@ def run_tfidf_validation(
     body = "".join(json.dumps(row, sort_keys=True) + "\n" for row in predictions)
     run = {
         "schema_version": 1,
-        "experiment": "tfidf-logreg-validation-v1",
+        "experiment": f"{prefix}-validation-v1",
+        "model_kind": model_kind,
         "scope": "Training-only fits; validation-only scores for " + ", ".join(metrics),
         "cohort_selection": cohort,
         "configuration": asdict(config),
@@ -187,7 +201,7 @@ def run_tfidf_validation(
     }
     run_body = json.dumps(run, indent=2, sort_keys=True) + "\n"
     run_id = _digest(run_body)
-    directory = data_dir / "interim/tfidf-logreg-validation" / run_id
+    directory = data_dir / f"interim/{prefix}-validation" / run_id
     directory.mkdir(parents=True, exist_ok=True)
     (directory / "run.json").write_text(run_body, encoding="utf-8")
     (directory / "predictions.jsonl").write_text(body, encoding="utf-8")
@@ -198,13 +212,18 @@ def run_tfidf_validation(
 
 
 def render_report(run: dict[str, Any], run_id: str) -> str:
+    kind = run.get("model_kind", "logistic_regression")
+    title = "Logistic Regression" if kind == "logistic_regression" else "Linear SVM"
+    guide = (
+        "docs/tfidf-logreg.md" if kind == "logistic_regression" else "docs/tfidf-svm.md"
+    )
     lines = [
-        "# TF-IDF + Logistic Regression validation",
+        f"# TF-IDF + {title} validation",
         "",
         run["scope"],
         "",
         "One fixed configuration; no tuning or final-test scoring.",
-        f"Class weighting: `{run['configuration']['class_weight']}`.",
+        f"Class weighting: `{run['configuration'].get('class_weight')}`.",
         "Separate models fitted on each cohort's training texts/labels only.",
         "Vocabulary and IDF use training only. VADER scores the same validation rows.",
         "",
@@ -212,14 +231,14 @@ def render_report(run: dict[str, Any], run_id: str) -> str:
         "| --- | ---: | ---: | --- | ---: | ---: |",
     ]
     for name, result in run["metrics"].items():
-        for model_name in ("logistic_regression", "vader", "training_majority"):
+        for model_name in (kind, "vader", "training_majority"):
             score = result[model_name]
             lines.append(
                 f"| {name} | {result['training_samples']} | {score['samples']} | "
                 f"{model_name} | {score['accuracy']:.4f} | {score['macro_f1']:.4f} |"
             )
     for name, result in run["metrics"].items():
-        score = result["logistic_regression"]
+        score = result[kind]
         lines += [
             "",
             f"## {name}",
@@ -262,6 +281,6 @@ def render_report(run: dict[str, Any], run_id: str) -> str:
         "These are development results, with separate corpus-specific training; they",
         "do not measure cross-corpus transfer, target-aware sentiment, calibration,",
         "or frozen-test generalization. Latency is descriptive on one local machine.",
-        "See `docs/tfidf-logreg.md` for usage, preprocessing, and limitations.",
+        f"See `{guide}` for usage, preprocessing, and limitations.",
     ]
     return "\n".join(lines) + "\n"
