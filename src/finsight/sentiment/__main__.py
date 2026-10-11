@@ -16,6 +16,7 @@ def main() -> None:
             "validate-tfidf-logreg",
             "validate-tfidf-svm",
             "validate-finbert",
+            "fine-tune-finbert",
         ),
     )
     parser.add_argument("--data-dir", type=Path, default=Settings.from_env().data_dir)
@@ -29,6 +30,11 @@ def main() -> None:
         type=Path,
         default=Path("reports/experiments/tfidf-tuning.json"),
         help="Saved Phase 2 tuning report for FinBERT comparisons",
+    )
+    parser.add_argument(
+        "--pretrained-report",
+        type=Path,
+        default=Path("reports/experiments/finbert-validation.json"),
     )
     parser.add_argument(
         "--cohort",
@@ -48,6 +54,24 @@ def main() -> None:
         report = args.report_path or Path("reports/experiments/vader-validation.md")
         run = run_validation(args.data_dir, args.freeze_receipt, config, report)
         key = "vader"
+    elif args.command == "fine-tune-finbert":
+        from finsight.sentiment.finbert_training import run_finetuning
+
+        if args.cohort == "phrasebank":
+            parser.error("fine-tune-finbert supports SEntFiN only")
+        config = args.config or Path("configs/finbert-finetune.json")
+        report = args.report_path or Path("reports/experiments/finbert-finetuning.md")
+        run = run_finetuning(
+            args.data_dir,
+            args.freeze_receipt,
+            config,
+            report,
+            args.baseline_report,
+            args.pretrained_report,
+        )
+        print(f"Saved checkpoint verified on {run['validation_samples']} texts.")
+        print(f"Aggregate report saved to {report}")
+        return
     elif args.command == "validate-finbert":
         from finsight.sentiment.finbert_validation import run_finbert_validation
 

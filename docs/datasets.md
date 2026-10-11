@@ -187,3 +187,13 @@ aggregate categories/counts and digests are published; source text, identifiers,
 targets, and individual notes remain ignored. No acquisition, training, label
 correction, or source-text redistribution occurs. Frozen records remain withheld.
 See [qualitative review](../reports/experiments/phase2-error-analysis.md).
+
+FinBERT adaptation decision (2026-10-11): the user's existing authorization for
+local research use and explicit fine-tuning request cover SEntFiN development
+training and private derivative storage. Hosted checkpoint weight-license scope
+remains unresolved; this is not a redistribution clearance. No new dataset or
+checkpoint is acquired: reuse the checksum-pinned cached source. Train only on
+reviewed single-target SEntFiN training records; keep validation for checkpoint
+selection and withhold the frozen test. Safetensors/tokenizer artifacts and
+record-level predictions remain ignored. Historical asset/freeze manifests stay
+unchanged. See [training guide](finbert-finetuning.md).

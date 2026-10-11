@@ -165,14 +165,66 @@ class FinBertSentiment:
             config,
             cache_dir,
         )
+        self._prepare_inference()
+
+    def _prepare_inference(self) -> None:
         mapping = {
             int(key): value for key, value in self._model.config.id2label.items()
         }
         if mapping != dict(enumerate(INDEX_LABELS)):
             raise ValueError("unexpected checkpoint label mapping")
-        self._model.to(device=config.device, dtype=self._torch.float32)
+        self._model.to(device=self.config.device, dtype=self._torch.float32)
         self._model.eval()
         self._model.requires_grad_(False)
+
+    @classmethod
+    def from_artifact(
+        cls, config: FinBertConfig, directory: Path, manifest_sha256: str
+    ) -> "FinBertSentiment":
+        """Load a checksum-pinned local trained artifact; never acquire a model."""
+        manifest = verify_finetuned_artifact(directory, manifest_sha256)
+        import torch
+        from transformers import AutoModelForSequenceClassification, AutoTokenizer
+
+        if config.device == "cuda" and not torch.cuda.is_available():
+            raise RuntimeError("CUDA requested but unavailable")
+        os.environ.setdefault("CUBLAS_WORKSPACE_CONFIG", ":4096:8")
+        torch.manual_seed(config.seed)
+        torch.use_deterministic_algorithms(True)
+        torch.set_float32_matmul_precision("highest")
+        torch.backends.cuda.matmul.allow_tf32 = False
+        torch.backends.cudnn.allow_tf32 = False
+        model, loading = AutoModelForSequenceClassification.from_pretrained(
+            directory,
+            local_files_only=True,
+            trust_remote_code=False,
+            weights_only=True,
+            use_safetensors=True,
+            attn_implementation="eager",
+            output_loading_info=True,
+        )
+        if any(
+            loading.get(key)
+            for key in (
+                "missing_keys",
+                "unexpected_keys",
+                "mismatched_keys",
+                "error_msgs",
+            )
+        ):
+            raise ValueError("trained artifact did not load exactly")
+        instance = cls.__new__(cls)
+        instance.config, instance._torch, instance._model = config, torch, model
+        instance._tokenizer = AutoTokenizer.from_pretrained(
+            directory,
+            local_files_only=True,
+            trust_remote_code=False,
+        )
+        instance._snapshot = directory
+        instance._artifact_files = tuple(manifest["files"])
+        instance._artifact_manifest_sha256 = manifest_sha256
+        instance._prepare_inference()
+        return instance
 
     def synchronize(self) -> None:
         if self.config.device == "cuda":
@@ -225,7 +277,7 @@ class FinBertSentiment:
                 "sha256": file_sha256(self._snapshot / name),
                 "size_bytes": (self._snapshot / name).stat().st_size,
             }
-            for name in CHECKPOINT_FILES
+            for name in getattr(self, "_artifact_files", CHECKPOINT_FILES)
         }
         return {
             "configuration": asdict(self.config),
@@ -263,8 +315,41 @@ class FinBertSentiment:
             "peak_gpu_reserved_bytes": self._torch.cuda.max_memory_reserved()
             if self.config.device == "cuda"
             else None,
-            "fine_tuned_in_project": False,
+            "fine_tuned_in_project": hasattr(self, "_artifact_files"),
+            "artifact_manifest_sha256": getattr(
+                self, "_artifact_manifest_sha256", None
+            ),
             "probabilities_calibrated": False,
             "weight_license_spdx": None,
             "use_decision": "user_authorized_local_research_license_scope_unresolved",
         }
+
+
+def verify_finetuned_artifact(directory: Path, manifest_sha256: str) -> dict[str, Any]:
+    """Verify saved model/tokenizer bytes and ancestry before optional imports."""
+    manifest_path = directory / "artifact-manifest.json"
+    if file_sha256(manifest_path) != manifest_sha256:
+        raise ValueError("trained artifact manifest checksum mismatch")
+    manifest = json.loads(manifest_path.read_bytes())
+    if (
+        manifest.get("schema_version") != 1
+        or manifest.get("model_id") != MODEL_ID
+        or manifest.get("revision") != REVISION
+    ):
+        raise ValueError("trained artifact ancestry differs")
+    files = manifest.get("files", {})
+    if (
+        not {"model.safetensors", "config.json", "tokenizer_config.json", "vocab.txt"}
+        <= files.keys()
+    ):
+        raise ValueError("trained artifact files are incomplete")
+    for name, item in files.items():
+        if Path(name).name != name or name in {".", ".."} or "\\" in name:
+            raise ValueError("unsafe trained artifact path")
+        path = directory / name
+        if (
+            path.stat().st_size != item["size_bytes"]
+            or file_sha256(path) != item["sha256"]
+        ):
+            raise ValueError("trained artifact file checksum mismatch")
+    return manifest
