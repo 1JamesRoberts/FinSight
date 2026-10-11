@@ -485,6 +485,8 @@ model task was complete. The subsequent verified pretrained run is recorded belo
 - [x] Decide whether to fine-tune a base financial-language model or adapt an existing sentiment checkpoint; document difference.
 - [x] Benchmark reviewed financial RoBERTa Large and DeBERTa-v3 Small unchanged on SEntFiN validation.
 - [x] Fine-tune RoBERTa Base and DeBERTa-v3 Base on the same SEntFiN development protocol; save and reload selected models.
+- [x] Adapt reviewed financial RoBERTa Large and DeBERTa-v3 Small on SEntFiN; save/reload and compare against unchanged checkpoints.
+- [x] Train separate original RoBERTa Base and DeBERTa-v3 Base checkpoints on PhraseBank only; select on PhraseBank validation and log SEntFiN validation transfer afterward.
 - [ ] Run controlled training experiments (learning rate, length, batch size); early stopping on validation only.
 - [ ] Track dataset version, seeds, model checkpoint, metrics, latency in MLflow.
 - [ ] Evaluate on independent frozen test set once final configuration is selected.
@@ -544,6 +546,20 @@ Mac retains manifests and private prediction/run logs. Aggregate report:
 differ; incomplete upstream provenance prevents stronger independence claims.
 One configuration/seed per base does not complete the hyperparameter-comparison
 task. MLflow, calibration/error analysis and final evaluation remain open.
+
+Follow-up verified (2026-10-11): financial RoBERTa/DeBERTa adaptation on the
+same SEntFiN 6,299/781 development split selects epoch 5, scoring accuracy/macro
+F1 0.8707/0.8696 and 0.8745/0.8741. Separate original base checkpoints train on
+3,785 PhraseBank phrases and select on 518 PhraseBank validation phrases. RoBERTa
+selects epoch 5 (0.8938/0.8868); DeBERTa epoch 4 (0.8900/0.8857). Selected models
+then score SEntFiN validation as a transfer diagnostic: 0.7836/0.7845 and
+0.7798/0.7816. Transfer does not select epochs. No corpus pooling, sequential
+training or test scoring. All runs retain fixed settings and all improved models
+on Windows; saved best models reproduce metrics. Source/selected file hashes,
+prediction IDs/labels/metrics, code lineage, tokenizer consistency and unchanged
+frozen benchmark pass verification. Mac and Windows Ruff and all 280 tests pass.
+See `reports/experiments/transformer-followup.md`/JSON and
+`docs/transformer-followup.md`. Phase 3 remains in progress.
 
 **Deliverables:** Inference module, training pipeline, comparison report, versioned best model.
 

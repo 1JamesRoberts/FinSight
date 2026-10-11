@@ -21,7 +21,10 @@ experiments now compare unchanged financial checkpoints with SEntFiN-trained
 base models; see the [transformer comparison](reports/experiments/transformer-comparison.md)
 and [reproduction guide](docs/transformer-comparison.md). RoBERTa Base has the
 highest observed validation macro F1 (0.8849) in this single-seed setup.
-Phase 3 remains in progress.
+Financial checkpoints have also been adapted on SEntFiN, and both original base
+models trained separately on PhraseBank; see the
+[follow-up results](reports/experiments/transformer-followup.md) and
+[training guide](docs/transformer-followup.md). Phase 3 remains in progress.
 News ingestion, stock prediction, API, and dashboard remain unimplemented.
 See [ROADMAP.md](ROADMAP.md)
 for the phase sequence and acceptance criteria.

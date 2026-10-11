@@ -35,3 +35,10 @@ Every improved epoch is retained separately and the selected artifact appears
 in its per-model report. Source and saved-file checksums are verified before
 loading. Weights stay on Windows; Mac retains manifests and private predictions.
 See `docs/transformer-comparison.md` for model identity, training scope and loading.
+
+Adapted financial checkpoints and separate PhraseBank-only base models use the
+same ignored transformer artifact directory. Their selected manifest hashes,
+training corpus and loading instructions are in `docs/transformer-followup.md`.
+PhraseBank runs start from original base sources; no SEntFiN-trained project
+artifact is reused. Saved models contain tokenizer/configuration/weights without
+optimizer state. All improved epochs remain on Windows.

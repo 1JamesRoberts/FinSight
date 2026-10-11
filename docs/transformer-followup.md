@@ -53,3 +53,40 @@ cross-partition groups. The existing FinBERT default remains SEntFiN-only.
 Small-model tests exercise both classifier index orders, both architectures,
 PhraseBank training and saved-artifact reloading. No new training framework or
 dependency is added.
+
+## Verified results (2026-10-11)
+
+| Run | Selection validation macro F1 | SEntFiN transfer macro F1 | Selected epoch |
+| --- | ---: | ---: | ---: |
+| Financial RoBERTa Large, SEntFiN adaptation | 0.8696 | — | 5 |
+| Financial DeBERTa-v3 Small, SEntFiN adaptation | 0.8741 | — | 5 |
+| RoBERTa Base, PhraseBank only | 0.8868 | 0.7845 | 5 |
+| DeBERTa-v3 Base, PhraseBank only | 0.8857 | 0.7816 | 4 |
+
+All four ran five epochs with the original fixed settings. Financial checkpoints
+improve over their unchanged SEntFiN scores. PhraseBank-only bases transfer less
+well than the earlier SEntFiN-trained bases; sample counts and epoch-selection
+corpora differ, so this does not isolate a causal corpus effect. No final test
+was scored. See the [consolidated report](../reports/experiments/transformer-followup.md)
+for accuracy, architecture, model size, timing, memory and comparison details.
+
+Selected manifests under the ignored Windows artifact directory:
+
+| Run | Manifest SHA-256 |
+| --- | --- |
+| financial_roberta_adapted | `77e886132b9ea71dd4412f4a44b40246796447b4b5c28c2820cc262498ec686c` |
+| financial_deberta_adapted | `b3e29be91c8d166b715ca31d8f2a1ca440beacea2cbc597b607f2825c2bc9ceb` |
+| roberta_phrasebank | `9f151e0c4a70285d2f75038297bc9baf4b3181846546d97d8798f03060a8af96` |
+| deberta_phrasebank | `976d80967708729fa1649282a643133b8aa18f71f178e6d114c718859881ab72` |
+
+Source/saved weight hashes, ordered validation IDs/gold labels, recomputed metrics,
+code/configuration lineage and frozen benchmark hashes pass verification. Saved
+models reproduce selected epoch metrics. Source and saved tokenizer input IDs
+and masks match on all selection/transfer validation texts. Transformers 4.57.6
+emits a Mistral regex warning for saved Financial DeBERTa because its local-config
+heuristic includes this non-Mistral model/version; no regex patch is applied.
+
+Mac and Windows Ruff checks and all 280 tests pass. Tests cover both label orders,
+both cohorts, reserved-record rejection and actual tiny-model training/reloading.
+This completes these four runs; hyperparameter comparisons, MLflow, calibration,
+error review and final evaluation remain open.
