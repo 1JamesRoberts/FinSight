@@ -308,7 +308,7 @@ has started; Phase 2 is the next separately requested phase.
 - [x] Train TF-IDF + Logistic Regression pipeline (fixed initial configuration; train-only fit, validation-only check).
 - [x] Train TF-IDF + Linear SVM pipeline (unweighted/balanced on both sentence cohorts; validation only).
 - [x] Fit all learned preprocessing **only on training data** (verified for both TF-IDF classifiers).
-- [ ] Tune using validation/CV on training data, never final test.
+- [x] Tune using validation/CV on training data, never final test (bounded C/class-weight validation search).
 - [x] Compute accuracy, macro F1, per-class precision/recall, confusion matrix, latency (development validation; serial local timing).
 - [ ] Perform qualitative error analysis; persist configs and model artifacts.
 - [x] Add unit tests for preprocessing and label handling.
@@ -402,6 +402,25 @@ runs include profiles automatically, and a repeatable report enrichment command
 is documented. Sizes explicitly distinguish stored classifier parameters, fitted
 preprocessing state, file size, and runtime memory. All 219 tests, Ruff checks,
 and package builds pass; no additional roadmap task or future phase is completed.
+
+**Bounded tuning verification (2026-10-11):** An explicit C=[0.1, 1, 10] and
+unweighted/balanced grid fits six candidates per classifier per corpus (24 models).
+Existing train-only TF-IDF settings, seed 42, development partitions, and reviewed
+local storage scope are preserved. No pooling, CV, dependency acquisition, or
+final-test scoring occurs. Validation macro F1 selects models; exact ties retain
+declared order. Membership/split/control checks reject inconsistent comparisons.
+Selected LR settings: PhraseBank C=10 balanced (accuracy 0.7780, macro F1 0.7446),
+SEntFiN C=1 balanced (0.8195, 0.8181). Selected SVM settings: PhraseBank C=1 balanced
+(0.7819, 0.7444), SEntFiN C=0.1 balanced (0.8169, 0.8160). The tiny PhraseBank
+LR/SVM gap is not evidence of a meaningful advantage; selection scores remain
+development results. See `docs/tfidf-tuning.md` and the aggregate tuning report/JSON.
+All candidate configs, code/split/dependency identities, class metrics, architecture,
+sizes, timings, and content-addressed local models are logged; original baseline
+reports and artifacts remain intact. Repeating the complete search reproduces all
+24 prediction/metric sets, and original/new artifact checksums verify. All 223
+tests, required Ruff checks, and package builds pass locally. Tuning is complete
+within this bounded grid; qualitative error analysis and consolidated comparison
+remain open. Hosted CI is unverified. No Phase 3 work begins.
 
 ## Phase 3 — Financial transformer experiments
 

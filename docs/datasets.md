@@ -114,3 +114,9 @@ FiQA release selection, original noncommercial-use terms, participant-copy
 provenance, unscored test inputs, and mirror limitations are recorded in
 [FiQA asset review](fiqa-asset-review.md). Acquisition of that copy does not
 resolve the gated mirror’s broader MIT claim.
+
+Bounded TF-IDF tuning review (2026-10-11): the C/class-weight grid uses the
+same reviewed scikit-learn dependency, pinned development inputs, and local
+noncommercial training/storage scope as the earlier LR/SVM fits. No assets or
+rights decision changes; no corpus pooling or final-test scoring. Candidate
+models and predictions remain ignored. See [tuning guide](tfidf-tuning.md).

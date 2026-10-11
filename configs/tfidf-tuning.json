@@ -1,0 +1,5 @@
+{
+  "schema_version": 1,
+  "c_values": [0.1, 1.0, 10.0],
+  "class_weights": [null, "balanced"]
+}

@@ -161,6 +161,9 @@ def run_tfidf_validation(
                 model.pipeline, artifact, artifact_digest
             ),
             "training_membership_sha256": training_digest,
+            "validation_membership_sha256": _digest(
+                json.dumps([row["record_id"] for row in validation])
+            ),
         }
     revision = subprocess.run(
         ["git", "rev-parse", "HEAD"],
