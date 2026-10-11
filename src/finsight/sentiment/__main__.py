@@ -15,6 +15,7 @@ def main() -> None:
             "validate-vader",
             "validate-tfidf-logreg",
             "validate-tfidf-svm",
+            "validate-finbert",
         ),
     )
     parser.add_argument("--data-dir", type=Path, default=Settings.from_env().data_dir)
@@ -24,10 +25,16 @@ def main() -> None:
     parser.add_argument("--config", type=Path)
     parser.add_argument("--vader-config", type=Path, default=Path("configs/vader.json"))
     parser.add_argument(
+        "--baseline-report",
+        type=Path,
+        default=Path("reports/experiments/tfidf-tuning.json"),
+        help="Saved Phase 2 tuning report for FinBERT comparisons",
+    )
+    parser.add_argument(
         "--cohort",
         choices=("all", "phrasebank", "sentfin_single_target"),
         default="all",
-        help="TF-IDF sentence cohort (default: both separately)",
+        help="Sentence cohort for TF-IDF or FinBERT (default: both)",
     )
     parser.add_argument(
         "--report-path",
@@ -41,6 +48,20 @@ def main() -> None:
         report = args.report_path or Path("reports/experiments/vader-validation.md")
         run = run_validation(args.data_dir, args.freeze_receipt, config, report)
         key = "vader"
+    elif args.command == "validate-finbert":
+        from finsight.sentiment.finbert_validation import run_finbert_validation
+
+        config = args.config or Path("configs/finbert.json")
+        report = args.report_path or Path("reports/experiments/finbert-validation.md")
+        run = run_finbert_validation(
+            args.data_dir,
+            args.freeze_receipt,
+            config,
+            report,
+            args.baseline_report,
+            cohort=args.cohort,
+        )
+        key = "finbert"
     else:
         from finsight.sentiment.tfidf_validation import run_tfidf_validation
 

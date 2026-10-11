@@ -1,0 +1,9 @@
+{
+  "schema_version": 1,
+  "model_id": "ProsusAI/finbert",
+  "revision": "4556d13015211d73dccd3fdd39d39232506f3e43",
+  "batch_size": 32,
+  "max_length": 128,
+  "device": "cuda",
+  "seed": 42
+}

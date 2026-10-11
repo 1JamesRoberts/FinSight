@@ -94,6 +94,19 @@ existing acquisition/split receipts pin its digest; its pending decision records
 the original review, superseded for local use by this paragraph. No weights
 were downloaded while recording this decision.
 
+Pretrained FinBERT validation acquisition plan (2026-10-11): use only the pinned
+revision above and download its README, config, PyTorch weights, vocabulary,
+tokenizer config, and special-token map into ignored project storage on Windows.
+The [revision's file metadata](https://huggingface.co/api/models/ProsusAI/finbert/tree/4556d13015211d73dccd3fdd39d39232506f3e43)
+identifies `pytorch_model.bin` as 437,992,753 bytes, with Git LFS SHA-256
+`e15a7b5738df7f17553399b6d94c6e2ff69c89245d066e8e5d183f5803a554e3`.
+The loader verifies this digest plus the previously reviewed README/config
+digests before loading. Retain SHA-256 and size for all six files in the local
+acquisition receipt and aggregate run metadata. Use trusted library BERT code,
+local-only loading after download, and `weights_only=True`; no remote code or
+randomly initialized sentiment head is accepted. Scope remains the user's
+local research decision with unresolved hosted-weight license declaration.
+
 ## Asset record template
 
 - Name, asset type, canonical source, owner/provider:
