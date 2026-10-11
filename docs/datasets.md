@@ -82,6 +82,18 @@ Weight acquisition therefore remains `pending_explicit_license_scope`;
 no checkpoint weights were downloaded. CUDA preparation uses synthetic tensors
 and library imports only. PhraseBank remains known FinBERT supervision overlap.
 
+Subsequent user decision (2026-10-11): proceed with this pinned checkpoint for
+personal, local noncommercial portfolio research despite the unresolved hosted
+weight-license declaration. This authorizes acquisition, local storage,
+inference, and research fine-tuning within the project; it is a user decision,
+not new evidence of a license grant. Public weight redistribution and commercial
+deployment are outside this decision. Explicit license clarification is no
+longer a prerequisite for the authorized local work. Keep the uncertainty in
+experiment documentation. The Phase 1 asset manifest remains unchanged because
+existing acquisition/split receipts pin its digest; its pending decision records
+the original review, superseded for local use by this paragraph. No weights
+were downloaded while recording this decision.
+
 ## Asset record template
 
 - Name, asset type, canonical source, owner/provider:

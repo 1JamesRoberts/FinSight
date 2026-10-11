@@ -2,8 +2,9 @@
 
 This preparation task installs the optional transformer runtime and transfers
 existing reviewed data. It adds no inference or training pipeline. The frozen
-SEntFiN final test remains unscored. FinBERT weight acquisition remains pending
-explicit license scope; see [asset review](datasets.md#gpu-preparation-asset-review-2026-10-11).
+SEntFiN final test remains unscored. The user subsequently authorized local
+FinBERT research use with the missing weight-license declaration documented;
+see [asset review and decision](datasets.md#gpu-preparation-asset-review-2026-10-11).
 
 ## Installation
 
@@ -115,6 +116,7 @@ hosted execution remains unverified until the commits are pushed and CI runs.
 
 GPU/development-loader evidence is retained locally in ignored
 `data/interim/windows-gpu-smoke.json`. No pretrained weights or real-data
-training/evaluation runs were performed. The next model task requires explicit
-FinBERT weight-license scope before acquiring the pinned checkpoint, followed
-by development-only batched inference. No Phase 3 model task is marked complete.
+training/evaluation runs were performed. The user subsequently authorized
+acquiring the pinned checkpoint for local research despite unresolved license
+scope. The next model task is development-only batched inference with this
+decision recorded in the experiment. No Phase 3 model task is marked complete.

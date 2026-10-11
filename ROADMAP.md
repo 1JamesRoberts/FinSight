@@ -474,8 +474,10 @@ CUDA computation, BERT imports, and the 14,963-record development loader pass.
 Mac and Windows Ruff checks and all 233 tests pass. A discovered Windows newline
 hash issue is fixed in baseline artifact writers, with regression assertions
 and a Windows CI job. See [setup and verification](docs/windows-gpu-setup.md).
-FinBERT hosted-weight license scope remains pending; no weights are downloaded,
-no final-test scores are computed, and no model task below is complete.
+FinBERT hosted-weight license scope remains unresolved; the user subsequently
+authorized local research use with this limitation documented in
+`docs/datasets.md`. No weights are downloaded, no final-test scores are computed,
+and no model task below is complete.
 
 ### Tasks
 - [ ] Build batched inference for `ProsusAI/finbert` with class-probability output.
