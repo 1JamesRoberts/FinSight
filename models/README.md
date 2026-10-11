@@ -12,3 +12,11 @@ Linear SVM pipelines use ignored
 `data/interim/tfidf-svm-models/<artifact-sha256>/model.pkl`, with the same trusted
 local/version/checksum boundaries. They return signed decision scores, not class
 probabilities. See `docs/tfidf-svm.md` for the four validation experiments.
+
+Phase 3 pretrained FinBERT files are cached on the Windows GPU computer under
+ignored `data/interim/finbert-checkpoint-cache/`. The exact upstream checkpoint
+is reused unchanged; no new fitted transformer is saved. SHA-256, architecture,
+parameter/file sizes, and validation evidence are in
+`reports/experiments/finbert-validation.json`; per-run acquisition/prediction
+records remain ignored under `data/interim/finbert-validation/<run-sha256>/`.
+See `docs/finbert.md` for use scope and reproduction.

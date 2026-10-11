@@ -11,8 +11,10 @@ Reviewed PhraseBank, SEntFiN, and original-format FiQA files are available in ig
 VADER, TF-IDF Logistic Regression, and Linear SVM have validation comparisons,
 bounded tuning, saved local models, and qualitative error review. See the
 [Phase 2 comparison](reports/experiments/phase2-comparison.md). The frozen final
-test remains unscored; transformers, news ingestion, stock prediction, API, and
-dashboard remain unimplemented.
+test remains unscored. Phase 3 has begun with an unchanged pretrained FinBERT
+validation run on the Windows GPU; see [results](reports/experiments/finbert-validation.md)
+and [run instructions](docs/finbert.md). Transformer fine-tuning, news ingestion,
+stock prediction, API, and dashboard remain unimplemented.
 See [ROADMAP.md](ROADMAP.md)
 for the phase sequence and acceptance criteria.
 

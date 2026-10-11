@@ -120,3 +120,7 @@ training/evaluation runs were performed. The user subsequently authorized
 acquiring the pinned checkpoint for local research despite unresolved license
 scope. The next model task is development-only batched inference with this
 decision recorded in the experiment. No Phase 3 model task is marked complete.
+
+Subsequent work: the unchanged pretrained baseline has now been acquired and
+run on validation data; see [FinBERT results and reproduction](finbert.md).
+The verification above describes the earlier environment-preparation task.

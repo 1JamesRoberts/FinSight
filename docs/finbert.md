@@ -89,3 +89,43 @@ license scope; see [asset review](datasets.md#gpu-preparation-asset-review-2026-
 Weights/source text are not committed or redistributed. The immutable Phase 1
 asset manifest stays unchanged; a subsequent per-run receipt records this
 acquisition. No other transformer or training experiment is included.
+
+## Verified result (2026-10-11)
+
+The [validation report](../reports/experiments/finbert-validation.md) and JSON
+record run `ee63070bdb16c74bef562cddd8a1f30c92ba757489d8203477c6fb3d45b43e2c`,
+executed from clean code revision `a83794d0323e3380e763500b75ea2c1850c0d280`
+on the RTX 4070 SUPER, Python 3.12.3, PyTorch 2.11.0+cu128, and Transformers
+4.57.6. Ruff/formatting and all 257 tests passed on both Mac and Windows.
+
+| Validation cohort | FinBERT accuracy | FinBERT macro F1 | Selected LR macro F1 |
+| --- | ---: | ---: | ---: |
+| PhraseBank (known supervision overlap) | 0.8822 | 0.8823 | 0.7446 |
+| SEntFiN single-target | 0.7478 | 0.7492 | 0.8181 |
+
+FinBERT beats the fixed VADER/majority controls on both cohorts. On SEntFiN,
+it trails selected LR by about 0.0689 macro F1 (6.89 percentage points), so the
+pretrained checkpoint does not replace the stronger development baseline.
+Different training histories matter: LR learned from our SEntFiN training
+partition, whereas this FinBERT run received none of it. PhraseBank performance
+cannot support an independent advantage because upstream sentiment training
+used that corpus.
+
+SEntFiN's weakest FinBERT class is neutral (F1 0.6922, precision 0.6397).
+58 positive and 49 negative validation texts were predicted neutral; total
+neutral predictions are 297 versus 252 gold neutral labels. These aggregate
+confusions suggest a useful direction for later error review and adaptation;
+they do not by themselves explain the wording or annotation causes.
+
+The model has 12 BERT encoder layers, hidden size 768, 12 attention heads,
+and 109,484,547 parameters. Six downloaded files total 438,226,859 bytes
+(about 438 MB); FP32 parameter storage is 437,938,188 bytes. All gradient flags
+are disabled and no weights were updated. Neither validation cohort required
+truncation (maximum token lengths 93 and 30). The measured GPU inference passes
+took 0.577s and 0.562s, with peak allocated memory 601,229,824 bytes and reserved
+memory 861,929,472 bytes. These timings are single-pass batched measurements,
+not direct comparisons with historical CPU baselines.
+
+Checkpoint files remain cached on Windows. The private run, acquisition receipt,
+and predictions are retained on both machines; the Mac does not need a second
+copy of the pretrained weights. No frozen test predictions were produced.

@@ -476,17 +476,32 @@ hash issue is fixed in baseline artifact writers, with regression assertions
 and a Windows CI job. See [setup and verification](docs/windows-gpu-setup.md).
 FinBERT hosted-weight license scope remains unresolved; the user subsequently
 authorized local research use with this limitation documented in
-`docs/datasets.md`. No weights are downloaded, no final-test scores are computed,
-and no model task below is complete.
+`docs/datasets.md`. At preparation time no weights had been downloaded and no
+model task was complete. The subsequent verified pretrained run is recorded below.
 
 ### Tasks
-- [ ] Build batched inference for `ProsusAI/finbert` with class-probability output.
-- [ ] Record evaluation overlap caveat with Financial PhraseBank.
+- [x] Build batched inference for `ProsusAI/finbert` with class-probability output.
+- [x] Record evaluation overlap caveat with Financial PhraseBank.
 - [ ] Decide whether to fine-tune a base financial-language model or adapt an existing sentiment checkpoint; document difference.
 - [ ] Run controlled training experiments (learning rate, length, batch size); early stopping on validation only.
 - [ ] Track dataset version, seeds, model checkpoint, metrics, latency in MLflow.
 - [ ] Evaluate on independent frozen test set once final configuration is selected.
 - [ ] Analyze calibration, negation, financial jargon, ambiguity, and class-specific failures.
+
+Pretrained validation verified (2026-10-11): pinned revision
+`4556d13015211d73dccd3fdd39d39232506f3e43` acquired under the documented user
+local-research decision and upstream weight SHA-256 checked. No project training.
+The shared checkpoint scores 518 PhraseBank and 781 single-target SEntFiN
+validation texts: accuracy/macro F1 0.8822/0.8823 and 0.7478/0.7492 respectively.
+PhraseBank is a known FinBERT supervision corpus, so that score is diagnostic;
+SEntFiN development macro F1 is below selected LR's 0.8181. No final-test scoring
+or model selection occurs. Architecture, 109,484,547 parameters, file checksums,
+uncalibrated probabilities, truncation counts (zero), GPU timing/memory,
+membership digests, and historical baseline lineage are logged in
+`reports/experiments/finbert-validation.md`/JSON. Checkpoint files remain cached
+on Windows; private run/predictions/receipt are retained in ignored storage on
+both machines. Mac and Windows Ruff checks and all 257 tests pass. Fine-tuning,
+MLflow, calibration analysis, and final evaluation remain open.
 
 **Deliverables:** Inference module, training pipeline, comparison report, versioned best model.
 

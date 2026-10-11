@@ -94,7 +94,7 @@ existing acquisition/split receipts pin its digest; its pending decision records
 the original review, superseded for local use by this paragraph. No weights
 were downloaded while recording this decision.
 
-Pretrained FinBERT validation acquisition plan (2026-10-11): use only the pinned
+Pretrained FinBERT validation acquisition (2026-10-11): use only the pinned
 revision above and download its README, config, PyTorch weights, vocabulary,
 tokenizer config, and special-token map into ignored project storage on Windows.
 The [revision's file metadata](https://huggingface.co/api/models/ProsusAI/finbert/tree/4556d13015211d73dccd3fdd39d39232506f3e43)
@@ -106,6 +106,12 @@ acquisition receipt and aggregate run metadata. Use trusted library BERT code,
 local-only loading after download, and `weights_only=True`; no remote code or
 randomly initialized sentiment head is accepted. Scope remains the user's
 local research decision with unresolved hosted-weight license declaration.
+Acquisition and validation succeeded on Windows with all pinned digests matched.
+Six retained files total 438,226,859 bytes; no weights were changed or published.
+The per-run acquisition receipt is in ignored storage and the public aggregate
+[report](../reports/experiments/finbert-validation.md)/JSON records its checksums.
+The historical Phase 1 manifest still records the earlier pre-acquisition state;
+the new receipt supersedes that state without invalidating dataset split digests.
 
 ## Asset record template
 
