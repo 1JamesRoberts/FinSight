@@ -26,3 +26,13 @@ Agreement subsets overlap; membership matches are not individual votes.
 See `eda-summary.json` for exact counts and source/freeze digests.
 See `../docs/phase1-findings.md` for interpretation and limitations.
 No frozen-test exploration, model training, or new filtering is performed.
+
+## Supplement: class distributions across partitions
+
+The subsequent user-requested [split-label distribution audit](split-label-distribution.md)
+compares train, validation, and reserved/frozen test label aggregates for the two
+Phase 2 cohorts: PhraseBank and single-target SEntFiN. It reports counts,
+percentages, differences in percentage points, and imbalance ratios, with exact
+values and provenance in [JSON](split-label-distribution.json). Reserved counts
+use existing preparation/freeze summaries; no held-out text is inspected or
+model scored. The original notebook and figures above remain development-only.

@@ -51,5 +51,9 @@ overlap or inaccessible model-training corpora. PhraseBank test
 candidates remain unsuitable as independent pretrained FinBERT evidence.
 SEntFiN candidates still need independent-benchmark curation and review.
 No final test is frozen by this provisional preparation command.
+
+The subsequent [cohort label-distribution supplement](split-label-distribution.md)
+compares train/validation/test proportions for PhraseBank and single-target
+SEntFiN, distinguishing these parent candidates from the final frozen cohort.
 The separate benchmark receipt and `docs/evaluation-contract.md` define
 the subsequent frozen release. No model training or tuning is performed.

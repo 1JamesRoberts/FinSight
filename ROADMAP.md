@@ -297,6 +297,21 @@ has started; Phase 2 is the next separately requested phase.
 
 **Deliverables:** Data-preparation code, EDA notebook, dataset cards, split manifest.
 
+**Split-distribution supplement (2026-10-11):** At the user's request before
+Phase 3, `reports/split-label-distribution.md`/JSON compare counts, percentages,
+train-relative percentage-point gaps, and imbalance ratios for PhraseBank and
+single-target SEntFiN. Development counts are recomputed through the verified
+loader and cross-checked against Phase 2 logs; reserved counts use the existing
+preparation/freeze aggregates. PhraseBank's largest train-relative gaps are
+2.29 pp (validation) and 0.35 pp (527 test candidates); SEntFiN's are 1.74 pp
+(validation) and 2.32 pp (766 frozen single-target test headlines). Proportions
+are close descriptively, not stratified or guaranteed equivalent. The report
+distinguishes parent candidates from final frozen cohorts. No reserved text
+inspection, model scoring/tuning, weight changes, or resplitting occurs. Exact
+calculations and pinned source identities verify; all 233 tests and required
+Ruff checks pass. Original development-only EDA remains intact; no Phase 3 task
+is implemented or marked complete.
+
 **Acceptance criteria:** Runs from raw authorized inputs reproducibly; partitions have no known duplicate overlap; independent-test limitations documented.
 
 ## Phase 2 — Traditional NLP baselines

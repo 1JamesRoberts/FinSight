@@ -53,6 +53,24 @@ headlines, and 1,009 FiQA texts. Units differ by task; do not pool their labels.
 
 ## Reproduction
 
+### Subsequent split-distribution supplement (2026-10-11)
+
+The [label-distribution audit](../reports/split-label-distribution.md) compares
+train/validation with existing reserved-test aggregates for the actual Phase 2
+sentence cohorts. PhraseBank's largest class-proportion gap from training is
+2.29 pp in validation and 0.35 pp in its 527 reserved candidates. Single-target
+SEntFiN's gaps are 1.74 pp in validation and 2.32 pp in its 766-headline frozen
+test. PhraseBank remains strongly neutral-dominated; SEntFiN is more balanced.
+Similar proportions were observed, not enforced: the original group hash split
+does not stratify or search seeds. No large descriptive shift warrants replacing
+these splits on label-distribution grounds alone. This is not a formal equivalence
+claim, and no performance or text-distribution conclusion follows from label counts.
+No held-out text inspection, model scoring, weight adjustment, or resplitting
+occurs. This supplement uses already recorded test aggregates and leaves the
+original development-only EDA notebook/figures unchanged.
+
+### Original Phase 1 reproduction
+
 Run from the repository root:
 
 ```sh

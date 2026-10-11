@@ -1,0 +1,157 @@
+{
+  "class_order": [
+    "negative",
+    "neutral",
+    "positive"
+  ],
+  "cohorts": {
+    "phrasebank": {
+      "counting_unit": "one sentence/headline with one sentiment label",
+      "partitions": {
+        "test_candidate": {
+          "class_counts": {
+            "negative": 67,
+            "neutral": 314,
+            "positive": 146
+          },
+          "class_percentages": {
+            "negative": 12.7134724857685,
+            "neutral": 59.58254269449716,
+            "positive": 27.703984819734345
+          },
+          "difference_from_train_percentage_points": {
+            "negative": 0.34887539197722006,
+            "neutral": -0.04757619585952,
+            "positive": -0.3012991961177036
+          },
+          "majority_to_minority_count_ratio": 4.686567164179104,
+          "max_absolute_difference_from_train_pp": 0.34887539197722006,
+          "samples": 527
+        },
+        "train": {
+          "class_counts": {
+            "negative": 468,
+            "neutral": 2257,
+            "positive": 1060
+          },
+          "class_percentages": {
+            "negative": 12.36459709379128,
+            "neutral": 59.63011889035668,
+            "positive": 28.005284015852048
+          },
+          "difference_from_train_percentage_points": {
+            "negative": 0.0,
+            "neutral": 0.0,
+            "positive": 0.0
+          },
+          "majority_to_minority_count_ratio": 4.822649572649572,
+          "max_absolute_difference_from_train_pp": 0.0,
+          "samples": 3785
+        },
+        "validation": {
+          "class_counts": {
+            "negative": 69,
+            "neutral": 297,
+            "positive": 152
+          },
+          "class_percentages": {
+            "negative": 13.320463320463322,
+            "neutral": 57.33590733590733,
+            "positive": 29.343629343629345
+          },
+          "difference_from_train_percentage_points": {
+            "negative": 0.9558662266720415,
+            "neutral": -2.2942115544493475,
+            "positive": 1.3383453277772972
+          },
+          "majority_to_minority_count_ratio": 4.304347826086956,
+          "max_absolute_difference_from_train_pp": 2.2942115544493475,
+          "samples": 518
+        }
+      },
+      "test_role": "527 reserved parent-split candidates; not an independent FinBERT test or a separately curated final benchmark"
+    },
+    "sentfin_single_target": {
+      "counting_unit": "one sentence/headline with one sentiment label",
+      "partitions": {
+        "frozen_test": {
+          "class_counts": {
+            "negative": 215,
+            "neutral": 259,
+            "positive": 292
+          },
+          "class_percentages": {
+            "negative": 28.067885117493475,
+            "neutral": 33.81201044386423,
+            "positive": 38.1201044386423
+          },
+          "difference_from_train_percentage_points": {
+            "negative": -2.1273839728383237,
+            "neutral": -0.1933872383075439,
+            "positive": 2.3207712111458747
+          },
+          "majority_to_minority_count_ratio": 1.3581395348837209,
+          "max_absolute_difference_from_train_pp": 2.3207712111458747,
+          "samples": 766
+        },
+        "train": {
+          "class_counts": {
+            "negative": 1902,
+            "neutral": 2142,
+            "positive": 2255
+          },
+          "class_percentages": {
+            "negative": 30.1952690903318,
+            "neutral": 34.005397682171775,
+            "positive": 35.799333227496426
+          },
+          "difference_from_train_percentage_points": {
+            "negative": 0.0,
+            "neutral": 0.0,
+            "positive": 0.0
+          },
+          "majority_to_minority_count_ratio": 1.1855941114616193,
+          "max_absolute_difference_from_train_pp": 0.0,
+          "samples": 6299
+        },
+        "validation": {
+          "class_counts": {
+            "negative": 247,
+            "neutral": 252,
+            "positive": 282
+          },
+          "class_percentages": {
+            "negative": 31.626120358514726,
+            "neutral": 32.2663252240717,
+            "positive": 36.107554417413574
+          },
+          "difference_from_train_percentage_points": {
+            "negative": 1.430851268182927,
+            "neutral": -1.7390724581000754,
+            "positive": 0.3082211899171483
+          },
+          "majority_to_minority_count_ratio": 1.1417004048582995,
+          "max_absolute_difference_from_train_pp": 1.7390724581000754,
+          "samples": 781
+        }
+      },
+      "test_role": "766 single-target headlines from the frozen sentfin-independent-v1 benchmark"
+    }
+  },
+  "date": "2026-10-11",
+  "final_test_evaluated": false,
+  "provenance": {
+    "benchmark_manifest_sha256": "b7cc249017ddd87f0b2c52a3abf3ff5b96f6920832b411f18eac547fec0b0f1c",
+    "development_crosscheck_report_sha256": "329457f5dc8b951883897dfcf0b0a3ca88357093730d86315c9c5183cefdc5e1",
+    "freeze_receipt_sha256": "ab0c9f0581612ee52f3c03a5bbbc03e7ebc621fdf76bb00d7d85bc2973b593f7",
+    "parent_split_manifest_sha256": "a9a67c231903bc2e3e71afead1d6daaf6b7201211fc25a05efd2bb2ee2d5e898",
+    "split_preparation_summary_sha256": "ca5349ec581568545eff538ee81fae7f646533154df035c63bd3ab7fc7758d99"
+  },
+  "schema_version": 1,
+  "scope": "Descriptive split label counts only; no scoring, tuning, stratification, or split changes",
+  "split_method": "seed-42 deterministic duplicate-group hash assignment, not stratified",
+  "test_count_sources": {
+    "phrasebank": "existing split-preparation aggregate, not test text exploration",
+    "sentfin_single_target": "existing committed freeze receipt summary, not test text exploration"
+  }
+}
