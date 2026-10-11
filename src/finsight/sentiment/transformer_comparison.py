@@ -18,6 +18,7 @@ from finsight.data.benchmark import load_development_records
 from finsight.sentiment.finbert import INDEX_LABELS, file_sha256, probability_prediction
 from finsight.sentiment.finbert_training import (
     FineTuneConfig,
+    cohort_partitions,
     fit_checkpoint,
     membership_digest,
     sentfin_partitions,
@@ -28,6 +29,12 @@ from finsight.sentiment.validation import classification_metrics
 
 ASSETS = Path("configs/transformer-assets.json")
 CONFIG = Path("configs/transformer-training.json")
+FOLLOWUP_EXPERIMENTS = {
+    "financial_roberta_adapted": ("financial_roberta", "sentfin_single_target"),
+    "financial_deberta_adapted": ("financial_deberta", "sentfin_single_target"),
+    "roberta_phrasebank": ("roberta_base", "phrasebank"),
+    "deberta_phrasebank": ("deberta_base", "phrasebank"),
+}
 RECEIPT = Path("configs/benchmark-freeze.json")
 REPORTS = Path("reports/experiments")
 
@@ -290,20 +297,53 @@ def score_model(
     return predictions, metadata
 
 
+def predictions_bytes(rows: list[dict], predictions: list) -> bytes:
+    return "".join(
+        json.dumps(
+            {
+                "record_id": row["record_id"],
+                "gold": sentence_and_label(row)[1],
+                "prediction": p.label.value,
+                "probabilities": p.probabilities,
+            },
+            sort_keys=True,
+        )
+        + "\n"
+        for row, p in zip(rows, predictions, strict=True)
+    ).encode()
+
+
 def run_experiment(key: str, data_dir: Path, config_path: Path = CONFIG) -> dict:
     assets = json.loads(ASSETS.read_bytes())
-    asset = assets["models"][key]
+    source_key, cohort = FOLLOWUP_EXPERIMENTS.get(key, (key, "sentfin_single_target"))
+    asset = assets["models"][source_key]
+    trains = asset["mode"] == "fine_tune_base" or key.endswith("_adapted")
+    strategy = (
+        "new_sentiment_head"
+        if asset["mode"] == "fine_tune_base"
+        else "adapt_existing_sentiment_head"
+        if trains
+        else "unchanged_inference"
+    )
     config = FineTuneConfig.load(config_path)
     receipt = json.loads(RECEIPT.read_bytes())
-    training, validation = sentfin_partitions(
-        load_development_records(data_dir, RECEIPT)
-    )
+    records = load_development_records(data_dir, RECEIPT)
+    training, validation = cohort_partitions(records, cohort)
     baseline = json.loads((REPORTS / "tfidf-tuning.json").read_bytes())
-    controls = saved_controls(
-        baseline, receipt, "sentfin_single_target", membership_digest(validation)
+    controls = saved_controls(baseline, receipt, cohort, membership_digest(validation))
+    reference = next(
+        item["run"]["metrics"][cohort]
+        for item in baseline["candidates"]
+        if item["run_id"] == controls["logistic_regression"]["source_run_id"]
     )
+    if reference["training_membership_sha256"] != membership_digest(
+        training
+    ) or reference["training_samples"] != len(training):
+        raise ValueError("training baseline membership differs")
     historical = {}
     for name in ("finbert-validation", "finbert-finetuning"):
+        if cohort == "phrasebank" and name.endswith("finetuning"):
+            continue
         report = REPORTS / f"{name}.json"
         run = json.loads(report.read_bytes())
         for field in ("benchmark_manifest_sha256", "parent_split_manifest_sha256"):
@@ -312,7 +352,7 @@ def run_experiment(key: str, data_dir: Path, config_path: Path = CONFIG) -> dict
         membership = (
             run["validation_membership_sha256"]
             if name.endswith("finetuning")
-            else run["metrics"]["sentfin_single_target"]["validation_membership_sha256"]
+            else run["metrics"][cohort]["validation_membership_sha256"]
         )
         if (
             membership != membership_digest(validation)
@@ -328,7 +368,7 @@ def run_experiment(key: str, data_dir: Path, config_path: Path = CONFIG) -> dict
             "report_sha256": file_sha256(report),
             "metrics": run["metrics"]
             if name.endswith("finetuning")
-            else run["metrics"]["sentfin_single_target"]["finbert"],
+            else run["metrics"][cohort]["finbert"],
         }
     revision = subprocess.check_output(["git", "rev-parse", "HEAD"], text=True).strip()
     dirty = bool(
@@ -340,7 +380,7 @@ def run_experiment(key: str, data_dir: Path, config_path: Path = CONFIG) -> dict
         f"{len(validation)}",
         flush=True,
     )
-    if asset["mode"] == "fine_tune_base":
+    if trains:
         fit = fit_checkpoint(
             config,
             training,
@@ -352,6 +392,12 @@ def run_experiment(key: str, data_dir: Path, config_path: Path = CONFIG) -> dict
             ),
             checkpoint_files=tuple(asset["files"]),
             run_namespace=key,
+            training_cohort=cohort,
+            index_labels=(
+                INDEX_LABELS
+                if asset["mode"] == "fine_tune_base"
+                else checked_labels(asset["id2label"])
+            ),
         )
         directory = fit.pop("artifact_directory")
         torch, tokenizer, model, manifest = load_saved(
@@ -388,9 +434,45 @@ def run_experiment(key: str, data_dir: Path, config_path: Path = CONFIG) -> dict
         + "\n"
         for row, p in zip(validation, predictions, strict=True)
     ).encode()
+    transfer, transfer_body = None, None
+    if cohort == "phrasebank":
+        _, transfer_rows = sentfin_partitions(records)
+        if {row["group_id"] for row in training} & {
+            row["group_id"] for row in transfer_rows
+        }:
+            raise ValueError("training/transfer validation groups overlap")
+        transfer_predictions, transfer_metadata = score_model(
+            torch,
+            tokenizer,
+            model,
+            [sentence_and_label(row)[0] for row in transfer_rows],
+            config,
+        )
+        transfer_body = predictions_bytes(transfer_rows, transfer_predictions)
+        transfer = {
+            "cohort": "sentfin_single_target",
+            "samples": len(transfer_rows),
+            "used_for_checkpoint_selection": False,
+            "validation_membership_sha256": membership_digest(transfer_rows),
+            "metrics": classification_metrics(
+                [sentence_and_label(row)[1] for row in transfer_rows],
+                [p.label.value for p in transfer_predictions],
+            ),
+            "model": transfer_metadata,
+            "predictions_sha256": hashlib.sha256(transfer_body).hexdigest(),
+            "saved_baselines": saved_controls(
+                baseline,
+                receipt,
+                "sentfin_single_target",
+                membership_digest(transfer_rows),
+            ),
+        }
     run = {
         "schema_version": 1,
         "experiment": key,
+        "training_cohort": cohort,
+        "training_strategy": strategy,
+        "transfer_validation": transfer,
         "asset": asset,
         "fine_tuned_in_project": fit is not None,
         "final_test_evaluated": False,
@@ -432,7 +514,8 @@ def run_experiment(key: str, data_dir: Path, config_path: Path = CONFIG) -> dict
         "selection": "validation macro F1; strict improvement; earliest exact tie"
         if fit
         else "none",
-        "scope": "SEntFiN validation only; no final test; one seed/configuration. "
+        "scope": f"{cohort} selects trained epochs; development validation only; "
+        "no final test; one seed/configuration. "
         "Models differ in size and prior training. "
         "Raw-text pretraining exposure unknown. Financial RoBERTa supervised "
         "provenance incomplete. "
@@ -444,6 +527,8 @@ def run_experiment(key: str, data_dir: Path, config_path: Path = CONFIG) -> dict
     local.mkdir(parents=True, exist_ok=True)
     (local / "run.json").write_bytes(content)
     (local / "predictions.jsonl").write_bytes(body)
+    if transfer_body is not None:
+        (local / "transfer-predictions.jsonl").write_bytes(transfer_body)
     REPORTS.mkdir(parents=True, exist_ok=True)
     (REPORTS / f"{key}.json").write_bytes(content)
     (REPORTS / f"{key}.md").write_bytes(render_report(run, identifier).encode())
@@ -466,7 +551,7 @@ def render_report(run: dict, identifier: str) -> str:
         run["scope"],
         "",
         f"Checkpoint `{run['asset']['model_id']}` at `{run['asset']['revision']}`.",
-        f"Mode: {run['asset']['mode']}; train {run['training_samples']}, "
+        f"Mode: {run['training_strategy']}; train {run['training_samples']}, "
         f"validation {run['validation_samples']}.",
         "",
         "| Model | Accuracy | Macro F1 |",
@@ -507,8 +592,8 @@ def render_report(run: dict, identifier: str) -> str:
                 "",
                 "## Training",
                 "",
-                "New three-class sentiment head; all encoder/head parameters "
-                "trained on SEntFiN only.",
+                f"Strategy: {run['training_strategy']}; all parameters trained "
+                f"on {run['training_cohort']} only.",
                 "AdamW (betas 0.9/0.999, eps 1e-8); bias/LayerNorm excluded from "
                 "decay; linear warm-up/decay; gradient clipping.",
                 f"Best epoch {fit['best_epoch']}; patience triggered "
@@ -535,6 +620,21 @@ def render_report(run: dict, identifier: str) -> str:
                 f"{epoch['validation']['accuracy']:.4f} | "
                 f"{epoch['validation']['macro_f1']:.4f} |"
             )
+    if run["training_cohort"] == "phrasebank":
+        transfer = run["transfer_validation"]
+        lines.extend(
+            [
+                "",
+                "## SEntFiN transfer validation",
+                "",
+                "Not used for checkpoint selection; no SEntFiN training.",
+                f"Accuracy {transfer['metrics']['accuracy']:.4f}; "
+                f"macro F1 {transfer['metrics']['macro_f1']:.4f} "
+                f"on {transfer['samples']} texts.",
+                "PhraseBank FinBERT comparison is diagnostic: "
+                "known upstream supervision.",
+            ]
+        )
     lines.extend(
         [
             "",
@@ -580,6 +680,7 @@ def main() -> None:
             "financial_deberta",
             "roberta_base",
             "deberta_base",
+            *FOLLOWUP_EXPERIMENTS,
         ),
     )
     parser.add_argument("--data-dir", type=Path, default=Path("data"))

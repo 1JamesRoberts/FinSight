@@ -50,9 +50,17 @@ def test_base_training_allows_only_expected_new_head() -> None:
 @pytest.mark.filterwarnings(
     "ignore:.*torch.jit.script.*deprecated:DeprecationWarning:torch.jit._script"
 )
+@pytest.mark.parametrize(
+    "cohort,index_labels",
+    [
+        ("sentfin_single_target", ("positive", "negative", "neutral")),
+        ("sentfin_single_target", ("negative", "neutral", "positive")),
+        ("phrasebank", ("positive", "negative", "neutral")),
+    ],
+)
 @pytest.mark.parametrize("kind", ["roberta", "deberta-v2"])
 def test_tiny_base_training_and_generic_artifact_reload(
-    tmp_path, monkeypatch, kind
+    tmp_path, monkeypatch, kind, cohort, index_labels
 ) -> None:
     torch = pytest.importorskip("torch")
     t = pytest.importorskip("transformers")
@@ -77,8 +85,8 @@ def test_tiny_base_training_and_generic_artifact_reload(
         intermediate_size=16,
         max_position_embeddings=32,
         num_labels=3,
-        id2label={0: "positive", 1: "negative", 2: "neutral"},
-        label2id={"positive": 0, "negative": 1, "neutral": 2},
+        id2label=dict(enumerate(index_labels)),
+        label2id={label: i for i, label in enumerate(index_labels)},
         attn_implementation="eager",
     )
     if kind == "roberta":
@@ -101,11 +109,15 @@ def test_tiny_base_training_and_generic_artifact_reload(
     labels = ["positive", "negative", "neutral"]
     rows = [
         {
-            "corpus": "sentfin",
+            "corpus": "phrasebank" if cohort == "phrasebank" else "sentfin",
             "partition": partition,
             "record_id": partition + label,
             "group_id": partition + label,
-            "native_record": {"title": partition, "sentiments": [{"label": label}]},
+            "native_record": (
+                {"sentence": partition, "label": label}
+                if cohort == "phrasebank"
+                else {"title": partition, "sentiments": [{"label": label}]}
+            ),
         }
         for partition in ("train", "validation")
         for label in labels
@@ -124,6 +136,8 @@ def test_tiny_base_training_and_generic_artifact_reload(
         checkpoint_loader=lambda *_: (torch, tokenizer, model, tmp_path),
         checkpoint_files=("vocab.txt",),
         run_namespace="tiny",
+        training_cohort=cohort,
+        index_labels=index_labels,
         artifact_saver=lambda model, tokenizer, _root, conf, epoch, membership: (
             save_model(model, tokenizer, tmp_path, asset, conf, epoch, membership)
         ),
@@ -139,3 +153,18 @@ def test_tiny_base_training_and_generic_artifact_reload(
     )
     assert meta["architecture"]["layers"] == 1
     assert not model.training and not any(p.requires_grad for p in model.parameters())
+
+
+def test_phrasebank_training_rejects_other_cohorts_and_reserved_data(tmp_path) -> None:
+    from finsight.sentiment.finbert_training import FineTuneConfig, fit_checkpoint
+
+    with pytest.raises(ValueError, match="development records only"):
+        fit_checkpoint(
+            FineTuneConfig(),
+            [{"partition": "test_candidate"}],
+            [],
+            tmp_path,
+            training_cohort="phrasebank",
+        )
+    with pytest.raises(ValueError, match="unsupported training cohort"):
+        fit_checkpoint(FineTuneConfig(), [], [], tmp_path, training_cohort="fiqa")

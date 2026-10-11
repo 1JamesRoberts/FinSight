@@ -58,3 +58,8 @@ build/
 !/reports/experiments/roberta_base.json
 !/reports/experiments/deberta_base.json
 !/reports/experiments/transformer-comparison.json
+!/reports/experiments/financial_roberta_adapted.json
+!/reports/experiments/financial_deberta_adapted.json
+!/reports/experiments/roberta_phrasebank.json
+!/reports/experiments/deberta_phrasebank.json
+!/reports/experiments/transformer-followup.json

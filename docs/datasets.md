@@ -221,3 +221,15 @@ Sources: [Financial RoBERTa](https://huggingface.co/soleimanian/financial-robert
 [RoBERTa Base](https://huggingface.co/FacebookAI/roberta-base),
 [DeBERTa Base](https://huggingface.co/microsoft/deberta-v3-base),
 [SentencePiece license](https://github.com/google/sentencepiece/blob/master/LICENSE).
+
+Transformer follow-up review (2026-10-11): the user's explicit request extends
+the already-reviewed private research use to SEntFiN adaptation of the financial
+RoBERTa/DeBERTa sentiment checkpoints, and separate PhraseBank-only training of
+the two original base checkpoints. Reuse exact source revisions and immutable
+asset manifest; no new acquisition or dependency. Preserve Financial PhraseBank's
+local research terms and known FinBERT supervision caveat. PhraseBank training
+uses 3,785 training/518 validation records; SEntFiN adaptation retains 6,299/781.
+No pooled or sequential PhraseBank-to-SEntFiN training. PhraseBank-selected base
+models may score SEntFiN validation afterward as a transfer diagnostic, without
+using it for epoch selection. Neither corpus's reserved tests are used. Derived
+weights and individual predictions remain ignored. No redistribution clearance.

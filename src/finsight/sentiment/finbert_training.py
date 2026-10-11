@@ -110,13 +110,17 @@ class EarlyStopping:
         return self.stale_epochs >= self.patience
 
 
-def sentfin_partitions(records: list[dict[str, Any]]) -> tuple[list[dict], list[dict]]:
-    """Select only single-target SEntFiN; reject reserved or overlapping groups."""
-    rows = sentence_cohorts(records)["sentfin_single_target"]
+def cohort_partitions(
+    records: list[dict[str, Any]], cohort: str
+) -> tuple[list[dict], list[dict]]:
+    """Select one development cohort; reject reserved or overlapping groups."""
+    if cohort not in {"phrasebank", "sentfin_single_target"}:
+        raise ValueError("unsupported training cohort")
+    rows = sentence_cohorts(records)[cohort]
     training = [row for row in rows if row["partition"] == "train"]
     validation = [row for row in rows if row["partition"] == "validation"]
     if not training or not validation:
-        raise ValueError("SEntFiN training and validation must be nonempty")
+        raise ValueError(f"{cohort} training and validation must be nonempty")
     if {row["record_id"] for row in training} & {
         row["record_id"] for row in validation
     } or {row["group_id"] for row in training} & {
@@ -129,6 +133,11 @@ def sentfin_partitions(records: list[dict[str, Any]]) -> tuple[list[dict], list[
         if sentence_and_label(row)[1] not in INDEX_LABELS:
             raise ValueError("invalid validation label")
     return training, validation
+
+
+def sentfin_partitions(records: list[dict[str, Any]]) -> tuple[list[dict], list[dict]]:
+    """Compatibility entry point for single-target SEntFiN development only."""
+    return cohort_partitions(records, "sentfin_single_target")
 
 
 def membership_digest(rows: list[dict]) -> str:
@@ -190,9 +199,15 @@ def fit_checkpoint(
     artifact_saver: Callable | None = None,
     checkpoint_files: tuple[str, ...] = CHECKPOINT_FILES,
     run_namespace: str = "finbert",
+    training_cohort: str = "sentfin_single_target",
+    index_labels: tuple[str, ...] = INDEX_LABELS,
 ) -> dict[str, Any]:
     """Adapt all parameters; select checkpoints using validation only."""
-    checked_train, checked_validation = sentfin_partitions(training + validation)
+    if len(index_labels) != 3 or set(index_labels) != set(INDEX_LABELS):
+        raise ValueError("invalid training label mapping")
+    checked_train, checked_validation = cohort_partitions(
+        training + validation, training_cohort
+    )
     if checked_train != training or checked_validation != validation:
         raise ValueError("training and validation arguments have incorrect partitions")
     import numpy as np
@@ -204,7 +219,7 @@ def fit_checkpoint(
         config.inference_config(), data_dir / "interim/finbert-checkpoint-cache"
     )
     if {int(k): v for k, v in model.config.id2label.items()} != dict(
-        enumerate(INDEX_LABELS)
+        enumerate(index_labels)
     ):
         raise ValueError("unexpected checkpoint label mapping")
     model.to(device=config.device, dtype=torch.float32)
@@ -218,7 +233,7 @@ def fit_checkpoint(
         for name in checkpoint_files
     }
     examples = [
-        (sentence_and_label(row)[0], INDEX_LABELS.index(sentence_and_label(row)[1]))
+        (sentence_and_label(row)[0], index_labels.index(sentence_and_label(row)[1]))
         for row in training
     ]
     validation_examples = [sentence_and_label(row) for row in validation]
@@ -314,7 +329,7 @@ def fit_checkpoint(
                 ]
                 batch = collate(
                     [
-                        (text, INDEX_LABELS.index(label))
+                        (text, index_labels.index(label))
                         for text, label in batch_examples
                     ]
                 )
@@ -324,7 +339,11 @@ def fit_checkpoint(
                 probabilities = torch.softmax(output.logits, dim=-1).cpu().tolist()
                 gold.extend(label for _, label in batch_examples)
                 predicted.extend(
-                    probability_prediction(values, 0, config.max_length).label.value
+                    probability_prediction(
+                        [values[index_labels.index(label)] for label in INDEX_LABELS],
+                        0,
+                        config.max_length,
+                    ).label.value
                     for values in probabilities
                 )
         if config.device == "cuda":
