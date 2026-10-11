@@ -19,3 +19,7 @@ descriptive coverage-name checks. `benchmark-freeze.json` is the authoritative
 receipt pinning the final local membership/labels and its parent split by digest.
 Neither contains source headlines. Preserve the receipt; do not alter the seed,
 membership, or labels after inspecting results. See `docs/evaluation-contract.md`.
+
+`vader.json` declares the Phase 2 baseline's inclusive compound-score boundaries
+(-0.05 negative, +0.05 positive). It does not tune them or alter the frozen split.
+See `docs/vader.md` for inference and the validation-only check.

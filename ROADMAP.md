@@ -304,7 +304,7 @@ has started; Phase 2 is the next separately requested phase.
 **Goal:** Meaningful non-transformer benchmarks.
 
 ### Tasks
-- [ ] Implement VADER with explicitly documented 3-class thresholds.
+- [x] Implement VADER with explicitly documented 3-class thresholds.
 - [ ] Train TF-IDF + Logistic Regression and TF-IDF + Linear SVM pipelines.
 - [ ] Fit all learned preprocessing **only on training data**.
 - [ ] Tune using validation/CV on training data, never final test.
@@ -313,6 +313,22 @@ has started; Phase 2 is the next separately requested phase.
 - [ ] Add unit tests for preprocessing and label handling.
 
 **Deliverables:** Model comparison report, baseline inference interface.
+
+**VADER verification (2026-10-11):** The MIT-licensed standalone package 3.3.2
+and bundled lexicon/emoji resources are reviewed, locked, and used unchanged.
+Typed inference preserves input cues and applies inclusive negative <= -0.05 /
+positive >= 0.05 compound thresholds. See `docs/vader.md` and `configs/vader.json`.
+The validation-only check covers 518 PhraseBank sentences and 781 single-target
+SEntFiN headlines, with training-majority controls and no threshold search.
+Macro F1 is 0.4895 / 0.4787 respectively; these are development scores, not final
+evaluation. Aggregate results/configuration/resource digests/code provenance are
+in `reports/experiments/vader-validation.md` and JSON; local per-record predictions
+remain ignored. The frozen benchmark and parent split are unchanged. Tests cover
+scoring boundaries/rules, invalid inputs, deterministic inference, metric axes,
+cohort exclusion, training-majority selection, and output privacy. All 169 tests,
+Ruff, and package build pass locally; hosted CI is unverified. Only the VADER
+implementation checkbox is complete: other baseline models, tuning, broader
+comparisons, preprocessing tests, and qualitative error analysis remain pending.
 
 **Acceptance criteria:** Every metric traceable to split, configuration, and model version.
 

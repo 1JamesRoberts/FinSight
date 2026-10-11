@@ -35,6 +35,7 @@ build/
 /reports/experiments/*
 !/reports/experiments/.gitkeep
 !/reports/experiments/*.md
+!/reports/experiments/vader-validation.json
 .ipynb_checkpoints/
 
 # Editors and OS

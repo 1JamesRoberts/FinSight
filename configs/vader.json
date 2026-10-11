@@ -1,0 +1,5 @@
+{
+  "schema_version": 1,
+  "negative_threshold": -0.05,
+  "positive_threshold": 0.05
+}

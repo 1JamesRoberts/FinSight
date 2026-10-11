@@ -6,10 +6,11 @@ is comparing traditional NLP methods, FinBERT, and company-specific sentiment.
 A secondary study will test whether sentiment improves stock prediction over
 market-only baselines, using time-respecting evaluation.
 
-**Status: Phase 1 complete — datasets, development EDA, and benchmark freeze verified locally.**
+**Status: Phase 1 complete; Phase 2 VADER baseline and validation check implemented.**
 Reviewed PhraseBank, SEntFiN, and original-format FiQA files are available in ignored local storage.
-No sentiment models, news-provider ingestion, stock prediction, API, or dashboard
-are implemented. See [ROADMAP.md](ROADMAP.md)
+VADER is available as a sentence-wide rule-based baseline. Trained classifiers,
+news-provider ingestion, stock prediction, API, and dashboard remain unimplemented.
+See [ROADMAP.md](ROADMAP.md)
 for the phase sequence and acceptance criteria.
 
 ## Setup
@@ -75,7 +76,8 @@ data/{raw,interim,processed}/  # Ignored local research data
  docs/                    # Architecture and data-use review checklist
 ```
 
-The module folders are empty boundaries, not implemented services. Details and
+Data preparation and VADER are implemented; the remaining module folders reserve
+later roadmap boundaries. Details and
 tradeoffs are in [docs/architecture.md](docs/architecture.md). Review the
 [dataset/model/API checklist](docs/datasets.md) before acquiring any research
 assets. PhraseBank, SEntFiN, and the selected FiQA copy are reviewed for local noncommercial research; public
@@ -166,6 +168,23 @@ Open `notebooks/01_dataset_eda.ipynb` in a Jupyter-compatible editor using the
 project `.venv/bin/python` kernel. CLI plotting does not need a notebook server.
 Use `uv run --locked --group eda pytest` to include the synthetic plotting check.
 Source datasets and notebook outputs stay uncommitted; the five aggregate PNGs,
-summary JSON, and Markdown report are safe research outputs. Runtime dependencies
-remain empty; Matplotlib and ipykernel belong only to the optional EDA group.
-Phase 2 traditional NLP baselines are next and remain unimplemented.
+summary JSON, and Markdown report are safe research outputs. Matplotlib and
+ipykernel belong only to the optional EDA group; VADER is a runtime dependency.
+Phase 2 has started with the VADER baseline below; TF-IDF classifiers remain next.
+
+## VADER baseline
+
+```sh
+uv sync --locked
+uv run --locked python -m finsight.sentiment validate-vader
+```
+
+VADER uses the unchanged packaged lexicon and rules, with compound thresholds
+<= -0.05 negative, >= 0.05 positive, and neutral between. It needs no training
+or inference-time network access. The validation check uses PhraseBank and
+single-target SEntFiN development cohorts with a training-majority control;
+the frozen benchmark is never scored. Read [how VADER works](docs/vader.md) and
+the [validation results](reports/experiments/vader-validation.md). Aggregate JSON
+records configurations, scoring-resource hashes, split identity, code provenance,
+and timing; per-record predictions stay ignored. VADER's proportions are not
+calibrated class probabilities, and its predictions are not company-specific.

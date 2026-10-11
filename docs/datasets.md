@@ -22,6 +22,12 @@ Development-only figures and completion evidence are in
 **Other asset approvals and public-text rights remain pending.** This checklist
 is not a legal conclusion or authorization to acquire or redistribute an asset.
 
+VADER package/lexicon review (2026-10-11): standalone `vaderSentiment==3.3.2`
+is approved for local inference/research under its MIT grant, with attribution
+and notices retained. See [VADER asset decision and baseline](vader.md). Packaged
+code/lexicon/emoji digests are logged separately; the frozen source-data manifest
+is unchanged. No upstream evaluation datasets or model weights are acquired.
+
 Complete one record per exact dataset revision, model checkpoint, or provider
 product before downloading, persisting, training on, or republishing content.
 

@@ -91,3 +91,19 @@ optional `eda` group; imports are deferred until plotting is requested. No plott
 framework enters ingestion or domain records. Five aggregate PNGs and JSON are
 committed under a narrow ignore exception, while raw/processed text and notebook
 outputs remain uncommitted. CI uses synthetic plotting examples with no downloads.
+
+## Phase 2 extension: VADER baseline
+
+`sentiment/vader.py` wraps the unchanged standalone analyzer with typed predictions
+and immutable threshold settings. It preserves raw text cues and exposes scores
+without calling them calibrated probabilities. No generic model hierarchy or
+training abstraction is introduced for this rule-based baseline.
+
+The separate validation command loads verified development records, selects
+sentence-compatible validation cohorts, and compares predictions to a majority
+control learned only from the corresponding training labels. Metrics use fixed
+class order and explicit zero-division rules. Configuration, scoring-resource
+hashes, source/freeze digests, code provenance, and timing accompany aggregates;
+source IDs/gold/predictions remain local. No threshold tuning or frozen-test
+inference is performed. The pinned VADER dependency contains its own lexicon;
+inference is offline and does not require NLTK or resource downloads.
