@@ -6,10 +6,13 @@ is comparing traditional NLP methods, FinBERT, and company-specific sentiment.
 A secondary study will test whether sentiment improves stock prediction over
 market-only baselines, using time-respecting evaluation.
 
-**Status: Phase 1 complete; Phase 2 VADER baseline and validation check implemented.**
+**Status: Phases 1 and 2 complete within the documented local research scope.**
 Reviewed PhraseBank, SEntFiN, and original-format FiQA files are available in ignored local storage.
-VADER is available as a sentence-wide rule-based baseline. Trained classifiers,
-news-provider ingestion, stock prediction, API, and dashboard remain unimplemented.
+VADER, TF-IDF Logistic Regression, and Linear SVM have validation comparisons,
+bounded tuning, saved local models, and qualitative error review. See the
+[Phase 2 comparison](reports/experiments/phase2-comparison.md). The frozen final
+test remains unscored; transformers, news ingestion, stock prediction, API, and
+dashboard remain unimplemented.
 See [ROADMAP.md](ROADMAP.md)
 for the phase sequence and acceptance criteria.
 
@@ -76,7 +79,7 @@ data/{raw,interim,processed}/  # Ignored local research data
  docs/                    # Architecture and data-use review checklist
 ```
 
-Data preparation and VADER are implemented; the remaining module folders reserve
+Data preparation and traditional sentiment baselines are implemented; other folders reserve
 later roadmap boundaries. Details and
 tradeoffs are in [docs/architecture.md](docs/architecture.md). Review the
 [dataset/model/API checklist](docs/datasets.md) before acquiring any research
@@ -235,3 +238,18 @@ the [unweighted report](reports/experiments/tfidf-svm-validation.md), and the
 [balanced report](reports/experiments/tfidf-svm-balanced-validation.md).
 Decision scores are signed margins, not probabilities. TF-IDF fits on training
 only; fitted artifacts stay ignored and the frozen final test remains withheld.
+
+## Phase 2 tuning and error review
+
+```sh
+uv run --locked python -m finsight.sentiment.tuning
+uv run --locked python -m finsight.sentiment.error_analysis
+```
+
+The first command compares 24 separately fitted pipelines using the declared
+C/class-weight grid; it preserves earlier public baseline reports. The second
+verifies saved validation predictions and prepares a deterministic local error
+packet without fitting or scoring. Review notes stay local; qualitative judgments
+require inspecting the texts. Read the [tuning guide](docs/tfidf-tuning.md),
+[qualitative error review](reports/experiments/phase2-error-analysis.md), and
+[consolidated Phase 2 report](reports/experiments/phase2-comparison.md).

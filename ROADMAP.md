@@ -310,7 +310,7 @@ has started; Phase 2 is the next separately requested phase.
 - [x] Fit all learned preprocessing **only on training data** (verified for both TF-IDF classifiers).
 - [x] Tune using validation/CV on training data, never final test (bounded C/class-weight validation search).
 - [x] Compute accuracy, macro F1, per-class precision/recall, confusion matrix, latency (development validation; serial local timing).
-- [ ] Perform qualitative error analysis; persist configs and model artifacts.
+- [x] Perform qualitative error analysis; persist configs and model artifacts (validation review; private notes, public aggregates).
 - [x] Add unit tests for preprocessing and label handling.
 
 **Deliverables:** Model comparison report, baseline inference interface.
@@ -421,6 +421,32 @@ reports and artifacts remain intact. Repeating the complete search reproduces al
 tests, required Ruff checks, and package builds pass locally. Tuning is complete
 within this bounded grid; qualitative error analysis and consolidated comparison
 remain open. Hosted CI is unverified. No Phase 3 work begins.
+
+**Qualitative review/consolidation verification (2026-10-11):** Saved selected
+LR/SVM predictions were joined to verified validation texts only after checking
+original run, prediction, model, membership, gold, and metric identities. No
+training or scoring occurred. Deterministic hash ordering samples up to five LR
+errors from each off-diagonal confusion cell: 28 PhraseBank and 30 SEntFiN texts.
+All 58 were reviewed with primary categories and private explanations; 8/12 were
+flagged for possible gold ambiguity, not confirmed label errors. No label or
+membership changed. Shared LR/SVM errors total 106/136 across full validation
+cohorts. Review categories are subjective, overlapping in meaning, and sampled
+counts are not prevalence estimates. Codex review is not independent human
+adjudication. Source examples/IDs/notes stay ignored; public aggregates pin local
+review and source-run identities. Repeat packet/aggregate generation matches.
+See `reports/experiments/phase2-error-analysis.md` and JSON. The consolidated
+`phase2-comparison.md`/JSON reports initial/selected models, controls, class
+metrics, confusion matrices, architecture, sizes, recorded latency, inference
+interfaces, provenance, and limitations. All 233 tests, required Ruff checks,
+and package builds pass locally. Frozen receipt, source/dependency identities,
+model artifacts, and earlier reports are preserved; hosted CI remains unverified.
+
+**Phase 2 status: complete within the documented local validation-only scope.**
+All eight tasks and the comparison/inference deliverables are verified. Bounded
+grid selection does not establish final generalization or reliable LR/SVM
+superiority. Uncertainty/calibration, cross-corpus transfer, label adjudication,
+and target-aware modeling remain limitations or later work. The final benchmark
+remains frozen and unscored. No Phase 3 or prediction functionality is implemented.
 
 ## Phase 3 — Financial transformer experiments
 

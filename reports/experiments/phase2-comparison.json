@@ -1,0 +1,1189 @@
+{
+  "comparisons": [
+    {
+      "cohort": "phrasebank",
+      "latency_ms_per_text": null,
+      "metrics": {
+        "accuracy": 0.5733590733590733,
+        "class_order": [
+          "negative",
+          "neutral",
+          "positive"
+        ],
+        "confusion_matrix": [
+          [
+            0,
+            69,
+            0
+          ],
+          [
+            0,
+            297,
+            0
+          ],
+          [
+            0,
+            152,
+            0
+          ]
+        ],
+        "confusion_matrix_axes": "rows=gold, columns=predicted",
+        "macro_f1": 0.24294478527607363,
+        "per_class": {
+          "negative": {
+            "f1": 0.0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "support": 69
+          },
+          "neutral": {
+            "f1": 0.7288343558282209,
+            "precision": 0.5733590733590733,
+            "recall": 1.0,
+            "support": 297
+          },
+          "positive": {
+            "f1": 0.0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "support": 152
+          }
+        },
+        "samples": 518
+      },
+      "model": "training_majority",
+      "source_run_id": "3d4657830b1cfe58b5f86a167b4a9216a565ac971ca1f95e13ba67041a6071cf",
+      "stage": "fixed_control"
+    },
+    {
+      "cohort": "phrasebank",
+      "latency_ms_per_text": 0.03241344434155231,
+      "metrics": {
+        "accuracy": 0.555984555984556,
+        "class_order": [
+          "negative",
+          "neutral",
+          "positive"
+        ],
+        "confusion_matrix": [
+          [
+            16,
+            23,
+            30
+          ],
+          [
+            15,
+            157,
+            125
+          ],
+          [
+            4,
+            33,
+            115
+          ]
+        ],
+        "confusion_matrix_axes": "rows=gold, columns=predicted",
+        "macro_f1": 0.4894674262948587,
+        "per_class": {
+          "negative": {
+            "f1": 0.3076923076923077,
+            "precision": 0.45714285714285713,
+            "recall": 0.2318840579710145,
+            "support": 69
+          },
+          "neutral": {
+            "f1": 0.615686274509804,
+            "precision": 0.7370892018779343,
+            "recall": 0.5286195286195287,
+            "support": 297
+          },
+          "positive": {
+            "f1": 0.5450236966824644,
+            "precision": 0.42592592592592593,
+            "recall": 0.756578947368421,
+            "support": 152
+          }
+        },
+        "samples": 518
+      },
+      "model": "vader",
+      "source_run_id": "3d4657830b1cfe58b5f86a167b4a9216a565ac971ca1f95e13ba67041a6071cf",
+      "stage": "fixed_control"
+    },
+    {
+      "architecture_and_size": {
+        "artifact_bytes": 786565,
+        "artifact_kib": 768.1298828125,
+        "classifier": "LogisticRegression",
+        "classifier_array_bytes": 296448,
+        "classifier_parameters": 37056,
+        "coefficient_dtype": "float64",
+        "coefficient_shape": [
+          3,
+          12351
+        ],
+        "coefficient_values": 37053,
+        "idf_array_bytes": 98808,
+        "idf_dtype": "float64",
+        "input_features": 12351,
+        "intercept_shape": [
+          3
+        ],
+        "intercept_values": 3,
+        "multiclass_strategy": "multinomial",
+        "numeric_array_bytes": 395256,
+        "output_classes": [
+          "negative",
+          "neutral",
+          "positive"
+        ],
+        "output_kind": "probabilities",
+        "pipeline": "TF-IDF word unigrams/bigrams -> LogisticRegression",
+        "schema_version": 1,
+        "size_definition": "Classifier parameters count stored coefficients plus intercepts; IDF values are separate fitted preprocessing state. Numeric bytes cover these arrays only. Artifact bytes cover the entire serialized pipeline, including vocabulary/metadata/serialization overhead; neither is runtime RAM.",
+        "tfidf_idf_values": 12351
+      },
+      "artifact_relative_path": "interim/tfidf-logreg-models/bd4061a5e6a1e82f93c9fce343f60162a01dfa1ae1472a916bbdd800a19bfb33/model.pkl",
+      "artifact_sha256": "bd4061a5e6a1e82f93c9fce343f60162a01dfa1ae1472a916bbdd800a19bfb33",
+      "code_revision": "8509be33f9394fac51cfda3520ce4ba1dff3989c",
+      "cohort": "phrasebank",
+      "configuration": {
+        "c": 1.0,
+        "class_weight": null,
+        "max_features": 50000,
+        "max_iter": 1000,
+        "min_df": 2,
+        "seed": 42
+      },
+      "implementation_sha256": {
+        "__main__.py": "640902b4e05036e191750574942310e9f2a292fd59662e009026b94e7d368c0c",
+        "model_profile.py": "fbfad971d2af31c6f13a6f1999c040311451210e48ee686178bfdf372ba0c9f0",
+        "svm.py": "4032485588b8bc7178e2c0e0017228ad74d4d7a6dcde42ebcce5d41e930e97db",
+        "tfidf.py": "ee1efd822d63f63cf74ac31d70ede9dbb6f55489dc5cdf00ccc8d232fb56d02c",
+        "tfidf_validation.py": "0b10180787ff88fff435c686ca377dfbf3903be7d66066399bce7494dfd2a680",
+        "vader.py": "f3519f888510ff52f5cdf18aa796e2985bde662b7a7dfe3ff7febe4707c6f572",
+        "validation.py": "f64ab7990ebe720d0580be411f0b1f8e6812671f4b3fb0d7de818bb1735049ab"
+      },
+      "latency_ms_per_text": 0.20384176141621985,
+      "metrics": {
+        "accuracy": 0.749034749034749,
+        "class_order": [
+          "negative",
+          "neutral",
+          "positive"
+        ],
+        "confusion_matrix": [
+          [
+            30,
+            30,
+            9
+          ],
+          [
+            2,
+            288,
+            7
+          ],
+          [
+            0,
+            82,
+            70
+          ]
+        ],
+        "confusion_matrix_axes": "rows=gold, columns=predicted",
+        "macro_f1": 0.6695645174273525,
+        "per_class": {
+          "negative": {
+            "f1": 0.594059405940594,
+            "precision": 0.9375,
+            "recall": 0.43478260869565216,
+            "support": 69
+          },
+          "neutral": {
+            "f1": 0.8263988522238164,
+            "precision": 0.72,
+            "recall": 0.9696969696969697,
+            "support": 297
+          },
+          "positive": {
+            "f1": 0.5882352941176471,
+            "precision": 0.813953488372093,
+            "recall": 0.4605263157894737,
+            "support": 152
+          }
+        },
+        "samples": 518
+      },
+      "model": "logistic_regression",
+      "model_id": "62337e0f2ccc7221bc16db28f67365f95e0a89cccc82883d2536cd6eaabc11da",
+      "source_run_id": "046cb4dab2872b6c6f9b417e825e275b2583779ed58de7877532ceee21a2593e",
+      "stage": "initial",
+      "training_seconds": 0.17660424998030066,
+      "working_tree_dirty": true
+    },
+    {
+      "architecture_and_size": {
+        "artifact_bytes": 786576,
+        "artifact_kib": 768.140625,
+        "classifier": "LogisticRegression",
+        "classifier_array_bytes": 296448,
+        "classifier_parameters": 37056,
+        "coefficient_dtype": "float64",
+        "coefficient_shape": [
+          3,
+          12351
+        ],
+        "coefficient_values": 37053,
+        "idf_array_bytes": 98808,
+        "idf_dtype": "float64",
+        "input_features": 12351,
+        "intercept_shape": [
+          3
+        ],
+        "intercept_values": 3,
+        "multiclass_strategy": "multinomial",
+        "numeric_array_bytes": 395256,
+        "output_classes": [
+          "negative",
+          "neutral",
+          "positive"
+        ],
+        "output_kind": "probabilities",
+        "pipeline": "TF-IDF word unigrams/bigrams -> LogisticRegression",
+        "schema_version": 1,
+        "size_definition": "Classifier parameters count stored coefficients plus intercepts; IDF values are separate fitted preprocessing state. Numeric bytes cover these arrays only. Artifact bytes cover the entire serialized pipeline, including vocabulary/metadata/serialization overhead; neither is runtime RAM.",
+        "tfidf_idf_values": 12351
+      },
+      "artifact_relative_path": "interim/tfidf-logreg-models/09cf4459530a6b9a1acf188e609a687a84b324a5ca5b1e0b838c4dc9e0295bfa/model.pkl",
+      "artifact_sha256": "09cf4459530a6b9a1acf188e609a687a84b324a5ca5b1e0b838c4dc9e0295bfa",
+      "code_revision": "8509be33f9394fac51cfda3520ce4ba1dff3989c",
+      "cohort": "phrasebank",
+      "configuration": {
+        "c": 10.0,
+        "class_weight": "balanced",
+        "max_features": 50000,
+        "max_iter": 1000,
+        "min_df": 2,
+        "seed": 42
+      },
+      "implementation_sha256": {
+        "__main__.py": "640902b4e05036e191750574942310e9f2a292fd59662e009026b94e7d368c0c",
+        "model_profile.py": "fbfad971d2af31c6f13a6f1999c040311451210e48ee686178bfdf372ba0c9f0",
+        "svm.py": "4032485588b8bc7178e2c0e0017228ad74d4d7a6dcde42ebcce5d41e930e97db",
+        "tfidf.py": "ee1efd822d63f63cf74ac31d70ede9dbb6f55489dc5cdf00ccc8d232fb56d02c",
+        "tfidf_validation.py": "0b10180787ff88fff435c686ca377dfbf3903be7d66066399bce7494dfd2a680",
+        "vader.py": "f3519f888510ff52f5cdf18aa796e2985bde662b7a7dfe3ff7febe4707c6f572",
+        "validation.py": "f64ab7990ebe720d0580be411f0b1f8e6812671f4b3fb0d7de818bb1735049ab"
+      },
+      "latency_ms_per_text": 0.19883550119201535,
+      "metrics": {
+        "accuracy": 0.777992277992278,
+        "class_order": [
+          "negative",
+          "neutral",
+          "positive"
+        ],
+        "confusion_matrix": [
+          [
+            45,
+            17,
+            7
+          ],
+          [
+            12,
+            254,
+            31
+          ],
+          [
+            3,
+            45,
+            104
+          ]
+        ],
+        "confusion_matrix_axes": "rows=gold, columns=predicted",
+        "macro_f1": 0.7446228893064618,
+        "per_class": {
+          "negative": {
+            "f1": 0.6976744186046512,
+            "precision": 0.75,
+            "recall": 0.6521739130434783,
+            "support": 69
+          },
+          "neutral": {
+            "f1": 0.8287112561174551,
+            "precision": 0.8037974683544303,
+            "recall": 0.8552188552188552,
+            "support": 297
+          },
+          "positive": {
+            "f1": 0.7074829931972789,
+            "precision": 0.7323943661971831,
+            "recall": 0.6842105263157895,
+            "support": 152
+          }
+        },
+        "samples": 518
+      },
+      "model": "logistic_regression",
+      "model_id": "d886ef66ff120dd0ead5f49af3b1b16322e8511451bc7ace90eb0f10cc4efefa",
+      "source_run_id": "3d4657830b1cfe58b5f86a167b4a9216a565ac971ca1f95e13ba67041a6071cf",
+      "stage": "selected",
+      "training_seconds": 0.27274591685272753,
+      "working_tree_dirty": true
+    },
+    {
+      "architecture_and_size": {
+        "artifact_bytes": 786421,
+        "artifact_kib": 767.9892578125,
+        "classifier": "LinearSVC",
+        "classifier_array_bytes": 296448,
+        "classifier_parameters": 37056,
+        "coefficient_dtype": "float64",
+        "coefficient_shape": [
+          3,
+          12351
+        ],
+        "coefficient_values": 37053,
+        "idf_array_bytes": 98808,
+        "idf_dtype": "float64",
+        "input_features": 12351,
+        "intercept_shape": [
+          3
+        ],
+        "intercept_values": 3,
+        "multiclass_strategy": "one-versus-rest",
+        "numeric_array_bytes": 395256,
+        "output_classes": [
+          "negative",
+          "neutral",
+          "positive"
+        ],
+        "output_kind": "decision_scores",
+        "pipeline": "TF-IDF word unigrams/bigrams -> LinearSVC",
+        "schema_version": 1,
+        "size_definition": "Classifier parameters count stored coefficients plus intercepts; IDF values are separate fitted preprocessing state. Numeric bytes cover these arrays only. Artifact bytes cover the entire serialized pipeline, including vocabulary/metadata/serialization overhead; neither is runtime RAM.",
+        "tfidf_idf_values": 12351
+      },
+      "artifact_relative_path": "interim/tfidf-svm-models/e8208b67d4e5c2ac02ee0cd6adeb39c90ced2c93ccbd2d48b203317411d4f268/model.pkl",
+      "artifact_sha256": "e8208b67d4e5c2ac02ee0cd6adeb39c90ced2c93ccbd2d48b203317411d4f268",
+      "code_revision": "8509be33f9394fac51cfda3520ce4ba1dff3989c",
+      "cohort": "phrasebank",
+      "configuration": {
+        "c": 1.0,
+        "class_weight": null,
+        "max_features": 50000,
+        "max_iter": 10000,
+        "min_df": 2,
+        "seed": 42
+      },
+      "implementation_sha256": {
+        "__main__.py": "640902b4e05036e191750574942310e9f2a292fd59662e009026b94e7d368c0c",
+        "model_profile.py": "fbfad971d2af31c6f13a6f1999c040311451210e48ee686178bfdf372ba0c9f0",
+        "svm.py": "4032485588b8bc7178e2c0e0017228ad74d4d7a6dcde42ebcce5d41e930e97db",
+        "tfidf.py": "ee1efd822d63f63cf74ac31d70ede9dbb6f55489dc5cdf00ccc8d232fb56d02c",
+        "tfidf_validation.py": "0b10180787ff88fff435c686ca377dfbf3903be7d66066399bce7494dfd2a680",
+        "vader.py": "f3519f888510ff52f5cdf18aa796e2985bde662b7a7dfe3ff7febe4707c6f572",
+        "validation.py": "f64ab7990ebe720d0580be411f0b1f8e6812671f4b3fb0d7de818bb1735049ab"
+      },
+      "latency_ms_per_text": 0.16369000409862824,
+      "metrics": {
+        "accuracy": 0.7799227799227799,
+        "class_order": [
+          "negative",
+          "neutral",
+          "positive"
+        ],
+        "confusion_matrix": [
+          [
+            39,
+            21,
+            9
+          ],
+          [
+            5,
+            269,
+            23
+          ],
+          [
+            2,
+            54,
+            96
+          ]
+        ],
+        "confusion_matrix_axes": "rows=gold, columns=predicted",
+        "macro_f1": 0.7344295759408016,
+        "per_class": {
+          "negative": {
+            "f1": 0.6782608695652174,
+            "precision": 0.8478260869565217,
+            "recall": 0.5652173913043478,
+            "support": 69
+          },
+          "neutral": {
+            "f1": 0.8393135725429017,
+            "precision": 0.7819767441860465,
+            "recall": 0.9057239057239057,
+            "support": 297
+          },
+          "positive": {
+            "f1": 0.6857142857142857,
+            "precision": 0.75,
+            "recall": 0.631578947368421,
+            "support": 152
+          }
+        },
+        "samples": 518
+      },
+      "model": "linear_svm",
+      "model_id": "d5f8581f975edf1ded9fdaa3390968c8797672c345f80ef9b6347e24d9a3556c",
+      "source_run_id": "446a9f1fb3e4f92ab736cd1a3bf0d64d109cfef11463ad485e88c11ac827ec90",
+      "stage": "initial",
+      "training_seconds": 0.11342120892368257,
+      "working_tree_dirty": true
+    },
+    {
+      "architecture_and_size": {
+        "artifact_bytes": 786432,
+        "artifact_kib": 768.0,
+        "classifier": "LinearSVC",
+        "classifier_array_bytes": 296448,
+        "classifier_parameters": 37056,
+        "coefficient_dtype": "float64",
+        "coefficient_shape": [
+          3,
+          12351
+        ],
+        "coefficient_values": 37053,
+        "idf_array_bytes": 98808,
+        "idf_dtype": "float64",
+        "input_features": 12351,
+        "intercept_shape": [
+          3
+        ],
+        "intercept_values": 3,
+        "multiclass_strategy": "one-versus-rest",
+        "numeric_array_bytes": 395256,
+        "output_classes": [
+          "negative",
+          "neutral",
+          "positive"
+        ],
+        "output_kind": "decision_scores",
+        "pipeline": "TF-IDF word unigrams/bigrams -> LinearSVC",
+        "schema_version": 1,
+        "size_definition": "Classifier parameters count stored coefficients plus intercepts; IDF values are separate fitted preprocessing state. Numeric bytes cover these arrays only. Artifact bytes cover the entire serialized pipeline, including vocabulary/metadata/serialization overhead; neither is runtime RAM.",
+        "tfidf_idf_values": 12351
+      },
+      "artifact_relative_path": "interim/tfidf-svm-models/b67e5c1daf00ffec162c628facb7c17b09f4c4c9ff97331fa4d64206666531ad/model.pkl",
+      "artifact_sha256": "b67e5c1daf00ffec162c628facb7c17b09f4c4c9ff97331fa4d64206666531ad",
+      "code_revision": "8509be33f9394fac51cfda3520ce4ba1dff3989c",
+      "cohort": "phrasebank",
+      "configuration": {
+        "c": 1.0,
+        "class_weight": "balanced",
+        "max_features": 50000,
+        "max_iter": 10000,
+        "min_df": 2,
+        "seed": 42
+      },
+      "implementation_sha256": {
+        "__main__.py": "640902b4e05036e191750574942310e9f2a292fd59662e009026b94e7d368c0c",
+        "model_profile.py": "fbfad971d2af31c6f13a6f1999c040311451210e48ee686178bfdf372ba0c9f0",
+        "svm.py": "4032485588b8bc7178e2c0e0017228ad74d4d7a6dcde42ebcce5d41e930e97db",
+        "tfidf.py": "ee1efd822d63f63cf74ac31d70ede9dbb6f55489dc5cdf00ccc8d232fb56d02c",
+        "tfidf_validation.py": "0b10180787ff88fff435c686ca377dfbf3903be7d66066399bce7494dfd2a680",
+        "vader.py": "f3519f888510ff52f5cdf18aa796e2985bde662b7a7dfe3ff7febe4707c6f572",
+        "validation.py": "f64ab7990ebe720d0580be411f0b1f8e6812671f4b3fb0d7de818bb1735049ab"
+      },
+      "latency_ms_per_text": 0.16510678575694215,
+      "metrics": {
+        "accuracy": 0.7818532818532818,
+        "class_order": [
+          "negative",
+          "neutral",
+          "positive"
+        ],
+        "confusion_matrix": [
+          [
+            43,
+            18,
+            8
+          ],
+          [
+            8,
+            262,
+            27
+          ],
+          [
+            3,
+            49,
+            100
+          ]
+        ],
+        "confusion_matrix_axes": "rows=gold, columns=predicted",
+        "macro_f1": 0.744370602081192,
+        "per_class": {
+          "negative": {
+            "f1": 0.6991869918699187,
+            "precision": 0.7962962962962963,
+            "recall": 0.6231884057971014,
+            "support": 69
+          },
+          "neutral": {
+            "f1": 0.8370607028753994,
+            "precision": 0.7963525835866262,
+            "recall": 0.8821548821548821,
+            "support": 297
+          },
+          "positive": {
+            "f1": 0.6968641114982579,
+            "precision": 0.7407407407407407,
+            "recall": 0.6578947368421053,
+            "support": 152
+          }
+        },
+        "samples": 518
+      },
+      "model": "linear_svm",
+      "model_id": "0d09fabb20ef81678ed75e33ee110fdf4d1350035c9b7c3881882b5a950ff24a",
+      "source_run_id": "0cef6943df2baa13a8234b568a7493c01b38b84abb1108df4e86de60b8f13a60",
+      "stage": "selected",
+      "training_seconds": 0.10805525002069771,
+      "working_tree_dirty": true
+    },
+    {
+      "cohort": "sentfin_single_target",
+      "latency_ms_per_text": null,
+      "metrics": {
+        "accuracy": 0.36107554417413573,
+        "class_order": [
+          "negative",
+          "neutral",
+          "positive"
+        ],
+        "confusion_matrix": [
+          [
+            0,
+            0,
+            247
+          ],
+          [
+            0,
+            0,
+            252
+          ],
+          [
+            0,
+            0,
+            282
+          ]
+        ],
+        "confusion_matrix_axes": "rows=gold, columns=predicted",
+        "macro_f1": 0.1768579492003763,
+        "per_class": {
+          "negative": {
+            "f1": 0.0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "support": 247
+          },
+          "neutral": {
+            "f1": 0.0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "support": 252
+          },
+          "positive": {
+            "f1": 0.5305738476011289,
+            "precision": 0.36107554417413573,
+            "recall": 1.0,
+            "support": 282
+          }
+        },
+        "samples": 781
+      },
+      "model": "training_majority",
+      "source_run_id": "c5375a28e1498111dda90119f8a8cfb522a9169d46ceec5b4a8ec85683abd10e",
+      "stage": "fixed_control"
+    },
+    {
+      "cohort": "sentfin_single_target",
+      "latency_ms_per_text": 0.02099848358335019,
+      "metrics": {
+        "accuracy": 0.4737516005121639,
+        "class_order": [
+          "negative",
+          "neutral",
+          "positive"
+        ],
+        "confusion_matrix": [
+          [
+            110,
+            77,
+            60
+          ],
+          [
+            35,
+            125,
+            92
+          ],
+          [
+            25,
+            122,
+            135
+          ]
+        ],
+        "confusion_matrix_axes": "rows=gold, columns=predicted",
+        "macro_f1": 0.4787074704618262,
+        "per_class": {
+          "negative": {
+            "f1": 0.5275779376498801,
+            "precision": 0.6470588235294118,
+            "recall": 0.44534412955465585,
+            "support": 247
+          },
+          "neutral": {
+            "f1": 0.4340277777777778,
+            "precision": 0.38580246913580246,
+            "recall": 0.49603174603174605,
+            "support": 252
+          },
+          "positive": {
+            "f1": 0.47451669595782076,
+            "precision": 0.47038327526132406,
+            "recall": 0.4787234042553192,
+            "support": 282
+          }
+        },
+        "samples": 781
+      },
+      "model": "vader",
+      "source_run_id": "c5375a28e1498111dda90119f8a8cfb522a9169d46ceec5b4a8ec85683abd10e",
+      "stage": "fixed_control"
+    },
+    {
+      "architecture_and_size": {
+        "artifact_bytes": 657073,
+        "artifact_kib": 641.6728515625,
+        "classifier": "LogisticRegression",
+        "classifier_array_bytes": 251424,
+        "classifier_parameters": 31428,
+        "coefficient_dtype": "float64",
+        "coefficient_shape": [
+          3,
+          10475
+        ],
+        "coefficient_values": 31425,
+        "idf_array_bytes": 83800,
+        "idf_dtype": "float64",
+        "input_features": 10475,
+        "intercept_shape": [
+          3
+        ],
+        "intercept_values": 3,
+        "multiclass_strategy": "multinomial",
+        "numeric_array_bytes": 335224,
+        "output_classes": [
+          "negative",
+          "neutral",
+          "positive"
+        ],
+        "output_kind": "probabilities",
+        "pipeline": "TF-IDF word unigrams/bigrams -> LogisticRegression",
+        "schema_version": 1,
+        "size_definition": "Classifier parameters count stored coefficients plus intercepts; IDF values are separate fitted preprocessing state. Numeric bytes cover these arrays only. Artifact bytes cover the entire serialized pipeline, including vocabulary/metadata/serialization overhead; neither is runtime RAM.",
+        "tfidf_idf_values": 10475
+      },
+      "artifact_relative_path": "interim/tfidf-logreg-models/f7e0e6f80a3b683ec79fcaeed679d52d337d170e8cbef67490cdd96d8d99878d/model.pkl",
+      "artifact_sha256": "f7e0e6f80a3b683ec79fcaeed679d52d337d170e8cbef67490cdd96d8d99878d",
+      "code_revision": "8509be33f9394fac51cfda3520ce4ba1dff3989c",
+      "cohort": "sentfin_single_target",
+      "configuration": {
+        "c": 1.0,
+        "class_weight": null,
+        "max_features": 50000,
+        "max_iter": 1000,
+        "min_df": 2,
+        "seed": 42
+      },
+      "implementation_sha256": {
+        "__main__.py": "640902b4e05036e191750574942310e9f2a292fd59662e009026b94e7d368c0c",
+        "model_profile.py": "fbfad971d2af31c6f13a6f1999c040311451210e48ee686178bfdf372ba0c9f0",
+        "svm.py": "4032485588b8bc7178e2c0e0017228ad74d4d7a6dcde42ebcce5d41e930e97db",
+        "tfidf.py": "ee1efd822d63f63cf74ac31d70ede9dbb6f55489dc5cdf00ccc8d232fb56d02c",
+        "tfidf_validation.py": "0b10180787ff88fff435c686ca377dfbf3903be7d66066399bce7494dfd2a680",
+        "vader.py": "f3519f888510ff52f5cdf18aa796e2985bde662b7a7dfe3ff7febe4707c6f572",
+        "validation.py": "f64ab7990ebe720d0580be411f0b1f8e6812671f4b3fb0d7de818bb1735049ab"
+      },
+      "latency_ms_per_text": 0.18836176422366183,
+      "metrics": {
+        "accuracy": 0.8181818181818182,
+        "class_order": [
+          "negative",
+          "neutral",
+          "positive"
+        ],
+        "confusion_matrix": [
+          [
+            189,
+            35,
+            23
+          ],
+          [
+            21,
+            204,
+            27
+          ],
+          [
+            11,
+            25,
+            246
+          ]
+        ],
+        "confusion_matrix_axes": "rows=gold, columns=predicted",
+        "macro_f1": 0.8165336849250907,
+        "per_class": {
+          "negative": {
+            "f1": 0.8076923076923077,
+            "precision": 0.8552036199095022,
+            "recall": 0.7651821862348178,
+            "support": 247
+          },
+          "neutral": {
+            "f1": 0.7906976744186046,
+            "precision": 0.7727272727272727,
+            "recall": 0.8095238095238095,
+            "support": 252
+          },
+          "positive": {
+            "f1": 0.8512110726643599,
+            "precision": 0.831081081081081,
+            "recall": 0.8723404255319149,
+            "support": 282
+          }
+        },
+        "samples": 781
+      },
+      "model": "logistic_regression",
+      "model_id": "d3513a5d8317d14e05f5a95111197a34648906be762f27dce31c303e18de5d2b",
+      "source_run_id": "046cb4dab2872b6c6f9b417e825e275b2583779ed58de7877532ceee21a2593e",
+      "stage": "initial",
+      "training_seconds": 0.19634649995714426,
+      "working_tree_dirty": true
+    },
+    {
+      "architecture_and_size": {
+        "artifact_bytes": 657084,
+        "artifact_kib": 641.68359375,
+        "classifier": "LogisticRegression",
+        "classifier_array_bytes": 251424,
+        "classifier_parameters": 31428,
+        "coefficient_dtype": "float64",
+        "coefficient_shape": [
+          3,
+          10475
+        ],
+        "coefficient_values": 31425,
+        "idf_array_bytes": 83800,
+        "idf_dtype": "float64",
+        "input_features": 10475,
+        "intercept_shape": [
+          3
+        ],
+        "intercept_values": 3,
+        "multiclass_strategy": "multinomial",
+        "numeric_array_bytes": 335224,
+        "output_classes": [
+          "negative",
+          "neutral",
+          "positive"
+        ],
+        "output_kind": "probabilities",
+        "pipeline": "TF-IDF word unigrams/bigrams -> LogisticRegression",
+        "schema_version": 1,
+        "size_definition": "Classifier parameters count stored coefficients plus intercepts; IDF values are separate fitted preprocessing state. Numeric bytes cover these arrays only. Artifact bytes cover the entire serialized pipeline, including vocabulary/metadata/serialization overhead; neither is runtime RAM.",
+        "tfidf_idf_values": 10475
+      },
+      "artifact_relative_path": "interim/tfidf-logreg-models/3613ef35c9cee527698e8d6429fc6565e88deabf313ee64736308b661adc8ea4/model.pkl",
+      "artifact_sha256": "3613ef35c9cee527698e8d6429fc6565e88deabf313ee64736308b661adc8ea4",
+      "code_revision": "8509be33f9394fac51cfda3520ce4ba1dff3989c",
+      "cohort": "sentfin_single_target",
+      "configuration": {
+        "c": 1.0,
+        "class_weight": "balanced",
+        "max_features": 50000,
+        "max_iter": 1000,
+        "min_df": 2,
+        "seed": 42
+      },
+      "implementation_sha256": {
+        "__main__.py": "640902b4e05036e191750574942310e9f2a292fd59662e009026b94e7d368c0c",
+        "model_profile.py": "fbfad971d2af31c6f13a6f1999c040311451210e48ee686178bfdf372ba0c9f0",
+        "svm.py": "4032485588b8bc7178e2c0e0017228ad74d4d7a6dcde42ebcce5d41e930e97db",
+        "tfidf.py": "ee1efd822d63f63cf74ac31d70ede9dbb6f55489dc5cdf00ccc8d232fb56d02c",
+        "tfidf_validation.py": "0b10180787ff88fff435c686ca377dfbf3903be7d66066399bce7494dfd2a680",
+        "vader.py": "f3519f888510ff52f5cdf18aa796e2985bde662b7a7dfe3ff7febe4707c6f572",
+        "validation.py": "f64ab7990ebe720d0580be411f0b1f8e6812671f4b3fb0d7de818bb1735049ab"
+      },
+      "latency_ms_per_text": 0.18682805213137565,
+      "metrics": {
+        "accuracy": 0.8194622279129321,
+        "class_order": [
+          "negative",
+          "neutral",
+          "positive"
+        ],
+        "confusion_matrix": [
+          [
+            195,
+            34,
+            18
+          ],
+          [
+            27,
+            204,
+            21
+          ],
+          [
+            14,
+            27,
+            241
+          ]
+        ],
+        "confusion_matrix_axes": "rows=gold, columns=predicted",
+        "macro_f1": 0.8180909800768834,
+        "per_class": {
+          "negative": {
+            "f1": 0.8074534161490683,
+            "precision": 0.826271186440678,
+            "recall": 0.7894736842105263,
+            "support": 247
+          },
+          "neutral": {
+            "f1": 0.7891682785299806,
+            "precision": 0.769811320754717,
+            "recall": 0.8095238095238095,
+            "support": 252
+          },
+          "positive": {
+            "f1": 0.8576512455516014,
+            "precision": 0.8607142857142858,
+            "recall": 0.8546099290780141,
+            "support": 282
+          }
+        },
+        "samples": 781
+      },
+      "model": "logistic_regression",
+      "model_id": "531bf869c09ec507075b295bf5476b0e5aacc3a07112e039ef0e25a88d62838a",
+      "source_run_id": "c5375a28e1498111dda90119f8a8cfb522a9169d46ceec5b4a8ec85683abd10e",
+      "stage": "selected",
+      "training_seconds": 0.19540870818309486,
+      "working_tree_dirty": true
+    },
+    {
+      "architecture_and_size": {
+        "artifact_bytes": 656929,
+        "artifact_kib": 641.5322265625,
+        "classifier": "LinearSVC",
+        "classifier_array_bytes": 251424,
+        "classifier_parameters": 31428,
+        "coefficient_dtype": "float64",
+        "coefficient_shape": [
+          3,
+          10475
+        ],
+        "coefficient_values": 31425,
+        "idf_array_bytes": 83800,
+        "idf_dtype": "float64",
+        "input_features": 10475,
+        "intercept_shape": [
+          3
+        ],
+        "intercept_values": 3,
+        "multiclass_strategy": "one-versus-rest",
+        "numeric_array_bytes": 335224,
+        "output_classes": [
+          "negative",
+          "neutral",
+          "positive"
+        ],
+        "output_kind": "decision_scores",
+        "pipeline": "TF-IDF word unigrams/bigrams -> LinearSVC",
+        "schema_version": 1,
+        "size_definition": "Classifier parameters count stored coefficients plus intercepts; IDF values are separate fitted preprocessing state. Numeric bytes cover these arrays only. Artifact bytes cover the entire serialized pipeline, including vocabulary/metadata/serialization overhead; neither is runtime RAM.",
+        "tfidf_idf_values": 10475
+      },
+      "artifact_relative_path": "interim/tfidf-svm-models/e477640012d41fa7804bb0f89306116901721b6da65f80f1ee12e2492bab9826/model.pkl",
+      "artifact_sha256": "e477640012d41fa7804bb0f89306116901721b6da65f80f1ee12e2492bab9826",
+      "code_revision": "8509be33f9394fac51cfda3520ce4ba1dff3989c",
+      "cohort": "sentfin_single_target",
+      "configuration": {
+        "c": 1.0,
+        "class_weight": null,
+        "max_features": 50000,
+        "max_iter": 10000,
+        "min_df": 2,
+        "seed": 42
+      },
+      "implementation_sha256": {
+        "__main__.py": "640902b4e05036e191750574942310e9f2a292fd59662e009026b94e7d368c0c",
+        "model_profile.py": "fbfad971d2af31c6f13a6f1999c040311451210e48ee686178bfdf372ba0c9f0",
+        "svm.py": "4032485588b8bc7178e2c0e0017228ad74d4d7a6dcde42ebcce5d41e930e97db",
+        "tfidf.py": "ee1efd822d63f63cf74ac31d70ede9dbb6f55489dc5cdf00ccc8d232fb56d02c",
+        "tfidf_validation.py": "0b10180787ff88fff435c686ca377dfbf3903be7d66066399bce7494dfd2a680",
+        "vader.py": "f3519f888510ff52f5cdf18aa796e2985bde662b7a7dfe3ff7febe4707c6f572",
+        "validation.py": "f64ab7990ebe720d0580be411f0b1f8e6812671f4b3fb0d7de818bb1735049ab"
+      },
+      "latency_ms_per_text": 0.15666972036102594,
+      "metrics": {
+        "accuracy": 0.8092189500640204,
+        "class_order": [
+          "negative",
+          "neutral",
+          "positive"
+        ],
+        "confusion_matrix": [
+          [
+            189,
+            32,
+            26
+          ],
+          [
+            27,
+            197,
+            28
+          ],
+          [
+            10,
+            26,
+            246
+          ]
+        ],
+        "confusion_matrix_axes": "rows=gold, columns=predicted",
+        "macro_f1": 0.8072118247873923,
+        "per_class": {
+          "negative": {
+            "f1": 0.7991543340380549,
+            "precision": 0.8362831858407079,
+            "recall": 0.7651821862348178,
+            "support": 247
+          },
+          "neutral": {
+            "f1": 0.777120315581854,
+            "precision": 0.7725490196078432,
+            "recall": 0.7817460317460317,
+            "support": 252
+          },
+          "positive": {
+            "f1": 0.845360824742268,
+            "precision": 0.82,
+            "recall": 0.8723404255319149,
+            "support": 282
+          }
+        },
+        "samples": 781
+      },
+      "model": "linear_svm",
+      "model_id": "002fffea6359c1eee66f653e3a375497e10844563b89f0ed0a6947377ad4eddc",
+      "source_run_id": "446a9f1fb3e4f92ab736cd1a3bf0d64d109cfef11463ad485e88c11ac827ec90",
+      "stage": "initial",
+      "training_seconds": 0.09656683285720646,
+      "working_tree_dirty": true
+    },
+    {
+      "architecture_and_size": {
+        "artifact_bytes": 656940,
+        "artifact_kib": 641.54296875,
+        "classifier": "LinearSVC",
+        "classifier_array_bytes": 251424,
+        "classifier_parameters": 31428,
+        "coefficient_dtype": "float64",
+        "coefficient_shape": [
+          3,
+          10475
+        ],
+        "coefficient_values": 31425,
+        "idf_array_bytes": 83800,
+        "idf_dtype": "float64",
+        "input_features": 10475,
+        "intercept_shape": [
+          3
+        ],
+        "intercept_values": 3,
+        "multiclass_strategy": "one-versus-rest",
+        "numeric_array_bytes": 335224,
+        "output_classes": [
+          "negative",
+          "neutral",
+          "positive"
+        ],
+        "output_kind": "decision_scores",
+        "pipeline": "TF-IDF word unigrams/bigrams -> LinearSVC",
+        "schema_version": 1,
+        "size_definition": "Classifier parameters count stored coefficients plus intercepts; IDF values are separate fitted preprocessing state. Numeric bytes cover these arrays only. Artifact bytes cover the entire serialized pipeline, including vocabulary/metadata/serialization overhead; neither is runtime RAM.",
+        "tfidf_idf_values": 10475
+      },
+      "artifact_relative_path": "interim/tfidf-svm-models/a2466a992f1e67394f5f92a9f98cbe05086d917df4218214d2772738df3f4099/model.pkl",
+      "artifact_sha256": "a2466a992f1e67394f5f92a9f98cbe05086d917df4218214d2772738df3f4099",
+      "code_revision": "8509be33f9394fac51cfda3520ce4ba1dff3989c",
+      "cohort": "sentfin_single_target",
+      "configuration": {
+        "c": 0.1,
+        "class_weight": "balanced",
+        "max_features": 50000,
+        "max_iter": 10000,
+        "min_df": 2,
+        "seed": 42
+      },
+      "implementation_sha256": {
+        "__main__.py": "640902b4e05036e191750574942310e9f2a292fd59662e009026b94e7d368c0c",
+        "model_profile.py": "fbfad971d2af31c6f13a6f1999c040311451210e48ee686178bfdf372ba0c9f0",
+        "svm.py": "4032485588b8bc7178e2c0e0017228ad74d4d7a6dcde42ebcce5d41e930e97db",
+        "tfidf.py": "ee1efd822d63f63cf74ac31d70ede9dbb6f55489dc5cdf00ccc8d232fb56d02c",
+        "tfidf_validation.py": "0b10180787ff88fff435c686ca377dfbf3903be7d66066399bce7494dfd2a680",
+        "vader.py": "f3519f888510ff52f5cdf18aa796e2985bde662b7a7dfe3ff7febe4707c6f572",
+        "validation.py": "f64ab7990ebe720d0580be411f0b1f8e6812671f4b3fb0d7de818bb1735049ab"
+      },
+      "latency_ms_per_text": 0.1617484021259331,
+      "metrics": {
+        "accuracy": 0.8169014084507042,
+        "class_order": [
+          "negative",
+          "neutral",
+          "positive"
+        ],
+        "confusion_matrix": [
+          [
+            193,
+            36,
+            18
+          ],
+          [
+            21,
+            207,
+            24
+          ],
+          [
+            15,
+            29,
+            238
+          ]
+        ],
+        "confusion_matrix_axes": "rows=gold, columns=predicted",
+        "macro_f1": 0.8159919315312445,
+        "per_class": {
+          "negative": {
+            "f1": 0.8109243697478992,
+            "precision": 0.8427947598253275,
+            "recall": 0.7813765182186235,
+            "support": 247
+          },
+          "neutral": {
+            "f1": 0.7900763358778626,
+            "precision": 0.7610294117647058,
+            "recall": 0.8214285714285714,
+            "support": 252
+          },
+          "positive": {
+            "f1": 0.8469750889679716,
+            "precision": 0.85,
+            "recall": 0.8439716312056738,
+            "support": 282
+          }
+        },
+        "samples": 781
+      },
+      "model": "linear_svm",
+      "model_id": "f41017a684b10e6592a74f822a5309230fecbf5eaac0602f058ff6b42360bc20",
+      "source_run_id": "7740e038338174bee36238dd7612cc13ce784a6ba61b6374a086b3c60df00a2c",
+      "stage": "selected",
+      "training_seconds": 0.08534554205834866,
+      "working_tree_dirty": true
+    }
+  ],
+  "experiment": "phase2-consolidated-validation-v1",
+  "final_test_evaluated": false,
+  "input_sha256": {
+    "freeze_receipt": "ab0c9f0581612ee52f3c03a5bbbc03e7ebc621fdf76bb00d7d85bc2973b593f7",
+    "review": "88b3980a09c74a4e807bbef4281d564bc009a1dd5ad725d58001776a82d6873f",
+    "tuning": "329457f5dc8b951883897dfcf0b0a3ca88357093730d86315c9c5183cefdc5e1"
+  },
+  "review_aggregates": {
+    "phrasebank": {
+      "paired_counts": {
+        "all_three_wrong": 63,
+        "both_correct": 396,
+        "both_wrong": 106,
+        "lr_errors": 115,
+        "lr_only_correct": 7,
+        "lr_svm_disagree": 16,
+        "svm_errors": 113,
+        "svm_only_correct": 9,
+        "vader_errors": 230
+      },
+      "primary_categories": {
+        "event_interpretation": 4,
+        "financial_context": 5,
+        "mixed_cues": 4,
+        "negation_scope": 1,
+        "neutral_boundary": 8,
+        "numeric_comparison": 6
+      },
+      "reviewed_samples": 28,
+      "sample_confusion_cells": {
+        "negative->neutral": 5,
+        "negative->positive": 5,
+        "neutral->negative": 5,
+        "neutral->positive": 5,
+        "positive->negative": 3,
+        "positive->neutral": 5
+      },
+      "selected_run_ids": {
+        "linear_svm": "0cef6943df2baa13a8234b568a7493c01b38b84abb1108df4e86de60b8f13a60",
+        "logistic_regression": "3d4657830b1cfe58b5f86a167b4a9216a565ac971ca1f95e13ba67041a6071cf",
+        "overall": "3d4657830b1cfe58b5f86a167b4a9216a565ac971ca1f95e13ba67041a6071cf"
+      },
+      "suspected_gold_ambiguity": 8,
+      "validation_samples": 518
+    },
+    "sentfin_single_target": {
+      "paired_counts": {
+        "all_three_wrong": 78,
+        "both_correct": 633,
+        "both_wrong": 136,
+        "lr_errors": 141,
+        "lr_only_correct": 7,
+        "lr_svm_disagree": 15,
+        "svm_errors": 143,
+        "svm_only_correct": 5,
+        "vader_errors": 411
+      },
+      "primary_categories": {
+        "event_interpretation": 5,
+        "financial_context": 9,
+        "mixed_cues": 7,
+        "negation_scope": 2,
+        "neutral_boundary": 6,
+        "numeric_comparison": 1
+      },
+      "reviewed_samples": 30,
+      "sample_confusion_cells": {
+        "negative->neutral": 5,
+        "negative->positive": 5,
+        "neutral->negative": 5,
+        "neutral->positive": 5,
+        "positive->negative": 5,
+        "positive->neutral": 5
+      },
+      "selected_run_ids": {
+        "linear_svm": "7740e038338174bee36238dd7612cc13ce784a6ba61b6374a086b3c60df00a2c",
+        "logistic_regression": "c5375a28e1498111dda90119f8a8cfb522a9169d46ceec5b4a8ec85683abd10e",
+        "overall": "c5375a28e1498111dda90119f8a8cfb522a9169d46ceec5b4a8ec85683abd10e"
+      },
+      "suspected_gold_ambiguity": 12,
+      "validation_samples": 781
+    }
+  },
+  "schema_version": 1,
+  "scope": "Separate corpus development validation; no retraining, scoring, or label changes during consolidation"
+}

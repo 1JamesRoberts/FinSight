@@ -120,3 +120,10 @@ same reviewed scikit-learn dependency, pinned development inputs, and local
 noncommercial training/storage scope as the earlier LR/SVM fits. No assets or
 rights decision changes; no corpus pooling or final-test scoring. Candidate
 models and predictions remain ignored. See [tuning guide](tfidf-tuning.md).
+
+Phase 2 qualitative review (2026-10-11): the existing local-research scope
+supports joining saved validation predictions to reviewed local inputs. Only
+aggregate categories/counts and digests are published; source text, identifiers,
+targets, and individual notes remain ignored. No acquisition, training, label
+correction, or source-text redistribution occurs. Frozen records remain withheld.
+See [qualitative review](../reports/experiments/phase2-error-analysis.md).

@@ -1,0 +1,88 @@
+{
+  "annotations_sha256": "5746ebf0e64f92009c76e3bd719c68c91aa3db4bf747c7f2bfc0e965ae481103",
+  "cohorts": {
+    "phrasebank": {
+      "paired_counts": {
+        "all_three_wrong": 63,
+        "both_correct": 396,
+        "both_wrong": 106,
+        "lr_errors": 115,
+        "lr_only_correct": 7,
+        "lr_svm_disagree": 16,
+        "svm_errors": 113,
+        "svm_only_correct": 9,
+        "vader_errors": 230
+      },
+      "primary_categories": {
+        "event_interpretation": 4,
+        "financial_context": 5,
+        "mixed_cues": 4,
+        "negation_scope": 1,
+        "neutral_boundary": 8,
+        "numeric_comparison": 6
+      },
+      "reviewed_samples": 28,
+      "sample_confusion_cells": {
+        "negative->neutral": 5,
+        "negative->positive": 5,
+        "neutral->negative": 5,
+        "neutral->positive": 5,
+        "positive->negative": 3,
+        "positive->neutral": 5
+      },
+      "selected_run_ids": {
+        "linear_svm": "0cef6943df2baa13a8234b568a7493c01b38b84abb1108df4e86de60b8f13a60",
+        "logistic_regression": "3d4657830b1cfe58b5f86a167b4a9216a565ac971ca1f95e13ba67041a6071cf",
+        "overall": "3d4657830b1cfe58b5f86a167b4a9216a565ac971ca1f95e13ba67041a6071cf"
+      },
+      "suspected_gold_ambiguity": 8,
+      "validation_samples": 518
+    },
+    "sentfin_single_target": {
+      "paired_counts": {
+        "all_three_wrong": 78,
+        "both_correct": 633,
+        "both_wrong": 136,
+        "lr_errors": 141,
+        "lr_only_correct": 7,
+        "lr_svm_disagree": 15,
+        "svm_errors": 143,
+        "svm_only_correct": 5,
+        "vader_errors": 411
+      },
+      "primary_categories": {
+        "event_interpretation": 5,
+        "financial_context": 9,
+        "mixed_cues": 7,
+        "negation_scope": 2,
+        "neutral_boundary": 6,
+        "numeric_comparison": 1
+      },
+      "reviewed_samples": 30,
+      "sample_confusion_cells": {
+        "negative->neutral": 5,
+        "negative->positive": 5,
+        "neutral->negative": 5,
+        "neutral->positive": 5,
+        "positive->negative": 5,
+        "positive->neutral": 5
+      },
+      "selected_run_ids": {
+        "linear_svm": "7740e038338174bee36238dd7612cc13ce784a6ba61b6374a086b3c60df00a2c",
+        "logistic_regression": "c5375a28e1498111dda90119f8a8cfb522a9169d46ceec5b4a8ec85683abd10e",
+        "overall": "c5375a28e1498111dda90119f8a8cfb522a9169d46ceec5b4a8ec85683abd10e"
+      },
+      "suspected_gold_ambiguity": 12,
+      "validation_samples": 781
+    }
+  },
+  "final_test_evaluated": false,
+  "freeze_receipt_sha256": "ab0c9f0581612ee52f3c03a5bbbc03e7ebc621fdf76bb00d7d85bc2973b593f7",
+  "gold_labels_changed": false,
+  "implementation_sha256": "a86b70f7e6bd2488dfdb1e4214b6fb3062dbb1a4e14da5e373060c5e3dba6c77",
+  "method": "Up to five LR errors per off-diagonal cell; SHA-256(42:record_id) ordering.",
+  "packet_sha256": "38e8776caf64b7b4c39aea49dab0125396c5876fb24d024fe3406ad72828ad63",
+  "reviewer": "Codex qualitative review; not independent human adjudication",
+  "schema_version": 1,
+  "tuning_sha256": "329457f5dc8b951883897dfcf0b0a3ca88357093730d86315c9c5183cefdc5e1"
+}

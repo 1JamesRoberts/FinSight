@@ -81,5 +81,7 @@ repeated validation inspection; it is a development result, not an unbiased
 estimate of final generalization. This bounded search uses the existing validation
 partition, not cross-validation, and reports no statistical significance claims.
 The immutable final test stays withheld. Local timing varies across runs.
-Qualitative validation-error analysis and the consolidated Phase 2 comparison
-remain separate tasks. No FinBERT or prediction work is started here.
+The subsequent [qualitative validation-error review](../reports/experiments/phase2-error-analysis.md)
+and [consolidated Phase 2 comparison](../reports/experiments/phase2-comparison.md)
+complete those separate tasks without changing model selection. No FinBERT or
+prediction work is started here.

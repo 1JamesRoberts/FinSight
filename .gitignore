@@ -48,3 +48,5 @@ build/
 .idea/
 .vscode/
 !/reports/experiments/tfidf-tuning.json
+!/reports/experiments/phase2-error-analysis.json
+!/reports/experiments/phase2-comparison.json
