@@ -487,6 +487,7 @@ model task was complete. The subsequent verified pretrained run is recorded belo
 - [x] Fine-tune RoBERTa Base and DeBERTa-v3 Base on the same SEntFiN development protocol; save and reload selected models.
 - [x] Adapt reviewed financial RoBERTa Large and DeBERTa-v3 Small on SEntFiN; save/reload and compare against unchanged checkpoints.
 - [x] Train separate original RoBERTa Base and DeBERTa-v3 Base checkpoints on PhraseBank only; select on PhraseBank validation and log SEntFiN validation transfer afterward.
+- [x] Score unchanged financial RoBERTa/DeBERTa on PhraseBank validation with upstream-supervision caveats.
 - [ ] Run controlled training experiments (learning rate, length, batch size); early stopping on validation only.
 - [ ] Track dataset version, seeds, model checkpoint, metrics, latency in MLflow.
 - [ ] Evaluate on independent frozen test set once final configuration is selected.
@@ -567,6 +568,16 @@ rows for PhraseBank/SEntFiN validation, all 24 traditional grid fits, per-class
 F1, architecture/size and explicit transfer/coverage caveats. Aggregate confusion
 matrices reproduce accuracy/macro F1; validation membership and split identities
 match existing runs. No new training/inference or final-test scoring.
+
+PhraseBank inference verified (2026-10-12): original financial RoBERTa/DeBERTa
+score 518 validation phrases without training or selection. Accuracy/macro F1:
+0.7973/0.8142 and 0.9826/0.9851. DeBERTa has apparent upstream PhraseBank
+supervision; RoBERTa provenance is incomplete. Scores are diagnostic, with no
+independent-generalization claim. Zero training samples, no derivative weights
+or transfer step; ordered predictions/labels/metrics, source/code hashes and
+unchanged frozen benchmark verified. Mac/Windows Ruff and all 282 tests pass.
+Per-model reports and the updated all-model cohort report include these results.
+Phase 3 remains in progress.
 
 **Deliverables:** Inference module, training pipeline, comparison report, versioned best model.
 

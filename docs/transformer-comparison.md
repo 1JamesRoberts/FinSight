@@ -146,3 +146,12 @@ checkpoint selection, no derived weights and no additional SEntFiN scoring.
 Financial DeBERTa's apparent upstream PhraseBank supervision makes its score
 diagnostic; Financial RoBERTa has incomplete supervised provenance. No reserved
 PhraseBank or frozen SEntFiN test is scored. Original source pins stay unchanged.
+
+Verified on 2026-10-12: unchanged Financial RoBERTa accuracy/macro F1
+**0.7973/0.8142**; unchanged Financial DeBERTa **0.9826/0.9851** on the same
+518 PhraseBank validation phrases. The latter is an apparent upstream-supervision
+diagnostic, not independent generalization. Exact training/validation overlap
+cannot be established from the source description. Both zero-training runs pass
+ordered prediction/gold/metric, source checksum, code-lineage and frozen benchmark
+checks on Mac/Windows. Ruff and all 282 tests pass on both.
+Results are included in [all-model cohort report](../reports/experiments/all-models-by-cohort.md).

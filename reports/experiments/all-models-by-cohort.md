@@ -1,6 +1,6 @@
 # FinSight — All-model comparison by cohort
 
-Updated 2026-10-11. This report consolidates recorded Phase 2 and Phase 3
+Updated 2026-10-12. This report consolidates recorded Phase 2 and Phase 3
 development results; it performs no new training, inference or test evaluation.
 
 SEntFiN-trained RoBERTa Base has the highest observed SEntFiN validation macro F1
@@ -45,6 +45,8 @@ initial experiment from the selected result.
 | [FinBERT — unchanged](finbert-validation.md) | None; upstream sentiment supervision | No project selection; PB exposure diagnostic | 0.8822 | 0.8823 |
 | [RoBERTa Base — PhraseBank training](roberta_phrasebank.md) | PhraseBank only | PhraseBank epoch 5 | 0.8938 | 0.8868 |
 | [DeBERTa-v3 Base — PhraseBank training](deberta_phrasebank.md) | PhraseBank only | PhraseBank epoch 4 | 0.8900 | 0.8857 |
+| [Financial RoBERTa Large — unchanged](financial_roberta_phrasebank.md) | None; upstream sentiment supervision | No selection; supervised provenance incomplete | 0.7973 | 0.8142 |
+| [Financial DeBERTa-v3 Small — unchanged](financial_deberta_phrasebank.md) | None; upstream sentiment supervision | No selection; apparent PB supervision diagnostic | 0.9826 | 0.9851 |
 
 ### Class F1 for the same variants
 
@@ -61,6 +63,8 @@ initial experiment from the selected result.
 | FinBERT — unchanged | 0.8993 | 0.8948 | 0.8528 |
 | RoBERTa Base — PhraseBank training | 0.8857 | 0.9128 | 0.8617 |
 | DeBERTa-v3 Base — PhraseBank training | 0.8923 | 0.9075 | 0.8571 |
+| Financial RoBERTa Large — unchanged | 0.8811 | 0.8008 | 0.7606 |
+| Financial DeBERTa-v3 Small — unchanged | 1.0000 | 0.9848 | 0.9705 |
 
 ## SEntFiN single-target validation
 
@@ -118,8 +122,10 @@ initial experiment from the selected result.
 | RoBERTa Base trained on SEntFiN | Not evaluated | 0.8849 (epoch selection) |
 | DeBERTa-v3 Base trained on SEntFiN | Not evaluated | 0.8738 (epoch selection) |
 | FinBERT adapted on SEntFiN | Not evaluated | 0.8762 (epoch selection) |
-| Financial RoBERTa Large, unchanged / adapted | Not evaluated | 0.7333 / 0.8696 |
-| Financial DeBERTa-v3 Small, unchanged / adapted | Not evaluated | 0.7414 / 0.8741 |
+| Financial RoBERTa Large, unchanged | 0.8142 (provenance incomplete) | 0.7333 |
+| Financial RoBERTa Large, SEntFiN adapted | Not evaluated | 0.8696 |
+| Financial DeBERTa-v3 Small, unchanged | 0.9851 (apparent supervision exposure) | 0.7414 |
+| Financial DeBERTa-v3 Small, SEntFiN adapted | Not evaluated | 0.8741 |
 
 LR/SVM each have distinct PhraseBank and SEntFiN fitted artifacts; their two
 cohort scores do not measure transfer by one shared model. “Not evaluated” is
@@ -140,6 +146,13 @@ DeBERTa by 0.1326; FinBERT by 0.1271. All retain their existing heads and train
 all encoder parameters. Financial RoBERTa is Large and financial DeBERTa is
 Small, while the new-head models are Base; differences cannot be attributed
 solely to financial pretraining.
+
+Financial DeBERTa is nearly perfect on PhraseBank (509/518 correct) but its source
+description indicates supervision on that corpus, with incomplete split provenance.
+This does not demonstrate superiority on unseen data. Exact overlap cannot be
+confirmed from the available upstream information. Financial RoBERTa scores
+413/518 correct; its incomplete provenance also prevents an independence claim.
+Both rows use original sources, with no project training or checkpoint selection.
 
 ## Architecture and model size
 
@@ -254,6 +267,14 @@ These SHA-256 values pin the exact aggregate inputs used to create this report.
 | [financial_deberta_adapted.json](financial_deberta_adapted.json) | `85d7e5e0020da9529d20e65df1e8dde37c3475d42f68b98ec2354d75ece85df9` |
 | [roberta_phrasebank.json](roberta_phrasebank.json) | `e71a9a56f66fbf81d0c5f57d848472b9f2aaea475a256b8b98bf89e622d67763` |
 | [deberta_phrasebank.json](deberta_phrasebank.json) | `15bfcd783eda29d2e9cd4934ae2fadbda7225218ae0d65ef010b64b09f34a564` |
+| [financial_roberta_phrasebank.json](financial_roberta_phrasebank.json) | `79cbf3b2c770ab61493016807e47fd4c957c820d4b57198b3a0f6e2a342dd380` |
+| [financial_deberta_phrasebank.json](financial_deberta_phrasebank.json) | `a609d031440430f665b6cc69060fbe594949ce91b3a4ecc034bd9d52697c432b` |
+
+New PhraseBank inference checks (2026-10-12): exact ordered prediction IDs/gold
+labels, probability normalization, recomputed metrics, original checkpoint hashes
+and recorded code/configuration lineage pass on Mac/Windows. Training samples
+are zero; no derived artifacts or transfer step. The frozen benchmark is unchanged.
+Ruff and all 282 tests pass on both machines.
 
 This completes the consolidated cohort report. Phase 3 hyperparameter
 comparisons, MLflow, calibration/error analysis and final evaluation remain open.

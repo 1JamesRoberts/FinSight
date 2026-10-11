@@ -1,0 +1,459 @@
+{
+  "artifact_relative_path": null,
+  "asset": {
+    "files": {
+      "README.md": {
+        "sha256": "9c6b573f831805d6b71c51c48a480a2e9ddb9a97ac54b34d840cf700cb0435fd",
+        "size_bytes": 2135
+      },
+      "config.json": {
+        "sha256": "7335131810d5cbb13d6cd8a6291d8827babf06abca9ef31741faae835c8b0f7e",
+        "size_bytes": 936
+      },
+      "merges.txt": {
+        "sha256": "fe36cab26d4f4421ed725e10a2e9ddb7f799449c603a96e7f29b5a3c82a95862",
+        "size_bytes": 456356
+      },
+      "pytorch_model.bin": {
+        "sha256": "7b3541b7659518f118ffeb667a9386cdae3068b5c2b4d630ce74d52140465868",
+        "size_bytes": 1421615405
+      },
+      "special_tokens_map.json": {
+        "sha256": "378eb3bf733eb16e65792d7e3fda5b8a4631387ca04d2015199c4d4f22ae554d",
+        "size_bytes": 239
+      },
+      "tokenizer.json": {
+        "sha256": "d4fc85277c11a50d6bfcbbe0c18be47931983d52686f7ab12dce0b0e0a249ac2",
+        "size_bytes": 1356047
+      },
+      "vocab.json": {
+        "sha256": "ed19656ea1707df69134c4af35c8ceda2cc9860bf2c3495026153a133670ab5e",
+        "size_bytes": 798293
+      }
+    },
+    "id2label": {
+      "0": "negative",
+      "1": "neutral",
+      "2": "positive"
+    },
+    "license": "apache-2.0",
+    "mode": "unchanged_sentiment",
+    "model_id": "soleimanian/financial-roberta-large-sentiment",
+    "model_type": "roberta",
+    "revision": "f8804d31111d7c3569e88abaad6969918e858fbd"
+  },
+  "benchmark_manifest_sha256": "b7cc249017ddd87f0b2c52a3abf3ff5b96f6920832b411f18eac547fec0b0f1c",
+  "code_revision": "acccf656bb1f314cb331a70cba02e2a3f5af1a85",
+  "configuration": {
+    "device": "cuda",
+    "evaluation_batch_size": 32,
+    "learning_rate": 2e-05,
+    "max_epochs": 5,
+    "max_grad_norm": 1.0,
+    "max_length": 128,
+    "patience": 2,
+    "seed": 42,
+    "train_batch_size": 16,
+    "warmup_ratio": 0.1,
+    "weight_decay": 0.01
+  },
+  "environment": {
+    "platform": "Windows-11-10.0.22631-SP0",
+    "python": "3.12.3",
+    "sentencepiece": "0.2.1",
+    "torch": "2.11.0+cu128",
+    "transformers": "4.57.6"
+  },
+  "evaluation_cohort": "phrasebank",
+  "experiment": "financial_roberta_phrasebank",
+  "final_test_evaluated": false,
+  "finbert_comparisons": {
+    "finbert-validation": {
+      "metrics": {
+        "accuracy": 0.8822393822393823,
+        "class_order": [
+          "negative",
+          "neutral",
+          "positive"
+        ],
+        "confusion_matrix": [
+          [
+            67,
+            1,
+            1
+          ],
+          [
+            12,
+            251,
+            34
+          ],
+          [
+            1,
+            12,
+            139
+          ]
+        ],
+        "confusion_matrix_axes": "rows=gold, columns=predicted",
+        "macro_f1": 0.8823067515977545,
+        "per_class": {
+          "negative": {
+            "f1": 0.8993288590604027,
+            "precision": 0.8375,
+            "recall": 0.9710144927536232,
+            "support": 69
+          },
+          "neutral": {
+            "f1": 0.8948306595365418,
+            "precision": 0.9507575757575758,
+            "recall": 0.8451178451178452,
+            "support": 297
+          },
+          "positive": {
+            "f1": 0.852760736196319,
+            "precision": 0.7988505747126436,
+            "recall": 0.9144736842105263,
+            "support": 152
+          }
+        },
+        "samples": 518
+      },
+      "report_sha256": "ee63070bdb16c74bef562cddd8a1f30c92ba757489d8203477c6fb3d45b43e2c"
+    }
+  },
+  "fine_tuned_in_project": false,
+  "fit": null,
+  "metrics": {
+    "accuracy": 0.7972972972972973,
+    "class_order": [
+      "negative",
+      "neutral",
+      "positive"
+    ],
+    "confusion_matrix": [
+      [
+        63,
+        4,
+        2
+      ],
+      [
+        11,
+        207,
+        79
+      ],
+      [
+        0,
+        9,
+        143
+      ]
+    ],
+    "confusion_matrix_axes": "rows=gold, columns=predicted",
+    "macro_f1": 0.814176957793979,
+    "per_class": {
+      "negative": {
+        "f1": 0.8811188811188811,
+        "precision": 0.8513513513513513,
+        "recall": 0.9130434782608695,
+        "support": 69
+      },
+      "neutral": {
+        "f1": 0.8007736943907157,
+        "precision": 0.9409090909090909,
+        "recall": 0.696969696969697,
+        "support": 297
+      },
+      "positive": {
+        "f1": 0.7606382978723404,
+        "precision": 0.6383928571428571,
+        "recall": 0.9407894736842105,
+        "support": 152
+      }
+    },
+    "samples": 518
+  },
+  "model": {
+    "amortized_ms_per_text": 2.9581538609990448,
+    "architecture": {
+      "attention_heads": 16,
+      "class": "RobertaForSequenceClassification",
+      "hidden_size": 1024,
+      "intermediate_size": 4096,
+      "layers": 24,
+      "parameter_bytes": 1421451276,
+      "parameters": 355362819,
+      "vocabulary_size": 50265
+    },
+    "cuda_runtime": "12.8",
+    "gpu": "NVIDIA GeForce RTX 4070 SUPER",
+    "id2label": {
+      "0": "negative",
+      "1": "neutral",
+      "2": "positive"
+    },
+    "inference_seconds": 1.5323236999975052,
+    "maximum_tokens": 86,
+    "peak_inference_allocated_bytes": 1612505600,
+    "peak_inference_reserved_bytes": 1853882368,
+    "precision": "FP32; eager attention; deterministic; TF32 disabled",
+    "truncated_texts": 0
+  },
+  "model_file_bytes": 1424229411,
+  "model_files": {
+    "README.md": {
+      "sha256": "9c6b573f831805d6b71c51c48a480a2e9ddb9a97ac54b34d840cf700cb0435fd",
+      "size_bytes": 2135
+    },
+    "config.json": {
+      "sha256": "7335131810d5cbb13d6cd8a6291d8827babf06abca9ef31741faae835c8b0f7e",
+      "size_bytes": 936
+    },
+    "merges.txt": {
+      "sha256": "fe36cab26d4f4421ed725e10a2e9ddb7f799449c603a96e7f29b5a3c82a95862",
+      "size_bytes": 456356
+    },
+    "pytorch_model.bin": {
+      "sha256": "7b3541b7659518f118ffeb667a9386cdae3068b5c2b4d630ce74d52140465868",
+      "size_bytes": 1421615405
+    },
+    "special_tokens_map.json": {
+      "sha256": "378eb3bf733eb16e65792d7e3fda5b8a4631387ca04d2015199c4d4f22ae554d",
+      "size_bytes": 239
+    },
+    "tokenizer.json": {
+      "sha256": "d4fc85277c11a50d6bfcbbe0c18be47931983d52686f7ab12dce0b0e0a249ac2",
+      "size_bytes": 1356047
+    },
+    "vocab.json": {
+      "sha256": "ed19656ea1707df69134c4af35c8ceda2cc9860bf2c3495026153a133670ab5e",
+      "size_bytes": 798293
+    }
+  },
+  "parent_split_manifest_sha256": "a9a67c231903bc2e3e71afead1d6daaf6b7201211fc25a05efd2bb2ee2d5e898",
+  "predictions_sha256": "78d4e6bd447fe625bf773affe352fab52a668b4d70c2275c12dfa5eed35827da",
+  "provenance": {
+    "assets_sha256": "32cb41eb439f12ab6ed373082e21a244301dda28a9f7a4b82e4d8dfdd1afd609",
+    "config_sha256": "fa25c85ae802bd4ce66b3f232f504385b840407cdf6e05a2ab35c9769d04bec4",
+    "freeze_receipt_sha256": "ab0c9f0581612ee52f3c03a5bbbc03e7ebc621fdf76bb00d7d85bc2973b593f7",
+    "implementation_sha256": {
+      "finbert_training.py": "8e199d88c58e096197c0e0545fbf7720c35a6b9b14076d6482387c6503236b6f",
+      "transformer_comparison.py": "ce18155e8db5b4fb51fa6d512f702a28e5da40fd109ad4a51b5b2ee30e1b4555"
+    },
+    "lockfile_sha256": "f1ace275d05568614b92993b8446d7323df824a8cb1dae9ac382116f906914f6"
+  },
+  "saved_baselines": {
+    "linear_svm": {
+      "metrics": {
+        "accuracy": 0.7818532818532818,
+        "class_order": [
+          "negative",
+          "neutral",
+          "positive"
+        ],
+        "confusion_matrix": [
+          [
+            43,
+            18,
+            8
+          ],
+          [
+            8,
+            262,
+            27
+          ],
+          [
+            3,
+            49,
+            100
+          ]
+        ],
+        "confusion_matrix_axes": "rows=gold, columns=predicted",
+        "macro_f1": 0.744370602081192,
+        "per_class": {
+          "negative": {
+            "f1": 0.6991869918699187,
+            "precision": 0.7962962962962963,
+            "recall": 0.6231884057971014,
+            "support": 69
+          },
+          "neutral": {
+            "f1": 0.8370607028753994,
+            "precision": 0.7963525835866262,
+            "recall": 0.8821548821548821,
+            "support": 297
+          },
+          "positive": {
+            "f1": 0.6968641114982579,
+            "precision": 0.7407407407407407,
+            "recall": 0.6578947368421053,
+            "support": 152
+          }
+        },
+        "samples": 518
+      },
+      "source_run_id": "0cef6943df2baa13a8234b568a7493c01b38b84abb1108df4e86de60b8f13a60"
+    },
+    "logistic_regression": {
+      "metrics": {
+        "accuracy": 0.777992277992278,
+        "class_order": [
+          "negative",
+          "neutral",
+          "positive"
+        ],
+        "confusion_matrix": [
+          [
+            45,
+            17,
+            7
+          ],
+          [
+            12,
+            254,
+            31
+          ],
+          [
+            3,
+            45,
+            104
+          ]
+        ],
+        "confusion_matrix_axes": "rows=gold, columns=predicted",
+        "macro_f1": 0.7446228893064618,
+        "per_class": {
+          "negative": {
+            "f1": 0.6976744186046512,
+            "precision": 0.75,
+            "recall": 0.6521739130434783,
+            "support": 69
+          },
+          "neutral": {
+            "f1": 0.8287112561174551,
+            "precision": 0.8037974683544303,
+            "recall": 0.8552188552188552,
+            "support": 297
+          },
+          "positive": {
+            "f1": 0.7074829931972789,
+            "precision": 0.7323943661971831,
+            "recall": 0.6842105263157895,
+            "support": 152
+          }
+        },
+        "samples": 518
+      },
+      "source_run_id": "3d4657830b1cfe58b5f86a167b4a9216a565ac971ca1f95e13ba67041a6071cf"
+    },
+    "training_majority": {
+      "metrics": {
+        "accuracy": 0.5733590733590733,
+        "class_order": [
+          "negative",
+          "neutral",
+          "positive"
+        ],
+        "confusion_matrix": [
+          [
+            0,
+            69,
+            0
+          ],
+          [
+            0,
+            297,
+            0
+          ],
+          [
+            0,
+            152,
+            0
+          ]
+        ],
+        "confusion_matrix_axes": "rows=gold, columns=predicted",
+        "macro_f1": 0.24294478527607363,
+        "per_class": {
+          "negative": {
+            "f1": 0.0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "support": 69
+          },
+          "neutral": {
+            "f1": 0.7288343558282209,
+            "precision": 0.5733590733590733,
+            "recall": 1.0,
+            "support": 297
+          },
+          "positive": {
+            "f1": 0.0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "support": 152
+          }
+        },
+        "samples": 518
+      },
+      "source_run_id": "0cef6943df2baa13a8234b568a7493c01b38b84abb1108df4e86de60b8f13a60"
+    },
+    "vader": {
+      "metrics": {
+        "accuracy": 0.555984555984556,
+        "class_order": [
+          "negative",
+          "neutral",
+          "positive"
+        ],
+        "confusion_matrix": [
+          [
+            16,
+            23,
+            30
+          ],
+          [
+            15,
+            157,
+            125
+          ],
+          [
+            4,
+            33,
+            115
+          ]
+        ],
+        "confusion_matrix_axes": "rows=gold, columns=predicted",
+        "macro_f1": 0.4894674262948587,
+        "per_class": {
+          "negative": {
+            "f1": 0.3076923076923077,
+            "precision": 0.45714285714285713,
+            "recall": 0.2318840579710145,
+            "support": 69
+          },
+          "neutral": {
+            "f1": 0.615686274509804,
+            "precision": 0.7370892018779343,
+            "recall": 0.5286195286195287,
+            "support": 297
+          },
+          "positive": {
+            "f1": 0.5450236966824644,
+            "precision": 0.42592592592592593,
+            "recall": 0.756578947368421,
+            "support": 152
+          }
+        },
+        "samples": 518
+      },
+      "source_run_id": "0cef6943df2baa13a8234b568a7493c01b38b84abb1108df4e86de60b8f13a60"
+    }
+  },
+  "schema_version": 1,
+  "scope": "Unchanged checkpoint inference on phrasebank; no project training; development validation only; no final test; one seed/configuration. Models differ in size and prior training. Raw-text pretraining exposure unknown. Financial RoBERTa supervised provenance incomplete. Financial DeBERTa appears PhraseBank-supervised. Probabilities uncalibrated.",
+  "selection": "none",
+  "training_cohort": null,
+  "training_membership_sha256": null,
+  "training_samples": 0,
+  "training_strategy": "unchanged_inference",
+  "transfer_validation": null,
+  "validation_membership_sha256": "515be8ccf4c59545e553d53aeea2451614c615c5b4534fc6aec19309ee3a4d97",
+  "validation_samples": 518,
+  "working_tree_dirty": false
+}
