@@ -92,3 +92,41 @@ Validation is used to select trained epochs and is not an unbiased test estimate
 Probabilities remain uncalibrated. Preserve the frozen test until final model
 selection. MLflow, calibration, grid search and final evaluation remain separate
 roadmap tasks.
+
+## Verified first results
+
+| Model | Validation accuracy | Macro F1 | Selected epoch |
+| --- | ---: | ---: | ---: |
+| Financial RoBERTa Large, unchanged | 0.7439 | 0.7333 | None |
+| Financial DeBERTa-v3 Small, unchanged | 0.7388 | 0.7414 | None |
+| RoBERTa Base, SEntFiN-trained | 0.8860 | 0.8849 | 4 |
+| DeBERTa-v3 Base, SEntFiN-trained | 0.8745 | 0.8738 | 5 |
+
+Both bases ran five epochs. RoBERTa training/validation/saving took 199.55s;
+DeBERTa took 393.30s. Peak training allocated memory was 2.40/3.53 GiB,
+respectively, fitting the RTX 4070 SUPER in FP32. Selected artifacts on Windows:
+
+| Model | Manifest SHA-256 / directory name |
+| --- | --- |
+| RoBERTa Base | `9a3e11b759fc223eb467e7393b73f002b01095a4eb261a5aee64288cf4d1ad59` |
+| DeBERTa-v3 Base | `a90155447ce3f0910bf0b9c8bf341a2c932c97f6e01e1250466ed1a351174cf3` |
+
+Use the directory name under `data/interim/transformer-finetuned-models/` and
+pass the same hash to `load_saved`. Choose the corresponding asset entry from
+`configs/transformer-assets.json` and load `FineTuneConfig` from the training
+configuration. Both saved models reproduce selected-epoch validation metrics.
+Weights remain on Windows; Mac has the manifests and private prediction/run logs.
+
+The [consolidated report](../reports/experiments/transformer-comparison.md)
+includes FinBERT and Phase 2 controls, model architectures, sizes and timing.
+All 275 tests and Ruff checks passed on both machines. Tiny-model tests cover
+actual updates and artifact reload for RoBERTa and DeBERTa; inference rejects
+untrained heads, label mappings are explicit, and reserved records are rejected.
+A narrow test filter accommodates the pinned upstream DeBERTa import's deprecated
+TorchScript API; it does not alter model execution or suppress runtime errors.
+
+All four models' predictions, metrics, membership and source/code hashes were
+independently verified. Source checkpoint and frozen-test hashes are unchanged.
+Later experiments truthfully record a dirty working tree from earlier untracked
+report outputs; recorded implementation/configuration/lockfile hashes match the
+Git commit. This task completes four experiments, not the full Phase 3 roadmap.

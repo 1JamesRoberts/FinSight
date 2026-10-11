@@ -483,6 +483,8 @@ model task was complete. The subsequent verified pretrained run is recorded belo
 - [x] Build batched inference for `ProsusAI/finbert` with class-probability output.
 - [x] Record evaluation overlap caveat with Financial PhraseBank.
 - [x] Decide whether to fine-tune a base financial-language model or adapt an existing sentiment checkpoint; document difference.
+- [x] Benchmark reviewed financial RoBERTa Large and DeBERTa-v3 Small unchanged on SEntFiN validation.
+- [x] Fine-tune RoBERTa Base and DeBERTa-v3 Base on the same SEntFiN development protocol; save and reload selected models.
 - [ ] Run controlled training experiments (learning rate, length, batch size); early stopping on validation only.
 - [ ] Track dataset version, seeds, model checkpoint, metrics, latency in MLflow.
 - [ ] Evaluate on independent frozen test set once final configuration is selected.
@@ -520,6 +522,28 @@ The broad training-experiments task remains open: this is one configuration,
 not the learning-rate/length/batch comparison. MLflow, calibration/error review
 and final test evaluation also remain open. Validation is used for selection
 and does not establish unbiased test performance. Phase 3 remains in progress.
+
+RoBERTa/DeBERTa comparison verified (2026-10-11): four exact-revision/checksum
+reviewed checkpoints, with licensing/provenance documented in `docs/datasets.md`.
+Unchanged financial RoBERTa Large scores validation accuracy/macro F1
+0.7439/0.7333; unchanged financial DeBERTa-v3 Small 0.7388/0.7414. General base
+models receive new sentiment heads and all-parameter SEntFiN fine-tuning with
+the same 6,299 training/781 validation records and fixed FinBERT configuration.
+RoBERTa Base selects epoch 4 (0.8860/0.8849, 124,647,939 parameters, 199.55s);
+DeBERTa-v3 Base selects epoch 5 (0.8745/0.8738, 184,424,451 parameters, 393.30s).
+Both five-epoch runs reload the saved best model and reproduce selected metrics.
+All four models' private predictions are independently verified against ordered
+validation IDs/labels, and metrics recomputed. Source checkpoints and frozen
+benchmark hashes are unchanged. Later runs record generated reports as working
+tree changes; implementation/config/lockfile hashes match their recorded commit.
+Mac and Windows Ruff and all 275 tests pass, including tiny-model training and
+reload for both architectures. Sources/derivatives remain ignored on Windows;
+Mac retains manifests and private prediction/run logs. Aggregate report:
+`reports/experiments/transformer-comparison.md`/JSON; reproduction/code guide:
+`docs/transformer-comparison.md`. Financial checkpoint sizes and prior training
+differ; incomplete upstream provenance prevents stronger independence claims.
+One configuration/seed per base does not complete the hyperparameter-comparison
+task. MLflow, calibration/error analysis and final evaluation remain open.
 
 **Deliverables:** Inference module, training pipeline, comparison report, versioned best model.
 

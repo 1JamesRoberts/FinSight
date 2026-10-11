@@ -16,7 +16,12 @@ validation run on the Windows GPU; see [results](reports/experiments/finbert-val
 and [run instructions](docs/finbert.md). The first SEntFiN FinBERT adaptation
 selects epoch 3 with validation macro F1 0.8762; see the
 [fine-tuning report](reports/experiments/finbert-finetuning.md) and
-[training/loading guide](docs/finbert-finetuning.md). Phase 3 remains in progress.
+[training/loading guide](docs/finbert-finetuning.md). Four RoBERTa/DeBERTa
+experiments now compare unchanged financial checkpoints with SEntFiN-trained
+base models; see the [transformer comparison](reports/experiments/transformer-comparison.md)
+and [reproduction guide](docs/transformer-comparison.md). RoBERTa Base has the
+highest observed validation macro F1 (0.8849) in this single-seed setup.
+Phase 3 remains in progress.
 News ingestion, stock prediction, API, and dashboard remain unimplemented.
 See [ROADMAP.md](ROADMAP.md)
 for the phase sequence and acceptance criteria.

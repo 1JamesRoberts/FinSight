@@ -27,3 +27,11 @@ is stored separately; the training report selects the best manifest. Safetensors
 configuration and tokenizer hashes are verified before local inference loading.
 No optimizer state is saved. See `docs/finbert-finetuning.md` for reproduction
 and loading; derivative weights retain the documented private research scope.
+
+Reviewed financial RoBERTa/DeBERTa and base checkpoint sources are cached on
+Windows under ignored `data/interim/transformer-checkpoint-cache/`. New base-model
+sentiment artifacts use `data/interim/transformer-finetuned-models/<manifest-sha256>/`.
+Every improved epoch is retained separately and the selected artifact appears
+in its per-model report. Source and saved-file checksums are verified before
+loading. Weights stay on Windows; Mac retains manifests and private predictions.
+See `docs/transformer-comparison.md` for model identity, training scope and loading.
