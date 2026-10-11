@@ -1,5 +1,6 @@
 """Check metrics, development cohorts, and validation-only experiment logging."""
 
+import hashlib
 import json
 from pathlib import Path
 
@@ -126,6 +127,12 @@ def test_validation_command_uses_training_majority_and_logs_no_text(
     main()
     run_path = next((tmp_path / "data/interim/vader-validation").glob("*/run.json"))
     run = json.loads(run_path.read_text())
+    assert hashlib.sha256(run_path.read_bytes()).hexdigest() == run_path.parent.name
+    assert report.with_suffix(".json").read_bytes() == run_path.read_bytes()
+    assert (
+        hashlib.sha256(run_path.with_name("predictions.jsonl").read_bytes()).hexdigest()
+        == run["predictions_sha256"]
+    )
     assert run["final_test_evaluated"] is False
     assert run["thresholds_tuned"] is False
     assert all(r["majority_label"] == "negative" for r in run["metrics"].values())

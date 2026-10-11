@@ -175,11 +175,12 @@ def run_validation(
     run_id = hashlib.sha256(run_body.encode()).hexdigest()
     directory = data_dir / "interim/vader-validation" / run_id
     directory.mkdir(parents=True, exist_ok=True)
-    (directory / "run.json").write_text(run_body, encoding="utf-8")
-    (directory / "predictions.jsonl").write_text(body, encoding="utf-8")
+    # Persist the exact hashed UTF-8 bytes, including LF on Windows.
+    (directory / "run.json").write_bytes(run_body.encode("utf-8"))
+    (directory / "predictions.jsonl").write_bytes(body.encode("utf-8"))
     report_path.parent.mkdir(parents=True, exist_ok=True)
     report_path.write_text(render_validation_report(run, run_id), encoding="utf-8")
-    report_path.with_suffix(".json").write_text(run_body, encoding="utf-8")
+    report_path.with_suffix(".json").write_bytes(run_body.encode("utf-8"))
     return run
 
 
