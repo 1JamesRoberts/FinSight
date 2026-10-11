@@ -53,6 +53,33 @@ validation reports. No new assets or dependencies are acquired. Vocabularies,
 coefficients, and per-record outputs remain ignored; public weights/text rights
 remain unresolved. Reserved evaluation groups remain withheld.
 
+## GPU preparation asset review (2026-10-11)
+
+The existing approved PhraseBank, SEntFiN, and FiQA copies may be transferred
+to the user's own Windows research computer under the same documented local
+noncommercial scope. Transfer preserves source bytes, notices, acquisition
+receipt, parent split, and frozen benchmark; it does not authorize publication.
+
+Optional runtime libraries are pinned to `torch==2.11.0` and
+`transformers==4.57.6`. PyTorch's [BSD-style license](https://github.com/pytorch/pytorch/blob/v2.11.0/LICENSE)
+and Transformers' [Apache-2.0 license](https://github.com/huggingface/transformers/blob/v4.57.6/LICENSE)
+support local installation and research use; installed third-party notices
+remain intact. Windows uses the official
+[CUDA 12.8 wheel index](https://pytorch.org/get-started/previous-versions/#v2110).
+The CUDA binaries retain their included vendor terms; no binary redistribution
+is part of this task.
+
+Rechecked the [FinBERT API metadata](https://huggingface.co/api/models/ProsusAI/finbert)
+and [pinned model card](https://huggingface.co/ProsusAI/finbert/blob/4556d13015211d73dccd3fdd39d39232506f3e43/README.md).
+The revision remains `4556d13015211d73dccd3fdd39d39232506f3e43`.
+Its card has no license field, and its repository tree has no LICENSE file.
+The README SHA-256 still matches the existing asset record
+(`23bf85400efe1e88cbe2bf79cec8c5ff81fe9806c599f3ca85e18288ab871008`).
+The separate source-code Apache license does not establish hosted-weight scope.
+Weight acquisition therefore remains `pending_explicit_license_scope`;
+no checkpoint weights were downloaded. CUDA preparation uses synthetic tensors
+and library imports only. PhraseBank remains known FinBERT supervision overlap.
+
 ## Asset record template
 
 - Name, asset type, canonical source, owner/provider:
