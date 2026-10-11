@@ -391,6 +391,18 @@ preprocessing, development metrics, and unit-test checkboxes are now complete.
 Broader tuning and qualitative error analysis remain open; no frozen-test scores,
 uncertainty/calibration study, or future phase is introduced. Hosted CI is unverified.
 
+**Model-profile reporting verification (2026-10-11):** All five TF-IDF aggregate
+report pairs now include architecture, fitted feature dimension, coefficient and
+intercept shapes, stored classifier parameter counts, separate IDF state, numeric
+array bytes, and exact serialized pipeline bytes/KiB. Eight original checked
+artifacts were inspected without retraining or prediction. Existing run IDs,
+metrics/configuration/provenance, model files, and ignored run.json files remain
+unchanged; profile extraction provenance is recorded separately. Future validation
+runs include profiles automatically, and a repeatable report enrichment command
+is documented. Sizes explicitly distinguish stored classifier parameters, fitted
+preprocessing state, file size, and runtime memory. All 219 tests, Ruff checks,
+and package builds pass; no additional roadmap task or future phase is completed.
+
 ## Phase 3 — Financial transformer experiments
 
 **Goal:** Reproducible transformer benchmarking and meaningful fine-tuning.

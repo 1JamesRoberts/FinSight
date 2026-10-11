@@ -147,3 +147,14 @@ corpus models separately. See [class-weight comparison and input flow](phraseban
 for the reproducible commands, training-only weights, and results. Balanced
 PhraseBank validation macro F1 is 0.7378, versus 0.6696 unweighted; this bounded
 comparison does not complete broader hyperparameter tuning or final evaluation.
+
+## Architecture and size measurements
+
+Each report now describes the TF-IDF -> multinomial Logistic Regression pipeline,
+feature count, three output classes, coefficient/intercept shapes, stored
+classifier parameters, separate IDF values, numeric-array storage, and serialized
+artifact bytes/KiB. Existing metrics/models are preserved; profiles were added
+from the original checked artifacts with separately logged extraction provenance.
+Future validation runs include profiles automatically. See the
+[measurement definitions and refresh command](tfidf-svm.md#architecture-and-artifact-size-in-reports).
+File/array sizes are not measurements of runtime RAM or model accuracy.

@@ -34,6 +34,25 @@ Vocabulary: 12351 features. Training: 0.179 seconds. Mean inference: 0.211 ms/te
 Local model ID: `882e7dd7c8dd8be4b8f42636c542b02b5f7aab9103dbb3284aecc3b85184969a`.
 Artifact SHA-256: `2ba90cf1134570a8b8ebacd43c16779b09a7636fab6d7c63659252d0168eb18f`.
 
+### Model architecture and size
+
+Pipeline: **TF-IDF word unigrams/bigrams -> LogisticRegression**; multiclass strategy: **multinomial**.
+
+| Property | Value |
+| --- | ---: |
+| Input TF-IDF features | 12,351 |
+| Output classes | 3 |
+| Coefficient matrix | [3, 12351] |
+| Intercepts | 3 |
+| Stored classifier parameters | 37,056 |
+| Fitted IDF values (separate preprocessing state) | 12,351 |
+| Coefficient + intercept array bytes | 296,448 |
+| IDF array bytes | 98,808 |
+| Serialized pipeline bytes | 786,565 |
+| Serialized pipeline KiB (1 KiB = 1,024 bytes) | 768.13 |
+
+Classifier parameters count stored coefficients plus intercepts; IDF values are separate fitted preprocessing state. Numeric bytes cover these arrays only. Artifact bytes cover the entire serialized pipeline, including vocabulary/metadata/serialization overhead; neither is runtime RAM.
+
 Run ID: `548f163366d5c4936d2592ffcc92fc28c239aaf0442b5ada057517ff86af9254`.
 Parent split: `a9a67c231903bc2e3e71afead1d6daaf6b7201211fc25a05efd2bb2ee2d5e898`.
 Code revision: `cbf89346aeb9ba52b5ac7190e59dcc97b88ecc6c`; dirty: `True`.
@@ -45,3 +64,9 @@ These are development results, with separate corpus-specific training; they
 do not measure cross-corpus transfer, target-aware sentiment, calibration,
 or frozen-test generalization. Latency is descriptive on one local machine.
 See `docs/tfidf-logreg.md` for usage, preprocessing, and limitations.
+
+Model profiles were added later from the original checksummed fitted
+artifacts, without retraining or evaluation. Run ID/code/metrics above
+refer to the original experiment; its ignored run.json remains unchanged.
+Profile extraction code revision: `e976685c3615859e0f92e89f40d56b5485cbaa6b`; dirty: `True`.
+Profile/report implementation hashes are logged separately in JSON.

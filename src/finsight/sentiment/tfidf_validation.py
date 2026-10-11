@@ -12,6 +12,7 @@ from time import perf_counter
 from typing import Any
 
 from finsight.data.benchmark import load_development_records
+from finsight.sentiment.model_profile import profile_linear_pipeline
 from finsight.sentiment.svm import TfidfSVM
 from finsight.sentiment.tfidf import TfidfConfig, TfidfSentiment
 from finsight.sentiment.vader import VaderConfig, VaderSentiment
@@ -65,6 +66,7 @@ def run_tfidf_validation(
             "vader.py",
             "svm.py",
             "__main__.py",
+            "model_profile.py",
         )
     }
     metrics: dict[str, Any] = {}
@@ -155,6 +157,9 @@ def run_tfidf_validation(
             "model_id": model_id,
             "artifact_relative_path": str(artifact.relative_to(data_dir)),
             "artifact_sha256": artifact_digest,
+            "model_profile": profile_linear_pipeline(
+                model.pipeline, artifact, artifact_digest
+            ),
             "training_membership_sha256": training_digest,
         }
     revision = subprocess.run(
@@ -268,6 +273,34 @@ def render_report(run: dict[str, Any], run_id: str) -> str:
             f"Local model ID: `{result['model_id']}`.",
             f"Artifact SHA-256: `{result['artifact_sha256']}`.",
         ]
+        if "model_profile" in result:
+            profile = result["model_profile"]
+            lines += [
+                "",
+                "### Model architecture and size",
+                "",
+                f"Pipeline: **{profile['pipeline']}**; "
+                f"multiclass strategy: **{profile['multiclass_strategy']}**.",
+                "",
+                "| Property | Value |",
+                "| --- | ---: |",
+                f"| Input TF-IDF features | {profile['input_features']:,} |",
+                f"| Output classes | {len(profile['output_classes'])} |",
+                f"| Coefficient matrix | {profile['coefficient_shape']} |",
+                f"| Intercepts | {profile['intercept_values']:,} |",
+                "| Stored classifier parameters | "
+                f"{profile['classifier_parameters']:,} |",
+                "| Fitted IDF values (separate preprocessing state) | "
+                f"{profile['tfidf_idf_values']:,} |",
+                "| Coefficient + intercept array bytes | "
+                f"{profile['classifier_array_bytes']:,} |",
+                f"| IDF array bytes | {profile['idf_array_bytes']:,} |",
+                f"| Serialized pipeline bytes | {profile['artifact_bytes']:,} |",
+                "| Serialized pipeline KiB (1 KiB = 1,024 bytes) | "
+                f"{profile['artifact_kib']:.2f} |",
+                "",
+                profile["size_definition"],
+            ]
     lines += [
         "",
         f"Run ID: `{run_id}`.",
@@ -283,4 +316,15 @@ def render_report(run: dict[str, Any], run_id: str) -> str:
         "or frozen-test generalization. Latency is descriptive on one local machine.",
         f"See `{guide}` for usage, preprocessing, and limitations.",
     ]
+    if "report_enrichment" in run:
+        enrichment = run["report_enrichment"]
+        lines += [
+            "",
+            "Model profiles were added later from the original checksummed fitted",
+            "artifacts, without retraining or evaluation. Run ID/code/metrics above",
+            "refer to the original experiment; its ignored run.json remains unchanged.",
+            f"Profile extraction code revision: `{enrichment['code_revision']}`; "
+            f"dirty: `{enrichment['working_tree_dirty']}`.",
+            "Profile/report implementation hashes are logged separately in JSON.",
+        ]
     return "\n".join(lines) + "\n"

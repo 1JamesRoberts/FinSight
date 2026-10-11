@@ -155,6 +155,38 @@
         "vocabulary_size": 12351
       },
       "model_id": "882e7dd7c8dd8be4b8f42636c542b02b5f7aab9103dbb3284aecc3b85184969a",
+      "model_profile": {
+        "artifact_bytes": 786565,
+        "artifact_kib": 768.1298828125,
+        "classifier": "LogisticRegression",
+        "classifier_array_bytes": 296448,
+        "classifier_parameters": 37056,
+        "coefficient_dtype": "float64",
+        "coefficient_shape": [
+          3,
+          12351
+        ],
+        "coefficient_values": 37053,
+        "idf_array_bytes": 98808,
+        "idf_dtype": "float64",
+        "input_features": 12351,
+        "intercept_shape": [
+          3
+        ],
+        "intercept_values": 3,
+        "multiclass_strategy": "multinomial",
+        "numeric_array_bytes": 395256,
+        "output_classes": [
+          "negative",
+          "neutral",
+          "positive"
+        ],
+        "output_kind": "probabilities",
+        "pipeline": "TF-IDF word unigrams/bigrams -> LogisticRegression",
+        "schema_version": 1,
+        "size_definition": "Classifier parameters count stored coefficients plus intercepts; IDF values are separate fitted preprocessing state. Numeric bytes cover these arrays only. Artifact bytes cover the entire serialized pipeline, including vocabulary/metadata/serialization overhead; neither is runtime RAM.",
+        "tfidf_idf_values": 12351
+      },
       "training_class_counts": {
         "negative": 468,
         "neutral": 2257,
@@ -264,6 +296,16 @@
   },
   "parent_split_manifest_sha256": "a9a67c231903bc2e3e71afead1d6daaf6b7201211fc25a05efd2bb2ee2d5e898",
   "predictions_sha256": "c8736d0201537eee42c9e31e51f05ee4fb5d134cdf9920922adc3e5042c631b5",
+  "report_enrichment": {
+    "code_revision": "e976685c3615859e0f92e89f40d56b5485cbaa6b",
+    "implementation_sha256": {
+      "model_profile.py": "fbfad971d2af31c6f13a6f1999c040311451210e48ee686178bfdf372ba0c9f0",
+      "tfidf_validation.py": "39f43937dcb18cde60a9abda773f13200dc9b9d0a0076c9176eb9c1be08ac9db"
+    },
+    "original_run_id": "548f163366d5c4936d2592ffcc92fc28c239aaf0442b5ada057517ff86af9254",
+    "scope": "read original fitted artifacts only; no fitting or prediction",
+    "working_tree_dirty": true
+  },
   "schema_version": 1,
   "scope": "Training-only fits; validation-only scores for phrasebank",
   "seed": 42,

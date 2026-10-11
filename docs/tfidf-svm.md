@@ -151,3 +151,30 @@ balanced coefficients, seeded repeatability, local artifact round trips, wrong
 model/checksum rejection, invalid inputs, convergence handling, both weighted
 cohorts, holdout rejection, and output privacy. Remaining Phase 2 work is bounded
 development-only tuning and qualitative error analysis; no future phase starts.
+
+## Architecture and artifact size in reports
+
+Reports now include the actual fitted feature dimension, three output classes,
+coefficient/intercept shapes, stored classifier parameter count, fitted IDF count,
+numeric array bytes, and exact serialized pipeline bytes/KiB. PhraseBank uses
+12,351 features and a 3 x 12,351 coefficient matrix plus three intercepts
+(37,056 stored classifier parameters). SEntFiN uses 10,475 features and
+31,428 stored classifier parameters. Weighting changes fitted coefficients and
+class penalties, not feature or parameter counts.
+
+Classifier parameter counts exclude IDF values and vocabulary metadata. Numeric
+array storage excludes Python object overhead; serialized pipeline size includes
+vocabulary and serialization overhead. Neither measures runtime RAM. The profile
+does not publish vocabulary strings or coefficients.
+
+New validation runs include profiles automatically. Existing reports were enriched
+from their original checksummed local artifacts, without retraining or prediction.
+Original run IDs, code provenance, metrics, artifact hashes, and ignored run.json
+files stay intact; aggregate JSON separately records profile extraction provenance.
+To refresh an existing report from its local fitted artifacts:
+
+```sh
+uv run --locked python -m finsight.sentiment.model_profile \
+  reports/experiments/tfidf-svm-validation.md \
+  reports/experiments/tfidf-svm-balanced-validation.md
+```

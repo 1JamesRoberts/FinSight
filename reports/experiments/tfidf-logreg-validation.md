@@ -3,6 +3,7 @@
 Separate train-only models; PhraseBank and single-target SEntFiN
 
 One fixed configuration; no tuning or final-test scoring.
+Class weighting: `None`.
 Separate models fitted on each cohort's training texts/labels only.
 Vocabulary and IDF use training only. VADER scores the same validation rows.
 
@@ -36,6 +37,25 @@ Vocabulary: 12351 features. Training: 0.193 seconds. Mean inference: 0.213 ms/te
 Local model ID: `f054699006ee7d057660f753ec05ac885857d8f23888ca9241074c656c7d1524`.
 Artifact SHA-256: `915ee85fc53dd054d2686b1fda530d58b067c156f9165672210a1fea76aee4cd`.
 
+### Model architecture and size
+
+Pipeline: **TF-IDF word unigrams/bigrams -> LogisticRegression**; multiclass strategy: **multinomial**.
+
+| Property | Value |
+| --- | ---: |
+| Input TF-IDF features | 12,351 |
+| Output classes | 3 |
+| Coefficient matrix | [3, 12351] |
+| Intercepts | 3 |
+| Stored classifier parameters | 37,056 |
+| Fitted IDF values (separate preprocessing state) | 12,351 |
+| Coefficient + intercept array bytes | 296,448 |
+| IDF array bytes | 98,808 |
+| Serialized pipeline bytes | 786,562 |
+| Serialized pipeline KiB (1 KiB = 1,024 bytes) | 768.13 |
+
+Classifier parameters count stored coefficients plus intercepts; IDF values are separate fitted preprocessing state. Numeric bytes cover these arrays only. Artifact bytes cover the entire serialized pipeline, including vocabulary/metadata/serialization overhead; neither is runtime RAM.
+
 ## sentfin_single_target
 
 | Class | Support | Precision | Recall | F1 |
@@ -57,6 +77,25 @@ Vocabulary: 10475 features. Training: 0.201 seconds. Mean inference: 0.272 ms/te
 Local model ID: `a362604910e91d138cbc592a5fe7a35f87167e8c812c83abe705e78d8cad8b9a`.
 Artifact SHA-256: `d8330bcac15918283552ea6d306e238d6836a91cb2ced202431971146d8e3e0c`.
 
+### Model architecture and size
+
+Pipeline: **TF-IDF word unigrams/bigrams -> LogisticRegression**; multiclass strategy: **multinomial**.
+
+| Property | Value |
+| --- | ---: |
+| Input TF-IDF features | 10,475 |
+| Output classes | 3 |
+| Coefficient matrix | [3, 10475] |
+| Intercepts | 3 |
+| Stored classifier parameters | 31,428 |
+| Fitted IDF values (separate preprocessing state) | 10,475 |
+| Coefficient + intercept array bytes | 251,424 |
+| IDF array bytes | 83,800 |
+| Serialized pipeline bytes | 657,070 |
+| Serialized pipeline KiB (1 KiB = 1,024 bytes) | 641.67 |
+
+Classifier parameters count stored coefficients plus intercepts; IDF values are separate fitted preprocessing state. Numeric bytes cover these arrays only. Artifact bytes cover the entire serialized pipeline, including vocabulary/metadata/serialization overhead; neither is runtime RAM.
+
 Run ID: `eff5d714ba9f99753db260e8a1c656fe277c34810956fe1fd6e3b7a5decf8566`.
 Parent split: `a9a67c231903bc2e3e71afead1d6daaf6b7201211fc25a05efd2bb2ee2d5e898`.
 Code revision: `414bf5ef5b50802a3d0753beebdadb53910795e0`; dirty: `True`.
@@ -68,3 +107,9 @@ These are development results, with separate corpus-specific training; they
 do not measure cross-corpus transfer, target-aware sentiment, calibration,
 or frozen-test generalization. Latency is descriptive on one local machine.
 See `docs/tfidf-logreg.md` for usage, preprocessing, and limitations.
+
+Model profiles were added later from the original checksummed fitted
+artifacts, without retraining or evaluation. Run ID/code/metrics above
+refer to the original experiment; its ignored run.json remains unchanged.
+Profile extraction code revision: `e976685c3615859e0f92e89f40d56b5485cbaa6b`; dirty: `True`.
+Profile/report implementation hashes are logged separately in JSON.

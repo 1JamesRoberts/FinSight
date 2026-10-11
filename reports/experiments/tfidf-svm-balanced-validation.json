@@ -152,6 +152,38 @@
         "vocabulary_size": 12351
       },
       "model_id": "bf45ecd5b58d105064118eeb0098b231c47064e328b3bc4506e9db83f6ccab7a",
+      "model_profile": {
+        "artifact_bytes": 786432,
+        "artifact_kib": 768.0,
+        "classifier": "LinearSVC",
+        "classifier_array_bytes": 296448,
+        "classifier_parameters": 37056,
+        "coefficient_dtype": "float64",
+        "coefficient_shape": [
+          3,
+          12351
+        ],
+        "coefficient_values": 37053,
+        "idf_array_bytes": 98808,
+        "idf_dtype": "float64",
+        "input_features": 12351,
+        "intercept_shape": [
+          3
+        ],
+        "intercept_values": 3,
+        "multiclass_strategy": "one-versus-rest",
+        "numeric_array_bytes": 395256,
+        "output_classes": [
+          "negative",
+          "neutral",
+          "positive"
+        ],
+        "output_kind": "decision_scores",
+        "pipeline": "TF-IDF word unigrams/bigrams -> LinearSVC",
+        "schema_version": 1,
+        "size_definition": "Classifier parameters count stored coefficients plus intercepts; IDF values are separate fitted preprocessing state. Numeric bytes cover these arrays only. Artifact bytes cover the entire serialized pipeline, including vocabulary/metadata/serialization overhead; neither is runtime RAM.",
+        "tfidf_idf_values": 12351
+      },
       "training_class_counts": {
         "negative": 468,
         "neutral": 2257,
@@ -381,6 +413,38 @@
         "vocabulary_size": 10475
       },
       "model_id": "726fb3a650f2768d55d509d43d12548ef61383e221fbc783697e0408dd6e134b",
+      "model_profile": {
+        "artifact_bytes": 656940,
+        "artifact_kib": 641.54296875,
+        "classifier": "LinearSVC",
+        "classifier_array_bytes": 251424,
+        "classifier_parameters": 31428,
+        "coefficient_dtype": "float64",
+        "coefficient_shape": [
+          3,
+          10475
+        ],
+        "coefficient_values": 31425,
+        "idf_array_bytes": 83800,
+        "idf_dtype": "float64",
+        "input_features": 10475,
+        "intercept_shape": [
+          3
+        ],
+        "intercept_values": 3,
+        "multiclass_strategy": "one-versus-rest",
+        "numeric_array_bytes": 335224,
+        "output_classes": [
+          "negative",
+          "neutral",
+          "positive"
+        ],
+        "output_kind": "decision_scores",
+        "pipeline": "TF-IDF word unigrams/bigrams -> LinearSVC",
+        "schema_version": 1,
+        "size_definition": "Classifier parameters count stored coefficients plus intercepts; IDF values are separate fitted preprocessing state. Numeric bytes cover these arrays only. Artifact bytes cover the entire serialized pipeline, including vocabulary/metadata/serialization overhead; neither is runtime RAM.",
+        "tfidf_idf_values": 10475
+      },
       "training_class_counts": {
         "negative": 1902,
         "neutral": 2142,
@@ -491,6 +555,16 @@
   "model_kind": "linear_svm",
   "parent_split_manifest_sha256": "a9a67c231903bc2e3e71afead1d6daaf6b7201211fc25a05efd2bb2ee2d5e898",
   "predictions_sha256": "41c1f23ea1439361955f94504902430a65e60ca574e52a371e5ed3bef27a8359",
+  "report_enrichment": {
+    "code_revision": "e976685c3615859e0f92e89f40d56b5485cbaa6b",
+    "implementation_sha256": {
+      "model_profile.py": "fbfad971d2af31c6f13a6f1999c040311451210e48ee686178bfdf372ba0c9f0",
+      "tfidf_validation.py": "39f43937dcb18cde60a9abda773f13200dc9b9d0a0076c9176eb9c1be08ac9db"
+    },
+    "original_run_id": "3fca6dfa1eb732f965ecf74c1e7f67bf8151e53b9846e702e96d28548b3de502",
+    "scope": "read original fitted artifacts only; no fitting or prediction",
+    "working_tree_dirty": true
+  },
   "schema_version": 1,
   "scope": "Training-only fits; validation-only scores for phrasebank, sentfin_single_target",
   "seed": 42,

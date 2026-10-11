@@ -37,6 +37,25 @@ Vocabulary: 12351 features. Training: 0.114 seconds. Mean inference: 0.168 ms/te
 Local model ID: `09332f51cab46ab785a08b3bbea3711f95f47b6a852b54a79b7c4951c5ec35b0`.
 Artifact SHA-256: `311792c250408f0197b6d9206a5391e34a949f0d426554cf925bd2e4e510466a`.
 
+### Model architecture and size
+
+Pipeline: **TF-IDF word unigrams/bigrams -> LinearSVC**; multiclass strategy: **one-versus-rest**.
+
+| Property | Value |
+| --- | ---: |
+| Input TF-IDF features | 12,351 |
+| Output classes | 3 |
+| Coefficient matrix | [3, 12351] |
+| Intercepts | 3 |
+| Stored classifier parameters | 37,056 |
+| Fitted IDF values (separate preprocessing state) | 12,351 |
+| Coefficient + intercept array bytes | 296,448 |
+| IDF array bytes | 98,808 |
+| Serialized pipeline bytes | 786,421 |
+| Serialized pipeline KiB (1 KiB = 1,024 bytes) | 767.99 |
+
+Classifier parameters count stored coefficients plus intercepts; IDF values are separate fitted preprocessing state. Numeric bytes cover these arrays only. Artifact bytes cover the entire serialized pipeline, including vocabulary/metadata/serialization overhead; neither is runtime RAM.
+
 ## sentfin_single_target
 
 | Class | Support | Precision | Recall | F1 |
@@ -58,6 +77,25 @@ Vocabulary: 10475 features. Training: 0.098 seconds. Mean inference: 0.157 ms/te
 Local model ID: `3ff048f7884a9f3b856f4fe65384092a85b7d2afa34b9d0165faec557c76953b`.
 Artifact SHA-256: `65cb6920b65654f38a8f9f7c31b6c735387689a0da00a1b67a3f533091bcf479`.
 
+### Model architecture and size
+
+Pipeline: **TF-IDF word unigrams/bigrams -> LinearSVC**; multiclass strategy: **one-versus-rest**.
+
+| Property | Value |
+| --- | ---: |
+| Input TF-IDF features | 10,475 |
+| Output classes | 3 |
+| Coefficient matrix | [3, 10475] |
+| Intercepts | 3 |
+| Stored classifier parameters | 31,428 |
+| Fitted IDF values (separate preprocessing state) | 10,475 |
+| Coefficient + intercept array bytes | 251,424 |
+| IDF array bytes | 83,800 |
+| Serialized pipeline bytes | 656,929 |
+| Serialized pipeline KiB (1 KiB = 1,024 bytes) | 641.53 |
+
+Classifier parameters count stored coefficients plus intercepts; IDF values are separate fitted preprocessing state. Numeric bytes cover these arrays only. Artifact bytes cover the entire serialized pipeline, including vocabulary/metadata/serialization overhead; neither is runtime RAM.
+
 Run ID: `65fc0ef55bb4ab4074c6e923fa8435a44ec9428fdede1153aa9759de35a91323`.
 Parent split: `a9a67c231903bc2e3e71afead1d6daaf6b7201211fc25a05efd2bb2ee2d5e898`.
 Code revision: `dc8c839cfdcb69f0de62896b98b3e812929e1eab`; dirty: `True`.
@@ -69,3 +107,9 @@ These are development results, with separate corpus-specific training; they
 do not measure cross-corpus transfer, target-aware sentiment, calibration,
 or frozen-test generalization. Latency is descriptive on one local machine.
 See `docs/tfidf-svm.md` for usage, preprocessing, and limitations.
+
+Model profiles were added later from the original checksummed fitted
+artifacts, without retraining or evaluation. Run ID/code/metrics above
+refer to the original experiment; its ignored run.json remains unchanged.
+Profile extraction code revision: `e976685c3615859e0f92e89f40d56b5485cbaa6b`; dirty: `True`.
+Profile/report implementation hashes are logged separately in JSON.
