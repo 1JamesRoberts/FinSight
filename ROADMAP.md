@@ -561,6 +561,13 @@ frozen benchmark pass verification. Mac and Windows Ruff and all 280 tests pass.
 See `reports/experiments/transformer-followup.md`/JSON and
 `docs/transformer-followup.md`. Phase 3 remains in progress.
 
+Consolidated cohort report (2026-10-11):
+`reports/experiments/all-models-by-cohort.md` collects 29 recorded comparison
+rows for PhraseBank/SEntFiN validation, all 24 traditional grid fits, per-class
+F1, architecture/size and explicit transfer/coverage caveats. Aggregate confusion
+matrices reproduce accuracy/macro F1; validation membership and split identities
+match existing runs. No new training/inference or final-test scoring.
+
 **Deliverables:** Inference module, training pipeline, comparison report, versioned best model.
 
 **Acceptance criteria:** Reproducible runs and credible, clearly qualified external evaluation.

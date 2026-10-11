@@ -25,6 +25,9 @@ Financial checkpoints have also been adapted on SEntFiN, and both original base
 models trained separately on PhraseBank; see the
 [follow-up results](reports/experiments/transformer-followup.md) and
 [training guide](docs/transformer-followup.md). Phase 3 remains in progress.
+The [all-model cohort report](reports/experiments/all-models-by-cohort.md) brings
+together traditional and transformer variants, class metrics, architecture/size,
+transfer results and missing evaluation coverage.
 News ingestion, stock prediction, API, and dashboard remain unimplemented.
 See [ROADMAP.md](ROADMAP.md)
 for the phase sequence and acceptance criteria.
