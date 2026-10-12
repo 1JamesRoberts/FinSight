@@ -492,7 +492,7 @@ model task was complete. The subsequent verified pretrained run is recorded belo
 - [ ] Run controlled training experiments (learning rate, length, batch size); early stopping on validation only.
 - [ ] Track dataset version, seeds, model checkpoint, metrics, latency in MLflow.
 - [ ] Evaluate on independent frozen test set once final configuration is selected.
-- [ ] Analyze calibration, negation, financial jargon, ambiguity, and class-specific failures.
+- [x] Analyze calibration, negation, financial jargon, ambiguity, and class-specific failures (selected-rate RoBERTa Base/FinBERT validation scope; other model/cohort coverage deferred).
 
 Pretrained validation verified (2026-10-11): pinned revision
 `4556d13015211d73dccd3fdd39d39232506f3e43` acquired under the documented user
@@ -596,6 +596,22 @@ calibration/error review and final evaluation also remain open.
 **Deliverables:** Inference module, training pipeline, comparison report, versioned best model.
 
 **Acceptance criteria:** Reproducible runs and credible, clearly qualified external evaluation.
+
+Calibration/error-review verification (2026-10-12): six selected-rate runs
+(seeds 42/43/44) were checked against their private predictions and the same 781
+SEntFiN validation records. Top-label reliability/ECE (10 bins; 5/15 sensitivity),
+unnormalized multiclass Brier, log loss, training-prior control, class failures
+and seed persistence are recorded in `reports/experiments/transformer-analysis.md`
+and JSON. A reviewed reliability/count figure and 39 checksum-pinned private
+qualitative reviews cover financial context, mixed cues, neutral boundaries,
+event interpretation, negation/reversal and numeric comparison. Eighteen cases
+have suspected ambiguity, not adjudicated label errors. Labels/probabilities
+remain unchanged; no retraining, ensemble or test scoring. The analysis task is
+complete for these two candidates; other cohorts/models are outside scope.
+Mac verification: Ruff lint/format and all 304 tests pass. Independent NLL/Brier
+cross-checks, aggregate privacy checks and frozen-test byte hashing pass;
+the reliability/count figure was visually reviewed. Phase 3 stays open for
+final selection/test evaluation, MLflow and the broader length/batch study.
 
 ## Phase 4 — Company-targeted sentiment
 

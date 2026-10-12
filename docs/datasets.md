@@ -250,3 +250,12 @@ hosted-weight scope). No new datasets/models, pooled training, PhraseBank tuning
 or test scoring. Selection uses the existing 6,299/781 single-target development
 split. Derivative weights and per-record predictions remain private; only
 aggregate configurations, metrics and lineage enter Git.
+
+Transformer analysis review (2026-10-12): reuse the previously reviewed private
+SEntFiN development headlines and six saved selected-rate RoBERTa/FinBERT runs
+for probability diagnostics and exploratory qualitative review. No acquisition,
+training, probability adjustment, relabeling or reserved-test access. Existing
+local-research terms and FinBERT weight-scope limitation remain unchanged.
+Keep source headlines, targets, IDs, predictions and reviewer notes ignored;
+publish numeric aggregates, protocol, hashes and plots only. Suspected ambiguity
+is not corrected annotation or redistribution clearance.

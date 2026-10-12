@@ -73,3 +73,5 @@ build/
 !/reports/experiments/transformer-tuning.json
 !/reports/figures/phase3/
 !/reports/figures/phase3/learning-rate-seeds.png
+!/reports/experiments/transformer-analysis.json
+!/reports/figures/phase3/calibration.png

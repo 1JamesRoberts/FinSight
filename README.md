@@ -31,6 +31,10 @@ transfer results and missing evaluation coverage.
 A [controlled learning-rate/seed study](reports/experiments/transformer-tuning.md)
 now reports RoBERTa Base macro F1 0.8760 ± 0.0082 and FinBERT 0.8748 ± 0.0023
 across three seeds at their selected rates; no superiority claim or test scoring.
+A [calibration/error review](reports/experiments/transformer-analysis.md) now
+analyzes all six selected-rate runs, with reliability plots, recurring errors and
+39 private qualitative reviews; both models remain overconfident on validation.
+See the [reproduction guide](docs/transformer-analysis.md).
 News ingestion, stock prediction, API, and dashboard remain unimplemented.
 See [ROADMAP.md](ROADMAP.md)
 for the phase sequence and acceptance criteria.
