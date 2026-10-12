@@ -312,3 +312,17 @@ Ruff and all 282 tests pass on both machines.
 This completes the consolidated cohort report. Phase 3 hyperparameter
 comparisons, MLflow, calibration/error analysis and final evaluation remain open.
 No roadmap phase is closed by this report.
+
+## DeBERTa Base rate/seed extension
+
+SEntFiN-only validation extension; five fresh runs, selected rate at seed 42, then seeds 43/44. Historical single-configuration and earlier two-model study rows remain intact. See [DeBERTa study](deberta-tuning.md) and [calibration/error review](deberta-analysis.md).
+
+| Rate | Seed | Selected epoch | Accuracy | Macro F1 |
+|---|---:|---:|---:|---:|
+| 1e-05 | 42 | 2 | 0.8835 | 0.8826 |
+| 2e-05 | 42 | 5 | 0.8745 | 0.8738 |
+| 3e-05 | 42 | 4 | 0.8835 | 0.8824 |
+| 1e-05 | 43 | 4 | 0.8771 | 0.8760 |
+| 1e-05 | 44 | 5 | 0.8848 | 0.8844 |
+
+Selected LR 1e-05; accuracy 0.8818 ± 0.0041, macro F1 0.8810 ± 0.0044 (sample SD, three separate seeds). Seed 42 participates in selection; no superiority claim, ensemble or test score.

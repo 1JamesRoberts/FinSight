@@ -19,7 +19,9 @@ def main() -> None:
     )
     args = parser.parse_args()
     summary = json.loads(args.report.read_bytes())
-    models = tuple(summary["models"])
+    models = tuple(
+        m for m in ("roberta_base", "finbert", "deberta_base") if m in summary["models"]
+    )
     names = {
         "roberta_base": "RoBERTa Base",
         "finbert": "FinBERT",
@@ -76,8 +78,9 @@ def main() -> None:
         counts.legend(fontsize=9)
         counts.grid(axis="y", alpha=0.2)
     fig.suptitle(
-        "SEntFiN validation · 781 headlines per run · unchanged probabilities\n"
-        "Top-label reliability; marker size reflects bin count; sparse bins are noisy",
+        "SEntFiN validation · 781 headlines per run\n"
+        "Unchanged probabilities · top-label reliability\n"
+        "Marker size reflects bin count; sparse bins are noisy",
         fontsize=13,
     )
     args.output.parent.mkdir(parents=True, exist_ok=True)

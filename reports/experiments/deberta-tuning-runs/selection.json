@@ -1,0 +1,68 @@
+{
+  "plan_sha256": "890c5ab9c812f28d374dc6057caa21b3a137bda6273d31a610abc7dd699179c9",
+  "repeat_seeds_observed_before_selection": false,
+  "selected": {
+    "deberta_base": {
+      "artifact_manifest_sha256": "90aa5ca7fbef01f2fe2ed92a7f10a9f6f0e5b2c3c15aeff32a316b34ebc54fce",
+      "artifact_relative_path": "interim/transformer-finetuned-models/90aa5ca7fbef01f2fe2ed92a7f10a9f6f0e5b2c3c15aeff32a316b34ebc54fce",
+      "best_epoch": 2,
+      "configuration_sha256": "6874db34bb7a7d73c3ce13d088ff08413fadfb2e21d8987cae0f59e458a8e040",
+      "learning_rate": 1e-05,
+      "metrics": {
+        "accuracy": 0.8834827144686299,
+        "class_order": [
+          "negative",
+          "neutral",
+          "positive"
+        ],
+        "confusion_matrix": [
+          [
+            222,
+            15,
+            10
+          ],
+          [
+            15,
+            205,
+            32
+          ],
+          [
+            5,
+            14,
+            263
+          ]
+        ],
+        "confusion_matrix_axes": "rows=gold, columns=predicted",
+        "macro_f1": 0.8825595436734225,
+        "per_class": {
+          "negative": {
+            "f1": 0.9079754601226994,
+            "precision": 0.9173553719008265,
+            "recall": 0.8987854251012146,
+            "support": 247
+          },
+          "neutral": {
+            "f1": 0.8436213991769548,
+            "precision": 0.8760683760683761,
+            "recall": 0.8134920634920635,
+            "support": 252
+          },
+          "positive": {
+            "f1": 0.8960817717206133,
+            "precision": 0.8622950819672132,
+            "recall": 0.9326241134751773,
+            "support": 282
+          }
+        },
+        "samples": 781
+      },
+      "model": "deberta_base",
+      "report_path": "reports/experiments/deberta-tuning-runs/deberta_base/lr-1e-5-seed-42/deberta_base.json",
+      "report_sha256": "d763a66242396d4e7a81fc6dc53cd738f6ce9dcac538b51d5d76a885a53abc24",
+      "seed": 42,
+      "training_membership_sha256": "6be830a249b2cec70ae9b66d2650b408a860e03e9a5f5599992cbf1da4957e6d",
+      "validation_membership_sha256": "df68a4fa8844a432385a0f23487f3e582513ca9b7e04e76c8c17b0f1584130da"
+    }
+  },
+  "selection_seed": 42
+}

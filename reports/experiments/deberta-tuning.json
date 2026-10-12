@@ -1,0 +1,491 @@
+{
+  "code_revision": "d691078a57d57cd8a8b5dddc2f0da9e0e08edbfb",
+  "complete": true,
+  "experiment": "transformer-learning-rate-seed-study",
+  "final_test_evaluated": false,
+  "grid": {
+    "deberta_base": [
+      {
+        "artifact_manifest_sha256": "90aa5ca7fbef01f2fe2ed92a7f10a9f6f0e5b2c3c15aeff32a316b34ebc54fce",
+        "artifact_relative_path": "interim/transformer-finetuned-models/90aa5ca7fbef01f2fe2ed92a7f10a9f6f0e5b2c3c15aeff32a316b34ebc54fce",
+        "best_epoch": 2,
+        "configuration_sha256": "6874db34bb7a7d73c3ce13d088ff08413fadfb2e21d8987cae0f59e458a8e040",
+        "learning_rate": 1e-05,
+        "metrics": {
+          "accuracy": 0.8834827144686299,
+          "class_order": [
+            "negative",
+            "neutral",
+            "positive"
+          ],
+          "confusion_matrix": [
+            [
+              222,
+              15,
+              10
+            ],
+            [
+              15,
+              205,
+              32
+            ],
+            [
+              5,
+              14,
+              263
+            ]
+          ],
+          "confusion_matrix_axes": "rows=gold, columns=predicted",
+          "macro_f1": 0.8825595436734225,
+          "per_class": {
+            "negative": {
+              "f1": 0.9079754601226994,
+              "precision": 0.9173553719008265,
+              "recall": 0.8987854251012146,
+              "support": 247
+            },
+            "neutral": {
+              "f1": 0.8436213991769548,
+              "precision": 0.8760683760683761,
+              "recall": 0.8134920634920635,
+              "support": 252
+            },
+            "positive": {
+              "f1": 0.8960817717206133,
+              "precision": 0.8622950819672132,
+              "recall": 0.9326241134751773,
+              "support": 282
+            }
+          },
+          "samples": 781
+        },
+        "model": "deberta_base",
+        "report_path": "reports/experiments/deberta-tuning-runs/deberta_base/lr-1e-5-seed-42/deberta_base.json",
+        "report_sha256": "d763a66242396d4e7a81fc6dc53cd738f6ce9dcac538b51d5d76a885a53abc24",
+        "seed": 42,
+        "training_membership_sha256": "6be830a249b2cec70ae9b66d2650b408a860e03e9a5f5599992cbf1da4957e6d",
+        "validation_membership_sha256": "df68a4fa8844a432385a0f23487f3e582513ca9b7e04e76c8c17b0f1584130da"
+      },
+      {
+        "artifact_manifest_sha256": "a90155447ce3f0910bf0b9c8bf341a2c932c97f6e01e1250466ed1a351174cf3",
+        "artifact_relative_path": "interim/transformer-finetuned-models/a90155447ce3f0910bf0b9c8bf341a2c932c97f6e01e1250466ed1a351174cf3",
+        "best_epoch": 5,
+        "configuration_sha256": "75737ad10bbd18997bebf7e2c8fc2b018049951f3256ea4e7ce465cc0cb711b5",
+        "learning_rate": 2e-05,
+        "metrics": {
+          "accuracy": 0.8745198463508322,
+          "class_order": [
+            "negative",
+            "neutral",
+            "positive"
+          ],
+          "confusion_matrix": [
+            [
+              221,
+              18,
+              8
+            ],
+            [
+              16,
+              206,
+              30
+            ],
+            [
+              8,
+              18,
+              256
+            ]
+          ],
+          "confusion_matrix_axes": "rows=gold, columns=predicted",
+          "macro_f1": 0.8737569899315728,
+          "per_class": {
+            "negative": {
+              "f1": 0.8983739837398373,
+              "precision": 0.9020408163265307,
+              "recall": 0.8947368421052632,
+              "support": 247
+            },
+            "neutral": {
+              "f1": 0.8340080971659919,
+              "precision": 0.8512396694214877,
+              "recall": 0.8174603174603174,
+              "support": 252
+            },
+            "positive": {
+              "f1": 0.8888888888888888,
+              "precision": 0.8707482993197279,
+              "recall": 0.9078014184397163,
+              "support": 282
+            }
+          },
+          "samples": 781
+        },
+        "model": "deberta_base",
+        "report_path": "reports/experiments/deberta-tuning-runs/deberta_base/lr-2e-5-seed-42/deberta_base.json",
+        "report_sha256": "4a4dfc36faee870ee19c3fda9329270d9ad858b07f198db754e08a26bc463e52",
+        "seed": 42,
+        "training_membership_sha256": "6be830a249b2cec70ae9b66d2650b408a860e03e9a5f5599992cbf1da4957e6d",
+        "validation_membership_sha256": "df68a4fa8844a432385a0f23487f3e582513ca9b7e04e76c8c17b0f1584130da"
+      },
+      {
+        "artifact_manifest_sha256": "f8349a549720569bfc91edcb479667a91bcfeaa92a64bf5643c7f77bfb1ff5b9",
+        "artifact_relative_path": "interim/transformer-finetuned-models/f8349a549720569bfc91edcb479667a91bcfeaa92a64bf5643c7f77bfb1ff5b9",
+        "best_epoch": 4,
+        "configuration_sha256": "93bfe4efbca07d8152dcfce3734e0130828ba346d43befb4c839739357488907",
+        "learning_rate": 3e-05,
+        "metrics": {
+          "accuracy": 0.8834827144686299,
+          "class_order": [
+            "negative",
+            "neutral",
+            "positive"
+          ],
+          "confusion_matrix": [
+            [
+              220,
+              17,
+              10
+            ],
+            [
+              15,
+              206,
+              31
+            ],
+            [
+              6,
+              12,
+              264
+            ]
+          ],
+          "confusion_matrix_axes": "rows=gold, columns=predicted",
+          "macro_f1": 0.8823747214107605,
+          "per_class": {
+            "negative": {
+              "f1": 0.9016393442622951,
+              "precision": 0.9128630705394191,
+              "recall": 0.8906882591093117,
+              "support": 247
+            },
+            "neutral": {
+              "f1": 0.8459958932238193,
+              "precision": 0.8765957446808511,
+              "recall": 0.8174603174603174,
+              "support": 252
+            },
+            "positive": {
+              "f1": 0.899488926746167,
+              "precision": 0.8655737704918033,
+              "recall": 0.9361702127659575,
+              "support": 282
+            }
+          },
+          "samples": 781
+        },
+        "model": "deberta_base",
+        "report_path": "reports/experiments/deberta-tuning-runs/deberta_base/lr-3e-5-seed-42/deberta_base.json",
+        "report_sha256": "179b2b4abc5a4cbe269909a0c7cc9bb15e85f53e38f4817be8d46a09cd428213",
+        "seed": 42,
+        "training_membership_sha256": "6be830a249b2cec70ae9b66d2650b408a860e03e9a5f5599992cbf1da4957e6d",
+        "validation_membership_sha256": "df68a4fa8844a432385a0f23487f3e582513ca9b7e04e76c8c17b0f1584130da"
+      }
+    ]
+  },
+  "implementation_sha256": "f3116e79e098ad32cc7fff892197c870a3ce301a4e8b9f235989c476c3bf48e5",
+  "plan": {
+    "asset_manifest_sha256": "32cb41eb439f12ab6ed373082e21a244301dda28a9f7a4b82e4d8dfdd1afd609",
+    "baseline_config_sha256": "fa25c85ae802bd4ce66b3f232f504385b840407cdf6e05a2ab35c9769d04bec4",
+    "cohort": "sentfin_single_target",
+    "freeze_receipt_sha256": "ab0c9f0581612ee52f3c03a5bbbc03e7ebc621fdf76bb00d7d85bc2973b593f7",
+    "learning_rates": [
+      1e-05,
+      2e-05,
+      3e-05
+    ],
+    "models": [
+      "deberta_base"
+    ],
+    "repeat_seeds": [
+      42,
+      43,
+      44
+    ],
+    "schema_version": 1,
+    "selection_metric": "macro_f1",
+    "selection_seed": 42,
+    "tie_rule": "first declared learning rate; earliest exact epoch tie"
+  },
+  "plan_sha256": "890c5ab9c812f28d374dc6057caa21b3a137bda6273d31a610abc7dd699179c9",
+  "schema_version": 1,
+  "scope": "SEntFiN validation selection; three rates at seed 42, followed by seeds 43/44 at each selected rate. Seed 42 selected grid run is reused. No seed selection, test scoring or superiority claim.",
+  "seed_runs": {
+    "deberta_base": [
+      {
+        "artifact_manifest_sha256": "90aa5ca7fbef01f2fe2ed92a7f10a9f6f0e5b2c3c15aeff32a316b34ebc54fce",
+        "artifact_relative_path": "interim/transformer-finetuned-models/90aa5ca7fbef01f2fe2ed92a7f10a9f6f0e5b2c3c15aeff32a316b34ebc54fce",
+        "best_epoch": 2,
+        "configuration_sha256": "6874db34bb7a7d73c3ce13d088ff08413fadfb2e21d8987cae0f59e458a8e040",
+        "learning_rate": 1e-05,
+        "metrics": {
+          "accuracy": 0.8834827144686299,
+          "class_order": [
+            "negative",
+            "neutral",
+            "positive"
+          ],
+          "confusion_matrix": [
+            [
+              222,
+              15,
+              10
+            ],
+            [
+              15,
+              205,
+              32
+            ],
+            [
+              5,
+              14,
+              263
+            ]
+          ],
+          "confusion_matrix_axes": "rows=gold, columns=predicted",
+          "macro_f1": 0.8825595436734225,
+          "per_class": {
+            "negative": {
+              "f1": 0.9079754601226994,
+              "precision": 0.9173553719008265,
+              "recall": 0.8987854251012146,
+              "support": 247
+            },
+            "neutral": {
+              "f1": 0.8436213991769548,
+              "precision": 0.8760683760683761,
+              "recall": 0.8134920634920635,
+              "support": 252
+            },
+            "positive": {
+              "f1": 0.8960817717206133,
+              "precision": 0.8622950819672132,
+              "recall": 0.9326241134751773,
+              "support": 282
+            }
+          },
+          "samples": 781
+        },
+        "model": "deberta_base",
+        "report_path": "reports/experiments/deberta-tuning-runs/deberta_base/lr-1e-5-seed-42/deberta_base.json",
+        "report_sha256": "d763a66242396d4e7a81fc6dc53cd738f6ce9dcac538b51d5d76a885a53abc24",
+        "seed": 42,
+        "training_membership_sha256": "6be830a249b2cec70ae9b66d2650b408a860e03e9a5f5599992cbf1da4957e6d",
+        "validation_membership_sha256": "df68a4fa8844a432385a0f23487f3e582513ca9b7e04e76c8c17b0f1584130da"
+      },
+      {
+        "artifact_manifest_sha256": "bc029914f8cabb7a888980b3778788a1cbb70516a6155eed268c8a34a8b35dd5",
+        "artifact_relative_path": "interim/transformer-finetuned-models/bc029914f8cabb7a888980b3778788a1cbb70516a6155eed268c8a34a8b35dd5",
+        "best_epoch": 4,
+        "configuration_sha256": "123d86a037165125c4a834470271638cf232149fc224bad05348f4d54fddf2bf",
+        "learning_rate": 1e-05,
+        "metrics": {
+          "accuracy": 0.8770806658130602,
+          "class_order": [
+            "negative",
+            "neutral",
+            "positive"
+          ],
+          "confusion_matrix": [
+            [
+              222,
+              17,
+              8
+            ],
+            [
+              15,
+              202,
+              35
+            ],
+            [
+              8,
+              13,
+              261
+            ]
+          ],
+          "confusion_matrix_axes": "rows=gold, columns=predicted",
+          "macro_f1": 0.8759782503756836,
+          "per_class": {
+            "negative": {
+              "f1": 0.9024390243902439,
+              "precision": 0.9061224489795918,
+              "recall": 0.8987854251012146,
+              "support": 247
+            },
+            "neutral": {
+              "f1": 0.8347107438016529,
+              "precision": 0.8706896551724138,
+              "recall": 0.8015873015873016,
+              "support": 252
+            },
+            "positive": {
+              "f1": 0.8907849829351536,
+              "precision": 0.8585526315789473,
+              "recall": 0.925531914893617,
+              "support": 282
+            }
+          },
+          "samples": 781
+        },
+        "model": "deberta_base",
+        "report_path": "reports/experiments/deberta-tuning-runs/deberta_base/lr-1e-5-seed-43/deberta_base.json",
+        "report_sha256": "19995a8ed377624f4ac06bdcf75eb45adb875c9568e4a30dbacca580d7a31dbb",
+        "seed": 43,
+        "training_membership_sha256": "6be830a249b2cec70ae9b66d2650b408a860e03e9a5f5599992cbf1da4957e6d",
+        "validation_membership_sha256": "df68a4fa8844a432385a0f23487f3e582513ca9b7e04e76c8c17b0f1584130da"
+      },
+      {
+        "artifact_manifest_sha256": "93f85da57d6f83bcaa17cbeb5b690f7eadfa2cb82a2fba82b1522d8e2a5ae209",
+        "artifact_relative_path": "interim/transformer-finetuned-models/93f85da57d6f83bcaa17cbeb5b690f7eadfa2cb82a2fba82b1522d8e2a5ae209",
+        "best_epoch": 5,
+        "configuration_sha256": "90990fdec1e594e14c6ef2fd7df178ef8c16842439638b6c3ca20658687e8be6",
+        "learning_rate": 1e-05,
+        "metrics": {
+          "accuracy": 0.8847631241997439,
+          "class_order": [
+            "negative",
+            "neutral",
+            "positive"
+          ],
+          "confusion_matrix": [
+            [
+              217,
+              19,
+              11
+            ],
+            [
+              12,
+              214,
+              26
+            ],
+            [
+              4,
+              18,
+              260
+            ]
+          ],
+          "confusion_matrix_axes": "rows=gold, columns=predicted",
+          "macro_f1": 0.8843871571949992,
+          "per_class": {
+            "negative": {
+              "f1": 0.9041666666666667,
+              "precision": 0.9313304721030042,
+              "recall": 0.8785425101214575,
+              "support": 247
+            },
+            "neutral": {
+              "f1": 0.8508946322067594,
+              "precision": 0.852589641434263,
+              "recall": 0.8492063492063492,
+              "support": 252
+            },
+            "positive": {
+              "f1": 0.8981001727115717,
+              "precision": 0.8754208754208754,
+              "recall": 0.9219858156028369,
+              "support": 282
+            }
+          },
+          "samples": 781
+        },
+        "model": "deberta_base",
+        "report_path": "reports/experiments/deberta-tuning-runs/deberta_base/lr-1e-5-seed-44/deberta_base.json",
+        "report_sha256": "c6f14e9f38d9d6272a6da9918826097854e42a698bf8681cdb2ae695b0c1d7ca",
+        "seed": 44,
+        "training_membership_sha256": "6be830a249b2cec70ae9b66d2650b408a860e03e9a5f5599992cbf1da4957e6d",
+        "validation_membership_sha256": "df68a4fa8844a432385a0f23487f3e582513ca9b7e04e76c8c17b0f1584130da"
+      }
+    ]
+  },
+  "selected": {
+    "deberta_base": {
+      "artifact_manifest_sha256": "90aa5ca7fbef01f2fe2ed92a7f10a9f6f0e5b2c3c15aeff32a316b34ebc54fce",
+      "artifact_relative_path": "interim/transformer-finetuned-models/90aa5ca7fbef01f2fe2ed92a7f10a9f6f0e5b2c3c15aeff32a316b34ebc54fce",
+      "best_epoch": 2,
+      "configuration_sha256": "6874db34bb7a7d73c3ce13d088ff08413fadfb2e21d8987cae0f59e458a8e040",
+      "learning_rate": 1e-05,
+      "metrics": {
+        "accuracy": 0.8834827144686299,
+        "class_order": [
+          "negative",
+          "neutral",
+          "positive"
+        ],
+        "confusion_matrix": [
+          [
+            222,
+            15,
+            10
+          ],
+          [
+            15,
+            205,
+            32
+          ],
+          [
+            5,
+            14,
+            263
+          ]
+        ],
+        "confusion_matrix_axes": "rows=gold, columns=predicted",
+        "macro_f1": 0.8825595436734225,
+        "per_class": {
+          "negative": {
+            "f1": 0.9079754601226994,
+            "precision": 0.9173553719008265,
+            "recall": 0.8987854251012146,
+            "support": 247
+          },
+          "neutral": {
+            "f1": 0.8436213991769548,
+            "precision": 0.8760683760683761,
+            "recall": 0.8134920634920635,
+            "support": 252
+          },
+          "positive": {
+            "f1": 0.8960817717206133,
+            "precision": 0.8622950819672132,
+            "recall": 0.9326241134751773,
+            "support": 282
+          }
+        },
+        "samples": 781
+      },
+      "model": "deberta_base",
+      "report_path": "reports/experiments/deberta-tuning-runs/deberta_base/lr-1e-5-seed-42/deberta_base.json",
+      "report_sha256": "d763a66242396d4e7a81fc6dc53cd738f6ce9dcac538b51d5d76a885a53abc24",
+      "seed": 42,
+      "training_membership_sha256": "6be830a249b2cec70ae9b66d2650b408a860e03e9a5f5599992cbf1da4957e6d",
+      "validation_membership_sha256": "df68a4fa8844a432385a0f23487f3e582513ca9b7e04e76c8c17b0f1584130da"
+    }
+  },
+  "statistics": {
+    "deberta_base": {
+      "accuracy": {
+        "maximum": 0.8847631241997439,
+        "mean": 0.8817755014938113,
+        "minimum": 0.8770806658130602,
+        "sample_std": 0.004115941425946595
+      },
+      "macro_f1": {
+        "maximum": 0.8843871571949992,
+        "mean": 0.8809749837480351,
+        "minimum": 0.8759782503756836,
+        "sample_std": 0.004422731180146604
+      },
+      "seeds": [
+        42,
+        43,
+        44
+      ]
+    }
+  }
+}

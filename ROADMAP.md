@@ -489,10 +489,11 @@ model task was complete. The subsequent verified pretrained run is recorded belo
 - [x] Train separate original RoBERTa Base and DeBERTa-v3 Base checkpoints on PhraseBank only; select on PhraseBank validation and log SEntFiN validation transfer afterward.
 - [x] Score unchanged financial RoBERTa/DeBERTa on PhraseBank validation with upstream-supervision caveats.
 - [x] Compare RoBERTa Base and FinBERT at three learning rates, then report three seeds at each selected rate on SEntFiN validation.
+- [x] Extend the same three-rate/three-seed experiment and calibration/error review to DeBERTa-v3 Base on SEntFiN validation.
 - [ ] Run controlled training experiments (learning rate, length, batch size); early stopping on validation only.
 - [ ] Track dataset version, seeds, model checkpoint, metrics, latency in MLflow.
 - [ ] Evaluate on independent frozen test set once final configuration is selected.
-- [x] Analyze calibration, negation, financial jargon, ambiguity, and class-specific failures (selected-rate RoBERTa Base/FinBERT validation scope; other model/cohort coverage deferred).
+- [x] Analyze calibration, negation, financial jargon, ambiguity, and class-specific failures (selected-rate RoBERTa Base/FinBERT/DeBERTa Base validation scope; other model/cohort coverage deferred).
 
 Pretrained validation verified (2026-10-11): pinned revision
 `4556d13015211d73dccd3fdd39d39232506f3e43` acquired under the documented user
@@ -612,6 +613,22 @@ Mac verification: Ruff lint/format and all 304 tests pass. Independent NLL/Brier
 cross-checks, aggregate privacy checks and frozen-test byte hashing pass;
 the reliability/count figure was visually reviewed. Phase 3 stays open for
 final selection/test evaluation, MLflow and the broader length/batch study.
+
+DeBERTa Base extension verified (2026-10-12): five fresh source-initialized runs
+repeat the unchanged SEntFiN protocol. Seed-42 macro F1 selects 1e-5 with a narrow
+0.000185 margin over 3e-5; its receipt was captured before completed repeats and
+remains unchanged. Selected-rate seeds 42/43/44 yield macro F1 0.8810 ± 0.0044.
+The fresh 2e-5/seed-42 control exactly reproduces historical metrics, prediction
+hash and selected artifact identity. Independent Windows checks verify all
+improved epoch files, private predictions, code/config/source lineage and frozen
+bytes. Saved-prediction calibration and 26 private qualitative reviews are in
+`reports/experiments/deberta-analysis.md`; source labels/probabilities remain
+unchanged. See `deberta-tuning.md` and `docs/deberta-study.md`. Only this bounded
+extension is complete; no test scores, ensemble or independent-superiority claim.
+Mac Ruff lint/format and all 307 tests pass; Windows pretraining gates also
+passed all 307 tests. Independent probability-score/privacy checks pass, both
+figures were visually reviewed, and all Windows saved-epoch hashes verify. Phase 3 remains
+open for final selection/test evaluation, MLflow and broader length/batch work.
 
 ## Phase 4 — Company-targeted sentiment
 

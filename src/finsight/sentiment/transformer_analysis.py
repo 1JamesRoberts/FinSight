@@ -1,4 +1,4 @@
-"""Analyze six saved validation runs; no model fitting or new inference."""
+"""Analyze saved selected-rate validation runs; no fitting or new inference."""
 
 import argparse
 import json

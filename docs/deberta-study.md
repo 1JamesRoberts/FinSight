@@ -47,3 +47,45 @@ rates/epochs and been reviewed. Three seeds are not independent datasets or an
 ensemble. Compare against existing RoBERTa/FinBERT without rerunning their
 experiments or silently replacing their historical reports. Model weights,
 headlines, IDs, individual predictions and review notes remain private.
+
+## Seed-42 rate selection
+
+| Learning rate | Selected epoch | Validation macro F1 |
+|---|---:|---:|
+| 1e-5 | 2 | 0.882560 |
+| 2e-5 | 5 | 0.873757 |
+| 3e-5 | 4 | 0.882375 |
+
+The declared rule selected 1e-5. Its 0.000185 advantage over 3e-5 is a narrow
+validation difference, not evidence of a generally optimal rate. The selection
+receipt was captured before completed repeat results and has SHA-256
+`39095f2a04622bac71f92f5add9a9c919b2669b75d608be47f0f973f07a6e838`.
+The fresh 2e-5/seed-42 control exactly reproduces historical class metrics,
+confusion matrix, selected artifact identity and prediction-byte hash.
+
+## Completed results and private review
+
+All five runs complete. At selected LR 1e-5, macro F1 is 0.8810 ± 0.0044 and
+accuracy 0.8818 ± 0.0041 across seeds 42/43/44 (sample SD). Mean confidence is
+0.9642, ECE 0.0858, Brier 0.2082 and log loss 0.4995. These observed means compare
+favorably with the earlier candidates but do not establish unseen superiority.
+
+See [study results](../reports/experiments/deberta-tuning.md) and
+[calibration/error report](../reports/experiments/deberta-analysis.md), including
+model architecture/size, per-seed/per-class scores and reliability plots.
+The private review packet SHA is
+`4ccde94183b871494ebeb2c53863e4372afc3c04302bca248052c9d4372f3c9a`.
+It contains 26 sampled headlines; annotations flag 18 cases as possibly ambiguous,
+without changing gold. To reproduce the reviewed aggregate JSON:
+
+```sh
+uv run --locked python -m finsight.sentiment.transformer_analysis --deberta-base \
+  --annotations data/interim/phase3-error-review/4ccde94183b871494ebeb2c53863e4372afc3c04302bca248052c9d4372f3c9a/annotations.json
+uv run --locked --group eda python scripts/plot_deberta_study.py
+```
+
+Private inputs are required; the public checkout alone has no dataset, weight,
+prediction or review-note redistribution clearance. The first command verifies
+saved predictions and writes the reviewed public JSON. The second produces
+`reports/figures/phase3/deberta-learning-rate-seeds.png`. Use the calibration
+plot command above for the other figure. Neither command retrains a model.

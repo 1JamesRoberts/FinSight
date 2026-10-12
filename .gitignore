@@ -83,3 +83,5 @@ build/
 !/reports/experiments/deberta-analysis.json
 !/reports/experiments/deberta-tuning.json
 !/reports/figures/phase3/deberta-calibration.png
+
+!/reports/figures/phase3/deberta-learning-rate-seeds.png
