@@ -75,3 +75,11 @@ build/
 !/reports/figures/phase3/learning-rate-seeds.png
 !/reports/experiments/transformer-analysis.json
 !/reports/figures/phase3/calibration.png
+!/reports/experiments/deberta-tuning-runs/
+/reports/experiments/deberta-tuning-runs/**
+!/reports/experiments/deberta-tuning-runs/**/
+!/reports/experiments/deberta-tuning-runs/**/*.json
+!/reports/experiments/deberta-tuning-runs/**/*.md
+!/reports/experiments/deberta-analysis.json
+!/reports/experiments/deberta-tuning.json
+!/reports/figures/phase3/deberta-calibration.png

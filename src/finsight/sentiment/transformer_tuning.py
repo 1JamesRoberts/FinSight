@@ -53,11 +53,11 @@ def seed_statistics(rows: list[dict[str, Any]]) -> dict[str, Any]:
     }
 
 
-def checked_plan() -> dict[str, Any]:
-    plan = json.loads((CONFIGS / "plan.json").read_bytes())
+def checked_plan(path: Path | None = None) -> dict[str, Any]:
+    plan = json.loads((path or CONFIGS / "plan.json").read_bytes())
     if (
         plan["schema_version"] != 1
-        or plan["models"] != list(MODELS)
+        or plan["models"] not in (list(MODELS), ["deberta_base"])
         or plan["learning_rates"] != list(RATES)
         or plan["selection_seed"] != 42
         or plan["repeat_seeds"] != list(SEEDS)
@@ -161,14 +161,20 @@ def write_summary(path: Path, summary: dict[str, Any]) -> None:
 
 
 def run_study(
-    data_dir: Path, root: Path = REPORT_ROOT, resume: bool = False
+    data_dir: Path,
+    root: Path = REPORT_ROOT,
+    resume: bool = False,
+    *,
+    plan_path: Path | None = None,
 ) -> dict[str, Any]:
-    plan = checked_plan()
+    plan_path = plan_path or CONFIGS / "plan.json"
+    plan = checked_plan(plan_path)
+    models = tuple(plan["models"])
     summary: dict[str, Any] = {
         "schema_version": 1,
         "experiment": "transformer-learning-rate-seed-study",
         "plan": plan,
-        "plan_sha256": file_sha256(CONFIGS / "plan.json"),
+        "plan_sha256": file_sha256(plan_path),
         "implementation_sha256": file_sha256(Path(__file__)),
         "code_revision": subprocess.check_output(
             ["git", "rev-parse", "HEAD"], text=True
@@ -185,13 +191,13 @@ def run_study(
             "reused. No seed selection, test scoring or superiority claim."
         ),
     }
-    for model in MODELS:
+    for model in models:
         summary["grid"][model] = [
             execute_run(model, rate, 42, data_dir, root, resume) for rate in RATES
         ]
         summary["selected"][model] = choose_rate(summary["grid"][model])
         write_summary(root / "study.json", summary)
-    # Persist both selections before any repeat-seed results are observed.
+    # Persist every selection before any repeat-seed results are observed.
     write_summary(
         root / "selection.json",
         {
@@ -208,7 +214,7 @@ def run_study(
     }
     if len(memberships) != 1:
         raise ValueError("candidate training/validation memberships differ")
-    for model in MODELS:
+    for model in models:
         selected = summary["selected"][model]
         repeats = [selected]
         for seed in SEEDS[1:]:
@@ -233,8 +239,20 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--data-dir", type=Path, default=Path("data"))
     parser.add_argument("--resume", action="store_true")
+    parser.add_argument(
+        "--deberta-base",
+        action="store_true",
+        help="Run the separate five-run DeBERTa Base extension",
+    )
     args = parser.parse_args()
-    summary = run_study(args.data_dir, resume=args.resume)
+    summary = run_study(
+        args.data_dir,
+        Path("reports/experiments/deberta-tuning-runs")
+        if args.deberta_base
+        else REPORT_ROOT,
+        resume=args.resume,
+        plan_path=CONFIGS / "deberta-plan.json" if args.deberta_base else None,
+    )
     for model, stats in summary["statistics"].items():
         print(
             f"{model}: macro F1 mean {stats['macro_f1']['mean']:.4f}, "

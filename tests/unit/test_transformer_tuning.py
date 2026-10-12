@@ -56,7 +56,9 @@ def test_study_freezes_rates_before_repeats_and_reuses_seed_42(
 
     (tmp_path / "plan.json").write_text("{}")
     monkeypatch.setattr(module, "CONFIGS", tmp_path)
-    monkeypatch.setattr(module, "checked_plan", lambda: {})
+    monkeypatch.setattr(
+        module, "checked_plan", lambda *_: {"models": list(module.MODELS)}
+    )
     calls = []
 
     def execute(model, rate, seed, data_dir, root, resume):
@@ -88,7 +90,9 @@ def test_study_rejects_different_candidate_memberships(tmp_path, monkeypatch) ->
 
     (tmp_path / "plan.json").write_text("{}")
     monkeypatch.setattr(module, "CONFIGS", tmp_path)
-    monkeypatch.setattr(module, "checked_plan", lambda: {})
+    monkeypatch.setattr(
+        module, "checked_plan", lambda *_: {"models": list(module.MODELS)}
+    )
     monkeypatch.setattr(
         module,
         "execute_run",
@@ -117,3 +121,50 @@ def test_existing_report_requires_explicit_resume_before_training(
     )
     with pytest.raises(ValueError, match="already exists"):
         module.execute_run("finbert", 2e-5, 42, tmp_path, tmp_path / "reports", False)
+
+
+def test_deberta_extension_runs_exactly_five_and_freezes_before_repeats(
+    tmp_path, monkeypatch
+):
+    import json
+
+    from finsight.sentiment import transformer_tuning as module
+
+    plan_path = tmp_path / "deberta-plan.json"
+    plan_path.write_text("{}")
+    monkeypatch.setattr(
+        module, "checked_plan", lambda path: {"models": ["deberta_base"]}
+    )
+    calls = []
+
+    def execute(model, rate, seed, data_dir, root, resume):
+        assert model == "deberta_base"
+        calls.append((rate, seed))
+        if seed != 42:
+            selection = json.loads((root / "selection.json").read_bytes())
+            assert list(selection["selected"]) == ["deberta_base"]
+            assert selection["selected"]["deberta_base"]["learning_rate"] == 1e-5
+            assert len(calls) > 3
+        return dict(
+            model=model,
+            learning_rate=rate,
+            seed=seed,
+            training_membership_sha256="train",
+            validation_membership_sha256="val",
+            metrics=dict(macro_f1=0.9, accuracy=0.9),
+        )
+
+    monkeypatch.setattr(module, "execute_run", execute)
+    result = module.run_study(tmp_path, tmp_path / "reports", plan_path=plan_path)
+    assert calls == [(1e-5, 42), (2e-5, 42), (3e-5, 42), (1e-5, 43), (1e-5, 44)]
+    assert result["complete"] and list(result["statistics"]) == ["deberta_base"]
+
+
+def test_deberta_plan_pins_unchanged_control_inputs():
+    from pathlib import Path
+
+    from finsight.sentiment.transformer_tuning import checked_plan
+
+    plan = checked_plan(Path("configs/transformer-tuning/deberta-plan.json"))
+    assert plan["models"] == ["deberta_base"]
+    assert plan["learning_rates"] == [1e-5, 2e-5, 3e-5]

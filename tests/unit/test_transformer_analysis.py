@@ -202,3 +202,70 @@ def test_prediction_audit_rejects_corruption(tmp_path, corruption):
         actual, provenance = checked_run(entry, tmp_path, validation, receipt)
         assert actual == predictions
         assert provenance["predictions_sha256"] == sha(prediction_body)
+
+
+def test_deberta_analysis_keeps_three_seeds_separate_and_private(tmp_path, monkeypatch):
+    from finsight.sentiment import transformer_analysis as module
+    from finsight.sentiment.validation import classification_metrics
+
+    receipt = tmp_path / "receipt.json"
+    receipt.write_text("{}")
+    validation = [
+        dict(
+            record_id="private-validation",
+            partition="validation",
+            corpus="sentfin",
+            native_record=dict(
+                title="synthetic private headline",
+                sentiments=[dict(target="target", label="negative")],
+            ),
+        )
+    ]
+    training = [{**validation[0], "record_id": "train", "partition": "train"}]
+    predictions = [
+        dict(
+            record_id="private-validation",
+            **row("negative", dict(negative=0.1, neutral=0.8, positive=0.1)),
+        )
+    ]
+    metrics = classification_metrics(["negative"], ["neutral"])
+    study = dict(
+        complete=True,
+        final_test_evaluated=False,
+        plan=dict(freeze_receipt_sha256=module.sha(receipt.read_bytes())),
+        selected=dict(deberta_base=dict(learning_rate=2e-5)),
+        seed_runs=dict(
+            deberta_base=[
+                dict(
+                    model="deberta_base", seed=seed, learning_rate=2e-5, metrics=metrics
+                )
+                for seed in (42, 43, 44)
+            ]
+        ),
+    )
+    study_path = tmp_path / "study.json"
+    study_path.write_bytes(module.json_body(study))
+    monkeypatch.setattr(
+        module, "load_development_records", lambda *_: training + validation
+    )
+    monkeypatch.setattr(
+        module, "checked_run", lambda *_: (predictions, {"synthetic": True})
+    )
+    summary, packet = module.prepare_analysis(
+        tmp_path, study_path, receipt, models=("deberta_base",)
+    )
+    assert summary["paired_counts"] == []
+    assert summary["all_three_runs_wrong"] == 1
+    assert list(summary["models"]) == ["deberta_base"]
+    assert (
+        summary["models"]["deberta_base"]["persistence"]["errors_in_k_of_three_seeds"][
+            "3"
+        ]
+        == 1
+    )
+    assert len(packet["examples"]) == 1
+    assert "private-validation" not in json.dumps(summary)
+    study["seed_runs"]["deberta_base"][2]["seed"] = 43
+    study_path.write_bytes(module.json_body(study))
+    with pytest.raises(ValueError, match="three seeds"):
+        module.prepare_analysis(tmp_path, study_path, receipt, models=("deberta_base",))

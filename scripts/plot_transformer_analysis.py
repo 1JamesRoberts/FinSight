@@ -19,9 +19,21 @@ def main() -> None:
     )
     args = parser.parse_args()
     summary = json.loads(args.report.read_bytes())
-    fig, axes = plt.subplots(2, 2, figsize=(12, 8), layout="constrained")
+    models = tuple(summary["models"])
+    names = {
+        "roberta_base": "RoBERTa Base",
+        "finbert": "FinBERT",
+        "deberta_base": "DeBERTa-v3 Base",
+    }
+    fig, axes = plt.subplots(
+        2,
+        len(models),
+        figsize=(6 * len(models), 8),
+        layout="constrained",
+        squeeze=False,
+    )
     colors = ("#2674a6", "#b75c16", "#548235")
-    for column, model in enumerate(("roberta_base", "finbert")):
+    for column, model in enumerate(models):
         ax, counts = axes[0, column], axes[1, column]
         ax.plot([0, 1], [0, 1], "--", color="#999999", label="Perfect calibration")
         for j, run in enumerate(summary["models"][model]["runs"]):
@@ -48,7 +60,7 @@ def main() -> None:
                 label=f"Seed {run['seed']}",
             )
         ax.set(
-            title="RoBERTa Base" if column == 0 else "FinBERT",
+            title=names[model],
             xlabel="Mean top-label confidence in bin",
             ylabel="Fraction correct in bin",
             xlim=(0, 1.02),

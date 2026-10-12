@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "models": [
+    "deberta_base"
+  ],
+  "learning_rates": [
+    1e-05,
+    2e-05,
+    3e-05
+  ],
+  "selection_seed": 42,
+  "repeat_seeds": [
+    42,
+    43,
+    44
+  ],
+  "selection_metric": "macro_f1",
+  "tie_rule": "first declared learning rate; earliest exact epoch tie",
+  "cohort": "sentfin_single_target",
+  "baseline_config_sha256": "fa25c85ae802bd4ce66b3f232f504385b840407cdf6e05a2ab35c9769d04bec4",
+  "asset_manifest_sha256": "32cb41eb439f12ab6ed373082e21a244301dda28a9f7a4b82e4d8dfdd1afd609",
+  "freeze_receipt_sha256": "ab0c9f0581612ee52f3c03a5bbbc03e7ebc621fdf76bb00d7d85bc2973b593f7"
+}

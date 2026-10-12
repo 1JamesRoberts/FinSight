@@ -167,13 +167,13 @@ def persistence_counts(rows: list[dict[str, Any]], model: str) -> dict[str, Any]
 
 
 def review_sample(
-    rows: list[dict[str, Any]], per_cell: int = 2
+    rows: list[dict[str, Any]], per_cell: int = 2, *, models: tuple[str, ...] = MODELS
 ) -> list[dict[str, Any]]:
     """Two per model/persistence/gold/wrong-label cell; deduplicate source IDs."""
     if type(per_cell) is not int or per_cell < 1:
         raise ValueError("per_cell must be a positive integer")
     selected: dict[str, dict[str, Any]] = {}
-    for model in MODELS:
+    for model in models:
         for persistence in ("recurring", "variable"):
             for gold in LABELS:
                 for wrong in LABELS:
@@ -208,7 +208,7 @@ def review_sample(
         r
         for r in rows
         if re.search(r"\b(?:no|not|never|without)\b|n't\b", r.get("text", ""), re.I)
-        and any(p != r["gold"] for m in MODELS for p in r["predictions"][m])
+        and any(p != r["gold"] for m in models for p in r["predictions"][m])
     ]
     for r in sorted(
         negation, key=lambda r: sha(f"phase3:42:{r['record_id']}".encode())
@@ -222,16 +222,21 @@ def review_sample(
 
 
 def prepare_analysis(
-    data_dir: Path, study_path: Path, receipt_path: Path
+    data_dir: Path,
+    study_path: Path,
+    receipt_path: Path,
+    *,
+    models: tuple[str, ...] = MODELS,
 ) -> tuple[dict[str, Any], dict[str, Any]]:
     study_bytes, receipt_bytes = study_path.read_bytes(), receipt_path.read_bytes()
     study, receipt = json.loads(study_bytes), json.loads(receipt_bytes)
     if (
         not study["complete"]
         or study["final_test_evaluated"]
-        or set(study["seed_runs"]) != set(MODELS)
+        or set(study["seed_runs"]) != set(models)
+        or models not in (MODELS, ("deberta_base",))
     ):
-        raise ValueError("complete validation-only two-model study required")
+        raise ValueError("complete validation-only declared-model study required")
     if study["plan"]["freeze_receipt_sha256"] != sha(receipt_bytes):
         raise ValueError("freeze receipt differs")
     records = sentence_cohorts(load_development_records(data_dir, receipt_path))[
@@ -254,7 +259,7 @@ def prepare_analysis(
         for r in validation
     ]
     predictions, results, inputs = {}, {}, []
-    for model in MODELS:
+    for model in models:
         entries = sorted(study["seed_runs"][model], key=lambda r: r["seed"])
         if [r["seed"] for r in entries] != list(SEEDS) or any(
             r["model"] != model
@@ -295,24 +300,24 @@ def prepare_analysis(
                 "target": source["native_record"]["sentiments"][0]["target"],
                 "predictions": {
                     m: [rows[i]["prediction"] for rows in predictions[m]]
-                    for m in MODELS
+                    for m in models
                 },
                 "confidences": {
                     m: [
                         max(rows[i]["probabilities"].values())
                         for rows in predictions[m]
                     ]
-                    for m in MODELS
+                    for m in models
                 },
             }
         )
-    for m in MODELS:
+    for m in models:
         results[m]["persistence"] = persistence_counts(joined, m)
     paired = []
-    for j, seed in enumerate(SEEDS):
+    for j, seed in enumerate(SEEDS) if len(models) == 2 else []:
         counts = Counter()
         for r in joined:
-            a, b = (r["predictions"][m][j] == r["gold"] for m in MODELS)
+            a, b = (r["predictions"][m][j] == r["gold"] for m in models)
             counts[
                 "both_correct"
                 if a and b
@@ -323,7 +328,7 @@ def prepare_analysis(
                 else "both_wrong"
             ] += 1
             counts["prediction_disagreements"] += (
-                r["predictions"][MODELS[0]][j] != r["predictions"][MODELS[1]][j]
+                r["predictions"][models[0]][j] != r["predictions"][models[1]][j]
             )
         paired.append({"seed": seed, **dict(sorted(counts.items()))})
     packet = {
@@ -336,7 +341,7 @@ def prepare_analysis(
             "fixed from Phase 2; no inferred automatic annotations."
         ),
         "study_sha256": sha(study_bytes),
-        "examples": review_sample(joined),
+        "examples": review_sample(joined, models=models),
     }
     summary = {
         "schema_version": 1,
@@ -351,8 +356,8 @@ def prepare_analysis(
             "metrics": calibration_metrics(prior_predictions),
         },
         "paired_counts": paired,
-        "all_six_runs_wrong": sum(
-            all(p != r["gold"] for m in MODELS for p in r["predictions"][m])
+        ("all_six_runs_wrong" if len(models) == 2 else "all_three_runs_wrong"): sum(
+            all(p != r["gold"] for m in models for p in r["predictions"][m])
             for r in joined
         ),
         "inputs": inputs,
@@ -416,17 +421,29 @@ def main() -> None:
     parser.add_argument(
         "--study",
         type=Path,
-        default=Path("reports/experiments/transformer-tuning-runs/study.json"),
+        default=None,
     )
     parser.add_argument("--annotations", type=Path)
     parser.add_argument(
         "--report",
         type=Path,
-        default=Path("reports/experiments/transformer-analysis.json"),
+        default=None,
     )
+    parser.add_argument("--deberta-base", action="store_true")
     args = parser.parse_args()
+    models = ("deberta_base",) if args.deberta_base else MODELS
+    args.study = args.study or Path(
+        "reports/experiments/deberta-tuning-runs/study.json"
+        if args.deberta_base
+        else "reports/experiments/transformer-tuning-runs/study.json"
+    )
+    args.report = args.report or Path(
+        "reports/experiments/deberta-analysis.json"
+        if args.deberta_base
+        else "reports/experiments/transformer-analysis.json"
+    )
     summary, packet = prepare_analysis(
-        args.data_dir, args.study, Path("configs/benchmark-freeze.json")
+        args.data_dir, args.study, Path("configs/benchmark-freeze.json"), models=models
     )
     directory = args.data_dir / "interim/phase3-error-review" / sha(json_body(packet))
     directory.mkdir(parents=True, exist_ok=True)

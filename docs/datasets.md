@@ -259,3 +259,12 @@ local-research terms and FinBERT weight-scope limitation remain unchanged.
 Keep source headlines, targets, IDs, predictions and reviewer notes ignored;
 publish numeric aggregates, protocol, hashes and plots only. Suspected ambiguity
 is not corrected annotation or redistribution clearance.
+
+DeBERTa Base extension review (2026-10-12): the user explicitly authorized the
+same learning-rate/three-seed experiment and probability/error analysis for
+original Microsoft DeBERTa-v3 Base. Reuse its already-reviewed MIT checkpoint,
+pinned revision and verified local source bytes, and the unchanged single-target
+SEntFiN development split. No new acquisition or change to rights scope. Five
+fresh source-initialized runs use a new sentiment head; weights/predictions and
+headline review notes remain ignored. No final-test scoring, relabeling or
+probability adjustment; public output contains aggregates and hashes only.
