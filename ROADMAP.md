@@ -625,8 +625,9 @@ bytes. Saved-prediction calibration and 26 private qualitative reviews are in
 `reports/experiments/deberta-analysis.md`; source labels/probabilities remain
 unchanged. See `deberta-tuning.md` and `docs/deberta-study.md`. Only this bounded
 extension is complete; no test scores, ensemble or independent-superiority claim.
-Mac Ruff lint/format and all 307 tests pass; Windows pretraining gates also
-passed all 307 tests. Independent probability-score/privacy checks pass, both
+Mac/Windows Ruff lint/format and all 307 tests pass. The complete analysis
+reproduces on Windows (numeric tolerance 1e-12), including private review hashes.
+Independent probability-score/privacy checks pass, both
 figures were visually reviewed, and all Windows saved-epoch hashes verify. Phase 3 remains
 open for final selection/test evaluation, MLflow and broader length/batch work.
 

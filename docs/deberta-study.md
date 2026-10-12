@@ -89,3 +89,8 @@ prediction or review-note redistribution clearance. The first command verifies
 saved predictions and writes the reviewed public JSON. The second produces
 `reports/figures/phase3/deberta-learning-rate-seeds.png`. Use the calibration
 plot command above for the other figure. Neither command retrains a model.
+
+Final verification: Mac/Windows Ruff lint/format and all 307 tests pass. Windows
+reproduces the complete aggregate analysis (numeric tolerance 1e-12) and review
+hashes. Source/frozen bytes remain unchanged; every improved epoch artifact was
+verified. Both checkouts are synchronized and model weights remain on Windows.
