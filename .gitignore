@@ -65,3 +65,9 @@ build/
 !/reports/experiments/transformer-followup.json
 !/reports/experiments/financial_roberta_phrasebank.json
 !/reports/experiments/financial_deberta_phrasebank.json
+!/reports/experiments/transformer-tuning-runs/
+/reports/experiments/transformer-tuning-runs/**
+!/reports/experiments/transformer-tuning-runs/**/
+!/reports/experiments/transformer-tuning-runs/**/*.json
+!/reports/experiments/transformer-tuning-runs/**/*.md
+!/reports/experiments/transformer-tuning.json

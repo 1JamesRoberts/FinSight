@@ -317,7 +317,13 @@ def predictions_bytes(rows: list[dict], predictions: list) -> bytes:
     ).encode()
 
 
-def run_experiment(key: str, data_dir: Path, config_path: Path = CONFIG) -> dict:
+def run_experiment(
+    key: str,
+    data_dir: Path,
+    config_path: Path = CONFIG,
+    *,
+    report_dir: Path | None = None,
+) -> dict:
     assets = json.loads(ASSETS.read_bytes())
     source_key, cohort = (FOLLOWUP_EXPERIMENTS | INFERENCE_EXPERIMENTS).get(
         key, (key, "sentfin_single_target")
@@ -541,9 +547,10 @@ def run_experiment(key: str, data_dir: Path, config_path: Path = CONFIG) -> dict
     (local / "predictions.jsonl").write_bytes(body)
     if transfer_body is not None:
         (local / "transfer-predictions.jsonl").write_bytes(transfer_body)
-    REPORTS.mkdir(parents=True, exist_ok=True)
-    (REPORTS / f"{key}.json").write_bytes(content)
-    (REPORTS / f"{key}.md").write_bytes(render_report(run, identifier).encode())
+    destination = report_dir or REPORTS
+    destination.mkdir(parents=True, exist_ok=True)
+    (destination / f"{key}.json").write_bytes(content)
+    (destination / f"{key}.md").write_bytes(render_report(run, identifier).encode())
     print(
         f"{key}: accuracy {scores['accuracy']:.4f}, macro F1 "
         f"{scores['macro_f1']:.4f}; run {identifier}",

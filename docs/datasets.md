@@ -241,3 +241,12 @@ acquisition, training, selection, test scoring or redistribution. Financial
 DeBERTa has apparent upstream PhraseBank supervision; report this as an exposure
 diagnostic. Financial RoBERTa's supervised provenance is incomplete, so no
 independent-evaluation claim. Only aggregate reports are published.
+
+Bounded transformer tuning review (2026-10-12): the user authorized a three-rate
+SEntFiN comparison of original RoBERTa Base and ProsusAI FinBERT, then three-seed
+reporting at each selected rate. Reuse reviewed source revisions, licenses and
+existing local research permissions (including the documented unresolved FinBERT
+hosted-weight scope). No new datasets/models, pooled training, PhraseBank tuning
+or test scoring. Selection uses the existing 6,299/781 single-target development
+split. Derivative weights and per-record predictions remain private; only
+aggregate configurations, metrics and lineage enter Git.

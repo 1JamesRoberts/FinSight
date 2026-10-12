@@ -278,7 +278,9 @@ def test_phrasebank_inference_never_trains_or_scores_transfer(
     monkeypatch.setattr(module, "score_model", score)
     monkeypatch.setattr(module, "render_report", lambda *_: "mock report")
     monkeypatch.setattr(module, "version", lambda _: "test")
-    run = module.run_experiment(key, tmp_path)
+    run = module.run_experiment(key, tmp_path, report_dir=tmp_path / "separate")
+    assert (tmp_path / "separate" / f"{key}.json").exists()
+    assert not (tmp_path / f"{key}.json").exists()
     assert calls == [[r["native_record"]["sentence"] for r in rows[3:]]]
     assert run["training_samples"] == 0
     assert run["training_membership_sha256"] is None
