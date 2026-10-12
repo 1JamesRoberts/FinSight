@@ -645,8 +645,11 @@ Independent optimization agrees with all 54 fits within 1e-6; no flooring or
 bound events occurred. Public reports contain aggregates/hashes; private outputs
 and fold memberships stay ignored. Source runs and frozen test bytes verify.
 See `docs/temperature-scaling.md` and the aggregate report/JSON. All 325 tests
-and required Ruff checks pass locally; the reviewed aggregate figure uses no
-private data. This bounded task is complete. Phase 3 stays open for locking the
+and required Ruff checks pass on Mac and Windows; the reviewed aggregate figure
+uses no private data. Windows reproduces all 1,046 numeric aggregates within
+1e-12 (platform math changes derived artifact bytes); exact published artifacts
+are also retained privately on Windows. This bounded task is complete.
+Phase 3 stays open for locking the
 final evaluation protocol, final-test scoring, tracking and length/batch scope
 decisions. DeBERTa Large is deferred; no Phase 4 implementation begins.
 

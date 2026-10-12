@@ -84,6 +84,14 @@ temperatures (45 cross-fitting fits plus nine full-validation fits) within
 1e-6. All nine runs improve out-of-fold NLL, Brier and ECE; no fit reaches a
 temperature bound or encounters a probability below the chosen floor.
 
+Mac and Windows both pass Ruff lint/format and all 325 tests. Repeating locally
+reproduces all numeric results and private hashes exactly. Windows reproduces
+all 1,046 numeric aggregate values within 1e-12; tiny platform math differences
+produce different private packet/calibrator hashes, so bitwise cross-platform
+identity is not claimed. The exact published Mac packet and calibrators are
+also retained in ignored Windows storage for subsequent evaluation against the
+published hashes. Frozen-test bytes are unchanged on both machines.
+
 ## Limits and next task
 
 Earlier learning-rate and epoch selection already used this validation cohort.
