@@ -85,3 +85,5 @@ build/
 !/reports/figures/phase3/deberta-calibration.png
 
 !/reports/figures/phase3/deberta-learning-rate-seeds.png
+!/reports/experiments/temperature-scaling.json
+!/reports/figures/phase3/temperature-scaling.png

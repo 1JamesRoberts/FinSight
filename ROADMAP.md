@@ -490,6 +490,7 @@ model task was complete. The subsequent verified pretrained run is recorded belo
 - [x] Score unchanged financial RoBERTa/DeBERTa on PhraseBank validation with upstream-supervision caveats.
 - [x] Compare RoBERTa Base and FinBERT at three learning rates, then report three seeds at each selected rate on SEntFiN validation.
 - [x] Extend the same three-rate/three-seed experiment and calibration/error review to DeBERTa-v3 Base on SEntFiN validation.
+- [x] Cross-fit temperature scaling for selected-rate RoBERTa Base, FinBERT and DeBERTa Base; save full-validation calibrators for later locked evaluation.
 - [ ] Run controlled training experiments (learning rate, length, batch size); early stopping on validation only.
 - [ ] Track dataset version, seeds, model checkpoint, metrics, latency in MLflow.
 - [ ] Evaluate on independent frozen test set once final configuration is selected.
@@ -630,6 +631,24 @@ reproduces on Windows (numeric tolerance 1e-12), including private review hashes
 Independent probability-score/privacy checks pass, both
 figures were visually reviewed, and all Windows saved-epoch hashes verify. Phase 3 remains
 open for final selection/test evaluation, MLflow and broader length/batch work.
+
+**Temperature-scaling verification (2026-10-12):** A fixed, checksummed plan
+cross-fits scalar temperatures on nine saved selected-rate validation runs using
+five shared stratified duplicate-group folds, seed 42. Calibration assessment
+uses only held-out folds; earlier epoch/rate selection used the same validation
+cohort, so results remain exploratory. All nine improve out-of-fold NLL, Brier
+and ECE while preserving class predictions and every classification metric.
+Mean ECE before/after: RoBERTa 0.1061/0.0419, FinBERT 0.0950/0.0247, DeBERTa
+0.0858/0.0186. Full-validation temperatures are saved separately per model/seed
+for future evaluation, without using their in-sample improvement as evidence.
+Independent optimization agrees with all 54 fits within 1e-6; no flooring or
+bound events occurred. Public reports contain aggregates/hashes; private outputs
+and fold memberships stay ignored. Source runs and frozen test bytes verify.
+See `docs/temperature-scaling.md` and the aggregate report/JSON. All 325 tests
+and required Ruff checks pass locally; the reviewed aggregate figure uses no
+private data. This bounded task is complete. Phase 3 stays open for locking the
+final evaluation protocol, final-test scoring, tracking and length/batch scope
+decisions. DeBERTa Large is deferred; no Phase 4 implementation begins.
 
 ## Phase 4 — Company-targeted sentiment
 

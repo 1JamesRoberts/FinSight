@@ -268,3 +268,15 @@ SEntFiN development split. No new acquisition or change to rights scope. Five
 fresh source-initialized runs use a new sentiment head; weights/predictions and
 headline review notes remain ignored. No final-test scoring, relabeling or
 probability adjustment; public output contains aggregates and hashes only.
+
+Temperature-scaling review (2026-10-12): the user authorized calibration first,
+then a locked final evaluation and company-targeted sentiment. This bounded task
+reuses nine reviewed saved SEntFiN validation runs for RoBERTa Base, FinBERT and
+DeBERTa-v3 Base under existing local-research permissions. Fit scalar temperatures
+with group-disjoint validation cross-fitting; save separate full-validation
+calibrators for later evaluation. No acquisition, weight training, relabeling,
+reserved-test scoring or new redistribution clearance. FinBERT's previously
+documented hosted-weight limitation remains. Keep fold memberships, per-record
+adjusted probabilities and calibrator artifacts ignored; publish aggregates,
+protocol and source hashes only. This reused validation is not an independent
+model-selection assessment even when calibration fits exclude assessed rows.

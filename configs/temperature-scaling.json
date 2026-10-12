@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "cohort": "sentfin_single_target_validation",
+  "folds": 5,
+  "fold_seed": 42,
+  "temperature_bounds": [0.05, 20.0],
+  "probability_floor": 1e-15,
+  "optimizer": "convex inverse-temperature derivative bisection, 80 iterations",
+  "objective": "negative_log_likelihood",
+  "seeds": [42, 43, 44],
+  "freeze_receipt_sha256": "ab0c9f0581612ee52f3c03a5bbbc03e7ebc621fdf76bb00d7d85bc2973b593f7",
+  "studies": [
+    {
+      "path": "reports/experiments/transformer-tuning-runs/study.json",
+      "sha256": "206e36ffd82fa287e8e2d0ce49b6780600047125e1ff4dd9b8a56c9804919d21",
+      "models": ["roberta_base", "finbert"]
+    },
+    {
+      "path": "reports/experiments/deberta-tuning-runs/study.json",
+      "sha256": "e5c8300d009e80cb02a81423f5e7f47698b028f81260ebedd6a996ec3c5cd176",
+      "models": ["deberta_base"]
+    }
+  ],
+  "assessment": "Shared group-disjoint five-fold cross-fitting on existing validation; exploratory because model/epoch selection already used this cohort. Pool out-of-fold predictions per run, then mean/sample SD across seeds. No best-seed selection or ensemble.",
+  "full_validation_fit": "Save one temperature per model/seed for future locked evaluation. Do not use its in-sample metrics as evidence of improvement.",
+  "final_test_evaluated": false
+}

@@ -39,6 +39,11 @@ The same [DeBERTa Base study](reports/experiments/deberta-tuning.md) now selects
 1e-5 and reports macro F1 0.8810 ± 0.0044 across three seeds; its
 [calibration/error review](reports/experiments/deberta-analysis.md) compares all
 three candidates and reviews 26 private examples. Frozen tests remain unscored.
+A [temperature-scaling experiment](reports/experiments/temperature-scaling.md)
+now improves cross-fitted validation NLL, Brier and ECE for all nine selected
+model/seed runs while preserving class predictions. Separate full-validation
+calibrators are saved for later locked evaluation; these reused validation
+results remain exploratory. See the [calibration guide](docs/temperature-scaling.md).
 News ingestion, stock prediction, API, and dashboard remain unimplemented.
 See [ROADMAP.md](ROADMAP.md)
 for the phase sequence and acceptance criteria.
