@@ -1,0 +1,942 @@
+{
+  "code_revision": "c62c1132c071d37ff386563ca350f8b354bb3d53",
+  "complete": true,
+  "experiment": "transformer-learning-rate-seed-study",
+  "final_test_evaluated": false,
+  "grid": {
+    "finbert": [
+      {
+        "artifact_manifest_sha256": "75bb59fc51f22ad7d4e40dff6b4e725d34e03d086353f4ecb25f9d049b78b70c",
+        "artifact_relative_path": "interim/finbert-finetuned-models/75bb59fc51f22ad7d4e40dff6b4e725d34e03d086353f4ecb25f9d049b78b70c",
+        "best_epoch": 4,
+        "configuration_sha256": "6874db34bb7a7d73c3ce13d088ff08413fadfb2e21d8987cae0f59e458a8e040",
+        "learning_rate": 1e-05,
+        "metrics": {
+          "accuracy": 0.8681177976952625,
+          "class_order": [
+            "negative",
+            "neutral",
+            "positive"
+          ],
+          "confusion_matrix": [
+            [
+              212,
+              25,
+              10
+            ],
+            [
+              20,
+              204,
+              28
+            ],
+            [
+              6,
+              14,
+              262
+            ]
+          ],
+          "confusion_matrix_axes": "rows=gold, columns=predicted",
+          "macro_f1": 0.8662709569926065,
+          "per_class": {
+            "negative": {
+              "f1": 0.8742268041237113,
+              "precision": 0.8907563025210085,
+              "recall": 0.8582995951417004,
+              "support": 247
+            },
+            "neutral": {
+              "f1": 0.8242424242424242,
+              "precision": 0.8395061728395061,
+              "recall": 0.8095238095238095,
+              "support": 252
+            },
+            "positive": {
+              "f1": 0.9003436426116839,
+              "precision": 0.8733333333333333,
+              "recall": 0.9290780141843972,
+              "support": 282
+            }
+          },
+          "samples": 781
+        },
+        "model": "finbert",
+        "report_path": "reports/experiments/transformer-tuning-runs/finbert/lr-1e-5-seed-42/finbert.json",
+        "report_sha256": "8a9e8db453d82319359248cfa5d526822550d262df98e4a8d1b5c2aed3d4c118",
+        "seed": 42,
+        "training_membership_sha256": "6be830a249b2cec70ae9b66d2650b408a860e03e9a5f5599992cbf1da4957e6d",
+        "validation_membership_sha256": "df68a4fa8844a432385a0f23487f3e582513ca9b7e04e76c8c17b0f1584130da"
+      },
+      {
+        "artifact_manifest_sha256": "276b014dec08139a12ec8ea85f5ba94d6f271148c62b49f26d37ea8e472936a7",
+        "artifact_relative_path": "interim/finbert-finetuned-models/276b014dec08139a12ec8ea85f5ba94d6f271148c62b49f26d37ea8e472936a7",
+        "best_epoch": 3,
+        "configuration_sha256": "75737ad10bbd18997bebf7e2c8fc2b018049951f3256ea4e7ce465cc0cb711b5",
+        "learning_rate": 2e-05,
+        "metrics": {
+          "accuracy": 0.8770806658130602,
+          "class_order": [
+            "negative",
+            "neutral",
+            "positive"
+          ],
+          "confusion_matrix": [
+            [
+              212,
+              28,
+              7
+            ],
+            [
+              17,
+              217,
+              18
+            ],
+            [
+              5,
+              21,
+              256
+            ]
+          ],
+          "confusion_matrix_axes": "rows=gold, columns=predicted",
+          "macro_f1": 0.8762495245621356,
+          "per_class": {
+            "negative": {
+              "f1": 0.8814968814968815,
+              "precision": 0.905982905982906,
+              "recall": 0.8582995951417004,
+              "support": 247
+            },
+            "neutral": {
+              "f1": 0.8378378378378378,
+              "precision": 0.8157894736842105,
+              "recall": 0.8611111111111112,
+              "support": 252
+            },
+            "positive": {
+              "f1": 0.9094138543516874,
+              "precision": 0.9110320284697508,
+              "recall": 0.9078014184397163,
+              "support": 282
+            }
+          },
+          "samples": 781
+        },
+        "model": "finbert",
+        "report_path": "reports/experiments/transformer-tuning-runs/finbert/lr-2e-5-seed-42/finbert.json",
+        "report_sha256": "f286df58936cf1e0aba03da79803deb4e56c208b1316daab2d8829a76b9c4fdc",
+        "seed": 42,
+        "training_membership_sha256": "6be830a249b2cec70ae9b66d2650b408a860e03e9a5f5599992cbf1da4957e6d",
+        "validation_membership_sha256": "df68a4fa8844a432385a0f23487f3e582513ca9b7e04e76c8c17b0f1584130da"
+      },
+      {
+        "artifact_manifest_sha256": "428d36bf1eb516f708b6420f8bf75591f29d989911571046e56b49fc80edc7b5",
+        "artifact_relative_path": "interim/finbert-finetuned-models/428d36bf1eb516f708b6420f8bf75591f29d989911571046e56b49fc80edc7b5",
+        "best_epoch": 2,
+        "configuration_sha256": "93bfe4efbca07d8152dcfce3734e0130828ba346d43befb4c839739357488907",
+        "learning_rate": 3e-05,
+        "metrics": {
+          "accuracy": 0.8770806658130602,
+          "class_order": [
+            "negative",
+            "neutral",
+            "positive"
+          ],
+          "confusion_matrix": [
+            [
+              214,
+              26,
+              7
+            ],
+            [
+              17,
+              220,
+              15
+            ],
+            [
+              8,
+              23,
+              251
+            ]
+          ],
+          "confusion_matrix_axes": "rows=gold, columns=predicted",
+          "macro_f1": 0.8765642303994475,
+          "per_class": {
+            "negative": {
+              "f1": 0.8806584362139918,
+              "precision": 0.895397489539749,
+              "recall": 0.8663967611336032,
+              "support": 247
+            },
+            "neutral": {
+              "f1": 0.8445297504798465,
+              "precision": 0.8178438661710037,
+              "recall": 0.873015873015873,
+              "support": 252
+            },
+            "positive": {
+              "f1": 0.9045045045045045,
+              "precision": 0.9194139194139194,
+              "recall": 0.8900709219858156,
+              "support": 282
+            }
+          },
+          "samples": 781
+        },
+        "model": "finbert",
+        "report_path": "reports/experiments/transformer-tuning-runs/finbert/lr-3e-5-seed-42/finbert.json",
+        "report_sha256": "3171cfcdcf7992a7fda939aeadf84b06d91a4a6a7ea06d9ee0d54af142a8fd86",
+        "seed": 42,
+        "training_membership_sha256": "6be830a249b2cec70ae9b66d2650b408a860e03e9a5f5599992cbf1da4957e6d",
+        "validation_membership_sha256": "df68a4fa8844a432385a0f23487f3e582513ca9b7e04e76c8c17b0f1584130da"
+      }
+    ],
+    "roberta_base": [
+      {
+        "artifact_manifest_sha256": "9800a1b42f80297c00519a68977e63e7ee386bb3e1e2b8e79bb792b8f43ff71a",
+        "artifact_relative_path": "interim/transformer-finetuned-models/9800a1b42f80297c00519a68977e63e7ee386bb3e1e2b8e79bb792b8f43ff71a",
+        "best_epoch": 2,
+        "configuration_sha256": "6874db34bb7a7d73c3ce13d088ff08413fadfb2e21d8987cae0f59e458a8e040",
+        "learning_rate": 1e-05,
+        "metrics": {
+          "accuracy": 0.882202304737516,
+          "class_order": [
+            "negative",
+            "neutral",
+            "positive"
+          ],
+          "confusion_matrix": [
+            [
+              221,
+              18,
+              8
+            ],
+            [
+              21,
+              210,
+              21
+            ],
+            [
+              8,
+              16,
+              258
+            ]
+          ],
+          "confusion_matrix_axes": "rows=gold, columns=predicted",
+          "macro_f1": 0.8809881132325635,
+          "per_class": {
+            "negative": {
+              "f1": 0.8893360160965795,
+              "precision": 0.884,
+              "recall": 0.8947368421052632,
+              "support": 247
+            },
+            "neutral": {
+              "f1": 0.8467741935483871,
+              "precision": 0.860655737704918,
+              "recall": 0.8333333333333334,
+              "support": 252
+            },
+            "positive": {
+              "f1": 0.9068541300527241,
+              "precision": 0.8989547038327527,
+              "recall": 0.9148936170212766,
+              "support": 282
+            }
+          },
+          "samples": 781
+        },
+        "model": "roberta_base",
+        "report_path": "reports/experiments/transformer-tuning-runs/roberta_base/lr-1e-5-seed-42/roberta_base.json",
+        "report_sha256": "ecfc57859fff3641c4ed21092a3f19145effed67da070b917f4c2a1555174e4f",
+        "seed": 42,
+        "training_membership_sha256": "6be830a249b2cec70ae9b66d2650b408a860e03e9a5f5599992cbf1da4957e6d",
+        "validation_membership_sha256": "df68a4fa8844a432385a0f23487f3e582513ca9b7e04e76c8c17b0f1584130da"
+      },
+      {
+        "artifact_manifest_sha256": "9a3e11b759fc223eb467e7393b73f002b01095a4eb261a5aee64288cf4d1ad59",
+        "artifact_relative_path": "interim/transformer-finetuned-models/9a3e11b759fc223eb467e7393b73f002b01095a4eb261a5aee64288cf4d1ad59",
+        "best_epoch": 4,
+        "configuration_sha256": "75737ad10bbd18997bebf7e2c8fc2b018049951f3256ea4e7ce465cc0cb711b5",
+        "learning_rate": 2e-05,
+        "metrics": {
+          "accuracy": 0.8860435339308579,
+          "class_order": [
+            "negative",
+            "neutral",
+            "positive"
+          ],
+          "confusion_matrix": [
+            [
+              219,
+              18,
+              10
+            ],
+            [
+              16,
+              210,
+              26
+            ],
+            [
+              8,
+              11,
+              263
+            ]
+          ],
+          "confusion_matrix_axes": "rows=gold, columns=predicted",
+          "macro_f1": 0.8848701093079246,
+          "per_class": {
+            "negative": {
+              "f1": 0.8938775510204081,
+              "precision": 0.9012345679012346,
+              "recall": 0.8866396761133604,
+              "support": 247
+            },
+            "neutral": {
+              "f1": 0.8553971486761711,
+              "precision": 0.8786610878661087,
+              "recall": 0.8333333333333334,
+              "support": 252
+            },
+            "positive": {
+              "f1": 0.9053356282271945,
+              "precision": 0.8795986622073578,
+              "recall": 0.9326241134751773,
+              "support": 282
+            }
+          },
+          "samples": 781
+        },
+        "model": "roberta_base",
+        "report_path": "reports/experiments/transformer-tuning-runs/roberta_base/lr-2e-5-seed-42/roberta_base.json",
+        "report_sha256": "9cbe8a6f4216456883766c9830017006867f62bbb99bbf1e34c3bf5a87ef276b",
+        "seed": 42,
+        "training_membership_sha256": "6be830a249b2cec70ae9b66d2650b408a860e03e9a5f5599992cbf1da4957e6d",
+        "validation_membership_sha256": "df68a4fa8844a432385a0f23487f3e582513ca9b7e04e76c8c17b0f1584130da"
+      },
+      {
+        "artifact_manifest_sha256": "4c4aea2402c73e752a542aa1d4d44132919ec380aadd2137c49d006fae530120",
+        "artifact_relative_path": "interim/transformer-finetuned-models/4c4aea2402c73e752a542aa1d4d44132919ec380aadd2137c49d006fae530120",
+        "best_epoch": 2,
+        "configuration_sha256": "93bfe4efbca07d8152dcfce3734e0130828ba346d43befb4c839739357488907",
+        "learning_rate": 3e-05,
+        "metrics": {
+          "accuracy": 0.8758002560819462,
+          "class_order": [
+            "negative",
+            "neutral",
+            "positive"
+          ],
+          "confusion_matrix": [
+            [
+              225,
+              16,
+              6
+            ],
+            [
+              22,
+              209,
+              21
+            ],
+            [
+              14,
+              18,
+              250
+            ]
+          ],
+          "confusion_matrix_axes": "rows=gold, columns=predicted",
+          "macro_f1": 0.8749085329748212,
+          "per_class": {
+            "negative": {
+              "f1": 0.8858267716535433,
+              "precision": 0.8620689655172413,
+              "recall": 0.9109311740890689,
+              "support": 247
+            },
+            "neutral": {
+              "f1": 0.8444444444444444,
+              "precision": 0.8600823045267489,
+              "recall": 0.8293650793650794,
+              "support": 252
+            },
+            "positive": {
+              "f1": 0.8944543828264758,
+              "precision": 0.9025270758122743,
+              "recall": 0.8865248226950354,
+              "support": 282
+            }
+          },
+          "samples": 781
+        },
+        "model": "roberta_base",
+        "report_path": "reports/experiments/transformer-tuning-runs/roberta_base/lr-3e-5-seed-42/roberta_base.json",
+        "report_sha256": "ad79bfc0973048c71804c70a2caebc0117fc2640f4b2f1c918b0796c4398df28",
+        "seed": 42,
+        "training_membership_sha256": "6be830a249b2cec70ae9b66d2650b408a860e03e9a5f5599992cbf1da4957e6d",
+        "validation_membership_sha256": "df68a4fa8844a432385a0f23487f3e582513ca9b7e04e76c8c17b0f1584130da"
+      }
+    ]
+  },
+  "implementation_sha256": "23027e26bd0234ddfeda33205b8f4ad6de60c875545b1a0e938af4977d8d8e50",
+  "plan": {
+    "asset_manifest_sha256": "32cb41eb439f12ab6ed373082e21a244301dda28a9f7a4b82e4d8dfdd1afd609",
+    "baseline_config_sha256": "fa25c85ae802bd4ce66b3f232f504385b840407cdf6e05a2ab35c9769d04bec4",
+    "cohort": "sentfin_single_target",
+    "freeze_receipt_sha256": "ab0c9f0581612ee52f3c03a5bbbc03e7ebc621fdf76bb00d7d85bc2973b593f7",
+    "learning_rates": [
+      1e-05,
+      2e-05,
+      3e-05
+    ],
+    "models": [
+      "roberta_base",
+      "finbert"
+    ],
+    "repeat_seeds": [
+      42,
+      43,
+      44
+    ],
+    "schema_version": 1,
+    "selection_metric": "macro_f1",
+    "selection_seed": 42,
+    "tie_rule": "first declared learning rate; earliest exact epoch tie"
+  },
+  "plan_sha256": "6972e4696521545199f8544e60d87b765cff6ddcf26bef84a55296a4b4713d83",
+  "schema_version": 1,
+  "scope": "SEntFiN validation selection; three rates at seed 42, followed by seeds 43/44 at each selected rate. Seed 42 selected grid run is reused. No seed selection, test scoring or superiority claim.",
+  "seed_runs": {
+    "finbert": [
+      {
+        "artifact_manifest_sha256": "428d36bf1eb516f708b6420f8bf75591f29d989911571046e56b49fc80edc7b5",
+        "artifact_relative_path": "interim/finbert-finetuned-models/428d36bf1eb516f708b6420f8bf75591f29d989911571046e56b49fc80edc7b5",
+        "best_epoch": 2,
+        "configuration_sha256": "93bfe4efbca07d8152dcfce3734e0130828ba346d43befb4c839739357488907",
+        "learning_rate": 3e-05,
+        "metrics": {
+          "accuracy": 0.8770806658130602,
+          "class_order": [
+            "negative",
+            "neutral",
+            "positive"
+          ],
+          "confusion_matrix": [
+            [
+              214,
+              26,
+              7
+            ],
+            [
+              17,
+              220,
+              15
+            ],
+            [
+              8,
+              23,
+              251
+            ]
+          ],
+          "confusion_matrix_axes": "rows=gold, columns=predicted",
+          "macro_f1": 0.8765642303994475,
+          "per_class": {
+            "negative": {
+              "f1": 0.8806584362139918,
+              "precision": 0.895397489539749,
+              "recall": 0.8663967611336032,
+              "support": 247
+            },
+            "neutral": {
+              "f1": 0.8445297504798465,
+              "precision": 0.8178438661710037,
+              "recall": 0.873015873015873,
+              "support": 252
+            },
+            "positive": {
+              "f1": 0.9045045045045045,
+              "precision": 0.9194139194139194,
+              "recall": 0.8900709219858156,
+              "support": 282
+            }
+          },
+          "samples": 781
+        },
+        "model": "finbert",
+        "report_path": "reports/experiments/transformer-tuning-runs/finbert/lr-3e-5-seed-42/finbert.json",
+        "report_sha256": "3171cfcdcf7992a7fda939aeadf84b06d91a4a6a7ea06d9ee0d54af142a8fd86",
+        "seed": 42,
+        "training_membership_sha256": "6be830a249b2cec70ae9b66d2650b408a860e03e9a5f5599992cbf1da4957e6d",
+        "validation_membership_sha256": "df68a4fa8844a432385a0f23487f3e582513ca9b7e04e76c8c17b0f1584130da"
+      },
+      {
+        "artifact_manifest_sha256": "f294fdb6c30b641e960dca9a15775a870ada89f5ca027c0f5f95c14cd560a057",
+        "artifact_relative_path": "interim/finbert-finetuned-models/f294fdb6c30b641e960dca9a15775a870ada89f5ca027c0f5f95c14cd560a057",
+        "best_epoch": 5,
+        "configuration_sha256": "a73194927074b03582b1c0665984e7fe4bcb9d22dbb63417cf52db38d1fb7be7",
+        "learning_rate": 3e-05,
+        "metrics": {
+          "accuracy": 0.8770806658130602,
+          "class_order": [
+            "negative",
+            "neutral",
+            "positive"
+          ],
+          "confusion_matrix": [
+            [
+              212,
+              25,
+              10
+            ],
+            [
+              18,
+              211,
+              23
+            ],
+            [
+              5,
+              15,
+              262
+            ]
+          ],
+          "confusion_matrix_axes": "rows=gold, columns=predicted",
+          "macro_f1": 0.8755932777216954,
+          "per_class": {
+            "negative": {
+              "f1": 0.8796680497925311,
+              "precision": 0.902127659574468,
+              "recall": 0.8582995951417004,
+              "support": 247
+            },
+            "neutral": {
+              "f1": 0.8389662027833003,
+              "precision": 0.8406374501992032,
+              "recall": 0.8373015873015873,
+              "support": 252
+            },
+            "positive": {
+              "f1": 0.9081455805892548,
+              "precision": 0.888135593220339,
+              "recall": 0.9290780141843972,
+              "support": 282
+            }
+          },
+          "samples": 781
+        },
+        "model": "finbert",
+        "report_path": "reports/experiments/transformer-tuning-runs/finbert/lr-3e-5-seed-43/finbert.json",
+        "report_sha256": "8f9835fb19da34458b5f1da25f2f8731be92c5210fe30a9483b060f4ac31ac37",
+        "seed": 43,
+        "training_membership_sha256": "6be830a249b2cec70ae9b66d2650b408a860e03e9a5f5599992cbf1da4957e6d",
+        "validation_membership_sha256": "df68a4fa8844a432385a0f23487f3e582513ca9b7e04e76c8c17b0f1584130da"
+      },
+      {
+        "artifact_manifest_sha256": "23f0ac0774c2f64233010fe21c3adcd5bbd7bbdde2f5d119318a31d918c581e6",
+        "artifact_relative_path": "interim/finbert-finetuned-models/23f0ac0774c2f64233010fe21c3adcd5bbd7bbdde2f5d119318a31d918c581e6",
+        "best_epoch": 3,
+        "configuration_sha256": "8ca27f89368fc2d81d3e40635e7bde868509183f53db46ffc8730b399c87228f",
+        "learning_rate": 3e-05,
+        "metrics": {
+          "accuracy": 0.8732394366197183,
+          "class_order": [
+            "negative",
+            "neutral",
+            "positive"
+          ],
+          "confusion_matrix": [
+            [
+              215,
+              25,
+              7
+            ],
+            [
+              19,
+              212,
+              21
+            ],
+            [
+              9,
+              18,
+              255
+            ]
+          ],
+          "confusion_matrix_axes": "rows=gold, columns=predicted",
+          "macro_f1": 0.8721659336265969,
+          "per_class": {
+            "negative": {
+              "f1": 0.8775510204081632,
+              "precision": 0.8847736625514403,
+              "recall": 0.8704453441295547,
+              "support": 247
+            },
+            "neutral": {
+              "f1": 0.8362919132149902,
+              "precision": 0.8313725490196079,
+              "recall": 0.8412698412698413,
+              "support": 252
+            },
+            "positive": {
+              "f1": 0.9026548672566371,
+              "precision": 0.901060070671378,
+              "recall": 0.9042553191489362,
+              "support": 282
+            }
+          },
+          "samples": 781
+        },
+        "model": "finbert",
+        "report_path": "reports/experiments/transformer-tuning-runs/finbert/lr-3e-5-seed-44/finbert.json",
+        "report_sha256": "7c834d6588517132cf30b05f76852f8ffd2155d5a32d17f1b54efbecc31ecee8",
+        "seed": 44,
+        "training_membership_sha256": "6be830a249b2cec70ae9b66d2650b408a860e03e9a5f5599992cbf1da4957e6d",
+        "validation_membership_sha256": "df68a4fa8844a432385a0f23487f3e582513ca9b7e04e76c8c17b0f1584130da"
+      }
+    ],
+    "roberta_base": [
+      {
+        "artifact_manifest_sha256": "9a3e11b759fc223eb467e7393b73f002b01095a4eb261a5aee64288cf4d1ad59",
+        "artifact_relative_path": "interim/transformer-finetuned-models/9a3e11b759fc223eb467e7393b73f002b01095a4eb261a5aee64288cf4d1ad59",
+        "best_epoch": 4,
+        "configuration_sha256": "75737ad10bbd18997bebf7e2c8fc2b018049951f3256ea4e7ce465cc0cb711b5",
+        "learning_rate": 2e-05,
+        "metrics": {
+          "accuracy": 0.8860435339308579,
+          "class_order": [
+            "negative",
+            "neutral",
+            "positive"
+          ],
+          "confusion_matrix": [
+            [
+              219,
+              18,
+              10
+            ],
+            [
+              16,
+              210,
+              26
+            ],
+            [
+              8,
+              11,
+              263
+            ]
+          ],
+          "confusion_matrix_axes": "rows=gold, columns=predicted",
+          "macro_f1": 0.8848701093079246,
+          "per_class": {
+            "negative": {
+              "f1": 0.8938775510204081,
+              "precision": 0.9012345679012346,
+              "recall": 0.8866396761133604,
+              "support": 247
+            },
+            "neutral": {
+              "f1": 0.8553971486761711,
+              "precision": 0.8786610878661087,
+              "recall": 0.8333333333333334,
+              "support": 252
+            },
+            "positive": {
+              "f1": 0.9053356282271945,
+              "precision": 0.8795986622073578,
+              "recall": 0.9326241134751773,
+              "support": 282
+            }
+          },
+          "samples": 781
+        },
+        "model": "roberta_base",
+        "report_path": "reports/experiments/transformer-tuning-runs/roberta_base/lr-2e-5-seed-42/roberta_base.json",
+        "report_sha256": "9cbe8a6f4216456883766c9830017006867f62bbb99bbf1e34c3bf5a87ef276b",
+        "seed": 42,
+        "training_membership_sha256": "6be830a249b2cec70ae9b66d2650b408a860e03e9a5f5599992cbf1da4957e6d",
+        "validation_membership_sha256": "df68a4fa8844a432385a0f23487f3e582513ca9b7e04e76c8c17b0f1584130da"
+      },
+      {
+        "artifact_manifest_sha256": "fca701557f897870f9ede87be99df97b2b480ee5a8ada8c1eee7ac5e4a540455",
+        "artifact_relative_path": "interim/transformer-finetuned-models/fca701557f897870f9ede87be99df97b2b480ee5a8ada8c1eee7ac5e4a540455",
+        "best_epoch": 5,
+        "configuration_sha256": "adf96d21d43444428ce06eb4f91741e3206c80be480d2b74f4589eaf97587234",
+        "learning_rate": 2e-05,
+        "metrics": {
+          "accuracy": 0.8706786171574904,
+          "class_order": [
+            "negative",
+            "neutral",
+            "positive"
+          ],
+          "confusion_matrix": [
+            [
+              210,
+              26,
+              11
+            ],
+            [
+              18,
+              204,
+              30
+            ],
+            [
+              5,
+              11,
+              266
+            ]
+          ],
+          "confusion_matrix_axes": "rows=gold, columns=predicted",
+          "macro_f1": 0.8686040044493882,
+          "per_class": {
+            "negative": {
+              "f1": 0.875,
+              "precision": 0.9012875536480687,
+              "recall": 0.8502024291497976,
+              "support": 247
+            },
+            "neutral": {
+              "f1": 0.8275862068965517,
+              "precision": 0.8464730290456431,
+              "recall": 0.8095238095238095,
+              "support": 252
+            },
+            "positive": {
+              "f1": 0.9032258064516129,
+              "precision": 0.8664495114006515,
+              "recall": 0.9432624113475178,
+              "support": 282
+            }
+          },
+          "samples": 781
+        },
+        "model": "roberta_base",
+        "report_path": "reports/experiments/transformer-tuning-runs/roberta_base/lr-2e-5-seed-43/roberta_base.json",
+        "report_sha256": "3c2fe01e9f9f283983921313aaf3c61b08633985a2f07e4edb46be79d82034be",
+        "seed": 43,
+        "training_membership_sha256": "6be830a249b2cec70ae9b66d2650b408a860e03e9a5f5599992cbf1da4957e6d",
+        "validation_membership_sha256": "df68a4fa8844a432385a0f23487f3e582513ca9b7e04e76c8c17b0f1584130da"
+      },
+      {
+        "artifact_manifest_sha256": "fb86dab0bf886e387a959c5c3a56d660cb3695e5dddcd5480e7fec8122528715",
+        "artifact_relative_path": "interim/transformer-finetuned-models/fb86dab0bf886e387a959c5c3a56d660cb3695e5dddcd5480e7fec8122528715",
+        "best_epoch": 3,
+        "configuration_sha256": "0f150f4d4025234c86fbe44e09e8e5a3aef45203bd5c969134cb3b1fecec8ecf",
+        "learning_rate": 2e-05,
+        "metrics": {
+          "accuracy": 0.8758002560819462,
+          "class_order": [
+            "negative",
+            "neutral",
+            "positive"
+          ],
+          "confusion_matrix": [
+            [
+              216,
+              17,
+              14
+            ],
+            [
+              17,
+              205,
+              30
+            ],
+            [
+              6,
+              13,
+              263
+            ]
+          ],
+          "confusion_matrix_axes": "rows=gold, columns=predicted",
+          "macro_f1": 0.8746056850560011,
+          "per_class": {
+            "negative": {
+              "f1": 0.8888888888888888,
+              "precision": 0.9037656903765691,
+              "recall": 0.8744939271255061,
+              "support": 247
+            },
+            "neutral": {
+              "f1": 0.8418891170431212,
+              "precision": 0.8723404255319149,
+              "recall": 0.8134920634920635,
+              "support": 252
+            },
+            "positive": {
+              "f1": 0.8930390492359932,
+              "precision": 0.8566775244299675,
+              "recall": 0.9326241134751773,
+              "support": 282
+            }
+          },
+          "samples": 781
+        },
+        "model": "roberta_base",
+        "report_path": "reports/experiments/transformer-tuning-runs/roberta_base/lr-2e-5-seed-44/roberta_base.json",
+        "report_sha256": "49e8904513df4a0d8fa977589d31de03b3bffb16c80e0a39e3902ee9d958dbee",
+        "seed": 44,
+        "training_membership_sha256": "6be830a249b2cec70ae9b66d2650b408a860e03e9a5f5599992cbf1da4957e6d",
+        "validation_membership_sha256": "df68a4fa8844a432385a0f23487f3e582513ca9b7e04e76c8c17b0f1584130da"
+      }
+    ]
+  },
+  "selected": {
+    "finbert": {
+      "artifact_manifest_sha256": "428d36bf1eb516f708b6420f8bf75591f29d989911571046e56b49fc80edc7b5",
+      "artifact_relative_path": "interim/finbert-finetuned-models/428d36bf1eb516f708b6420f8bf75591f29d989911571046e56b49fc80edc7b5",
+      "best_epoch": 2,
+      "configuration_sha256": "93bfe4efbca07d8152dcfce3734e0130828ba346d43befb4c839739357488907",
+      "learning_rate": 3e-05,
+      "metrics": {
+        "accuracy": 0.8770806658130602,
+        "class_order": [
+          "negative",
+          "neutral",
+          "positive"
+        ],
+        "confusion_matrix": [
+          [
+            214,
+            26,
+            7
+          ],
+          [
+            17,
+            220,
+            15
+          ],
+          [
+            8,
+            23,
+            251
+          ]
+        ],
+        "confusion_matrix_axes": "rows=gold, columns=predicted",
+        "macro_f1": 0.8765642303994475,
+        "per_class": {
+          "negative": {
+            "f1": 0.8806584362139918,
+            "precision": 0.895397489539749,
+            "recall": 0.8663967611336032,
+            "support": 247
+          },
+          "neutral": {
+            "f1": 0.8445297504798465,
+            "precision": 0.8178438661710037,
+            "recall": 0.873015873015873,
+            "support": 252
+          },
+          "positive": {
+            "f1": 0.9045045045045045,
+            "precision": 0.9194139194139194,
+            "recall": 0.8900709219858156,
+            "support": 282
+          }
+        },
+        "samples": 781
+      },
+      "model": "finbert",
+      "report_path": "reports/experiments/transformer-tuning-runs/finbert/lr-3e-5-seed-42/finbert.json",
+      "report_sha256": "3171cfcdcf7992a7fda939aeadf84b06d91a4a6a7ea06d9ee0d54af142a8fd86",
+      "seed": 42,
+      "training_membership_sha256": "6be830a249b2cec70ae9b66d2650b408a860e03e9a5f5599992cbf1da4957e6d",
+      "validation_membership_sha256": "df68a4fa8844a432385a0f23487f3e582513ca9b7e04e76c8c17b0f1584130da"
+    },
+    "roberta_base": {
+      "artifact_manifest_sha256": "9a3e11b759fc223eb467e7393b73f002b01095a4eb261a5aee64288cf4d1ad59",
+      "artifact_relative_path": "interim/transformer-finetuned-models/9a3e11b759fc223eb467e7393b73f002b01095a4eb261a5aee64288cf4d1ad59",
+      "best_epoch": 4,
+      "configuration_sha256": "75737ad10bbd18997bebf7e2c8fc2b018049951f3256ea4e7ce465cc0cb711b5",
+      "learning_rate": 2e-05,
+      "metrics": {
+        "accuracy": 0.8860435339308579,
+        "class_order": [
+          "negative",
+          "neutral",
+          "positive"
+        ],
+        "confusion_matrix": [
+          [
+            219,
+            18,
+            10
+          ],
+          [
+            16,
+            210,
+            26
+          ],
+          [
+            8,
+            11,
+            263
+          ]
+        ],
+        "confusion_matrix_axes": "rows=gold, columns=predicted",
+        "macro_f1": 0.8848701093079246,
+        "per_class": {
+          "negative": {
+            "f1": 0.8938775510204081,
+            "precision": 0.9012345679012346,
+            "recall": 0.8866396761133604,
+            "support": 247
+          },
+          "neutral": {
+            "f1": 0.8553971486761711,
+            "precision": 0.8786610878661087,
+            "recall": 0.8333333333333334,
+            "support": 252
+          },
+          "positive": {
+            "f1": 0.9053356282271945,
+            "precision": 0.8795986622073578,
+            "recall": 0.9326241134751773,
+            "support": 282
+          }
+        },
+        "samples": 781
+      },
+      "model": "roberta_base",
+      "report_path": "reports/experiments/transformer-tuning-runs/roberta_base/lr-2e-5-seed-42/roberta_base.json",
+      "report_sha256": "9cbe8a6f4216456883766c9830017006867f62bbb99bbf1e34c3bf5a87ef276b",
+      "seed": 42,
+      "training_membership_sha256": "6be830a249b2cec70ae9b66d2650b408a860e03e9a5f5599992cbf1da4957e6d",
+      "validation_membership_sha256": "df68a4fa8844a432385a0f23487f3e582513ca9b7e04e76c8c17b0f1584130da"
+    }
+  },
+  "statistics": {
+    "finbert": {
+      "accuracy": {
+        "maximum": 0.8770806658130602,
+        "mean": 0.8758002560819462,
+        "minimum": 0.8732394366197183,
+        "sample_std": 0.002217734708795027
+      },
+      "macro_f1": {
+        "maximum": 0.8765642303994475,
+        "mean": 0.8747744805825799,
+        "minimum": 0.8721659336265969,
+        "sample_std": 0.002310643891166446
+      },
+      "seeds": [
+        42,
+        43,
+        44
+      ]
+    },
+    "roberta_base": {
+      "accuracy": {
+        "maximum": 0.8860435339308579,
+        "mean": 0.8775074690567648,
+        "minimum": 0.8706786171574904,
+        "sample_std": 0.007823432684517018
+      },
+      "macro_f1": {
+        "maximum": 0.8848701093079246,
+        "mean": 0.876026599604438,
+        "minimum": 0.8686040044493882,
+        "sample_std": 0.008225617936221884
+      },
+      "seeds": [
+        42,
+        43,
+        44
+      ]
+    }
+  }
+}

@@ -56,3 +56,32 @@ the study summary describes selection across those runs. The general roadmap
 item for learning rate/length/batch comparisons remains open because this task
 varies learning rate only. Source supervision/exposure and licensing limitations
 remain in [asset review](datasets.md).
+
+## Verified results (2026-10-12)
+
+Selected rate: RoBERTa Base 2e-5; FinBERT 3e-5. The seed-42 grid picks were
+recorded before repeats; that selection receipt was independently captured and
+its SHA-256 remained unchanged. All ten fresh runs complete.
+
+| Model | Macro F1 mean ± sample SD (seeds 42/43/44) |
+| --- | ---: |
+| RoBERTa Base | 0.8760 ± 0.0082 |
+| FinBERT | 0.8748 ± 0.0023 |
+
+The means are close; RoBERTa varies more in these three observations. Ranking
+reverses at seed 43. This does not establish statistically significant superiority.
+The mean summarizes three separate models; it is not an ensemble score. Seed 42
+was used for rate selection, so the aggregate includes a selection-biased component.
+
+Both fresh 2e-5/seed-42 runs exactly reproduce their historical class metrics
+and confusion matrices. Selected models reload to identical epoch metrics.
+All improved epoch files on Windows, private prediction/gold/metric hashes,
+split membership and code/configuration lineage pass independent checks.
+Original source and frozen-test hashes are unchanged. Mac/Windows Ruff and all
+288 tests pass. Weights remain on Windows; Mac retains manifests/private records.
+
+See the [full study](../reports/experiments/transformer-tuning.md),
+[study JSON](../reports/experiments/transformer-tuning.json) and
+[figure](../reports/figures/phase3/learning-rate-seeds.png). No best seed is chosen
+and no test is scored. Length/batch comparisons, MLflow, calibration/error review
+and final evaluation remain open.

@@ -488,6 +488,7 @@ model task was complete. The subsequent verified pretrained run is recorded belo
 - [x] Adapt reviewed financial RoBERTa Large and DeBERTa-v3 Small on SEntFiN; save/reload and compare against unchanged checkpoints.
 - [x] Train separate original RoBERTa Base and DeBERTa-v3 Base checkpoints on PhraseBank only; select on PhraseBank validation and log SEntFiN validation transfer afterward.
 - [x] Score unchanged financial RoBERTa/DeBERTa on PhraseBank validation with upstream-supervision caveats.
+- [x] Compare RoBERTa Base and FinBERT at three learning rates, then report three seeds at each selected rate on SEntFiN validation.
 - [ ] Run controlled training experiments (learning rate, length, batch size); early stopping on validation only.
 - [ ] Track dataset version, seeds, model checkpoint, metrics, latency in MLflow.
 - [ ] Evaluate on independent frozen test set once final configuration is selected.
@@ -578,6 +579,19 @@ or transfer step; ordered predictions/labels/metrics, source/code hashes and
 unchanged frozen benchmark verified. Mac/Windows Ruff and all 282 tests pass.
 Per-model reports and the updated all-model cohort report include these results.
 Phase 3 remains in progress.
+
+Learning-rate/seed study verified (2026-10-12): ten fresh source-initialized
+SEntFiN runs, with 1e-5/2e-5/3e-5 compared at seed 42 and choices persisted
+before seeds 43/44. RoBERTa selects 2e-5, FinBERT 3e-5. Three-seed validation
+macro F1 mean/sample SD: 0.8760/0.0082 and 0.8748/0.0023. No best-seed selection
+or statistical superiority claim. Both fresh 2e-5/seed-42 runs exactly reproduce
+historical metrics. All improved model files, predictions/labels/metrics, split
+and code lineage, selection receipt and unchanged source/frozen hashes verified.
+Mac/Windows Ruff and all 288 tests pass. Per-run/aggregate reports and figure:
+`reports/experiments/transformer-tuning.md`/JSON and `transformer-tuning-runs/`;
+run guide: `docs/transformer-tuning.md`. The broader training-comparison task
+remains open because length/batch settings have not been varied. MLflow,
+calibration/error review and final evaluation also remain open.
 
 **Deliverables:** Inference module, training pipeline, comparison report, versioned best model.
 

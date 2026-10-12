@@ -20,7 +20,7 @@ selects epoch 3 with validation macro F1 0.8762; see the
 experiments now compare unchanged financial checkpoints with SEntFiN-trained
 base models; see the [transformer comparison](reports/experiments/transformer-comparison.md)
 and [reproduction guide](docs/transformer-comparison.md). RoBERTa Base has the
-highest observed validation macro F1 (0.8849) in this single-seed setup.
+highest observed validation macro F1 (0.8849) in the initial single-seed setup.
 Financial checkpoints have also been adapted on SEntFiN, and both original base
 models trained separately on PhraseBank; see the
 [follow-up results](reports/experiments/transformer-followup.md) and
@@ -28,6 +28,9 @@ models trained separately on PhraseBank; see the
 The [all-model cohort report](reports/experiments/all-models-by-cohort.md) brings
 together traditional and transformer variants, class metrics, architecture/size,
 transfer results and missing evaluation coverage.
+A [controlled learning-rate/seed study](reports/experiments/transformer-tuning.md)
+now reports RoBERTa Base macro F1 0.8760 ± 0.0082 and FinBERT 0.8748 ± 0.0023
+across three seeds at their selected rates; no superiority claim or test scoring.
 News ingestion, stock prediction, API, and dashboard remain unimplemented.
 See [ROADMAP.md](ROADMAP.md)
 for the phase sequence and acceptance criteria.

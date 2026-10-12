@@ -71,3 +71,5 @@ build/
 !/reports/experiments/transformer-tuning-runs/**/*.json
 !/reports/experiments/transformer-tuning-runs/**/*.md
 !/reports/experiments/transformer-tuning.json
+!/reports/figures/phase3/
+!/reports/figures/phase3/learning-rate-seeds.png

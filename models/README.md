@@ -42,3 +42,10 @@ training corpus and loading instructions are in `docs/transformer-followup.md`.
 PhraseBank runs start from original base sources; no SEntFiN-trained project
 artifact is reused. Saved models contain tokenizer/configuration/weights without
 optimizer state. All improved epochs remain on Windows.
+
+The learning-rate/seed study retains all improved epochs under the same ignored
+FinBERT and transformer artifact roots. Ten per-run reports identify each selected
+manifest and its exact configuration; no best seed or ensemble is selected.
+Use the matching `configs/transformer-tuning/lr-<rate>-seed-<seed>.json` when
+loading that model. See `docs/transformer-tuning.md` for the grid, fixed-rate
+repeats, saved artifacts and reproducibility checks.

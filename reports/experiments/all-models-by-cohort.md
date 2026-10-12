@@ -3,7 +3,8 @@
 Updated 2026-10-12. This report consolidates recorded Phase 2 and Phase 3
 development results; it performs no new training, inference or test evaluation.
 
-SEntFiN-trained RoBERTa Base has the highest observed SEntFiN validation macro F1
+In the initial fixed-configuration comparison, SEntFiN-trained RoBERTa Base had
+the highest observed SEntFiN validation macro F1
 (0.8849). PhraseBank-trained RoBERTa Base has the highest observed PhraseBank
 macro F1 among models trained in this project (0.8868), narrowly ahead of
 PhraseBank-trained DeBERTa Base (0.8857). These are descriptive validation
@@ -154,6 +155,37 @@ confirmed from the available upstream information. Financial RoBERTa scores
 413/518 correct; its incomplete provenance also prevents an independence claim.
 Both rows use original sources, with no project training or checkpoint selection.
 
+## Controlled learning-rate and seed follow-up
+
+The same SEntFiN cohort now has ten fresh runs of RoBERTa Base and FinBERT.
+Rates 1e-5/2e-5/3e-5 were compared at seed 42; then the selected rates were
+repeated at seeds 43/44. Original tables above retain historical results.
+
+| Model | Learning rate | Seed | Role | Accuracy | Macro F1 |
+| --- | ---: | ---: | --- | ---: | ---: |
+| [FinBERT](transformer-tuning-runs/finbert/lr-1e-5-seed-42/finbert.md) | 1e-05 | 42 | Rate selection | 0.8681 | 0.8663 |
+| [FinBERT](transformer-tuning-runs/finbert/lr-2e-5-seed-42/finbert.md) | 2e-05 | 42 | Rate selection | 0.8771 | 0.8762 |
+| [FinBERT](transformer-tuning-runs/finbert/lr-3e-5-seed-42/finbert.md) | 3e-05 | 42 | Rate selection | 0.8771 | 0.8766 |
+| [RoBERTa Base](transformer-tuning-runs/roberta_base/lr-1e-5-seed-42/roberta_base.md) | 1e-05 | 42 | Rate selection | 0.8822 | 0.8810 |
+| [RoBERTa Base](transformer-tuning-runs/roberta_base/lr-2e-5-seed-42/roberta_base.md) | 2e-05 | 42 | Rate selection | 0.8860 | 0.8849 |
+| [RoBERTa Base](transformer-tuning-runs/roberta_base/lr-3e-5-seed-42/roberta_base.md) | 3e-05 | 42 | Rate selection | 0.8758 | 0.8749 |
+| [FinBERT](transformer-tuning-runs/finbert/lr-3e-5-seed-43/finbert.md) | 3e-05 | 43 | Fixed-rate repeat | 0.8771 | 0.8756 |
+| [FinBERT](transformer-tuning-runs/finbert/lr-3e-5-seed-44/finbert.md) | 3e-05 | 44 | Fixed-rate repeat | 0.8732 | 0.8722 |
+| [RoBERTa Base](transformer-tuning-runs/roberta_base/lr-2e-5-seed-43/roberta_base.md) | 2e-05 | 43 | Fixed-rate repeat | 0.8707 | 0.8686 |
+| [RoBERTa Base](transformer-tuning-runs/roberta_base/lr-2e-5-seed-44/roberta_base.md) | 2e-05 | 44 | Fixed-rate repeat | 0.8758 | 0.8746 |
+
+| Model | Selected rate | Accuracy mean ± sample SD | Macro F1 mean ± sample SD |
+| --- | ---: | ---: | ---: |
+| FinBERT | 3e-05 | 0.8758 ± 0.0022 | 0.8748 ± 0.0023 |
+| RoBERTa Base | 2e-05 | 0.8775 ± 0.0078 | 0.8760 ± 0.0082 |
+
+Mean macro F1 differs by only 0.0013; per-seed ranking reverses at seed 43.
+RoBERTa has larger observed variation in this small study. The three-seed mean
+includes seed 42, which selected the rate, and reuses development validation.
+It is not an ensemble score or independent test result. No best seed is chosen.
+See the [full tuning report](transformer-tuning.md) for class means, grid rules,
+architecture, timing, checksummed artifacts and limitations.
+
 ## Architecture and model size
 
 | Model family | Architecture | Parameters | FP32 parameter MiB |
@@ -269,6 +301,7 @@ These SHA-256 values pin the exact aggregate inputs used to create this report.
 | [deberta_phrasebank.json](deberta_phrasebank.json) | `15bfcd783eda29d2e9cd4934ae2fadbda7225218ae0d65ef010b64b09f34a564` |
 | [financial_roberta_phrasebank.json](financial_roberta_phrasebank.json) | `79cbf3b2c770ab61493016807e47fd4c957c820d4b57198b3a0f6e2a342dd380` |
 | [financial_deberta_phrasebank.json](financial_deberta_phrasebank.json) | `a609d031440430f665b6cc69060fbe594949ce91b3a4ecc034bd9d52697c432b` |
+| [transformer-tuning.json](transformer-tuning.json) | `206e36ffd82fa287e8e2d0ce49b6780600047125e1ff4dd9b8a56c9804919d21` |
 
 New PhraseBank inference checks (2026-10-12): exact ordered prediction IDs/gold
 labels, probability normalization, recomputed metrics, original checkpoint hashes

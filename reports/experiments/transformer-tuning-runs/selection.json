@@ -1,0 +1,129 @@
+{
+  "plan_sha256": "6972e4696521545199f8544e60d87b765cff6ddcf26bef84a55296a4b4713d83",
+  "repeat_seeds_observed_before_selection": false,
+  "selected": {
+    "finbert": {
+      "artifact_manifest_sha256": "428d36bf1eb516f708b6420f8bf75591f29d989911571046e56b49fc80edc7b5",
+      "artifact_relative_path": "interim/finbert-finetuned-models/428d36bf1eb516f708b6420f8bf75591f29d989911571046e56b49fc80edc7b5",
+      "best_epoch": 2,
+      "configuration_sha256": "93bfe4efbca07d8152dcfce3734e0130828ba346d43befb4c839739357488907",
+      "learning_rate": 3e-05,
+      "metrics": {
+        "accuracy": 0.8770806658130602,
+        "class_order": [
+          "negative",
+          "neutral",
+          "positive"
+        ],
+        "confusion_matrix": [
+          [
+            214,
+            26,
+            7
+          ],
+          [
+            17,
+            220,
+            15
+          ],
+          [
+            8,
+            23,
+            251
+          ]
+        ],
+        "confusion_matrix_axes": "rows=gold, columns=predicted",
+        "macro_f1": 0.8765642303994475,
+        "per_class": {
+          "negative": {
+            "f1": 0.8806584362139918,
+            "precision": 0.895397489539749,
+            "recall": 0.8663967611336032,
+            "support": 247
+          },
+          "neutral": {
+            "f1": 0.8445297504798465,
+            "precision": 0.8178438661710037,
+            "recall": 0.873015873015873,
+            "support": 252
+          },
+          "positive": {
+            "f1": 0.9045045045045045,
+            "precision": 0.9194139194139194,
+            "recall": 0.8900709219858156,
+            "support": 282
+          }
+        },
+        "samples": 781
+      },
+      "model": "finbert",
+      "report_path": "reports/experiments/transformer-tuning-runs/finbert/lr-3e-5-seed-42/finbert.json",
+      "report_sha256": "3171cfcdcf7992a7fda939aeadf84b06d91a4a6a7ea06d9ee0d54af142a8fd86",
+      "seed": 42,
+      "training_membership_sha256": "6be830a249b2cec70ae9b66d2650b408a860e03e9a5f5599992cbf1da4957e6d",
+      "validation_membership_sha256": "df68a4fa8844a432385a0f23487f3e582513ca9b7e04e76c8c17b0f1584130da"
+    },
+    "roberta_base": {
+      "artifact_manifest_sha256": "9a3e11b759fc223eb467e7393b73f002b01095a4eb261a5aee64288cf4d1ad59",
+      "artifact_relative_path": "interim/transformer-finetuned-models/9a3e11b759fc223eb467e7393b73f002b01095a4eb261a5aee64288cf4d1ad59",
+      "best_epoch": 4,
+      "configuration_sha256": "75737ad10bbd18997bebf7e2c8fc2b018049951f3256ea4e7ce465cc0cb711b5",
+      "learning_rate": 2e-05,
+      "metrics": {
+        "accuracy": 0.8860435339308579,
+        "class_order": [
+          "negative",
+          "neutral",
+          "positive"
+        ],
+        "confusion_matrix": [
+          [
+            219,
+            18,
+            10
+          ],
+          [
+            16,
+            210,
+            26
+          ],
+          [
+            8,
+            11,
+            263
+          ]
+        ],
+        "confusion_matrix_axes": "rows=gold, columns=predicted",
+        "macro_f1": 0.8848701093079246,
+        "per_class": {
+          "negative": {
+            "f1": 0.8938775510204081,
+            "precision": 0.9012345679012346,
+            "recall": 0.8866396761133604,
+            "support": 247
+          },
+          "neutral": {
+            "f1": 0.8553971486761711,
+            "precision": 0.8786610878661087,
+            "recall": 0.8333333333333334,
+            "support": 252
+          },
+          "positive": {
+            "f1": 0.9053356282271945,
+            "precision": 0.8795986622073578,
+            "recall": 0.9326241134751773,
+            "support": 282
+          }
+        },
+        "samples": 781
+      },
+      "model": "roberta_base",
+      "report_path": "reports/experiments/transformer-tuning-runs/roberta_base/lr-2e-5-seed-42/roberta_base.json",
+      "report_sha256": "9cbe8a6f4216456883766c9830017006867f62bbb99bbf1e34c3bf5a87ef276b",
+      "seed": 42,
+      "training_membership_sha256": "6be830a249b2cec70ae9b66d2650b408a860e03e9a5f5599992cbf1da4957e6d",
+      "validation_membership_sha256": "df68a4fa8844a432385a0f23487f3e582513ca9b7e04e76c8c17b0f1584130da"
+    }
+  },
+  "selection_seed": 42
+}
