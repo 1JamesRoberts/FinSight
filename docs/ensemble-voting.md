@@ -79,6 +79,14 @@ Tests cover arithmetic and label-vote differences, unanimous/majority decisions,
 both tie rules, bad/misaligned probabilities/IDs/gold, private/public separation,
 OOF bytes/membership/fold/value corruption, reproducibility and protocol hashes.
 
+Verified: all 362 tests and required Ruff checks pass on Mac and Windows.
+Repeated local aggregates/private vote hashes match exactly; Windows agrees
+with all 700 numeric result values within 1e-12 and produces identical private
+vote bytes. Independent NumPy/scikit-learn checks agree across all 2,343 example
+triads, including macro F1, accuracy, NLL and all class decisions. The aggregate
+figure was visually reviewed. Both protocol locks and all 65 original model
+files reverify on Windows; no frozen record was decoded or scored.
+
 ## Supplementary final evaluation v2
 
 The [v2 extension](../configs/final-evaluation-ensembles-v2.json) and

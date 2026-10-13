@@ -684,7 +684,9 @@ calibration superiority claim. Three-model inference cost accompanies small
 validation gains. Both supplementary final comparisons were fixed in the v2
 extension before development analysis; original v1 plan/receipt bytes remain
 unchanged. Independent NumPy/scikit-learn checks agree for all 2,343 example
-triads. All 362 tests and required Ruff checks pass locally; aggregate figure
+triads. All 362 tests and required Ruff checks pass on Mac and Windows; Windows
+reproduces all 700 numeric result values within 1e-12 and identical private vote
+bytes. Both locks and all 65 original model files reverify. Aggregate figure
 visually reviewed, per-record votes remain ignored. See `docs/ensemble-voting.md`.
 This bounded task is complete; final-test runner/evaluation and Phase 3 closure
 remain pending. No frozen test record is decoded or scored.
