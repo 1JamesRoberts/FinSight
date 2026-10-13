@@ -1,0 +1,8 @@
+{
+  "locked_date": "2026-10-13",
+  "plan_sha256": "e749b1879fd3337d947184106ea06cd32b41143fcf9279f51b57b2055f8a2601",
+  "protocol_id": "phase3-sentfin-single-target-v1",
+  "purpose": "Commit this receipt before any final test inference. Changing the plan requires a new explicit version and is not allowed to improve observed test results.",
+  "schema_version": 1,
+  "test_evaluation_performed": false
+}

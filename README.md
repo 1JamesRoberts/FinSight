@@ -44,6 +44,11 @@ now improves cross-fitted validation NLL, Brier and ECE for all nine selected
 model/seed runs while preserving class predictions. Separate full-validation
 calibrators are saved for later locked evaluation; these reused validation
 results remain exploratory. See the [calibration guide](docs/temperature-scaling.md).
+A [locked final-evaluation protocol](docs/final-evaluation.md) fixes the
+766-headline single-target SEntFiN comparison, model/seed/calibrator identities,
+baselines and metrics. Length/batch ablations and MLflow are explicitly deferred.
+The verifier checks hashes without test scoring; the final evaluation runner
+and frozen-test results remain pending.
 News ingestion, stock prediction, API, and dashboard remain unimplemented.
 See [ROADMAP.md](ROADMAP.md)
 for the phase sequence and acceptance criteria.

@@ -280,3 +280,14 @@ documented hosted-weight limitation remains. Keep fold memberships, per-record
 adjusted probabilities and calibrator artifacts ignored; publish aggregates,
 protocol and source hashes only. This reused validation is not an independent
 model-selection assessment even when calibration fits exclude assessed rows.
+
+Final-evaluation protocol review (2026-10-13): lock the existing single-target
+SEntFiN frozen cohort, selected traditional models, unchanged FinBERT and nine
+selected transformer checkpoints with their existing temperatures. Reuse the
+reviewed local-research assets and previously authorized FinBERT weight scope;
+no new acquisition, training, redistribution or final-test inference in this
+task. Hash frozen data as opaque bytes only. Copy existing private baseline
+artifacts to the authorized Windows research checkout for verification when
+needed. Keep model bytes, source labels/text, validation predictions and future
+test predictions ignored; publish only settings, lineage, checksums and later
+aggregate metrics. Multi-target and PhraseBank reserved tests stay unscored.
