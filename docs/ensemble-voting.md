@@ -5,6 +5,10 @@ RoBERTa Base and DeBERTa-v3 Base runs without new training or calibration fits.
 See the [results](../reports/experiments/ensemble-voting.md) and
 [aggregate JSON](../reports/experiments/ensemble-voting.json).
 
+The subsequent [locked final-test comparison](../reports/experiments/phase3-final.md)
+is complete. This document's results and unscored-test notes refer to the earlier
+development voting study; its recipe and the supplementary lock remain unchanged.
+
 ## Rules fixed before analysis
 
 `configs/ensemble-voting.json` fixes equal weights and matching seeds: one

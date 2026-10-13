@@ -310,3 +310,14 @@ calibration fit, relabeling, membership change or new redistribution permission.
 Keep execution receipts, gold/IDs, predictions, bootstrap draws and weights
 private; export verified aggregate metrics/protocol lineage only after a final
 evaluation is actually performed. Multi-target/PhraseBank tests remain reserved.
+
+Final execution review (2026-10-13): the user explicitly authorized the locked
+766-record single-target SEntFiN final evaluation. Reuse the same reviewed
+local noncommercial assets and previously authorized FinBERT weight scope,
+without acquisition, training, calibration fitting or relabeling. Original
+protocol/model/calibrator/data identities remain unchanged. Publish aggregate
+scores, intervals, profiles, timing and lineage only; native source records,
+IDs/gold, per-record predictions, bootstrap draws and model weights stay private.
+The single-target benchmark is now scored/consumed for this locked comparison;
+test-inspired changes need new untouched data for confirmatory claims. Multi-
+target and PhraseBank reserved tests remain unscored. No redistribution expansion.

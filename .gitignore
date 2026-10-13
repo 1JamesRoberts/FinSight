@@ -89,3 +89,5 @@ build/
 !/reports/figures/phase3/temperature-scaling.png
 !/reports/experiments/ensemble-voting.json
 !/reports/figures/phase3/ensemble-voting.png
+!/reports/experiments/phase3-final.json
+!/reports/figures/phase3/final-evaluation.png

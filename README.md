@@ -6,12 +6,21 @@ is comparing traditional NLP methods, FinBERT, and company-specific sentiment.
 A secondary study will test whether sentiment improves stock prediction over
 market-only baselines, using time-respecting evaluation.
 
-**Status: Phases 1 and 2 complete within the documented local research scope.**
+**Status: Phases 1 and 2 complete; locked Phase 3 sentence-model evaluation complete.**
+The [final test report](reports/experiments/phase3-final.md) evaluates all 766
+single-target frozen SEntFiN headlines. Mean macro F1: soft voting **90.28%**,
+hard voting **90.03%**, DeBERTa Base **89.32%**, RoBERTa Base **88.68%** and
+fine-tuned FinBERT **88.28%**. Paired ensemble-minus-DeBERTa intervals span zero;
+the observed ensemble lead is inconclusive. Locked calibration lowers held-out
+NLL for all three transformers. Multi-target/PhraseBank tests remain reserved;
+company-targeted modeling is next. MLflow and length/batch ablations are deferred.
+
+Earlier development work and comparisons:
 Reviewed PhraseBank, SEntFiN, and original-format FiQA files are available in ignored local storage.
 VADER, TF-IDF Logistic Regression, and Linear SVM have validation comparisons,
 bounded tuning, saved local models, and qualitative error review. See the
 [Phase 2 comparison](reports/experiments/phase2-comparison.md). The frozen final
-test remains unscored. Phase 3 has begun with an unchanged pretrained FinBERT
+test was unscored during these development studies. Phase 3 started with an unchanged pretrained FinBERT
 validation run on the Windows GPU; see [results](reports/experiments/finbert-validation.md)
 and [run instructions](docs/finbert.md). The first SEntFiN FinBERT adaptation
 selects epoch 3 with validation macro F1 0.8762; see the
@@ -24,7 +33,7 @@ highest observed validation macro F1 (0.8849) in the initial single-seed setup.
 Financial checkpoints have also been adapted on SEntFiN, and both original base
 models trained separately on PhraseBank; see the
 [follow-up results](reports/experiments/transformer-followup.md) and
-[training guide](docs/transformer-followup.md). Phase 3 remains in progress.
+[training guide](docs/transformer-followup.md).
 The [all-model cohort report](reports/experiments/all-models-by-cohort.md) brings
 together traditional and transformer variants, class metrics, architecture/size,
 transfer results and missing evaluation coverage.
@@ -38,7 +47,7 @@ See the [reproduction guide](docs/transformer-analysis.md).
 The same [DeBERTa Base study](reports/experiments/deberta-tuning.md) now selects
 1e-5 and reports macro F1 0.8810 ± 0.0044 across three seeds; its
 [calibration/error review](reports/experiments/deberta-analysis.md) compares all
-three candidates and reviews 26 private examples. Frozen tests remain unscored.
+three candidates and reviews 26 private examples, before final-test scoring.
 A [temperature-scaling experiment](reports/experiments/temperature-scaling.md)
 now improves cross-fitted validation NLL, Brier and ECE for all nine selected
 model/seed runs while preserving class predictions. Separate full-validation
@@ -48,7 +57,7 @@ A [locked final-evaluation protocol](docs/final-evaluation.md) fixes the
 766-headline single-target SEntFiN comparison, model/seed/calibrator identities,
 baselines and metrics. Length/batch ablations and MLflow are explicitly deferred.
 The verifier checks hashes without test scoring; the final evaluation runner
-and frozen-test results remain pending.
+and precedes the completed frozen-test comparison linked above.
 A [soft/democratic voting study](reports/experiments/ensemble-voting.md) reuses
 the calibrated validation outputs: mean macro F1 0.8846/0.8859, versus DeBERTa
 Base 0.8810. Soft voting improves NLL/Brier but has higher ECE than calibrated
@@ -58,7 +67,8 @@ The [final evaluation runner](docs/final-evaluation-runner.md) now supports
 local saved-model inference, receipt-bound execution, atomic per-model resume,
 shared grouped-bootstrap intervals and aggregate-only export. Its implementation
 is verified without final-test scoring; explicit preparation and execution are
-separate commands. Frozen-test results remain pending.
+separate commands. The completed final results and original execution lineage
+are linked above; reproduce metrics from saved outputs rather than repeating inference.
 News ingestion, stock prediction, API, and dashboard remain unimplemented.
 See [ROADMAP.md](ROADMAP.md)
 for the phase sequence and acceptance criteria.
@@ -256,8 +266,9 @@ models. Read [how it works and setup](docs/tfidf-logreg.md) and the
 [comparison report](reports/experiments/tfidf-logreg-validation.md). Validation
 macro F1 is 0.6696 / 0.8165, compared with VADER's 0.4895 / 0.4787 on the same
 rows. Fitted models and per-record outputs remain ignored local artifacts.
-The frozen test benchmark remains withheld, and this initial configuration has
-not been tuned. Probabilities have not been assessed for calibration.
+This initial configuration was untuned. Subsequent bounded tuning selected the
+SEntFiN balanced C=1 pipeline, now included in the locked final evaluation with
+native probability diagnostics. The reserved PhraseBank test remains withheld.
 
 For the subsequent PhraseBank-only class-weight experiment:
 

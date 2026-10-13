@@ -496,7 +496,7 @@ model task was complete. The subsequent verified pretrained run is recorded belo
 - [x] Implement receipt-bound final evaluation runner, resume, grouped bootstrap and aggregate export; verify with synthetic/development data only.
 - [ ] Run controlled training experiments (learning rate, length, batch size); early stopping on validation only (learning-rate study verified; length/batch ablations deferred).
 - [ ] Track dataset version, seeds, model checkpoint, metrics, latency in MLflow (integration deferred; current checksummed local JSON tracking retained).
-- [ ] Evaluate on independent frozen test set once final configuration is selected.
+- [x] Evaluate the locked single-target frozen SEntFiN test once (no known accessible-corpus overlap; pretraining exposure unknown); multi-target/PhraseBank tests remain reserved.
 - [x] Analyze calibration, negation, financial jargon, ambiguity, and class-specific failures (selected-rate RoBERTa Base/FinBERT/DeBERTa Base validation scope; other model/cohort coverage deferred).
 
 Pretrained validation verified (2026-10-11): pinned revision
@@ -710,6 +710,31 @@ Unscored receipt preparation succeeds and frozen bytes remain unchanged. All
 `docs/final-evaluation-runner.md` for setup, scope and future commands. This
 bounded implementation task is complete; final-test execution/results, Phase 3
 closure and all later phases remain pending.
+
+**Locked final evaluation verified (2026-10-13):** Fresh receipt
+`2d15a59f2a42705ce6f7f0769024a56a4f2ea0e615041333eaea5bad4ff5cdd6`
+binds execution to clean revision `a6f4836a2640745e075aebc4ffcd319c474d737b`
+and unchanged v1/v2 protocols. One logged attempt computes 14 model/control
+passes on all 766 single-target records (215/259/292 negative/neutral/positive),
+producing 29 variants and 13 families without training, calibration fitting,
+model/seed selection, relabeling or dropped records. Mean macro F1:
+soft voting 0.9028, hard voting 0.9003, DeBERTa Base 0.8932, RoBERTa Base
+0.8868, fine-tuned FinBERT 0.8828, SVM 0.8204, LR 0.8150, unchanged FinBERT
+0.7182 and VADER 0.5121. Ensemble-minus-DeBERTa paired intervals include zero;
+individual-model ordering is also inconclusive. All three predeclared
+transformer-minus-LR intervals are positive; all raw-to-calibrated NLL difference
+intervals are negative. Soft probability scores improve in observed means but
+do not establish NLL/ECE superiority over calibrated DeBERTa. Independent
+saved-output audits verify all 29 variants, 56 bootstrap intervals, 11 paired
+differences, execution/export hashes and unchanged frozen bytes. See
+`reports/experiments/phase3-final.md`/JSON and the reviewed aggregate figure.
+The single-target final benchmark is now consumed for this locked comparison;
+new test-inspired changes require fresh untouched data for confirmatory claims.
+Multi-target/PhraseBank tests remain unscored. Public output contains aggregates,
+profiles, timing and lineage only; source labels/IDs, predictions, bootstrap
+draws and weights stay private. This final-evaluation task and the bounded
+Phase 3 comparison are complete; MLflow and length/batch ablations remain
+explicitly deferred. No Phase 4 implementation begins in this task.
 
 ## Phase 4 — Company-targeted sentiment
 

@@ -3,6 +3,13 @@
 The runner implements the locked v1 primary comparison plus v2 supplementary
 soft/hard voting. It adds no training, model acquisition, weight search or
 calibration fit. This implementation task leaves the frozen test unscored.
+
+**Final execution completed 2026-10-13:** see the
+[locked final results](../reports/experiments/phase3-final.md). The commands below
+document the completed workflow. Preserve its original receipt/revision and use
+saved predictions for metric reproduction; do not prepare a new run to tune or
+rescore the consumed test. The unscored statements describe implementation-stage
+verification, before the subsequent authorized final execution.
 See [the protocol](final-evaluation.md) and [ensemble extension](ensemble-voting.md).
 
 ## Commands and scope
@@ -125,7 +132,8 @@ different reports cannot be overwritten. Export is separate from scoring and
 can precede the results commit; execution receipt checks for future resumes
 remain bound to the original revision. Keep original release/protocol receipts
 and record any execution failures. Final-test-driven changes need new untouched
-data for subsequent confirmatory claims. Phase 3 final scoring remains pending.
+data for subsequent confirmatory claims. The completed final scoring is linked
+above; multi-target/PhraseBank reserved tests remain outside that execution.
 
 ## Architecture and tests
 

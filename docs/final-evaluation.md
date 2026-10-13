@@ -6,6 +6,11 @@ checkpoints, calibrators, source inputs and model-file inventories. The
 [lock receipt](../configs/final-evaluation-lock.json) pins the complete plan hash.
 This task verifies readiness; it does not implement or execute the test scorer.
 
+**Execution completed 2026-10-13:** the [final results](../reports/experiments/phase3-final.md)
+score the locked 766 single-target headlines with both primary and supplementary
+comparisons. The readiness notes below describe the pre-execution lock. Original
+receipts/settings remain unchanged; multi-target and PhraseBank tests remain reserved.
+
 An additive [v2 ensemble extension](ensemble-voting.md) now predeclares equal
 soft voting and democratic/hard voting as supplementary rows. The original v1
 plan/receipt and primary individual-model comparison remain unchanged. Verify
@@ -136,8 +141,9 @@ Length/batch ablations and MLflow integration are explicitly deferred. This
 comparison keeps length128, train16/eval32 and existing checksummed local JSON
 experiment records. MLflow and the broader ablation tasks are not marked complete;
 they are not prerequisites to this bounded locked comparison. DeBERTa Large stays
-deferred. Phase 3 final evaluation remains pending until its runner and results
-are verified; this protocol task alone does not close Phase 3.
+deferred. The locked final evaluation is now verified in the linked results;
+the earlier protocol task alone did not close Phase 3. Company-targeted work
+remains a separate later phase.
 
 Use the qualification **held-out SEntFiN evaluation; no known accessible-corpus
 overlap; pretraining exposure unknown**. SEntFiN Indian-market headlines do not

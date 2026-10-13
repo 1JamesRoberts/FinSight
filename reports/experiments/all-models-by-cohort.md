@@ -326,3 +326,9 @@ SEntFiN-only validation extension; five fresh runs, selected rate at seed 42, th
 | 1e-05 | 44 | 5 | 0.8848 | 0.8844 |
 
 Selected LR 1e-05; accuracy 0.8818 ± 0.0041, macro F1 0.8810 ± 0.0044 (sample SD, three separate seeds). Seed 42 participates in selection; no superiority claim, ensemble or test score.
+
+## Locked final single-target SEntFiN evaluation (2026-10-13)
+
+The [final report](phase3-final.md) and [exact aggregate JSON](phase3-final.json) now score all 766 locked single-target test headlines. Mean macro F1: soft voting 0.9028, hard voting 0.9003, DeBERTa Base 0.8932, RoBERTa Base 0.8868 and fine-tuned FinBERT 0.8828. Their supplementary/primary roles, all three seeds, temperatures and baselines were fixed before inference. Paired ensemble-minus-DeBERTa intervals span zero; the observed ensemble lead is inconclusive. Calibration reduces held-out NLL for all three models.
+
+The tables and JSON above retain their historical development-only scope; they are not replaced with test scores. Final-test coverage applies only to the locked models and single-target SEntFiN cohort. Financial variants and PhraseBank-trained transfer variants remain development diagnostics; reserved multi-target/PhraseBank tests are not scored. Pretraining exposure is unknown and no five-company US-domain generalization is established.
