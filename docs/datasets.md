@@ -299,3 +299,14 @@ no acquisition, new weight training, calibration fitting, test decoding/scoring
 or rights-scope change. Vote recipes and supplementary final-test comparisons
 are declared before development analysis. Preserve the original primary lock;
 keep per-record votes/probabilities private and publish aggregates/hashes only.
+
+Final-runner implementation review (2026-10-13): implement the previously
+authorized locked evaluation pipeline using the existing reviewed local weights
+and dataset artifacts. This task verifies with synthetic and development-only
+inference; do not decode or score frozen records during implementation checks.
+The future explicit final run uses the same private noncommercial research scope,
+including the documented FinBERT weight limitation. No acquisition, training,
+calibration fit, relabeling, membership change or new redistribution permission.
+Keep execution receipts, gold/IDs, predictions, bootstrap draws and weights
+private; export verified aggregate metrics/protocol lineage only after a final
+evaluation is actually performed. Multi-target/PhraseBank tests remain reserved.

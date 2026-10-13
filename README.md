@@ -54,6 +54,11 @@ the calibrated validation outputs: mean macro F1 0.8846/0.8859, versus DeBERTa
 Base 0.8810. Soft voting improves NLL/Brier but has higher ECE than calibrated
 DeBERTa. An additive v2 protocol predeclares both supplementary final comparisons;
 the original primary lock stays unchanged. See [voting rules and guide](docs/ensemble-voting.md).
+The [final evaluation runner](docs/final-evaluation-runner.md) now supports
+local saved-model inference, receipt-bound execution, atomic per-model resume,
+shared grouped-bootstrap intervals and aggregate-only export. Its implementation
+is verified without final-test scoring; explicit preparation and execution are
+separate commands. Frozen-test results remain pending.
 News ingestion, stock prediction, API, and dashboard remain unimplemented.
 See [ROADMAP.md](ROADMAP.md)
 for the phase sequence and acceptance criteria.
