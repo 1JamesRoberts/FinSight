@@ -492,6 +492,7 @@ model task was complete. The subsequent verified pretrained run is recorded belo
 - [x] Extend the same three-rate/three-seed experiment and calibration/error review to DeBERTa-v3 Base on SEntFiN validation.
 - [x] Cross-fit temperature scaling for selected-rate RoBERTa Base, FinBERT and DeBERTa Base; save full-validation calibrators for later locked evaluation.
 - [x] Lock final single-target SEntFiN evaluation candidates, artifacts, calibration, seeds, metrics and uncertainty protocol; verify without test inference.
+- [x] Compare equal-weight calibrated soft voting and democratic/hard voting on development outputs; predeclare both in an additive final-evaluation extension.
 - [ ] Run controlled training experiments (learning rate, length, batch size); early stopping on validation only (learning-rate study verified; length/batch ablations deferred).
 - [ ] Track dataset version, seeds, model checkpoint, metrics, latency in MLflow (integration deferred; current checksummed local JSON tracking retained).
 - [ ] Evaluate on independent frozen test set once final configuration is selected.
@@ -670,6 +671,23 @@ Ruff checks pass on both machines. Source text, weights and per-record outputs
 remain ignored. See `docs/final-evaluation.md`. This bounded protocol task is
 complete; the evaluation runner, execution receipt and final results remain
 pending. Phase 3 is not closed and no Phase 4 implementation begins.
+
+**Ensemble development verification (2026-10-13):** Equal-weight soft and
+democratic/hard voting combine FinBERT, RoBERTa Base and DeBERTa Base separately
+for matching seeds 42/43/44. Reuse audited raw and cross-fitted calibrated
+validation predictions; no training, weight search, ensemble calibration or
+best-seed selection. Hard three-way ties resolve to neutral by a rule declared
+before analysis; exact soft ties use fixed class order. Mean macro F1 is
+0.8846 soft / 0.8859 hard versus DeBERTa's 0.8810. Soft NLL/Brier improve to
+0.3415/0.1752, while ECE worsens to 0.0354 versus DeBERTa's 0.0186; no overall
+calibration superiority claim. Three-model inference cost accompanies small
+validation gains. Both supplementary final comparisons were fixed in the v2
+extension before development analysis; original v1 plan/receipt bytes remain
+unchanged. Independent NumPy/scikit-learn checks agree for all 2,343 example
+triads. All 362 tests and required Ruff checks pass locally; aggregate figure
+visually reviewed, per-record votes remain ignored. See `docs/ensemble-voting.md`.
+This bounded task is complete; final-test runner/evaluation and Phase 3 closure
+remain pending. No frozen test record is decoded or scored.
 
 ## Phase 4 — Company-targeted sentiment
 

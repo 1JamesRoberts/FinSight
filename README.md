@@ -49,6 +49,11 @@ A [locked final-evaluation protocol](docs/final-evaluation.md) fixes the
 baselines and metrics. Length/batch ablations and MLflow are explicitly deferred.
 The verifier checks hashes without test scoring; the final evaluation runner
 and frozen-test results remain pending.
+A [soft/democratic voting study](reports/experiments/ensemble-voting.md) reuses
+the calibrated validation outputs: mean macro F1 0.8846/0.8859, versus DeBERTa
+Base 0.8810. Soft voting improves NLL/Brier but has higher ECE than calibrated
+DeBERTa. An additive v2 protocol predeclares both supplementary final comparisons;
+the original primary lock stays unchanged. See [voting rules and guide](docs/ensemble-voting.md).
 News ingestion, stock prediction, API, and dashboard remain unimplemented.
 See [ROADMAP.md](ROADMAP.md)
 for the phase sequence and acceptance criteria.

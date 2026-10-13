@@ -291,3 +291,11 @@ artifacts to the authorized Windows research checkout for verification when
 needed. Keep model bytes, source labels/text, validation predictions and future
 test predictions ignored; publish only settings, lineage, checksums and later
 aggregate metrics. Multi-target and PhraseBank reserved tests stay unscored.
+
+Ensemble-voting review (2026-10-13): user authorized equal-weight soft and
+democratic/hard voting of the existing FinBERT/RoBERTa Base/DeBERTa Base runs.
+Reuse their reviewed private raw and cross-fitted calibrated validation outputs;
+no acquisition, new weight training, calibration fitting, test decoding/scoring
+or rights-scope change. Vote recipes and supplementary final-test comparisons
+are declared before development analysis. Preserve the original primary lock;
+keep per-record votes/probabilities private and publish aggregates/hashes only.

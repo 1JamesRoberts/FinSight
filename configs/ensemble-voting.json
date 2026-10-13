@@ -1,0 +1,31 @@
+{
+  "additional_calibration_fit": false,
+  "best_seed_selection": false,
+  "calibration_report_path": "reports/experiments/temperature-scaling.json",
+  "calibration_report_sha256": "2c276820b0865635692731ec0d86e731a3112c1767ca54ba60bfa11c3ebd86f3",
+  "cohort": "sentfin_single_target_validation",
+  "experiment": "three-model-soft-hard-voting-v1",
+  "final_test_evaluated": false,
+  "final_test_reporting": "Both ensembles are predeclared supplementary comparisons against DeBERTa Base before this development analysis; do not choose inclusion based on validation or test results. Preserve the original primary individual-model comparison.",
+  "hard": "One label vote per member; majority wins; three different labels resolve to neutral. Vote shares are not calibrated probabilities; no NLL/Brier/ECE reported for hard voting.",
+  "member_weights": [
+    1,
+    1,
+    1
+  ],
+  "models": [
+    "finbert",
+    "roberta_base",
+    "deberta_base"
+  ],
+  "parent_final_plan_path": "configs/final-evaluation-plan.json",
+  "parent_final_plan_sha256": "e749b1879fd3337d947184106ea06cd32b41143fcf9279f51b57b2055f8a2601",
+  "schema_version": 1,
+  "seeds": [
+    42,
+    43,
+    44
+  ],
+  "soft": "Arithmetic mean of matching-seed out-of-fold calibrated member probabilities; argmax; exact ties use negative/neutral/positive order.",
+  "weight_search": false
+}

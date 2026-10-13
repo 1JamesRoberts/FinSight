@@ -87,3 +87,5 @@ build/
 !/reports/figures/phase3/deberta-learning-rate-seeds.png
 !/reports/experiments/temperature-scaling.json
 !/reports/figures/phase3/temperature-scaling.png
+!/reports/experiments/ensemble-voting.json
+!/reports/figures/phase3/ensemble-voting.png

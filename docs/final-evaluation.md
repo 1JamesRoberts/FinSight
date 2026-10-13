@@ -6,6 +6,12 @@ checkpoints, calibrators, source inputs and model-file inventories. The
 [lock receipt](../configs/final-evaluation-lock.json) pins the complete plan hash.
 This task verifies readiness; it does not implement or execute the test scorer.
 
+An additive [v2 ensemble extension](ensemble-voting.md) now predeclares equal
+soft voting and democratic/hard voting as supplementary rows. The original v1
+plan/receipt and primary individual-model comparison remain unchanged. Verify
+both locks before the future evaluation; v1's no-ensemble rule continues to
+govern its primary rows, with v2 explicitly adding the two cross-model methods.
+
 ## Population and comparison
 
 Evaluate all 766 single-target headlines from `sentfin-independent-v1`, retaining
