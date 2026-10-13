@@ -491,8 +491,9 @@ model task was complete. The subsequent verified pretrained run is recorded belo
 - [x] Compare RoBERTa Base and FinBERT at three learning rates, then report three seeds at each selected rate on SEntFiN validation.
 - [x] Extend the same three-rate/three-seed experiment and calibration/error review to DeBERTa-v3 Base on SEntFiN validation.
 - [x] Cross-fit temperature scaling for selected-rate RoBERTa Base, FinBERT and DeBERTa Base; save full-validation calibrators for later locked evaluation.
-- [ ] Run controlled training experiments (learning rate, length, batch size); early stopping on validation only.
-- [ ] Track dataset version, seeds, model checkpoint, metrics, latency in MLflow.
+- [x] Lock final single-target SEntFiN evaluation candidates, artifacts, calibration, seeds, metrics and uncertainty protocol; verify without test inference.
+- [ ] Run controlled training experiments (learning rate, length, batch size); early stopping on validation only (learning-rate study verified; length/batch ablations deferred).
+- [ ] Track dataset version, seeds, model checkpoint, metrics, latency in MLflow (integration deferred; current checksummed local JSON tracking retained).
 - [ ] Evaluate on independent frozen test set once final configuration is selected.
 - [x] Analyze calibration, negation, financial jargon, ambiguity, and class-specific failures (selected-rate RoBERTa Base/FinBERT/DeBERTa Base validation scope; other model/cohort coverage deferred).
 
@@ -652,6 +653,23 @@ are also retained privately on Windows. This bounded task is complete.
 Phase 3 stays open for locking the
 final evaluation protocol, final-test scoring, tracking and length/batch scope
 decisions. DeBERTa Large is deferred; no Phase 4 implementation begins.
+
+**Final-evaluation lock verification (2026-10-13):** The committed
+`configs/final-evaluation-plan.json` and separate lock receipt bind the 766
+single-target frozen SEntFiN headlines to nine selected transformer checkpoints,
+their exact full-validation temperatures, selected SEntFiN LR/SVM, VADER,
+training-prior control and unchanged FinBERT. Retain all seeds 42/43/44, raw and
+calibrated probability reporting, macro F1 as primary, class metrics and grouped
+paired bootstrap intervals. No best-seed selection, ensemble, train/validation
+refit or test tuning. Multi-target/PhraseBank tests and DeBERTa Large are deferred;
+length/batch ablations and MLflow integration remain explicitly incomplete.
+The read-only verifier hashes frozen bytes without decoding records and never
+loads/predicts with a model. Mac metadata/lineage checks pass; Windows additionally
+verifies all 65 saved model/tokenizer/pipeline files. All 346 tests and required
+Ruff checks pass on both machines. Source text, weights and per-record outputs
+remain ignored. See `docs/final-evaluation.md`. This bounded protocol task is
+complete; the evaluation runner, execution receipt and final results remain
+pending. Phase 3 is not closed and no Phase 4 implementation begins.
 
 ## Phase 4 — Company-targeted sentiment
 

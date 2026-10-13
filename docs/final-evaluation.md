@@ -116,6 +116,14 @@ calibration ancestry, hash corruption, paths, metadata-only checking and opaque
 non-JSON test bytes. Public files contain aggregate metadata and hashes only;
 source records, labels, individual outputs and model weights remain ignored.
 
+Verified 2026-10-13: metadata/lineage verification passes on Mac; full verification
+passes on Windows for all 65 model/tokenizer/pipeline files. Both machines pass
+all 346 tests and required Ruff lint/format checks. The frozen files retain their
+original hashes; no test records were decoded or scored. The two selected TF-IDF
+artifacts and their development-run lineage are also available privately on
+Windows. Protocol SHA-256:
+`e749b1879fd3337d947184106ea06cd32b41143fcf9279f51b57b2055f8a2601`.
+
 ## Remaining scope decisions
 
 Length/batch ablations and MLflow integration are explicitly deferred. This
