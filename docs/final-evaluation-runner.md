@@ -43,6 +43,15 @@ versions, Python/platform, GPU and CUDA runtime. Preparation fully verifies all
 65 model/tokenizer/pipeline files and the exact saved temperatures. Frozen files
 are checked as opaque bytes only. No fallback to CPU or asset download is allowed.
 
+Verified 2026-10-13: Mac and Windows pass all 384 tests and Ruff lint/format.
+The real Windows GPU smoke check passes all 14 model/control runs; the nine
+saved transformer labels, class metrics and probabilities reproduce history
+exactly, and all five baseline classifications match prior reports. A repeat
+reuses all 14 completed outputs. Independent direct group-resampling agrees
+with ten bootstrap intervals across two three-seed families. Receipt preparation
+was verified without scoring; the frozen file hashes remain unchanged. After
+the verification-notes commit, prepare a fresh receipt for any future final run.
+
 When the final evaluation is explicitly requested, pass that actual receipt path:
 
 ```powershell

@@ -493,6 +493,7 @@ model task was complete. The subsequent verified pretrained run is recorded belo
 - [x] Cross-fit temperature scaling for selected-rate RoBERTa Base, FinBERT and DeBERTa Base; save full-validation calibrators for later locked evaluation.
 - [x] Lock final single-target SEntFiN evaluation candidates, artifacts, calibration, seeds, metrics and uncertainty protocol; verify without test inference.
 - [x] Compare equal-weight calibrated soft voting and democratic/hard voting on development outputs; predeclare both in an additive final-evaluation extension.
+- [x] Implement receipt-bound final evaluation runner, resume, grouped bootstrap and aggregate export; verify with synthetic/development data only.
 - [ ] Run controlled training experiments (learning rate, length, batch size); early stopping on validation only (learning-rate study verified; length/batch ablations deferred).
 - [ ] Track dataset version, seeds, model checkpoint, metrics, latency in MLflow (integration deferred; current checksummed local JSON tracking retained).
 - [ ] Evaluate on independent frozen test set once final configuration is selected.
@@ -690,6 +691,25 @@ bytes. Both locks and all 65 original model files reverify. Aggregate figure
 visually reviewed, per-record votes remain ignored. See `docs/ensemble-voting.md`.
 This bounded task is complete; final-test runner/evaluation and Phase 3 closure
 remain pending. No frozen test record is decoded or scored.
+
+**Final-runner implementation verification (2026-10-13):** Three new modules
+separate locked local inference, fixed-label/group-bootstrap metrics and execution
+orchestration. No existing pinned source or protocol lock changes. Explicit
+preparation binds clean code/source hashes, environment and both locks without
+test decoding; explicit run requires that receipt and full artifact verification.
+Atomic per-model checkpoints, failure logging, exclusive writers, completed-run
+reuse and separate aggregate-only export are tested. No training/acquisition
+path, test tuning or silent record drops. On Windows, the development-only GPU
+smoke scores 14 model/control passes, builds 29 variants and 13 families, and
+exercises 1,000 shared group-bootstrap draws on 781 validation records. Five
+baseline and nine transformer classifications match history; all nine saved
+transformer probability outputs match exactly. Repeating reuses all 14 passes.
+Independent direct-resampling calculations agree with ten bootstrap intervals.
+Unscored receipt preparation succeeds and frozen bytes remain unchanged. All
+384 tests and required Ruff checks pass on Mac and Windows. See
+`docs/final-evaluation-runner.md` for setup, scope and future commands. This
+bounded implementation task is complete; final-test execution/results, Phase 3
+closure and all later phases remain pending.
 
 ## Phase 4 — Company-targeted sentiment
 
