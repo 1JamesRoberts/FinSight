@@ -46,3 +46,10 @@ rules and source URLs. It is separate from the frozen Phase 1 coverage-name
 configuration. Bare ambiguous names and Google parent grouping require explicit
 caller policies. No product aliases or free-text NER rules are implied. See
 `docs/company-targets.md` for the typed lookup API and limitations.
+
+`target-sentiment-plan.json` fixes native target/text input policy, existing
+train/validation lineage, source tokenizer/model, saved headline controls,
+matched training arms, seeds and metrics. `target-sentiment-lock.json` binds it
+to verified private example files and tokenizer-preparation results. The lock
+means **prepared, not trained**; it authorizes no reserved-test evaluation.
+See `docs/target-sentiment-protocol.md`.

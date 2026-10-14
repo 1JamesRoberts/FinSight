@@ -428,3 +428,13 @@ Pin the comparison to original Base initialization and matched three-seed
 training budgets before any new training. Reserved test records are not analyzed
 or scored; integrity-only freeze checks remain. This task adds no training,
 inference, independent-test claims, model redistribution or new collection.
+
+Verified target preparation retains all 12,957 provided development annotations.
+All original group boundaries and labels remain; 95 nonliteral targets and 17
+examples from development-only training headlines are not silently removed.
+The private view is checksum-identical across reconstructed Mac/Windows inputs,
+and all pair target tokens are preserved (no truncation or target UNKs). Only
+aggregate token/count diagnostics, configuration and readiness lock are public.
+No weights were loaded, no models trained/scored, and no reserved test annotations
+were analyzed. Native target strings are financial-entity supervision, not a
+verified legal-company taxonomy; five-company coverage limitations still apply.

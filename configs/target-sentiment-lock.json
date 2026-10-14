@@ -1,0 +1,9 @@
+{
+  "data_manifest_sha256": "be33e779e278b2c786c48ee3205cbad4f9e6bee98839d4c3b6509009a51a856c",
+  "experiment": "target-sentiment-v1",
+  "final_test_evaluated": false,
+  "plan_sha256": "d8c87e545ec2546cace4a41f3f5840b1ad077d04cdcefec81447973524185a81",
+  "preparation_report_sha256": "a5f3ff3d343a77cd052f298f110722a9ca93de6bba5981e29c480605f4744042",
+  "schema_version": 1,
+  "status": "prepared_not_trained"
+}

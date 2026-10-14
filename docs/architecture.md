@@ -146,3 +146,14 @@ are not involved. Ambiguous names and optional subsidiary grouping are explicit
 policy choices; unsupported targets return structured results. Ticker observations
 are retained separately from the company-level project ticker. No generic entity
 service or NER dependency is introduced. See `docs/company-targets.md`.
+
+## Phase 4 extension: native target inputs (2026-10-14)
+
+`finsight.data.target_pairs` expands verified development records into immutable
+examples with source/group/annotation lineage. It preserves native text and labels;
+no company registry substitution occurs. A shared tokenizer helper checks complete
+first-sequence targets and second-sequence truncation without model inference.
+`finsight.data.target_preparation` explicitly coordinates pinned local tokenizer
+checks, private JSONL serialization, aggregate diagnostics and preparation lock
+creation. Training/inference remain separate future runners; no generic trainer
+framework, new dependency or model API is added here.

@@ -775,6 +775,7 @@ calibration fitting, new LR search or Phase 4 implementation occurred.
 ### Tasks
 - [x] Build ticker/name/alias mapping for initial five companies.
 - [x] Audit five-company target/label coverage on train/validation, including multi-target rows, ambiguity and nonliteral mentions; keep reserved tests untouched.
+- [x] Prepare native target–headline development pairs, verify tokenizer eligibility/truncation, and lock the saved-control/matched-headline/target-pair comparison before training.
 - [ ] Implement entity identification and explicit ambiguity handling.
 - [ ] Define target-level labels and create/validate an entity-labeled test collection.
 - [ ] Compare article-wide FinBERT against a target-aware approach (e.g. target + text pair).
@@ -811,6 +812,25 @@ coverage cannot support reliable per-company validation. This bounded audit is
 complete; mention identification, target-pair preparation/eligibility, target-aware
 training, independent target evaluation and five-company label collection remain
 pending. No reserved test annotation/text analysis or new training occurred.
+
+**Native target inputs verified (2026-10-14):** Input/comparison plan
+`d8c87e545ec2546cace4a41f3f5840b1ad077d04cdcefec81447973524185a81` and
+preparation lock bind the unmodified native-target view (manifest
+`be33e779e278b2c786c48ee3205cbad4f9e6bee98839d4c3b6509009a51a856c`).
+There are 11,547/1,410 train/validation examples from 8,598/1,053 headlines.
+All 11 development-only training headlines (17 examples), native labels,
+nonliteral targets and original split groups are retained. Cached pinned
+DeBERTa-v3 Base tokenization verifies every full target; pair max lengths 40/34
+need no truncation and have no target UNKs. Headline-only input conflicts are
+995/122 distinct encoded patterns, versus zero pairs; these are diagnostics,
+not performance scores. Saved-control manifests for seeds 42/43/44 are verified
+without loading weights. Mac reproduces Windows private view hashes and the full
+tokenizer audit; all 455 tests and Ruff gates pass on both platforms. See
+`reports/target-input-preparation.md` and `docs/target-sentiment-protocol.md`.
+The lock says prepared_not_trained. Next: expanded validation headline control,
+then matched headline-only and target-pair training from the same original Base
+initialization and budget. No model inference/training or reserved test analysis
+occurred; broader entity identification, target evaluation and API remain open.
 
 **Deliverables:** Target-sentiment service and independent target-level evaluation.
 

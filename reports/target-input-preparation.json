@@ -1,0 +1,145 @@
+{
+  "code_revision": "867857f380ca89b3a0292b6d7718aab4ff2cc1f0",
+  "data_manifest": {
+    "dataset_id": "sentfin-native-targets-v1",
+    "files": {
+      "train.jsonl": {
+        "sha256": "96ebfda4540eda88a15f2c6af40c7c7eadd64e82ebaf5037c82dcd5153716fef",
+        "size_bytes": 5215961
+      },
+      "validation.jsonl": {
+        "sha256": "f3ae0e512f565cdc05c7cbc1251fcca16c8d8c8d32b9f7de81c2a4a179de5173",
+        "size_bytes": 644091
+      }
+    },
+    "freeze_receipt_sha256": "ab0c9f0581612ee52f3c03a5bbbc03e7ebc621fdf76bb00d7d85bc2973b593f7",
+    "parent_split_manifest_sha256": "a9a67c231903bc2e3e71afead1d6daaf6b7201211fc25a05efd2bb2ee2d5e898",
+    "plan_sha256": "d8c87e545ec2546cace4a41f3f5840b1ad077d04cdcefec81447973524185a81",
+    "schema_version": 1,
+    "summary": {
+      "train": {
+        "class_counts": {
+          "negative": 3078,
+          "neutral": 4395,
+          "positive": 4074
+        },
+        "development_only_examples": 17,
+        "development_only_headlines": 11,
+        "duplicate_groups": 8589,
+        "examples": 11547,
+        "headlines": 8598,
+        "mixed_label_examples": 2276,
+        "multi_target_examples": 5248,
+        "review_reason_headlines": {
+          "cross_corpus_overlap": 1,
+          "target_coverage_difference": 10
+        },
+        "seen_native_target_examples": 11547,
+        "unseen_native_target_examples": 0
+      },
+      "validation": {
+        "class_counts": {
+          "negative": 385,
+          "neutral": 523,
+          "positive": 502
+        },
+        "development_only_examples": 0,
+        "development_only_headlines": 0,
+        "duplicate_groups": 1053,
+        "examples": 1410,
+        "headlines": 1053,
+        "mixed_label_examples": 283,
+        "multi_target_examples": 629,
+        "review_reason_headlines": {},
+        "seen_native_target_examples": 1147,
+        "unseen_native_target_examples": 263
+      }
+    }
+  },
+  "data_manifest_sha256": "be33e779e278b2c786c48ee3205cbad4f9e6bee98839d4c3b6509009a51a856c",
+  "experiment": "target-sentiment-v1",
+  "final_test_evaluated": false,
+  "implementation_sha256": {
+    "src/finsight/data/target_pairs.py": "d8a41e6adeef044f4a46ca63daa6ee84b88641d41937a659871e138f5cc2381c",
+    "src/finsight/data/target_preparation.py": "b7de0b3494192a881541df12a43713042af3ab0b58c460e683a1ded524624edf"
+  },
+  "lockfile_sha256": "f1ace275d05568614b92993b8446d7323df824a8cb1dae9ac382116f906914f6",
+  "models_loaded": 0,
+  "models_trained": 0,
+  "plan_sha256": "d8c87e545ec2546cace4a41f3f5840b1ad077d04cdcefec81447973524185a81",
+  "saved_controls": [
+    {
+      "manifest_verified": true,
+      "seed": 42
+    },
+    {
+      "manifest_verified": true,
+      "seed": 43
+    },
+    {
+      "manifest_verified": true,
+      "seed": 44
+    }
+  ],
+  "schema_version": 1,
+  "status": "prepared_not_trained",
+  "tokenization": {
+    "train": {
+      "matched_headline_only": {
+        "examples": 11547,
+        "headline_truncated_examples": 0,
+        "identical_inputs_with_conflicting_labels": 995,
+        "maximum_encoded_length": 36,
+        "target_unknown_token_examples": 0
+      },
+      "target_pair": {
+        "examples": 11547,
+        "headline_truncated_examples": 0,
+        "identical_inputs_with_conflicting_labels": 0,
+        "maximum_encoded_length": 40,
+        "target_unknown_token_examples": 0
+      }
+    },
+    "validation": {
+      "matched_headline_only": {
+        "examples": 1410,
+        "headline_truncated_examples": 0,
+        "identical_inputs_with_conflicting_labels": 122,
+        "maximum_encoded_length": 28,
+        "target_unknown_token_examples": 0
+      },
+      "target_pair": {
+        "examples": 1410,
+        "headline_truncated_examples": 0,
+        "identical_inputs_with_conflicting_labels": 0,
+        "maximum_encoded_length": 34,
+        "target_unknown_token_examples": 0
+      }
+    }
+  },
+  "tokenizer": {
+    "class": "DebertaV2Tokenizer",
+    "files": {
+      "README.md": {
+        "sha256": "7e9ea69ca00d0609cc0e0b9cec76f9ba6ae71601244c4136a3f25bd02dce4c4d",
+        "size_bytes": 3472
+      },
+      "config.json": {
+        "sha256": "649f6a1ec33c6bdd9a6486d5c66019d461139e54957073eafe9bbc2d34c75b0b",
+        "size_bytes": 579
+      },
+      "spm.model": {
+        "sha256": "c679fbf93643d19aab7ee10c0b99e460bdbc02fedf34b92b05af343b4af586fd",
+        "size_bytes": 2464616
+      },
+      "tokenizer_config.json": {
+        "sha256": "3f3978e0c036f2c2588cac34a6047cbb0af0b0dc1814254e291028529805496d",
+        "size_bytes": 52
+      }
+    },
+    "model_id": "microsoft/deberta-v3-base",
+    "pair_special_tokens": 3,
+    "revision": "8ccc9b6f36199bec6961081d44eb72fb3f7353f3"
+  },
+  "working_tree_dirty": false
+}

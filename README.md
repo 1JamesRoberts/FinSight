@@ -18,7 +18,11 @@ the [development coverage audit](reports/company-coverage.md) finds only
 AAPL 21/0, MSFT 4/2, NVDA 0/0, AMZN 2/1 and Alphabet 0/0 labeled
 train/validation headlines (optional Google grouping adds 1/0). Broader SEntFiN
 target-aware work remains viable; five-company evaluation needs additional labels.
-Mention identification and target-aware modeling remain pending. MLflow and
+The [target-input protocol](docs/target-sentiment-protocol.md) now fixes native
+target–headline pairs and a matched baseline comparison; 11,547/1,410 private
+train/validation examples pass the tokenizer audit without truncation.
+The expanded headline-only baseline and target-aware training remain pending.
+Mention identification is also pending. MLflow and
 length/batch ablations are deferred.
 
 A later [exploratory financial DeBERTa Base adaptation](reports/experiments/proprak-deberta-adaptation.md)
