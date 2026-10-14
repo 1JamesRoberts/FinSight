@@ -78,6 +78,39 @@ def load_tensor_state(model: Any, path: Path) -> None:
     model.load_state_dict(state, strict=True)
 
 
+def load_tokenizer(directory: Path) -> Any:
+    """Read the complete serialized pipeline despite v5-only wrapper metadata."""
+    from transformers import PreTrainedTokenizerFast
+
+    metadata = json.loads((directory / "tokenizer_config.json").read_bytes())
+    tokenizer = PreTrainedTokenizerFast(
+        tokenizer_file=str(directory / "tokenizer.json"),
+        model_input_names=["input_ids", "attention_mask"],
+        **{
+            name: metadata[name]
+            for name in (
+                "bos_token",
+                "eos_token",
+                "cls_token",
+                "sep_token",
+                "pad_token",
+                "unk_token",
+                "mask_token",
+            )
+        },
+    )
+    # Assigning token roles must not change the serialized vocabulary or pipeline.
+    from tokenizers import Tokenizer
+
+    original = Tokenizer.from_file(str(directory / "tokenizer.json"))
+    if tokenizer.get_vocab() != original.get_vocab():
+        raise ValueError("tokenizer role assignment changed the vocabulary")
+    probe = "Company earnings rose 10%, while debt fell."
+    if tokenizer(probe)["input_ids"] != original.encode(probe).ids:
+        raise ValueError("serialized tokenizer encoding differs")
+    return tokenizer
+
+
 def validation_rows(records: list[dict]) -> list[dict]:
     """Reject reserved records before selecting single-target SEntFiN validation."""
     rows = sentence_cohorts(records)["sentfin_single_target"]
@@ -90,7 +123,7 @@ def validation_rows(records: list[dict]) -> list[dict]:
 def run(data_dir: Path, device: str) -> dict:
     """One fixed inference run; private predictions and aggregate public report."""
     from huggingface_hub import snapshot_download
-    from transformers import AutoConfig, AutoTokenizer
+    from transformers import AutoConfig
 
     public = Path("reports/experiments/proprak-deberta-validation.json")
     if public.exists():
@@ -130,9 +163,7 @@ def run(data_dir: Path, device: str) -> dict:
     source_config._attn_implementation = "eager"
     model = build_model(source_config)
     load_tensor_state(model, directory / "pytorch_model.bin")
-    tokenizer = AutoTokenizer.from_pretrained(
-        directory, local_files_only=True, trust_remote_code=False, use_fast=True
-    )
+    tokenizer = load_tokenizer(directory)
     model.to(device=device, dtype=torch.float32)
     texts, gold = zip(*(sentence_and_label(row) for row in rows), strict=True)
     predictions, profile = score_model(torch, tokenizer, model, list(texts), config)

@@ -7,6 +7,7 @@ import pytest
 from finsight.sentiment.proprak_deberta import (
     build_model,
     load_tensor_state,
+    load_tokenizer,
     masked_mean,
     validation_rows,
 )
@@ -32,6 +33,39 @@ def test_masked_pooling_ignores_padding_but_keeps_special_tokens() -> None:
     mask = torch.tensor([[1, 1, 0]])
     assert torch.equal(masked_mean(hidden, mask), torch.tensor([[3.0, 6.0]]))
     assert torch.isfinite(masked_mean(hidden, torch.zeros_like(mask))).all()
+
+
+def test_serialized_pipeline_preserves_ids_and_padding(tmp_path) -> None:
+    import json
+
+    t = pytest.importorskip("transformers")
+    vocabulary = tmp_path / "vocab.txt"
+    vocabulary.write_text(
+        "[PAD]\n[UNK]\n[CLS]\n[SEP]\n[MASK]\ncompany\nearnings\nrose\n"
+    )
+    reference = t.BertTokenizerFast(vocab_file=str(vocabulary))
+    reference.backend_tokenizer.save(str(tmp_path / "tokenizer.json"))
+    metadata = {
+        name: getattr(reference, name)
+        for name in (
+            "bos_token",
+            "eos_token",
+            "cls_token",
+            "sep_token",
+            "pad_token",
+            "unk_token",
+            "mask_token",
+        )
+    }
+    metadata["extra_special_tokens"] = ["[PAD]", "[CLS]", "[SEP]"]
+    (tmp_path / "tokenizer_config.json").write_text(json.dumps(metadata))
+    loaded = load_tokenizer(tmp_path)
+    texts = ["Company earnings rose", "Company"]
+    expected = reference(texts, padding=True, truncation=True, max_length=8)
+    actual = loaded(texts, padding=True, truncation=True, max_length=8)
+    assert actual["input_ids"] == expected["input_ids"]
+    assert actual["attention_mask"] == expected["attention_mask"]
+    assert "token_type_ids" not in actual
 
 
 @pytest.mark.filterwarnings(
