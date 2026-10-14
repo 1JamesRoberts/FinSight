@@ -157,3 +157,14 @@ first-sequence targets and second-sequence truncation without model inference.
 checks, private JSONL serialization, aggregate diagnostics and preparation lock
 creation. Training/inference remain separate future runners; no generic trainer
 framework, new dependency or model API is added here.
+
+## Phase 4 extension: matched traditional target baselines (2026-10-14)
+
+`sentiment/target_tfidf.py` owns sparse training-only vocabulary fitting, separate
+headline/target feature blocks, typed predictions and trusted private persistence.
+It reuses the existing TF-IDF config/vectorizer and introduces no dependency.
+`target_tfidf_experiment.py` coordinates the fixed two-arm CPU experiment, using
+verified native examples and the existing target-cohort metrics. Training and
+inference are separate methods; prediction never fits preprocessing. No generic
+trainer, registry or service layer is added. Public reports contain aggregate
+metrics/size/provenance; fitted vocabularies and row predictions remain private.

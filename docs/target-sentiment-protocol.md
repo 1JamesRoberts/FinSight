@@ -238,3 +238,13 @@ matched headline-only/target-aware TF-IDF Logistic Regression; subsequent fresh
 DeBERTa training still follows the fixed matched comparison plan. The existing
 preparation lock continues to say `prepared_not_trained`, correctly: this run
 adds inference only and does not change that immutable lock.
+
+## Matched linear baseline completed (2026-10-14)
+
+The separately configured [TF-IDF comparison](target-tfidf.md) now trains both
+headline-only and additive headline/target Logistic Regression on the exact
+native training view. Overall validation macro F1 is 75.20% / 74.94%; mixed-label
+F1 is 48.13% / 61.84%. Both fitted models are saved privately. These additive
+features contain no contextual target/text interactions. This does not change
+the fixed transformer plan or its historical preparation receipt; fresh matched
+headline-only and target-pair DeBERTa training remain pending.

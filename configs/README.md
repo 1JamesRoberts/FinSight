@@ -53,3 +53,9 @@ matched training arms, seeds and metrics. `target-sentiment-lock.json` binds it
 to verified private example files and tokenizer-preparation results. The lock
 means **prepared, not trained**; it authorizes no reserved-test evaluation.
 See `docs/target-sentiment-protocol.md`.
+
+`target-tfidf.json` fixes a separate Phase 4 traditional baseline experiment on
+the same native annotation view. It pins existing data/control identities, the
+headline-only/additive-target arms, C=1/unweighted lbfgs, feature caps and one CPU
+thread. It does not modify the transformer comparison plan or preparation lock.
+No search or reserved-test evaluation is performed. See `docs/target-tfidf.md`.

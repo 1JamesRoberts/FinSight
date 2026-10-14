@@ -475,3 +475,12 @@ Public artifacts contain settings, hashes, aggregate metrics and model sizes
 only. No fitted weights/vocabulary redistribution is authorized. Validate the
 existing preparation identities and unchanged original final aggregate before
 publishing. No reserved-test use, calibration fitting or hyperparameter search.
+
+The fixed linear comparison is complete: each arm uses all 11,547 training
+annotations and evaluates 1,410 validation annotations. Both saved models exactly
+reproduce probabilities after reload; headline vocabulary/IDF match between arms.
+Independent all-cohort metric checks pass. The additive target block helps mixed-
+label examples but does not improve overall macro F1. This is exploratory evidence
+of entity label tendencies, not verified contextual target understanding or five-
+company performance. No source/test membership, label, final result or original
+transformer plan/lock was changed. Fitted artifacts and row results remain private.

@@ -106,3 +106,42 @@ shape, classifier parameter count, IDF count, coefficient bytes and total artifa
 bytes. Timings are a single local CPU pass, not a hardware benchmark. The saved
 DeBERTa column provides context: it used a different, single-target training view.
 All results remain exploratory development validation; reserved tests stay frozen.
+
+## Verified results (2026-10-14)
+
+The [comparison report](../reports/experiments/target-tfidf-logreg.md) records the
+clean execution at `98e21d2fd2df29508ab62c6369592442f57791da`. Public JSON SHA-256:
+`05a7e2ce603ae002499a6b9c784c6be3cac61cf8e9513cd02f1ee8269e26a962`.
+Both models were trained on the Mac CPU; the fits took approximately 0.33/0.56
+seconds and converged in 44/72 iterations. Timing is illustrative, not a benchmark.
+
+| Validation cohort | Headline-only macro F1 | Headline + target macro F1 |
+| --- | ---: | ---: |
+| All targets | 75.20% | 74.94% |
+| Single-target | 81.15% | 77.82% |
+| Multi-target | 67.37% | 70.67% |
+| Mixed-label headlines | 48.13% | 61.84% |
+
+The target block raises mixed-label F1 by 13.71 percentage points and multi-target
+F1 by 3.30 points, while reducing single-target F1 by 3.33 points. Overall F1 falls
+by 0.26 points. Raw-probability NLL/Brier/ECE improve from 0.6468/0.3645/0.0863
+to 0.5905/0.3310/0.0723. These are descriptive validation differences without
+uncertainty estimates, not evidence of a globally superior target model.
+
+The target model produces different labels among a headline's targets in 96 of
+272 multi-target headlines, including 61 of 122 mixed-label headlines. Target
+word features may capture useful label tendencies, but the architecture still
+cannot bind arbitrary sentiment expressions to their respective entities.
+There are 56 all-zero validation target blocks; those examples are retained.
+
+The headline model has 24,985 features, 74,958 classifier parameters and a
+1,595,706-byte artifact. The target model has 30,261 features, 90,786 classifier
+parameters and a 1,932,304-byte artifact. Both models are saved privately.
+Every validation probability is identical after trusted reload. A separate audit
+reconstructs prediction bytes/hashes and checks all six cohorts against independent
+scikit-learn F1/accuracy/confusion/NLL and NumPy Brier calculations.
+All 472 tests and Ruff lint/format gates pass. The original final aggregate,
+source freeze and immutable transformer input/comparison plan remain unchanged.
+
+The next bounded transformer task is matched headline-only DeBERTa training,
+followed by the target-pair arm under the already-fixed comparison plan.

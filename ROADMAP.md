@@ -777,6 +777,7 @@ calibration fitting, new LR search or Phase 4 implementation occurred.
 - [x] Audit five-company target/label coverage on train/validation, including multi-target rows, ambiguity and nonliteral mentions; keep reserved tests untouched.
 - [x] Prepare native target–headline development pairs, verify tokenizer eligibility/truncation, and lock the saved-control/matched-headline/target-pair comparison before training.
 - [x] Run the three saved DeBERTa headline controls on expanded native-target validation and verify target-level joining/cohort metrics.
+- [x] Train/save matched headline-only and additive headline/target TF-IDF Logistic Regression baselines; evaluate the fixed development cohorts.
 - [ ] Implement entity identification and explicit ambiguity handling.
 - [ ] Define target-level labels and create/validate an entity-labeled test collection.
 - [ ] Compare article-wide FinBERT against a target-aware approach (e.g. target + text pair).
@@ -847,6 +848,23 @@ checks and all 463 tests pass on both machines (including report JSON round-trip
 ordering). No training, calibration fitting or reserved-test scoring occurred.
 Only this saved-control baseline task is complete. Matched training, target-aware
 models, per-company evaluation, independent target testing and API remain open.
+
+**Matched linear baselines verified (2026-10-14):** Both fixed C=1, unweighted
+Logistic Regression arms fit exactly 11,547 training annotations, with identical
+24,985-feature headline vocabulary/IDF; the additive target arm adds 5,276 features.
+Overall validation macro F1 is 75.20% headline-only / 74.94% target-feature;
+single-target 81.15% / 77.82%, multi-target 67.37% / 70.67%, mixed-label
+48.13% / 61.84%. The mixed-label improvement trades off against single-target
+performance; no global model replacement or independent generalization claim.
+Both private fitted models reproduce all validation probabilities after reload.
+Independent scikit-learn/NumPy checks confirm F1/accuracy/confusion/NLL/Brier in
+all six cohorts; prediction bytes match their hashes. All 472 tests and required
+Ruff checks pass. Source freeze, original final aggregate and transformer plan/lock
+are unchanged. See `reports/experiments/target-tfidf-logreg.md` and
+`docs/target-tfidf.md`. Only this matched linear baseline task is complete.
+Target features add entity sentiment offsets with no target/text interactions;
+matched DeBERTa training, independent target tests and broader Phase 4 tasks remain.
+No new source acquisition, tuning, calibration fitting or test scoring occurred.
 
 **Deliverables:** Target-sentiment service and independent target-level evaluation.
 
