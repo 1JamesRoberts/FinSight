@@ -357,3 +357,17 @@ inference padding/truncation, checked against its original vocabulary/probe IDs.
 On 781 SEntFiN validation records: accuracy 0.7900, macro F1 0.7915; no project
 training, calibration fitting or test inference. See
 `reports/experiments/proprak-deberta-validation.md`. No source bytes were modified.
+
+## ProPrak01 SEntFiN adaptation review (2026-10-14)
+
+User-authorized follow-up: adapt the same pinned MIT-declared checkpoint on the
+reviewed local noncommercial SEntFiN training view only (6,299 single-target
+headlines). Select epochs on the existing 781 validation headlines. Prior model
+and SEntFiN terms reviews apply; no new corpus or rights expansion. Preserve
+upstream attribution and both heads, freeze the regression head, and keep derived
+weights, text and per-record outputs private. No weight redistribution is cleared
+by this experiment. `configs/proprak-deberta-training-plan.json` fixes the source,
+seed list, matched five-epoch budget, prior selected 1e-5 rate, patience and
+validation-only scope before training. No final-test inference, fitting of
+temperatures or further model selection against the consumed final benchmark.
+This is post-final exploratory research; new confirmatory claims need new data.

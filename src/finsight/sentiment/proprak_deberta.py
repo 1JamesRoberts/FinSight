@@ -52,14 +52,33 @@ def build_model(config: Any) -> Any:
             self.config = config
             self.config.id2label = dict(enumerate(LABELS))
 
-        def forward(self, input_ids: Any, attention_mask: Any, **kwargs: Any) -> Any:
+        def save_pretrained(self, directory: Path, *, safe_serialization: bool) -> None:
+            from safetensors.torch import save_file
+
+            if not safe_serialization:
+                raise ValueError("derived weights require safe serialization")
+            directory.mkdir(parents=True, exist_ok=True)
+            save_file(self.state_dict(), str(directory / "model.safetensors"))
+            self.config.save_pretrained(directory)
+
+        def forward(
+            self,
+            input_ids: Any,
+            attention_mask: Any,
+            labels: Any = None,
+            **kwargs: Any,
+        ) -> Any:
             output = self.backbone(
                 input_ids=input_ids, attention_mask=attention_mask, **kwargs
             )
             pooled = self.dropout(masked_mean(output.last_hidden_state, attention_mask))
+            logits = self.cls_head(pooled)
             return SimpleNamespace(
-                logits=self.cls_head(pooled),
+                logits=logits,
                 regression=self.reg_head(pooled).squeeze(-1),
+                loss=torch.nn.functional.cross_entropy(logits, labels)
+                if labels is not None
+                else None,
             )
 
     return MultiTaskDeberta()
@@ -69,7 +88,12 @@ def load_tensor_state(model: Any, path: Path) -> None:
     """Require all backbone and both head tensors; never allow random fallback."""
     import torch
 
-    state = torch.load(path, map_location="cpu", weights_only=True)
+    if path.suffix == ".safetensors":
+        from safetensors.torch import load_file
+
+        state = load_file(str(path), device="cpu")
+    else:
+        state = torch.load(path, map_location="cpu", weights_only=True)
     if not isinstance(state, dict) or not all(
         isinstance(key, str) and isinstance(value, torch.Tensor)
         for key, value in state.items()

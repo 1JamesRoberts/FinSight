@@ -201,6 +201,7 @@ def fit_checkpoint(
     run_namespace: str = "finbert",
     training_cohort: str = "sentfin_single_target",
     index_labels: tuple[str, ...] = INDEX_LABELS,
+    frozen_parameters: tuple[str, ...] = (),
 ) -> dict[str, Any]:
     """Adapt all parameters; select checkpoints using validation only."""
     if len(index_labels) != 3 or set(index_labels) != set(INDEX_LABELS):
@@ -224,7 +225,14 @@ def fit_checkpoint(
         raise ValueError("unexpected checkpoint label mapping")
     model.to(device=config.device, dtype=torch.float32)
     model.requires_grad_(True)
-    total_parameters = sum(p.numel() for p in model.parameters())
+    parameters = dict(model.named_parameters())
+    if set(frozen_parameters) - parameters.keys():
+        raise ValueError("unknown frozen parameter")
+    for name in frozen_parameters:
+        parameters[name].requires_grad_(False)
+    total_parameters = sum(p.numel() for p in model.parameters() if p.requires_grad)
+    if not total_parameters:
+        raise ValueError("training requires trainable parameters")
     source_files = {
         name: {
             "size_bytes": (snapshot / name).stat().st_size,
@@ -272,6 +280,8 @@ def fit_checkpoint(
     )
     decay, no_decay = [], []
     for name, parameter in model.named_parameters():
+        if not parameter.requires_grad:
+            continue
         (
             no_decay if name.endswith("bias") or "LayerNorm.weight" in name else decay
         ).append(parameter)
