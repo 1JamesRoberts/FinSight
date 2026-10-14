@@ -105,6 +105,10 @@ def load_tokenizer(directory: Path) -> Any:
     original = Tokenizer.from_file(str(directory / "tokenizer.json"))
     if tokenizer.get_vocab() != original.get_vocab():
         raise ValueError("tokenizer role assignment changed the vocabulary")
+    # The saved backend has batch padding/truncation enabled; compare under the
+    # same explicit settings as the wrapper's unpadded, untruncated probe.
+    original.no_padding()
+    original.no_truncation()
     probe = "Company earnings rose 10%, while debt fell."
     if tokenizer(probe)["input_ids"] != original.encode(probe).ids:
         raise ValueError("serialized tokenizer encoding differs")

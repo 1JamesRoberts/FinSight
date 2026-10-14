@@ -44,6 +44,8 @@ def test_serialized_pipeline_preserves_ids_and_padding(tmp_path) -> None:
         "[PAD]\n[UNK]\n[CLS]\n[SEP]\n[MASK]\ncompany\nearnings\nrose\n"
     )
     reference = t.BertTokenizerFast(vocab_file=str(vocabulary))
+    reference.backend_tokenizer.enable_padding(length=12, pad_id=0, pad_token="[PAD]")
+    reference.backend_tokenizer.enable_truncation(max_length=12)
     reference.backend_tokenizer.save(str(tmp_path / "tokenizer.json"))
     metadata = {
         name: getattr(reference, name)
