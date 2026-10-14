@@ -55,13 +55,13 @@ three candidates and reviews 26 private examples, before final-test scoring.
 A [temperature-scaling experiment](reports/experiments/temperature-scaling.md)
 now improves cross-fitted validation NLL, Brier and ECE for all nine selected
 model/seed runs while preserving class predictions. Separate full-validation
-calibrators are saved for later locked evaluation; these reused validation
+calibrators were saved and used in the completed locked evaluation; these validation
 results remain exploratory. See the [calibration guide](docs/temperature-scaling.md).
 A [locked final-evaluation protocol](docs/final-evaluation.md) fixes the
 766-headline single-target SEntFiN comparison, model/seed/calibrator identities,
 baselines and metrics. Length/batch ablations and MLflow are explicitly deferred.
-The verifier checks hashes without test scoring; the final evaluation runner
-and precedes the completed frozen-test comparison linked above.
+The verifier checks hashes without test scoring. The protocol governed the
+completed frozen-test comparison linked above.
 A [soft/democratic voting study](reports/experiments/ensemble-voting.md) reuses
 the calibrated validation outputs: mean macro F1 0.8846/0.8859, versus DeBERTa
 Base 0.8810. Soft voting improves NLL/Brier but has higher ECE than calibrated
@@ -70,8 +70,8 @@ the original primary lock stays unchanged. See [voting rules and guide](docs/ens
 The [final evaluation runner](docs/final-evaluation-runner.md) now supports
 local saved-model inference, receipt-bound execution, atomic per-model resume,
 shared grouped-bootstrap intervals and aggregate-only export. Its implementation
-is verified without final-test scoring; explicit preparation and execution are
-separate commands. The completed final results and original execution lineage
+was verified without final-test scoring before the completed evaluation;
+preparation and execution remain separate commands. Final results and execution lineage
 are linked above; reproduce metrics from saved outputs rather than repeating inference.
 News ingestion, stock prediction, API, and dashboard remain unimplemented.
 See [ROADMAP.md](ROADMAP.md)
