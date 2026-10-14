@@ -776,6 +776,7 @@ calibration fitting, new LR search or Phase 4 implementation occurred.
 - [x] Build ticker/name/alias mapping for initial five companies.
 - [x] Audit five-company target/label coverage on train/validation, including multi-target rows, ambiguity and nonliteral mentions; keep reserved tests untouched.
 - [x] Prepare native target–headline development pairs, verify tokenizer eligibility/truncation, and lock the saved-control/matched-headline/target-pair comparison before training.
+- [x] Run the three saved DeBERTa headline controls on expanded native-target validation and verify target-level joining/cohort metrics.
 - [ ] Implement entity identification and explicit ambiguity handling.
 - [ ] Define target-level labels and create/validate an entity-labeled test collection.
 - [ ] Compare article-wide FinBERT against a target-aware approach (e.g. target + text pair).
@@ -831,6 +832,21 @@ The lock says prepared_not_trained. Next: expanded validation headline control,
 then matched headline-only and target-pair training from the same original Base
 initialization and budget. No model inference/training or reserved test analysis
 occurred; broader entity identification, target evaluation and API remain open.
+
+**Saved headline control verified (2026-10-14):** Existing DeBERTa Base seeds
+42/43/44 each infer 1,053 validation headlines, then join a single prediction per
+headline to 1,410 original annotations. Three-seed mean macro F1 is 80.58%
+overall, 88.10% single-target, 71.22% multi-target and 50.15% mixed-label.
+All 781 prior single-target labels and classification metrics reproduce;
+maximum probability differences are below 3.34e-6 (1e-5 tolerance).
+Private predictions and all cohort metrics reconstruct identically on Mac;
+overall accuracy/F1/confusion matrices also agree with scikit-learn. Original
+final aggregate and freeze remain unchanged. See
+`reports/experiments/target-saved-control.md` and the protocol. Required Ruff
+checks and all 463 tests pass on both machines (including report JSON round-trip
+ordering). No training, calibration fitting or reserved-test scoring occurred.
+Only this saved-control baseline task is complete. Matched training, target-aware
+models, per-company evaluation, independent target testing and API remain open.
 
 **Deliverables:** Target-sentiment service and independent target-level evaluation.
 

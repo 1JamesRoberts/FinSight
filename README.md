@@ -21,7 +21,11 @@ target-aware work remains viable; five-company evaluation needs additional label
 The [target-input protocol](docs/target-sentiment-protocol.md) now fixes native
 target–headline pairs and a matched baseline comparison; 11,547/1,410 private
 train/validation examples pass the tokenizer audit without truncation.
-The expanded headline-only baseline and target-aware training remain pending.
+The [saved headline-only baseline](reports/experiments/target-saved-control.md)
+now has mean validation macro F1 **80.58%** overall, **71.22%** on multi-target
+examples and **50.15%** on mixed-label headlines (three seeds). The earlier
+single-target result reproduces at **88.10%**. These are exploratory validation
+results; target-aware training remains pending.
 Mention identification is also pending. MLflow and
 length/batch ablations are deferred.
 

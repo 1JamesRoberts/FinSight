@@ -207,3 +207,34 @@ The runner refuses to overwrite published reports. Use the saved reports for
 routine inspection. Mean and sample standard deviation summarize the three
 seeds, with target annotations as the metric unit. Seed variation is not a
 confidence interval. Native seen/unseen strings are not verified company IDs.
+
+## Verified saved-control results (2026-10-14)
+
+See [the validation report](../reports/experiments/target-saved-control.md).
+Mean macro F1 is 80.58% overall, 88.10% single-target, 71.22% multi-target and
+50.15% for mixed-label headlines. All 781 existing single-target predicted labels
+and classification metrics reproduce for every seed. Maximum absolute probability
+differences are 2.15e-6, 2.50e-6 and 3.34e-6 for seeds 42/43/44. Small differences
+are expected because the expanded batches have different padding neighbours.
+No temperatures were fitted/applied. Mixed-label NLL is 2.4892 versus 0.4995
+on single-target examples, showing confident mistakes in this difficult cohort.
+This is evidence of a headline-only baseline limitation, not evidence that a
+particular target-aware model will improve it. Cohorts also differ in composition.
+
+Full saved-weight hashes were checked before loading. The execution checkout was
+clean at `8a94c8ee8f99037c9218682374b361950510050c`. Public result SHA-256 is
+`3beb4f813d38384370f4ee14b374d4514b7b6dd2db6d5d776d04023b59bcd54b`.
+Mac reconstructed all private target-level prediction bytes from its existing
+native view and the GPU's headline IDs/probabilities; every hash and every cohort
+metric matches exactly. Overall metrics also agree independently with
+scikit-learn. A subsequent presentation-only fix preserves table order after
+sorted JSON reload; its regression test does not change predictions or reports.
+All 463 tests and Ruff gates pass on Mac and Windows. No model was trained, and
+no reserved test annotation was analyzed/scored. The original final aggregate
+hash remains `1c5a6334bc0f532075a1b3d9f6d821cb53901e6c83b14ee11dbf9156aa559dfe`.
+
+The saved headline-control increment is complete. The next agreed baseline is
+matched headline-only/target-aware TF-IDF Logistic Regression; subsequent fresh
+DeBERTa training still follows the fixed matched comparison plan. The existing
+preparation lock continues to say `prepared_not_trained`, correctly: this run
+adds inference only and does not change that immutable lock.

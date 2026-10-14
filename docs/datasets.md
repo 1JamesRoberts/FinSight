@@ -453,3 +453,11 @@ single-target validation prediction bytes/gold/membership are validated before
 checking the reloaded models. The original final aggregate must remain unchanged;
 reserved test annotations are not analyzed or scored. These reused development
 validation results cannot establish independent test performance.
+
+Saved-control inference completed for seeds 42/43/44 on validation only. All
+1,410 targets were retained, with no adjudication or cohort-specific prediction
+selection. Mac reconstructs the exact private prediction hashes and cohort
+metrics using already-held source data plus exported IDs/probabilities; no new
+text/target acquisition was necessary. Public output contains aggregate metrics
+and architecture/provenance only. No training, temperature fitting, test scoring,
+model redistribution or change to frozen source/Phase 3 final artifacts occurred.

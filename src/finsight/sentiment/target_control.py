@@ -295,7 +295,15 @@ def render_report(result: dict) -> str:
         "NLL | Brier | ECE |",
         "| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |",
     ]
-    for name, metrics in result["aggregate"].items():
+    for name in (
+        "all_targets",
+        "single_target",
+        "multi_target",
+        "mixed_label_headlines",
+        "seen_native_target",
+        "unseen_native_target",
+    ):
+        metrics = result["aggregate"][name]
         cohort = result["seeds"][0]["cohorts"][name]
         cells = [
             f"{metrics[m]['mean'] * 100:.2f} ± {metrics[m]['sample_std'] * 100:.2f}"
