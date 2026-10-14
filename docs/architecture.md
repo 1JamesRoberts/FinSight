@@ -136,3 +136,13 @@ logging. There is no generic model registry or new service/framework dependency.
 Both weighted and unweighted presets run on each corpus separately. Source text,
 fitted vocabularies/coefficients, and per-record outputs stay local; aggregate
 validation reports are committed. The frozen benchmark is preserved.
+
+## Phase 4 extension: explicit company identities (2026-10-14)
+
+`finsight.sentiment.companies` holds immutable identity/alias/resolution records
+and pure explicit-target lookup. One local JSON loader validates a versioned
+registry; it has no import-time I/O. Sentiment, HTTP, storage and model frameworks
+are not involved. Ambiguous names and optional subsidiary grouping are explicit
+policy choices; unsupported targets return structured results. Ticker observations
+are retained separately from the company-level project ticker. No generic entity
+service or NER dependency is introduced. See `docs/company-targets.md`.

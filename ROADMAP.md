@@ -773,13 +773,27 @@ calibration fitting, new LR search or Phase 4 implementation occurred.
 **Goal:** Distinguish sentiments about different companies in the same article.
 
 ### Tasks
-- [ ] Build ticker/name/alias mapping for initial five companies.
+- [x] Build ticker/name/alias mapping for initial five companies.
 - [ ] Implement entity identification and explicit ambiguity handling.
 - [ ] Define target-level labels and create/validate an entity-labeled test collection.
 - [ ] Compare article-wide FinBERT against a target-aware approach (e.g. target + text pair).
 - [ ] Evaluate macro F1 **per company target** and on multi-company examples.
 - [ ] Track errors from aliases, comparisons, neutral mentions, and conflicting cues.
 - [ ] Expose `predict(text, target_company)` returning probabilities and model version.
+
+**Registry foundation verified (2026-10-14):** `configs/companies.json` version
+`companies-v1` records the five company identities, source URLs and explicit alias
+policies. Immutable typed records and whole-target resolution preserve matched
+tickers, return unsupported targets without inventing a company, and retain
+ambiguous candidates separately from resolved identities. Bare Apple/Amazon/
+Alphabet require company context; Google parent grouping is a separate opt-in.
+GOOG remains distinguishable from GOOGL. Schema/collision checks and 39 synthetic
+behavior tests pass; the full Mac suite has 429 passing tests with required
+Ruff lint/format gates. See `docs/company-targets.md`. Frozen Phase 1 coverage
+configuration, data and final results are unchanged. Only the mapping task is
+complete. Mention/span identification, development target coverage review,
+target-label collection, target-aware models, reserved multi-target evaluation
+and the prediction API remain pending. No test headlines were inspected/scored.
 
 **Deliverables:** Target-sentiment service and independent target-level evaluation.
 

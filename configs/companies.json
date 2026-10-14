@@ -1,0 +1,115 @@
+{
+  "schema_version": 1,
+  "version": "companies-v1",
+  "reviewed_on": "2026-10-14",
+  "companies": [
+    {
+      "company_id": "apple",
+      "primary_ticker": "AAPL",
+      "name": "Apple Inc.",
+      "other_tickers": [],
+      "aliases": [
+        {
+          "name": "Apple",
+          "kind": "name",
+          "requires_context": true
+        }
+      ],
+      "sources": [
+        "https://investor.apple.com/investor-relations/faq/default.aspx"
+      ]
+    },
+    {
+      "company_id": "microsoft",
+      "primary_ticker": "MSFT",
+      "name": "Microsoft Corporation",
+      "other_tickers": [],
+      "aliases": [
+        {
+          "name": "Microsoft",
+          "kind": "name",
+          "requires_context": false
+        },
+        {
+          "name": "Microsoft Corp.",
+          "kind": "name",
+          "requires_context": false
+        }
+      ],
+      "sources": [
+        "https://www.microsoft.com/en-us/investor/FAQ"
+      ]
+    },
+    {
+      "company_id": "nvidia",
+      "primary_ticker": "NVDA",
+      "name": "NVIDIA Corporation",
+      "other_tickers": [],
+      "aliases": [
+        {
+          "name": "NVIDIA",
+          "kind": "name",
+          "requires_context": false
+        },
+        {
+          "name": "NVIDIA Corp.",
+          "kind": "name",
+          "requires_context": false
+        }
+      ],
+      "sources": [
+        "https://investor.nvidia.com/investor-resources/faqs/"
+      ]
+    },
+    {
+      "company_id": "amazon",
+      "primary_ticker": "AMZN",
+      "name": "Amazon.com, Inc.",
+      "other_tickers": [],
+      "aliases": [
+        {
+          "name": "Amazon",
+          "kind": "name",
+          "requires_context": true
+        },
+        {
+          "name": "Amazon.com",
+          "kind": "name",
+          "requires_context": false
+        }
+      ],
+      "sources": [
+        "https://ir.aboutamazon.com/faqs/default.aspx"
+      ]
+    },
+    {
+      "company_id": "alphabet",
+      "primary_ticker": "GOOGL",
+      "name": "Alphabet Inc.",
+      "other_tickers": [
+        "GOOG"
+      ],
+      "aliases": [
+        {
+          "name": "Alphabet",
+          "kind": "name",
+          "requires_context": true
+        },
+        {
+          "name": "Google",
+          "kind": "subsidiary",
+          "requires_context": false
+        },
+        {
+          "name": "Google LLC",
+          "kind": "subsidiary",
+          "requires_context": false
+        }
+      ],
+      "sources": [
+        "https://abc.xyz/assets/73/22/28498a0f4c399beecce2c43c9baf/2016-exchange-offer-press-release.pdf",
+        "https://d18rn0p25nwr6d.cloudfront.net/CIK-0001652044/228e3674-05ba-49db-a0c6-486e783dfe86.html"
+      ]
+    }
+  ]
+}

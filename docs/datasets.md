@@ -380,3 +380,15 @@ Mean SEntFiN validation macro F1 is 0.8815 (sample SD 0.0062), accuracy 0.8818.
 Weights and per-record outputs remain private; the consumed final benchmark and
 original final report are unchanged. See
 `reports/experiments/proprak-deberta-adaptation.md`.
+
+## Phase 4 company identity reference review (2026-10-14)
+
+`configs/companies.json` manually records company-name/ticker facts for the five
+existing project companies, with issuer source URLs and a review date. We store
+no investor-page prose, market prices, news articles or new third-party alias
+dataset. Company names and ticker identities are factual reference metadata;
+this adds no dataset acquisition or expansion of the research text/weight scope.
+The curated alias policies and explicit Google-to-Alphabet grouping option are
+documented in `docs/company-targets.md`; this is not a licensed security master.
+No frozen coverage rules, dataset bytes, labels, predictions or models change.
+Future provider data or additional corpora still require their own terms review.

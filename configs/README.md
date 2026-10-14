@@ -39,3 +39,10 @@ models. See `docs/phrasebank-class-weights.md` for inputs and results.
 schema with unweighted / balanced LinearSVC. Both use C=1 and max_iter=10,000.
 The two presets otherwise match. `validate-tfidf-svm` runs both separate sentence
 cohorts by default; `--cohort` can select one. See `docs/tfidf-svm.md`.
+
+`companies.json` is the Phase 4 versioned registry for explicit company targets.
+It records the five project identities, observed share tickers, curated alias
+rules and source URLs. It is separate from the frozen Phase 1 coverage-name
+configuration. Bare ambiguous names and Google parent grouping require explicit
+caller policies. No product aliases or free-text NER rules are implied. See
+`docs/company-targets.md` for the typed lookup API and limitations.

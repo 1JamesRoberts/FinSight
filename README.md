@@ -13,7 +13,9 @@ hard voting **90.03%**, DeBERTa Base **89.32%**, RoBERTa Base **88.68%** and
 fine-tuned FinBERT **88.28%**. Paired ensemble-minus-DeBERTa intervals span zero;
 the observed ensemble lead is inconclusive. Locked calibration lowers held-out
 NLL for all three transformers. Multi-target/PhraseBank tests remain reserved;
-company-targeted modeling is next. MLflow and length/batch ablations are deferred.
+Phase 4 has started with the [company target registry](docs/company-targets.md);
+mention identification and target-aware modeling remain pending. MLflow and
+length/batch ablations are deferred.
 
 A later [exploratory financial DeBERTa Base adaptation](reports/experiments/proprak-deberta-adaptation.md)
 reports **88.15% validation macro F1** across three seeds, versus **88.10%**
