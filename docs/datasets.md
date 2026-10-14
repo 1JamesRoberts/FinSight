@@ -413,3 +413,18 @@ Publish only `reports/company-coverage.md`/JSON and aggregate interpretation in
 remain ignored/private. The five-company matches are too sparse for credible
 per-company validation; no test collection, corpus acquisition or redistribution
 was added. Frozen receipts/data and final evaluation aggregates are unchanged.
+
+## Phase 4 target-pair preparation review (2026-10-14)
+
+User-authorized input/protocol preparation reuses the reviewed noncommercial
+SEntFiN development view and locally cached MIT-declared Microsoft DeBERTa-v3
+Base tokenizer. No acquisition or weight loading is needed. Keep derivative
+target/headline/label JSONL and row membership private under ignored storage;
+publish counts, hashes and aggregate token-length diagnostics only. Preserve
+native entities, review flags and fixed train/validation groups, including
+nonliteral targets and development-only training rows. No masking, alias
+substitution, label adjudication, five-company restriction or row exclusion.
+Pin the comparison to original Base initialization and matched three-seed
+training budgets before any new training. Reserved test records are not analyzed
+or scored; integrity-only freeze checks remain. This task adds no training,
+inference, independent-test claims, model redistribution or new collection.
