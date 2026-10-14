@@ -349,3 +349,11 @@ reviewed architecture locally, load the entire tensor state strictly with
 `weights_only=True`, and execute no downloaded Python code. The published
 configuration was created with Transformers 5.13.1; verify compatibility with our
 locked 4.57.6 stack before reporting a successful run.
+
+Verified outcome: strict weight loading succeeds with the locked stack. The v5
+auto-tokenizer metadata is incompatible; the complete serialized pipeline loads
+via `PreTrainedTokenizerFast` with existing special-token roles and explicit
+inference padding/truncation, checked against its original vocabulary/probe IDs.
+On 781 SEntFiN validation records: accuracy 0.7900, macro F1 0.7915; no project
+training, calibration fitting or test inference. See
+`reports/experiments/proprak-deberta-validation.md`. No source bytes were modified.

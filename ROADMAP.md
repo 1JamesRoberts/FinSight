@@ -736,6 +736,17 @@ draws and weights stay private. This final-evaluation task and the bounded
 Phase 3 comparison are complete; MLflow and length/batch ablations remain
 explicitly deferred. No Phase 4 implementation begins in this task.
 
+**Optional post-final checkpoint comparison (2026-10-14):** The reviewed
+`ProPrak01/deberta-v3-financial-sentiment` Base multitask checkpoint is pinned at
+`f008a38828d87fbf80bea4c841333d9c493972e7`. Unchanged classification-head
+inference on the existing 781 single-target SEntFiN validation headlines yields
+accuracy 0.7900 and macro F1 0.7915. Custom masked-mean architecture, strict
+tensor-state loading, tokenizer compatibility and private prediction/aggregate
+provenance are documented in `reports/experiments/proprak-deberta-validation.md`.
+No training, calibration fitting, final-test scoring, protocol amendments or
+Phase 4 implementation. This is exploratory post-final work and leaves the
+locked final comparison unchanged; new confirmatory claims need untouched data.
+
 ## Phase 4 — Company-targeted sentiment
 
 **Goal:** Distinguish sentiments about different companies in the same article.

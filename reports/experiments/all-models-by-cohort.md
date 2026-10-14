@@ -332,3 +332,12 @@ Selected LR 1e-05; accuracy 0.8818 ± 0.0041, macro F1 0.8810 ± 0.0044 (sample 
 The [final report](phase3-final.md) and [exact aggregate JSON](phase3-final.json) now score all 766 locked single-target test headlines. Mean macro F1: soft voting 0.9028, hard voting 0.9003, DeBERTa Base 0.8932, RoBERTa Base 0.8868 and fine-tuned FinBERT 0.8828. Their supplementary/primary roles, all three seeds, temperatures and baselines were fixed before inference. Paired ensemble-minus-DeBERTa intervals span zero; the observed ensemble lead is inconclusive. Calibration reduces held-out NLL for all three models.
 
 The tables and JSON above retain their historical development-only scope; they are not replaced with test scores. Final-test coverage applies only to the locked models and single-target SEntFiN cohort. Financial variants and PhraseBank-trained transfer variants remain development diagnostics; reserved multi-target/PhraseBank tests are not scored. Pretraining exposure is unknown and no five-company US-domain generalization is established.
+
+## Exploratory checkpoint added after final evaluation
+
+[ProPrak01 DeBERTa-v3 Base, unchanged](proprak-deberta-validation.md) scored
+0.7900 accuracy / 0.7915 macro F1 on the same 781 SEntFiN validation headlines.
+It reports PhraseBank/Twitter/FiQA upstream training; no project training or
+calibration fitting was performed. This post-final validation comparison is
+separate from the locked final results. It has no PhraseBank/FiQA independence
+claim and no new final-test score.

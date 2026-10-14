@@ -1,0 +1,299 @@
+{
+  "asset": {
+    "files": {
+      "README.md": {
+        "sha256": "18fc4eefa973535a22a58e9893edd436ec6cd66b7e31672b0be3c1ff96764a24",
+        "size_bytes": 10200
+      },
+      "config.json": {
+        "sha256": "18ac280e5b6cfbb6321ba3145d5602d7e3655610a946a96d1c42978f0b0e189c",
+        "size_bytes": 858
+      },
+      "pytorch_model.bin": {
+        "sha256": "def1c32e7280e2b606fdb66af9f4004ab21750c2d3ec3c427f542f39c5a8024c",
+        "size_bytes": 735425035
+      },
+      "tokenizer.json": {
+        "sha256": "d87197028bcdd4a6c68dc03bd9b04e0956b0998daf7351345de21278a1c9249a",
+        "size_bytes": 8340141
+      },
+      "tokenizer_config.json": {
+        "sha256": "0dbe41323167ba5f2e1e876ccd05068318dd2378b922bdfd924a389dba3bcc7a",
+        "size_bytes": 538
+      },
+      "training_meta.json": {
+        "sha256": "2fe5e61167808ee8a72de458aef10ea5ca74f665737c316e5e542538a7e0e137",
+        "size_bytes": 463
+      }
+    },
+    "license": "mit",
+    "model_id": "ProPrak01/deberta-v3-financial-sentiment",
+    "revision": "f008a38828d87fbf80bea4c841333d9c493972e7",
+    "schema_version": 1
+  },
+  "asset_manifest_sha256": "1ba75d3816c9532e0d2f57d520cdf9ec2d5ecbf50d221806a15b7222c6e41e36",
+  "benchmark_manifest_sha256": "b7cc249017ddd87f0b2c52a3abf3ff5b96f6920832b411f18eac547fec0b0f1c",
+  "code_revision": "9e0190a33b8e3622ab9e85f31be758cf47ecc628",
+  "configuration": {
+    "batch_size": 32,
+    "device": "cuda",
+    "max_length": 128,
+    "model_id": "ProsusAI/finbert",
+    "revision": "4556d13015211d73dccd3fdd39d39232506f3e43",
+    "seed": 42
+  },
+  "environment": {
+    "python": "3.12.3",
+    "tokenizers": "0.22.2",
+    "torch": "2.11.0+cu128",
+    "transformers": "4.57.6"
+  },
+  "experiment": "proprak-deberta-validation",
+  "final_test_evaluated": false,
+  "frozen_test_records_sha256": "144db27f984376867a04dae3724ad69ab4de9e6dbca8fdd43f41d1bca558f3ab",
+  "heads": "768->3 classification, 768->1 regression; dropout 0.1; regression head loaded strictly but not evaluated",
+  "historical_comparisons": {
+    "deberta_base": {
+      "metrics": {
+        "accuracy": 0.8745198463508322,
+        "class_order": [
+          "negative",
+          "neutral",
+          "positive"
+        ],
+        "confusion_matrix": [
+          [
+            221,
+            18,
+            8
+          ],
+          [
+            16,
+            206,
+            30
+          ],
+          [
+            8,
+            18,
+            256
+          ]
+        ],
+        "confusion_matrix_axes": "rows=gold, columns=predicted",
+        "macro_f1": 0.8737569899315728,
+        "per_class": {
+          "negative": {
+            "f1": 0.8983739837398373,
+            "precision": 0.9020408163265307,
+            "recall": 0.8947368421052632,
+            "support": 247
+          },
+          "neutral": {
+            "f1": 0.8340080971659919,
+            "precision": 0.8512396694214877,
+            "recall": 0.8174603174603174,
+            "support": 252
+          },
+          "positive": {
+            "f1": 0.8888888888888888,
+            "precision": 0.8707482993197279,
+            "recall": 0.9078014184397163,
+            "support": 282
+          }
+        },
+        "samples": 781
+      },
+      "report_sha256": "a3b9f03d1d019e2830b0cebf02b399a2d8fa5993f2a1507540034fd8056fc66a",
+      "scope": "Historical one-seed development run; not final-test results"
+    },
+    "financial_deberta": {
+      "metrics": {
+        "accuracy": 0.7387964148527529,
+        "class_order": [
+          "negative",
+          "neutral",
+          "positive"
+        ],
+        "confusion_matrix": [
+          [
+            189,
+            45,
+            13
+          ],
+          [
+            23,
+            178,
+            51
+          ],
+          [
+            10,
+            62,
+            210
+          ]
+        ],
+        "confusion_matrix_axes": "rows=gold, columns=predicted",
+        "macro_f1": 0.741436034862596,
+        "per_class": {
+          "negative": {
+            "f1": 0.8059701492537313,
+            "precision": 0.8513513513513513,
+            "recall": 0.7651821862348178,
+            "support": 247
+          },
+          "neutral": {
+            "f1": 0.6629422718808193,
+            "precision": 0.624561403508772,
+            "recall": 0.7063492063492064,
+            "support": 252
+          },
+          "positive": {
+            "f1": 0.7553956834532374,
+            "precision": 0.7664233576642335,
+            "recall": 0.7446808510638298,
+            "support": 282
+          }
+        },
+        "samples": 781
+      },
+      "report_sha256": "f2c8cac19238ca68ed55a07d26bafc70e9e635d9fbe65220c9be298c68c69c27",
+      "scope": "Historical one-seed development run; not final-test results"
+    },
+    "financial_deberta_adapted": {
+      "metrics": {
+        "accuracy": 0.8745198463508322,
+        "class_order": [
+          "negative",
+          "neutral",
+          "positive"
+        ],
+        "confusion_matrix": [
+          [
+            215,
+            22,
+            10
+          ],
+          [
+            13,
+            212,
+            27
+          ],
+          [
+            7,
+            19,
+            256
+          ]
+        ],
+        "confusion_matrix_axes": "rows=gold, columns=predicted",
+        "macro_f1": 0.8740516418591165,
+        "per_class": {
+          "negative": {
+            "f1": 0.8921161825726142,
+            "precision": 0.9148936170212766,
+            "recall": 0.8704453441295547,
+            "support": 247
+          },
+          "neutral": {
+            "f1": 0.8396039603960396,
+            "precision": 0.8379446640316206,
+            "recall": 0.8412698412698413,
+            "support": 252
+          },
+          "positive": {
+            "f1": 0.8904347826086957,
+            "precision": 0.8737201365187713,
+            "recall": 0.9078014184397163,
+            "support": 282
+          }
+        },
+        "samples": 781
+      },
+      "report_sha256": "85d7e5e0020da9529d20e65df1e8dde37c3475d42f68b98ec2354d75ece85df9",
+      "scope": "Historical one-seed development run; not final-test results"
+    }
+  },
+  "implementation_sha256": "64b5b94a0248e1411089786c2d7de75ddc95b0b0498e0c325aaf5d2eefbc8ab9",
+  "lockfile_sha256": "f1ace275d05568614b92993b8446d7323df824a8cb1dae9ac382116f906914f6",
+  "metrics": {
+    "accuracy": 0.7900128040973111,
+    "class_order": [
+      "negative",
+      "neutral",
+      "positive"
+    ],
+    "confusion_matrix": [
+      [
+        197,
+        42,
+        8
+      ],
+      [
+        18,
+        189,
+        45
+      ],
+      [
+        5,
+        46,
+        231
+      ]
+    ],
+    "confusion_matrix_axes": "rows=gold, columns=predicted",
+    "macro_f1": 0.7914977553561237,
+    "per_class": {
+      "negative": {
+        "f1": 0.8436830835117773,
+        "precision": 0.8954545454545455,
+        "recall": 0.7975708502024291,
+        "support": 247
+      },
+      "neutral": {
+        "f1": 0.7145557655954632,
+        "precision": 0.6823104693140795,
+        "recall": 0.75,
+        "support": 252
+      },
+      "positive": {
+        "f1": 0.8162544169611308,
+        "precision": 0.8133802816901409,
+        "recall": 0.8191489361702128,
+        "support": 282
+      }
+    },
+    "samples": 781
+  },
+  "model": {
+    "amortized_ms_per_text": 2.2694704225096047,
+    "architecture": {
+      "attention_heads": 12,
+      "class": "MultiTaskDeberta",
+      "hidden_size": 768,
+      "intermediate_size": 3072,
+      "layers": 12,
+      "parameter_bytes": 735338512,
+      "parameters": 183834628,
+      "vocabulary_size": 128100
+    },
+    "cuda_runtime": "12.8",
+    "gpu": "NVIDIA GeForce RTX 4070 SUPER",
+    "id2label": {
+      "0": "negative",
+      "1": "neutral",
+      "2": "positive"
+    },
+    "inference_seconds": 1.7724563999800012,
+    "maximum_tokens": 27,
+    "peak_inference_allocated_bytes": 943373824,
+    "peak_inference_reserved_bytes": 1033895936,
+    "precision": "FP32; eager attention; deterministic; TF32 disabled",
+    "truncated_texts": 0
+  },
+  "model_file_bytes": 735425035,
+  "parent_split_manifest_sha256": "a9a67c231903bc2e3e71afead1d6daaf6b7201211fc25a05efd2bb2ee2d5e898",
+  "pooling": "attention-mask mean over non-padding tokens, including specials",
+  "predictions_sha256": "cf510d38eb7899ca883f925eef96d9f18016b67d72cc7804819536bdca35a196",
+  "schema_version": 1,
+  "scope": "Post-final exploratory SEntFiN validation; unchanged classification head; no training, calibration fitting or final-test inference. Upstream SEntFiN exposure unknown; PhraseBank/FiQA supervision reported.",
+  "training_samples": 0,
+  "validation_membership_sha256": "df68a4fa8844a432385a0f23487f3e582513ca9b7e04e76c8c17b0f1584130da",
+  "validation_samples": 781,
+  "working_tree_dirty": false
+}
