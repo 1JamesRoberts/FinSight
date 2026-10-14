@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "experiment": "target-tfidf-logreg-v1",
+  "data_plan_sha256": "d8c87e545ec2546cace4a41f3f5840b1ad077d04cdcefec81447973524185a81",
+  "data_manifest_sha256": "be33e779e278b2c786c48ee3205cbad4f9e6bee98839d4c3b6509009a51a856c",
+  "saved_control_report_sha256": "3beb4f813d38384370f4ee14b374d4514b7b6dd2db6d5d776d04023b59bcd54b",
+  "arms": ["headline_only", "headline_target"],
+  "classifier": {
+    "c": 1.0,
+    "min_df": 2,
+    "max_features": 50000,
+    "max_iter": 1000,
+    "seed": 42,
+    "class_weight": null
+  },
+  "target_min_df": 1,
+  "target_max_features": 10000,
+  "feature_policy": "separate L2-normalized word unigram/bigram TF-IDF blocks; sparse horizontal concatenation; equal block scale; no interaction terms or post-concatenation normalization",
+  "weighting": "one equally weighted training row per original target annotation",
+  "selection": "fixed configuration; no search, calibration fitting or best-arm selection",
+  "threads": 1,
+  "final_test_evaluated": false
+}

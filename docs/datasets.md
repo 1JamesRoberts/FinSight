@@ -461,3 +461,17 @@ metrics using already-held source data plus exported IDs/probabilities; no new
 text/target acquisition was necessary. Public output contains aggregate metrics
 and architecture/provenance only. No training, temperature fitting, test scoring,
 model redistribution or change to frozen source/Phase 3 final artifacts occurred.
+
+## Phase 4 target TF-IDF training review (2026-10-14)
+
+The user authorized matched headline-only and additive headline/native-target
+TF-IDF Logistic Regression training. Reuse only the already-reviewed SEntFiN
+noncommercial development view. There is no new dataset/model acquisition or
+external service. Both arms fit the same original train annotations, without
+PhraseBank combination, filtering, masking, relabeling or new partitions. Keep
+fitted vocabularies, coefficients and target-level predictions in ignored local
+storage: derivative artifacts may encode restricted source text/entity names.
+Public artifacts contain settings, hashes, aggregate metrics and model sizes
+only. No fitted weights/vocabulary redistribution is authorized. Validate the
+existing preparation identities and unchanged original final aggregate before
+publishing. No reserved-test use, calibration fitting or hyperparameter search.
