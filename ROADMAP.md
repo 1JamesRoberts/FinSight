@@ -488,6 +488,7 @@ model task was complete. The subsequent verified pretrained run is recorded belo
 - [x] Adapt reviewed financial RoBERTa Large and DeBERTa-v3 Small on SEntFiN; save/reload and compare against unchanged checkpoints.
 - [x] Train separate original RoBERTa Base and DeBERTa-v3 Base checkpoints on PhraseBank only; select on PhraseBank validation and log SEntFiN validation transfer afterward.
 - [x] Score unchanged financial RoBERTa/DeBERTa on PhraseBank validation with upstream-supervision caveats.
+- [x] Adapt the pinned ProPrak01 financial DeBERTa Base on SEntFiN with three fixed seeds; report exploratory validation, raw calibration and verified saved models after the final comparison.
 - [x] Compare RoBERTa Base and FinBERT at three learning rates, then report three seeds at each selected rate on SEntFiN validation.
 - [x] Extend the same three-rate/three-seed experiment and calibration/error review to DeBERTa-v3 Base on SEntFiN validation.
 - [x] Cross-fit temperature scaling for selected-rate RoBERTa Base, FinBERT and DeBERTa Base; save full-validation calibrators for later locked evaluation.
@@ -746,6 +747,26 @@ provenance are documented in `reports/experiments/proprak-deberta-validation.md`
 No training, calibration fitting, final-test scoring, protocol amendments or
 Phase 4 implementation. This is exploratory post-final work and leaves the
 locked final comparison unchanged; new confirmatory claims need untouched data.
+
+**Optional financial Base adaptation verified (2026-10-14):** Pre-run plan
+`868a31cd6456233d944f8635d3552b0d8d8552d4821a7457de1a3982e93edac0` fixes
+source checkpoint, rate 1e-5, seeds 42/43/44, batch 16/32, max length 128, five
+epoch cap and patience two. Each run starts from the same original ProPrak01
+weights, trains encoder/classification head on 6,299 SEntFiN headlines, freezes
+the 769 regression parameters, and selects only on 781 validation headlines.
+Selected epochs 5/2/5 produce macro F1 0.8828/0.8747/0.8869; mean 0.8815,
+sample SD 0.0062. Mean accuracy 0.8818 matches original trained Base; its
+mean F1 0.8810 differs by only 0.0005. Raw mean NLL/Brier/ECE are
+0.5279/0.2076/0.0917. Adaptation improves on unchanged ProPrak01 (0.7915 F1),
+but offers no compelling replacement evidence. All three selected safetensors
+artifacts reproduce saved epoch metrics. An independent audit verifies 2,343
+ordered predictions, sklearn/NumPy metrics, epoch selection, all source/artifact
+hashes, encoder/classifier changes, unchanged regression weights and identical
+source/saved token IDs for all 21,240 train/validation encodings. Frozen data and
+the original final aggregate are unchanged. See
+`reports/experiments/proprak-deberta-adaptation.md` and per-seed JSON.
+This bounded post-final exploratory task is complete; no final-test inference,
+calibration fitting, new LR search or Phase 4 implementation occurred.
 
 ## Phase 4 — Company-targeted sentiment
 

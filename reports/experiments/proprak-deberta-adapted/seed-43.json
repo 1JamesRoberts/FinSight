@@ -1,0 +1,557 @@
+{
+  "artifact_file_bytes": 743700503,
+  "artifact_relative_path": "interim/transformer-finetuned-models/ab4d7eb6f40961df783665faa7c7d74a4a2fb459fd04e458cc36143a8237794a",
+  "asset": {
+    "files": {
+      "README.md": {
+        "sha256": "18fc4eefa973535a22a58e9893edd436ec6cd66b7e31672b0be3c1ff96764a24",
+        "size_bytes": 10200
+      },
+      "config.json": {
+        "sha256": "18ac280e5b6cfbb6321ba3145d5602d7e3655610a946a96d1c42978f0b0e189c",
+        "size_bytes": 858
+      },
+      "pytorch_model.bin": {
+        "sha256": "def1c32e7280e2b606fdb66af9f4004ab21750c2d3ec3c427f542f39c5a8024c",
+        "size_bytes": 735425035
+      },
+      "tokenizer.json": {
+        "sha256": "d87197028bcdd4a6c68dc03bd9b04e0956b0998daf7351345de21278a1c9249a",
+        "size_bytes": 8340141
+      },
+      "tokenizer_config.json": {
+        "sha256": "0dbe41323167ba5f2e1e876ccd05068318dd2378b922bdfd924a389dba3bcc7a",
+        "size_bytes": 538
+      },
+      "training_meta.json": {
+        "sha256": "2fe5e61167808ee8a72de458aef10ea5ca74f665737c316e5e542538a7e0e137",
+        "size_bytes": 463
+      }
+    },
+    "license": "mit",
+    "model_id": "ProPrak01/deberta-v3-financial-sentiment",
+    "revision": "f008a38828d87fbf80bea4c841333d9c493972e7",
+    "schema_version": 1
+  },
+  "benchmark_manifest_sha256": "b7cc249017ddd87f0b2c52a3abf3ff5b96f6920832b411f18eac547fec0b0f1c",
+  "calibration": {
+    "accuracy": 0.8745198463508322,
+    "bin_count": 10,
+    "bins": [
+      {
+        "accuracy": null,
+        "confidence": null,
+        "count": 0,
+        "lower": 0.0,
+        "upper": 0.1
+      },
+      {
+        "accuracy": null,
+        "confidence": null,
+        "count": 0,
+        "lower": 0.1,
+        "upper": 0.2
+      },
+      {
+        "accuracy": null,
+        "confidence": null,
+        "count": 0,
+        "lower": 0.2,
+        "upper": 0.3
+      },
+      {
+        "accuracy": null,
+        "confidence": null,
+        "count": 0,
+        "lower": 0.3,
+        "upper": 0.4
+      },
+      {
+        "accuracy": 0.5,
+        "confidence": 0.49292294681072235,
+        "count": 2,
+        "lower": 0.4,
+        "upper": 0.5
+      },
+      {
+        "accuracy": 0.6666666666666666,
+        "confidence": 0.5327842401133643,
+        "count": 18,
+        "lower": 0.5,
+        "upper": 0.6
+      },
+      {
+        "accuracy": 0.6470588235294118,
+        "confidence": 0.6393877934007084,
+        "count": 17,
+        "lower": 0.6,
+        "upper": 0.7
+      },
+      {
+        "accuracy": 0.35,
+        "confidence": 0.7565044581890106,
+        "count": 20,
+        "lower": 0.7,
+        "upper": 0.8
+      },
+      {
+        "accuracy": 0.6444444444444445,
+        "confidence": 0.8537365357081096,
+        "count": 45,
+        "lower": 0.8,
+        "upper": 0.9
+      },
+      {
+        "accuracy": 0.9175257731958762,
+        "confidence": 0.9883539221950413,
+        "count": 679,
+        "lower": 0.9,
+        "upper": 1.0
+      }
+    ],
+    "brier": 0.21206784291218678,
+    "confidence_minus_accuracy": 0.08077605780352404,
+    "ece": 0.0873175310340642,
+    "errors": 98,
+    "high_confidence_errors": 56,
+    "mean_confidence": 0.9552959041543563,
+    "nll": 0.4471528693246868,
+    "nll_clip": 1e-15,
+    "samples": 781
+  },
+  "code_revision": "efee37bd278d521d64d147e3e587094939357a96",
+  "configuration": {
+    "device": "cuda",
+    "evaluation_batch_size": 32,
+    "learning_rate": 1e-05,
+    "max_epochs": 5,
+    "max_grad_norm": 1.0,
+    "max_length": 128,
+    "patience": 2,
+    "seed": 43,
+    "train_batch_size": 16,
+    "warmup_ratio": 0.1,
+    "weight_decay": 0.01
+  },
+  "experiment": "proprak-deberta-adaptation",
+  "final_test_evaluated": false,
+  "fit": {
+    "artifact_manifest_sha256": "ab4d7eb6f40961df783665faa7c7d74a4a2fb459fd04e458cc36143a8237794a",
+    "best_epoch": 2,
+    "best_validation_macro_f1": 0.8747227585829123,
+    "early_stopped": true,
+    "history": [
+      {
+        "best_artifact_manifest_sha256": "d0ed483f6c129f27be1f4c6bca7b554063666d96c32b0b96543aa21534718259",
+        "best_epoch": 1,
+        "epoch": 1,
+        "improved": true,
+        "learning_rate_end": 8.888888888888888e-06,
+        "optimizer_steps": 394,
+        "seconds": 77.76255039998796,
+        "stale_epochs": 0,
+        "training_loss": 0.43757003686280077,
+        "validation": {
+          "accuracy": 0.8629961587708067,
+          "class_order": [
+            "negative",
+            "neutral",
+            "positive"
+          ],
+          "confusion_matrix": [
+            [
+              204,
+              35,
+              8
+            ],
+            [
+              8,
+              224,
+              20
+            ],
+            [
+              4,
+              32,
+              246
+            ]
+          ],
+          "confusion_matrix_axes": "rows=gold, columns=predicted",
+          "macro_f1": 0.8637158766954434,
+          "per_class": {
+            "negative": {
+              "f1": 0.8812095032397408,
+              "precision": 0.9444444444444444,
+              "recall": 0.8259109311740891,
+              "support": 247
+            },
+            "neutral": {
+              "f1": 0.8250460405156538,
+              "precision": 0.7697594501718213,
+              "recall": 0.8888888888888888,
+              "support": 252
+            },
+            "positive": {
+              "f1": 0.8848920863309353,
+              "precision": 0.8978102189781022,
+              "recall": 0.8723404255319149,
+              "support": 282
+            }
+          },
+          "samples": 781
+        },
+        "validation_loss": 0.4255544756957724
+      },
+      {
+        "best_artifact_manifest_sha256": "ab4d7eb6f40961df783665faa7c7d74a4a2fb459fd04e458cc36143a8237794a",
+        "best_epoch": 2,
+        "epoch": 2,
+        "improved": true,
+        "learning_rate_end": 6.666666666666667e-06,
+        "optimizer_steps": 788,
+        "seconds": 75.25833560002502,
+        "stale_epochs": 0,
+        "training_loss": 0.2713478969891765,
+        "validation": {
+          "accuracy": 0.8745198463508322,
+          "class_order": [
+            "negative",
+            "neutral",
+            "positive"
+          ],
+          "confusion_matrix": [
+            [
+              218,
+              21,
+              8
+            ],
+            [
+              8,
+              212,
+              32
+            ],
+            [
+              9,
+              20,
+              253
+            ]
+          ],
+          "confusion_matrix_axes": "rows=gold, columns=predicted",
+          "macro_f1": 0.8747227585829123,
+          "per_class": {
+            "negative": {
+              "f1": 0.9045643153526971,
+              "precision": 0.9276595744680851,
+              "recall": 0.8825910931174089,
+              "support": 247
+            },
+            "neutral": {
+              "f1": 0.8396039603960396,
+              "precision": 0.8379446640316206,
+              "recall": 0.8412698412698413,
+              "support": 252
+            },
+            "positive": {
+              "f1": 0.88,
+              "precision": 0.863481228668942,
+              "recall": 0.8971631205673759,
+              "support": 282
+            }
+          },
+          "samples": 781
+        },
+        "validation_loss": 0.4471528714811298
+      },
+      {
+        "best_artifact_manifest_sha256": "ab4d7eb6f40961df783665faa7c7d74a4a2fb459fd04e458cc36143a8237794a",
+        "best_epoch": 2,
+        "epoch": 3,
+        "improved": false,
+        "learning_rate_end": 4.444444444444444e-06,
+        "optimizer_steps": 1182,
+        "seconds": 74.20168279996142,
+        "stale_epochs": 1,
+        "training_loss": 0.19251428114152425,
+        "validation": {
+          "accuracy": 0.8745198463508322,
+          "class_order": [
+            "negative",
+            "neutral",
+            "positive"
+          ],
+          "confusion_matrix": [
+            [
+              221,
+              20,
+              6
+            ],
+            [
+              11,
+              207,
+              34
+            ],
+            [
+              6,
+              21,
+              255
+            ]
+          ],
+          "confusion_matrix_axes": "rows=gold, columns=predicted",
+          "macro_f1": 0.8744074517441202,
+          "per_class": {
+            "negative": {
+              "f1": 0.911340206185567,
+              "precision": 0.9285714285714286,
+              "recall": 0.8947368421052632,
+              "support": 247
+            },
+            "neutral": {
+              "f1": 0.828,
+              "precision": 0.8346774193548387,
+              "recall": 0.8214285714285714,
+              "support": 252
+            },
+            "positive": {
+              "f1": 0.8838821490467937,
+              "precision": 0.864406779661017,
+              "recall": 0.9042553191489362,
+              "support": 282
+            }
+          },
+          "samples": 781
+        },
+        "validation_loss": 0.47597209767709164
+      },
+      {
+        "best_artifact_manifest_sha256": "ab4d7eb6f40961df783665faa7c7d74a4a2fb459fd04e458cc36143a8237794a",
+        "best_epoch": 2,
+        "epoch": 4,
+        "improved": false,
+        "learning_rate_end": 2.222222222222222e-06,
+        "optimizer_steps": 1576,
+        "seconds": 74.21295559999999,
+        "stale_epochs": 2,
+        "training_loss": 0.15142633137001152,
+        "validation": {
+          "accuracy": 0.8745198463508322,
+          "class_order": [
+            "negative",
+            "neutral",
+            "positive"
+          ],
+          "confusion_matrix": [
+            [
+              224,
+              15,
+              8
+            ],
+            [
+              17,
+              203,
+              32
+            ],
+            [
+              7,
+              19,
+              256
+            ]
+          ],
+          "confusion_matrix_axes": "rows=gold, columns=predicted",
+          "macro_f1": 0.8737098341700631,
+          "per_class": {
+            "negative": {
+              "f1": 0.9050505050505051,
+              "precision": 0.9032258064516129,
+              "recall": 0.9068825910931174,
+              "support": 247
+            },
+            "neutral": {
+              "f1": 0.8302658486707567,
+              "precision": 0.8565400843881856,
+              "recall": 0.8055555555555556,
+              "support": 252
+            },
+            "positive": {
+              "f1": 0.8858131487889274,
+              "precision": 0.8648648648648649,
+              "recall": 0.9078014184397163,
+              "support": 282
+            }
+          },
+          "samples": 781
+        },
+        "validation_loss": 0.5646568367904036
+      }
+    ],
+    "maximum_optimizer_steps": 1970,
+    "optimizer_steps": 1576,
+    "parameters_updated": 183833859,
+    "peak_training_gpu_allocated_bytes": 3762257920,
+    "peak_training_gpu_reserved_bytes": 4836032512,
+    "progress_relative_path": "interim/proprak-seed-43-training-progress/565f8a5dad0c44bbadcbfb8d35cfc22a",
+    "source_checkpoint_files": {
+      "README.md": {
+        "sha256": "18fc4eefa973535a22a58e9893edd436ec6cd66b7e31672b0be3c1ff96764a24",
+        "size_bytes": 10200
+      },
+      "config.json": {
+        "sha256": "18ac280e5b6cfbb6321ba3145d5602d7e3655610a946a96d1c42978f0b0e189c",
+        "size_bytes": 858
+      },
+      "pytorch_model.bin": {
+        "sha256": "def1c32e7280e2b606fdb66af9f4004ab21750c2d3ec3c427f542f39c5a8024c",
+        "size_bytes": 735425035
+      },
+      "tokenizer.json": {
+        "sha256": "d87197028bcdd4a6c68dc03bd9b04e0956b0998daf7351345de21278a1c9249a",
+        "size_bytes": 8340141
+      },
+      "tokenizer_config.json": {
+        "sha256": "0dbe41323167ba5f2e1e876ccd05068318dd2378b922bdfd924a389dba3bcc7a",
+        "size_bytes": 538
+      },
+      "training_meta.json": {
+        "sha256": "2fe5e61167808ee8a72de458aef10ea5ca74f665737c316e5e542538a7e0e137",
+        "size_bytes": 463
+      }
+    },
+    "training_seconds_including_validation_and_saving": 301.45050940004876,
+    "truncation": {
+      "training": {
+        "maximum_tokens": 36,
+        "truncated_texts": 0
+      },
+      "validation": {
+        "maximum_tokens": 27,
+        "truncated_texts": 0
+      }
+    },
+    "warmup_steps": 197
+  },
+  "frozen_parameters": [
+    "reg_head.weight",
+    "reg_head.bias"
+  ],
+  "frozen_records_sha256": "144db27f984376867a04dae3724ad69ab4de9e6dbca8fdd43f41d1bca558f3ab",
+  "implementation_sha256": {
+    "src/finsight/sentiment/finbert_training.py": "6d5fde1f6e100cb156960d3736ae6c27562a8917b413bf7402ff2c89717ddd9d",
+    "src/finsight/sentiment/proprak_deberta.py": "69cb72a0c69cc4f11695b85d31f837137fd9a515769aae96c7f2025e8f6ea349",
+    "src/finsight/sentiment/proprak_training.py": "f3f806c212f0c3d09a63530e8cb1dcf63ae4d0adb87cecaea93dfe61e0cbc2c9"
+  },
+  "lockfile_sha256": "f1ace275d05568614b92993b8446d7323df824a8cb1dae9ac382116f906914f6",
+  "metrics": {
+    "accuracy": 0.8745198463508322,
+    "class_order": [
+      "negative",
+      "neutral",
+      "positive"
+    ],
+    "confusion_matrix": [
+      [
+        218,
+        21,
+        8
+      ],
+      [
+        8,
+        212,
+        32
+      ],
+      [
+        9,
+        20,
+        253
+      ]
+    ],
+    "confusion_matrix_axes": "rows=gold, columns=predicted",
+    "macro_f1": 0.8747227585829123,
+    "per_class": {
+      "negative": {
+        "f1": 0.9045643153526971,
+        "precision": 0.9276595744680851,
+        "recall": 0.8825910931174089,
+        "support": 247
+      },
+      "neutral": {
+        "f1": 0.8396039603960396,
+        "precision": 0.8379446640316206,
+        "recall": 0.8412698412698413,
+        "support": 252
+      },
+      "positive": {
+        "f1": 0.88,
+        "precision": 0.863481228668942,
+        "recall": 0.8971631205673759,
+        "support": 282
+      }
+    },
+    "samples": 781
+  },
+  "model": {
+    "amortized_ms_per_text": 1.574480409761378,
+    "architecture": {
+      "attention_heads": 12,
+      "class": "MultiTaskDeberta",
+      "hidden_size": 768,
+      "intermediate_size": 3072,
+      "layers": 12,
+      "parameter_bytes": 735338512,
+      "parameters": 183834628,
+      "vocabulary_size": 128100
+    },
+    "cuda_runtime": "12.8",
+    "gpu": "NVIDIA GeForce RTX 4070 SUPER",
+    "id2label": {
+      "0": "negative",
+      "1": "neutral",
+      "2": "positive"
+    },
+    "inference_seconds": 1.2296692000236362,
+    "maximum_tokens": 27,
+    "peak_inference_allocated_bytes": 977190400,
+    "peak_inference_reserved_bytes": 4836032512,
+    "precision": "FP32; eager attention; deterministic; TF32 disabled",
+    "truncated_texts": 0
+  },
+  "plan": {
+    "asset_manifest_sha256": "1ba75d3816c9532e0d2f57d520cdf9ec2d5ecbf50d221806a15b7222c6e41e36",
+    "calibration": "raw probability metrics only; no temperature fitting",
+    "cohort": "sentfin_single_target",
+    "configuration_template": "configs/transformer-tuning/lr-1e-5-seed-42.json",
+    "configuration_template_sha256": "6874db34bb7a7d73c3ce13d088ff08413fadfb2e21d8987cae0f59e458a8e040",
+    "experiment": "proprak-deberta-adaptation",
+    "final_test_evaluated": false,
+    "freeze_receipt_sha256": "ab0c9f0581612ee52f3c03a5bbbc03e7ebc621fdf76bb00d7d85bc2973b593f7",
+    "frozen_parameters": [
+      "reg_head.weight",
+      "reg_head.bias"
+    ],
+    "learning_rate_choice": "fixed 1e-5 inherited from prior Base validation selection; no new LR grid",
+    "reference_reports": {
+      "reports/experiments/deberta-tuning.json": "e5c8300d009e80cb02a81423f5e7f47698b028f81260ebedd6a996ec3c5cd176",
+      "reports/experiments/proprak-deberta-validation.json": "ca29d04131e40c4b3626815021820fe2317f79205a128a04a686f79c8233df1c",
+      "reports/experiments/tfidf-tuning.json": "329457f5dc8b951883897dfcf0b0a3ca88357093730d86315c9c5183cefdc5e1"
+    },
+    "schema_version": 1,
+    "scope": "post-final exploratory development only",
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "selection": "validation macro F1; strict improvement; earliest exact epoch tie"
+  },
+  "plan_sha256": "868a31cd6456233d944f8635d3552b0d8d8552d4821a7457de1a3982e93edac0",
+  "predictions_sha256": "6c090f59f2a2a2d555558195393925cb9fc2bc20f64e688c9a0e21d2226f7fd2",
+  "regression_weights_unchanged": true,
+  "schema_version": 1,
+  "scope": "Post-final exploratory development only; no test inference; raw probabilities; no temperature fitting; no best-seed selection",
+  "seed": 43,
+  "training_membership_sha256": "6be830a249b2cec70ae9b66d2650b408a860e03e9a5f5599992cbf1da4957e6d",
+  "training_samples": 6299,
+  "validation_membership_sha256": "df68a4fa8844a432385a0f23487f3e582513ca9b7e04e76c8c17b0f1584130da",
+  "validation_samples": 781,
+  "working_tree_dirty": true,
+  "working_tree_status": [
+    "?? reports/experiments/proprak-deberta-adapted/seed-42.json"
+  ]
+}

@@ -371,3 +371,12 @@ seed list, matched five-epoch budget, prior selected 1e-5 rate, patience and
 validation-only scope before training. No final-test inference, fitting of
 temperatures or further model selection against the consumed final benchmark.
 This is post-final exploratory research; new confirmatory claims need new data.
+
+Adaptation verified: three saved/reloaded selected models retain identical
+regression-head tensors and original tokenizer IDs on every training/validation
+text. Encoder/classification tensors changed; the shared encoder update means
+retained regression outputs no longer inherit validated upstream FiQA scores.
+Mean SEntFiN validation macro F1 is 0.8815 (sample SD 0.0062), accuracy 0.8818.
+Weights and per-record outputs remain private; the consumed final benchmark and
+original final report are unchanged. See
+`reports/experiments/proprak-deberta-adaptation.md`.

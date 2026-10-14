@@ -15,6 +15,10 @@ the observed ensemble lead is inconclusive. Locked calibration lowers held-out
 NLL for all three transformers. Multi-target/PhraseBank tests remain reserved;
 company-targeted modeling is next. MLflow and length/batch ablations are deferred.
 
+A later [exploratory financial DeBERTa Base adaptation](reports/experiments/proprak-deberta-adaptation.md)
+reports **88.15% validation macro F1** across three seeds, versus **88.10%**
+for the existing trained Base. It adds no final-test score or replacement claim.
+
 Earlier development work and comparisons:
 Reviewed PhraseBank, SEntFiN, and original-format FiQA files are available in ignored local storage.
 VADER, TF-IDF Logistic Regression, and Linear SVM have validation comparisons,

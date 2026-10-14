@@ -341,3 +341,10 @@ It reports PhraseBank/Twitter/FiQA upstream training; no project training or
 calibration fitting was performed. This post-final validation comparison is
 separate from the locked final results. It has no PhraseBank/FiQA independence
 claim and no new final-test score.
+
+[ProPrak01 financial Base, SEntFiN-adapted](proprak-deberta-adaptation.md)
+subsequently averages 0.8818 accuracy / 0.8815 macro F1 over seeds 42/43/44
+on that validation cohort (macro-F1 sample SD 0.0062), versus 0.8818/0.8810
+for the existing original Base three-seed comparison. Selected models are saved
+and verified; regression head frozen, raw probabilities only. This optional
+post-final experiment adds no frozen-test result or superiority claim.
