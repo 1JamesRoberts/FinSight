@@ -181,3 +181,29 @@ Execution code revision:
 This input/protocol increment is complete. It provides no target-level model
 performance result and does not complete entity identification, target-aware
 training, independent target evaluation, or five-company evaluation coverage.
+
+## Saved headline-control runner
+
+The validation-only runner verifies the preparation lock, reconstructs the source
+train/validation membership, checks exact private JSONL bytes, verifies all saved
+weight/tokenizer files and loads each selected artifact locally. It scores all
+1,053 validation headline records for each seed and joins predictions to 1,410
+annotations. All 781 single-target predicted labels and classification metrics
+must reproduce the earlier report; maximum probability differences must stay
+within 1e-5 to allow small FP32 differences from batch padding.
+
+From the clean Windows GPU checkout with the existing private data/weights:
+
+```powershell
+python -m uv run --locked --extra transformer python -m finsight.sentiment.target_control
+```
+
+Optional `--data-dir PATH` points to the existing reviewed private data root.
+There are no downloads, training steps, temperature fitting or reserved-test
+inference. Public results go to `reports/experiments/target-saved-control.json`
+and `.md`; private target-level predictions go to ignored
+`data/interim/target-saved-control/<run-sha>/seed-42.jsonl` (and seeds 43/44).
+The runner refuses to overwrite published reports. Use the saved reports for
+routine inspection. Mean and sample standard deviation summarize the three
+seeds, with target annotations as the metric unit. Seed variation is not a
+confidence interval. Native seen/unseen strings are not verified company IDs.

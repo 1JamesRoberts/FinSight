@@ -438,3 +438,18 @@ aggregate token/count diagnostics, configuration and readiness lock are public.
 No weights were loaded, no models trained/scored, and no reserved test annotations
 were analyzed. Native target strings are financial-entity supervision, not a
 verified legal-company taxonomy; five-company coverage limitations still apply.
+
+## Phase 4 saved headline-control inference review (2026-10-14)
+
+The authorized validation run reuses the three existing privately stored,
+MIT-source DeBERTa Base adaptations and the reviewed noncommercial SEntFiN
+native-target development view. No new acquisition, training, calibration fitting
+or model redistribution is needed. Verify full saved artifact file hashes before
+loading local safe weights. Reconstruct source development membership and compare
+both prepared JSONL files before inference. Keep target-level predictions,
+source IDs, headline text and native entity names private; publish only aggregate
+cohort metrics, runtime/architecture details and provenance hashes. Existing
+single-target validation prediction bytes/gold/membership are validated before
+checking the reloaded models. The original final aggregate must remain unchanged;
+reserved test annotations are not analyzed or scored. These reused development
+validation results cannot establish independent test performance.
