@@ -122,8 +122,8 @@ seconds and converged in 44/72 iterations. Timing is illustrative, not a benchma
 | Multi-target | 67.37% | 70.67% |
 | Mixed-label headlines | 48.13% | 61.84% |
 
-The target block raises mixed-label F1 by 13.71 percentage points and multi-target
-F1 by 3.30 points, while reducing single-target F1 by 3.33 points. Overall F1 falls
+The target block raises mixed-label F1 by 13.72 percentage points and multi-target
+F1 by 3.30 points, while reducing single-target F1 by 3.32 points. Overall F1 falls
 by 0.26 points. Raw-probability NLL/Brier/ECE improve from 0.6468/0.3645/0.0863
 to 0.5905/0.3310/0.0723. These are descriptive validation differences without
 uncertainty estimates, not evidence of a globally superior target model.
@@ -145,3 +145,11 @@ source freeze and immutable transformer input/comparison plan remain unchanged.
 
 The next bounded transformer task is matched headline-only DeBERTa training,
 followed by the target-pair arm under the already-fixed comparison plan.
+
+The code/reports and both byte-identical private fitted models are also synced
+to the existing Windows checkout. Windows reconstructs the stored target rows
+from its own locked native view and exported IDs/probabilities; all prediction
+hashes and cohort classification metrics match. Loaded-model predicted labels
+are identical across machines, with maximum probability differences below
+3.34e-16. All 472 tests and required Ruff checks also pass there. No Windows
+retraining was needed, and temporary transfer helpers were removed afterward.
