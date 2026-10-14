@@ -392,3 +392,16 @@ The curated alias policies and explicit Google-to-Alphabet grouping option are
 documented in `docs/company-targets.md`; this is not a licensed security master.
 No frozen coverage rules, dataset bytes, labels, predictions or models change.
 Future provider data or additional corpora still require their own terms review.
+
+## Phase 4 development coverage audit review (2026-10-14)
+
+Reuse the previously reviewed local noncommercial SEntFiN development view only.
+Audit its provided targets/labels against `companies-v1`; publish aggregate
+counts and configuration/data/code identities. No dataset acquisition, provider
+API, model, relabeling or redistribution expansion. Keep source IDs, target
+strings and annotation-level review flags private in ignored `data/interim/`.
+A separate explicitly labeled optional parent-rollup view preserves Google
+versus Alphabet distinctions. Literal name screening is diagnostic and does not
+establish entity truth or create sentiment labels. Freeze checks may hash
+reserved bytes for integrity; only returned train/validation records enter
+analysis. No reserved-test annotation/text analysis, training or inference.

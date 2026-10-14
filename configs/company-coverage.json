@@ -1,0 +1,22 @@
+{
+  "analysis": "company-coverage-v1",
+  "company_context": true,
+  "freeze_receipt_sha256": "ab0c9f0581612ee52f3c03a5bbbc03e7ebc621fdf76bb00d7d85bc2973b593f7",
+  "labels": [
+    "negative",
+    "neutral",
+    "positive"
+  ],
+  "literal_rule": "NFKC + casefold + comma-to-space + whitespace collapse; escaped whole-token boundaries; trailing target periods ignored",
+  "partitions": [
+    "train",
+    "validation"
+  ],
+  "registry_sha256": "3414bd464620472b37f23944f0c6d8011f77fc8460491c4001010d2aa820d285",
+  "schema_version": 1,
+  "scope": "provided target annotations plus conservative literal candidate screen; no training, relabeling or test analysis",
+  "views": {
+    "strict": false,
+    "with_parent_rollup": true
+  }
+}
