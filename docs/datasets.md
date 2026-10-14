@@ -321,3 +321,31 @@ IDs/gold, per-record predictions, bootstrap draws and model weights stay private
 The single-target benchmark is now scored/consumed for this locked comparison;
 test-inspired changes need new untouched data for confirmatory claims. Multi-
 target and PhraseBank reserved tests remain unscored. No redistribution expansion.
+
+## ProPrak01 financial DeBERTa review (2026-10-14)
+
+[Model card](https://huggingface.co/ProPrak01/deberta-v3-financial-sentiment)
+at revision `f008a38828d87fbf80bea4c841333d9c493972e7` declares MIT.
+`configs/proprak-deberta-asset.json` pins all six files and the upstream LFS
+weight SHA-256. Local noncommercial inference and caching are within the existing
+research scope; no weights, dataset text or per-record outputs are redistributed.
+The declared model license does not resolve upstream PhraseBank/FiQA text rights.
+
+This is a custom DeBERTa-v3 Base multitask model: masked token mean pooling,
+dropout 0.1, a three-class head (negative/neutral/positive), and a separate
+regression head. The author reports joint PhraseBank, Twitter Financial News
+and FiQA training plus a continuation not included in the public notebook.
+Exact upstream memberships and SEntFiN exposure are not established. PhraseBank
+evaluation would have apparent upstream supervision exposure; FiQA independence
+cannot be claimed. Hosted performance is not directly comparable with our splits.
+
+First project experiment: unchanged classification-head inference on the existing
+781 single-target SEntFiN validation headlines, batch 32, length 128, seed 42,
+FP32. No training, calibration fitting, regression thresholds, final-test scoring
+or changes to locked final-evaluation protocols. This is a post-final exploratory
+experiment. Fresh untouched data would be needed for confirmatory selection claims.
+The standard sequence-classification loader must not be used: reconstruct the
+reviewed architecture locally, load the entire tensor state strictly with
+`weights_only=True`, and execute no downloaded Python code. The published
+configuration was created with Transformers 5.13.1; verify compatibility with our
+locked 4.57.6 stack before reporting a successful run.

@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "model_id": "ProPrak01/deberta-v3-financial-sentiment",
+  "revision": "f008a38828d87fbf80bea4c841333d9c493972e7",
+  "license": "mit",
+  "files": {
+    "README.md": {
+      "size_bytes": 10200,
+      "sha256": "18fc4eefa973535a22a58e9893edd436ec6cd66b7e31672b0be3c1ff96764a24"
+    },
+    "config.json": {
+      "size_bytes": 858,
+      "sha256": "18ac280e5b6cfbb6321ba3145d5602d7e3655610a946a96d1c42978f0b0e189c"
+    },
+    "pytorch_model.bin": {
+      "size_bytes": 735425035,
+      "sha256": "def1c32e7280e2b606fdb66af9f4004ab21750c2d3ec3c427f542f39c5a8024c"
+    },
+    "tokenizer.json": {
+      "size_bytes": 8340141,
+      "sha256": "d87197028bcdd4a6c68dc03bd9b04e0956b0998daf7351345de21278a1c9249a"
+    },
+    "tokenizer_config.json": {
+      "size_bytes": 538,
+      "sha256": "0dbe41323167ba5f2e1e876ccd05068318dd2378b922bdfd924a389dba3bcc7a"
+    },
+    "training_meta.json": {
+      "size_bytes": 463,
+      "sha256": "2fe5e61167808ee8a72de458aef10ea5ca74f665737c316e5e542538a7e0e137"
+    }
+  }
+}
