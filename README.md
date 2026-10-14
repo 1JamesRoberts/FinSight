@@ -14,7 +14,11 @@ fine-tuned FinBERT **88.28%**. Paired ensemble-minus-DeBERTa intervals span zero
 the observed ensemble lead is inconclusive. Locked calibration lowers held-out
 NLL for all three transformers. Multi-target/PhraseBank tests remain reserved;
 Phase 4 has started with the [company target registry](docs/company-targets.md);
-mention identification and target-aware modeling remain pending. MLflow and
+the [development coverage audit](reports/company-coverage.md) finds only
+AAPL 21/0, MSFT 4/2, NVDA 0/0, AMZN 2/1 and Alphabet 0/0 labeled
+train/validation headlines (optional Google grouping adds 1/0). Broader SEntFiN
+target-aware work remains viable; five-company evaluation needs additional labels.
+Mention identification and target-aware modeling remain pending. MLflow and
 length/batch ablations are deferred.
 
 A later [exploratory financial DeBERTa Base adaptation](reports/experiments/proprak-deberta-adaptation.md)

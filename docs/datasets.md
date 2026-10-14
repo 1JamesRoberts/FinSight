@@ -405,3 +405,11 @@ versus Alphabet distinctions. Literal name screening is diagnostic and does not
 establish entity truth or create sentiment labels. Freeze checks may hash
 reserved bytes for integrity; only returned train/validation records enter
 analysis. No reserved-test annotation/text analysis, training or inference.
+
+Coverage audit verified: 9,651 development headlines, 12,957 source annotations;
+95 nonliteral-target diagnostics retained without label/eligibility changes.
+Publish only `reports/company-coverage.md`/JSON and aggregate interpretation in
+`docs/company-coverage.md`. Source IDs/targets/labels and the manual identity review
+remain ignored/private. The five-company matches are too sparse for credible
+per-company validation; no test collection, corpus acquisition or redistribution
+was added. Frozen receipts/data and final evaluation aggregates are unchanged.

@@ -125,3 +125,7 @@ Next: implement mention identification with spans and conservative unresolved
 cases, then audit development-only target coverage and lock the target-aware
 experiment. Target-label collection, target-aware training, independent target
 evaluation and `predict(text, target_company)` remain pending.
+
+The subsequent [development coverage audit](company-coverage.md) now verifies
+registry-scoped target counts, class balance, literal-name candidates and private
+identity review. It does not implement mention extraction or the sentiment API.

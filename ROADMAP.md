@@ -774,6 +774,7 @@ calibration fitting, new LR search or Phase 4 implementation occurred.
 
 ### Tasks
 - [x] Build ticker/name/alias mapping for initial five companies.
+- [x] Audit five-company target/label coverage on train/validation, including multi-target rows, ambiguity and nonliteral mentions; keep reserved tests untouched.
 - [ ] Implement entity identification and explicit ambiguity handling.
 - [ ] Define target-level labels and create/validate an entity-labeled test collection.
 - [ ] Compare article-wide FinBERT against a target-aware approach (e.g. target + text pair).
@@ -794,6 +795,22 @@ configuration, data and final results are unchanged. Only the mapping task is
 complete. Mention/span identification, development target coverage review,
 target-label collection, target-aware models, reserved multi-target evaluation
 and the prediction API remain pending. No test headlines were inspected/scored.
+
+**Development coverage verified (2026-10-14):** Fixed, checksummed audit on
+8,598/1,053 train/validation SEntFiN headlines (11,547/1,410 target annotations).
+Strict registry-matched labeled headlines: AAPL 21/0, MSFT 4/2, NVDA 0/0,
+AMZN 2/1, Alphabet 0/0. Separate Google parent grouping adds 1/0. There are
+26/2 distinct strict matched headlines, or 27/2 with Google grouping; per-company
+counts overlap. Manual identity-context review covers all 29 grouped headlines;
+regional/import-related unresolved cues remain unsupported. Across the broader
+corpus 87/8 target annotations are not literal matches, retained without changing
+labels. Mac/Windows produce identical public aggregate bytes; direct independent
+counting verifies all 20 company/split/view cells, and 440 tests/Ruff checks pass.
+See `reports/company-coverage.md` and `docs/company-coverage.md`. Five-company
+coverage cannot support reliable per-company validation. This bounded audit is
+complete; mention identification, target-pair preparation/eligibility, target-aware
+training, independent target evaluation and five-company label collection remain
+pending. No reserved test annotation/text analysis or new training occurred.
 
 **Deliverables:** Target-sentiment service and independent target-level evaluation.
 

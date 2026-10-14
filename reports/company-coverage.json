@@ -1,0 +1,504 @@
+{
+  "analysis": "company-coverage-v1",
+  "benchmark_manifest_sha256": "b7cc249017ddd87f0b2c52a3abf3ff5b96f6920832b411f18eac547fec0b0f1c",
+  "code_revision": "e45324fdd53113da1a1ab4053122458011963be2",
+  "final_test_analyzed": false,
+  "freeze_receipt_sha256": "ab0c9f0581612ee52f3c03a5bbbc03e7ebc621fdf76bb00d7d85bc2973b593f7",
+  "implementation_sha256": {
+    "src/finsight/data/company_coverage.py": "5fac4096e61f57b3d78fca5daa414d3fe05d62e7c0c2bb88b778a3eb85b88f54",
+    "src/finsight/sentiment/companies.py": "96c51568d44e45e5e973def5e945af8b6c6cee76c437e83357c9df3c59db580a"
+  },
+  "lockfile_sha256": "f1ace275d05568614b92993b8446d7323df824a8cb1dae9ac382116f906914f6",
+  "parent_split_manifest_sha256": "a9a67c231903bc2e3e71afead1d6daaf6b7201211fc25a05efd2bb2ee2d5e898",
+  "plan": {
+    "analysis": "company-coverage-v1",
+    "company_context": true,
+    "freeze_receipt_sha256": "ab0c9f0581612ee52f3c03a5bbbc03e7ebc621fdf76bb00d7d85bc2973b593f7",
+    "labels": [
+      "negative",
+      "neutral",
+      "positive"
+    ],
+    "literal_rule": "NFKC + casefold + comma-to-space + whitespace collapse; escaped whole-token boundaries; trailing target periods ignored",
+    "partitions": [
+      "train",
+      "validation"
+    ],
+    "registry_sha256": "3414bd464620472b37f23944f0c6d8011f77fc8460491c4001010d2aa820d285",
+    "schema_version": 1,
+    "scope": "provided target annotations plus conservative literal candidate screen; no training, relabeling or test analysis",
+    "views": {
+      "strict": false,
+      "with_parent_rollup": true
+    }
+  },
+  "plan_sha256": "1b6ca24e45f351c8db3d0a356706ce788a7accab7f5c3162e53eb24bc1ce2752",
+  "registry_sha256": "3414bd464620472b37f23944f0c6d8011f77fc8460491c4001010d2aa820d285",
+  "registry_version": "companies-v1",
+  "review_flags": 98,
+  "review_sha256": "eec051d0af5f6afb43c83b7843747b041b5208fc67326e33db8d888d268f0076",
+  "schema_version": 1,
+  "summary": {
+    "partitions": {
+      "train": {
+        "overall": {
+          "class_counts": {
+            "negative": 3078,
+            "neutral": 4395,
+            "positive": 4074
+          },
+          "duplicate_groups": 8589,
+          "headlines": 8598,
+          "mixed_label_headlines": 994,
+          "multi_target_headlines": 2299,
+          "nonliteral_target_annotations": 87,
+          "single_target_headlines": 6299,
+          "target_annotations": 11547,
+          "unique_target_strings": 3765
+        },
+        "target_resolution": {
+          "ambiguous": 1,
+          "resolved": 27,
+          "unsupported": 11519
+        },
+        "unsupported_with_registry_name_cue_annotations": 2,
+        "views": {
+          "strict": {
+            "AAPL": {
+              "annotated_headlines": 21,
+              "class_counts": {
+                "negative": 11,
+                "neutral": 6,
+                "positive": 4
+              },
+              "duplicate_groups": 21,
+              "literal_candidate_headlines": 22,
+              "literal_target_annotations": 21,
+              "mixed_label_headlines": 2,
+              "multi_target_headlines": 8,
+              "no_registered_alias_annotations": 0,
+              "registered_alias_only_annotations": 0,
+              "same_company_conflict_headlines": 0,
+              "same_company_multi_annotation_headlines": 0,
+              "single_target_headlines": 13,
+              "target_annotations": 21,
+              "unannotated_literal_candidate_headlines": 1
+            },
+            "AMZN": {
+              "annotated_headlines": 2,
+              "class_counts": {
+                "negative": 1,
+                "neutral": 1,
+                "positive": 0
+              },
+              "duplicate_groups": 2,
+              "literal_candidate_headlines": 2,
+              "literal_target_annotations": 2,
+              "mixed_label_headlines": 1,
+              "multi_target_headlines": 1,
+              "no_registered_alias_annotations": 0,
+              "registered_alias_only_annotations": 0,
+              "same_company_conflict_headlines": 0,
+              "same_company_multi_annotation_headlines": 0,
+              "single_target_headlines": 1,
+              "target_annotations": 2,
+              "unannotated_literal_candidate_headlines": 0
+            },
+            "GOOGL": {
+              "annotated_headlines": 0,
+              "class_counts": {
+                "negative": 0,
+                "neutral": 0,
+                "positive": 0
+              },
+              "duplicate_groups": 0,
+              "literal_candidate_headlines": 0,
+              "literal_target_annotations": 0,
+              "mixed_label_headlines": 0,
+              "multi_target_headlines": 0,
+              "no_registered_alias_annotations": 0,
+              "registered_alias_only_annotations": 0,
+              "same_company_conflict_headlines": 0,
+              "same_company_multi_annotation_headlines": 0,
+              "single_target_headlines": 0,
+              "target_annotations": 0,
+              "unannotated_literal_candidate_headlines": 0
+            },
+            "MSFT": {
+              "annotated_headlines": 4,
+              "class_counts": {
+                "negative": 1,
+                "neutral": 2,
+                "positive": 1
+              },
+              "duplicate_groups": 4,
+              "literal_candidate_headlines": 5,
+              "literal_target_annotations": 4,
+              "mixed_label_headlines": 0,
+              "multi_target_headlines": 3,
+              "no_registered_alias_annotations": 0,
+              "registered_alias_only_annotations": 0,
+              "same_company_conflict_headlines": 0,
+              "same_company_multi_annotation_headlines": 0,
+              "single_target_headlines": 1,
+              "target_annotations": 4,
+              "unannotated_literal_candidate_headlines": 1
+            },
+            "NVDA": {
+              "annotated_headlines": 0,
+              "class_counts": {
+                "negative": 0,
+                "neutral": 0,
+                "positive": 0
+              },
+              "duplicate_groups": 0,
+              "literal_candidate_headlines": 0,
+              "literal_target_annotations": 0,
+              "mixed_label_headlines": 0,
+              "multi_target_headlines": 0,
+              "no_registered_alias_annotations": 0,
+              "registered_alias_only_annotations": 0,
+              "same_company_conflict_headlines": 0,
+              "same_company_multi_annotation_headlines": 0,
+              "single_target_headlines": 0,
+              "target_annotations": 0,
+              "unannotated_literal_candidate_headlines": 0
+            }
+          },
+          "with_parent_rollup": {
+            "AAPL": {
+              "annotated_headlines": 21,
+              "class_counts": {
+                "negative": 11,
+                "neutral": 6,
+                "positive": 4
+              },
+              "duplicate_groups": 21,
+              "literal_candidate_headlines": 22,
+              "literal_target_annotations": 21,
+              "mixed_label_headlines": 2,
+              "multi_target_headlines": 8,
+              "no_registered_alias_annotations": 0,
+              "registered_alias_only_annotations": 0,
+              "same_company_conflict_headlines": 0,
+              "same_company_multi_annotation_headlines": 0,
+              "single_target_headlines": 13,
+              "target_annotations": 21,
+              "unannotated_literal_candidate_headlines": 1
+            },
+            "AMZN": {
+              "annotated_headlines": 2,
+              "class_counts": {
+                "negative": 1,
+                "neutral": 1,
+                "positive": 0
+              },
+              "duplicate_groups": 2,
+              "literal_candidate_headlines": 2,
+              "literal_target_annotations": 2,
+              "mixed_label_headlines": 1,
+              "multi_target_headlines": 1,
+              "no_registered_alias_annotations": 0,
+              "registered_alias_only_annotations": 0,
+              "same_company_conflict_headlines": 0,
+              "same_company_multi_annotation_headlines": 0,
+              "single_target_headlines": 1,
+              "target_annotations": 2,
+              "unannotated_literal_candidate_headlines": 0
+            },
+            "GOOGL": {
+              "annotated_headlines": 1,
+              "class_counts": {
+                "negative": 1,
+                "neutral": 0,
+                "positive": 0
+              },
+              "duplicate_groups": 1,
+              "literal_candidate_headlines": 1,
+              "literal_target_annotations": 1,
+              "mixed_label_headlines": 0,
+              "multi_target_headlines": 0,
+              "no_registered_alias_annotations": 0,
+              "registered_alias_only_annotations": 0,
+              "same_company_conflict_headlines": 0,
+              "same_company_multi_annotation_headlines": 0,
+              "single_target_headlines": 1,
+              "target_annotations": 1,
+              "unannotated_literal_candidate_headlines": 0
+            },
+            "MSFT": {
+              "annotated_headlines": 4,
+              "class_counts": {
+                "negative": 1,
+                "neutral": 2,
+                "positive": 1
+              },
+              "duplicate_groups": 4,
+              "literal_candidate_headlines": 5,
+              "literal_target_annotations": 4,
+              "mixed_label_headlines": 0,
+              "multi_target_headlines": 3,
+              "no_registered_alias_annotations": 0,
+              "registered_alias_only_annotations": 0,
+              "same_company_conflict_headlines": 0,
+              "same_company_multi_annotation_headlines": 0,
+              "single_target_headlines": 1,
+              "target_annotations": 4,
+              "unannotated_literal_candidate_headlines": 1
+            },
+            "NVDA": {
+              "annotated_headlines": 0,
+              "class_counts": {
+                "negative": 0,
+                "neutral": 0,
+                "positive": 0
+              },
+              "duplicate_groups": 0,
+              "literal_candidate_headlines": 0,
+              "literal_target_annotations": 0,
+              "mixed_label_headlines": 0,
+              "multi_target_headlines": 0,
+              "no_registered_alias_annotations": 0,
+              "registered_alias_only_annotations": 0,
+              "same_company_conflict_headlines": 0,
+              "same_company_multi_annotation_headlines": 0,
+              "single_target_headlines": 0,
+              "target_annotations": 0,
+              "unannotated_literal_candidate_headlines": 0
+            }
+          }
+        }
+      },
+      "validation": {
+        "overall": {
+          "class_counts": {
+            "negative": 385,
+            "neutral": 523,
+            "positive": 502
+          },
+          "duplicate_groups": 1053,
+          "headlines": 1053,
+          "mixed_label_headlines": 122,
+          "multi_target_headlines": 272,
+          "nonliteral_target_annotations": 8,
+          "single_target_headlines": 781,
+          "target_annotations": 1410,
+          "unique_target_strings": 870
+        },
+        "target_resolution": {
+          "ambiguous": 0,
+          "resolved": 3,
+          "unsupported": 1407
+        },
+        "unsupported_with_registry_name_cue_annotations": 0,
+        "views": {
+          "strict": {
+            "AAPL": {
+              "annotated_headlines": 0,
+              "class_counts": {
+                "negative": 0,
+                "neutral": 0,
+                "positive": 0
+              },
+              "duplicate_groups": 0,
+              "literal_candidate_headlines": 0,
+              "literal_target_annotations": 0,
+              "mixed_label_headlines": 0,
+              "multi_target_headlines": 0,
+              "no_registered_alias_annotations": 0,
+              "registered_alias_only_annotations": 0,
+              "same_company_conflict_headlines": 0,
+              "same_company_multi_annotation_headlines": 0,
+              "single_target_headlines": 0,
+              "target_annotations": 0,
+              "unannotated_literal_candidate_headlines": 0
+            },
+            "AMZN": {
+              "annotated_headlines": 1,
+              "class_counts": {
+                "negative": 0,
+                "neutral": 1,
+                "positive": 0
+              },
+              "duplicate_groups": 1,
+              "literal_candidate_headlines": 1,
+              "literal_target_annotations": 1,
+              "mixed_label_headlines": 1,
+              "multi_target_headlines": 1,
+              "no_registered_alias_annotations": 0,
+              "registered_alias_only_annotations": 0,
+              "same_company_conflict_headlines": 0,
+              "same_company_multi_annotation_headlines": 0,
+              "single_target_headlines": 0,
+              "target_annotations": 1,
+              "unannotated_literal_candidate_headlines": 0
+            },
+            "GOOGL": {
+              "annotated_headlines": 0,
+              "class_counts": {
+                "negative": 0,
+                "neutral": 0,
+                "positive": 0
+              },
+              "duplicate_groups": 0,
+              "literal_candidate_headlines": 0,
+              "literal_target_annotations": 0,
+              "mixed_label_headlines": 0,
+              "multi_target_headlines": 0,
+              "no_registered_alias_annotations": 0,
+              "registered_alias_only_annotations": 0,
+              "same_company_conflict_headlines": 0,
+              "same_company_multi_annotation_headlines": 0,
+              "single_target_headlines": 0,
+              "target_annotations": 0,
+              "unannotated_literal_candidate_headlines": 0
+            },
+            "MSFT": {
+              "annotated_headlines": 2,
+              "class_counts": {
+                "negative": 1,
+                "neutral": 0,
+                "positive": 1
+              },
+              "duplicate_groups": 2,
+              "literal_candidate_headlines": 2,
+              "literal_target_annotations": 2,
+              "mixed_label_headlines": 1,
+              "multi_target_headlines": 1,
+              "no_registered_alias_annotations": 0,
+              "registered_alias_only_annotations": 0,
+              "same_company_conflict_headlines": 0,
+              "same_company_multi_annotation_headlines": 0,
+              "single_target_headlines": 1,
+              "target_annotations": 2,
+              "unannotated_literal_candidate_headlines": 0
+            },
+            "NVDA": {
+              "annotated_headlines": 0,
+              "class_counts": {
+                "negative": 0,
+                "neutral": 0,
+                "positive": 0
+              },
+              "duplicate_groups": 0,
+              "literal_candidate_headlines": 0,
+              "literal_target_annotations": 0,
+              "mixed_label_headlines": 0,
+              "multi_target_headlines": 0,
+              "no_registered_alias_annotations": 0,
+              "registered_alias_only_annotations": 0,
+              "same_company_conflict_headlines": 0,
+              "same_company_multi_annotation_headlines": 0,
+              "single_target_headlines": 0,
+              "target_annotations": 0,
+              "unannotated_literal_candidate_headlines": 0
+            }
+          },
+          "with_parent_rollup": {
+            "AAPL": {
+              "annotated_headlines": 0,
+              "class_counts": {
+                "negative": 0,
+                "neutral": 0,
+                "positive": 0
+              },
+              "duplicate_groups": 0,
+              "literal_candidate_headlines": 0,
+              "literal_target_annotations": 0,
+              "mixed_label_headlines": 0,
+              "multi_target_headlines": 0,
+              "no_registered_alias_annotations": 0,
+              "registered_alias_only_annotations": 0,
+              "same_company_conflict_headlines": 0,
+              "same_company_multi_annotation_headlines": 0,
+              "single_target_headlines": 0,
+              "target_annotations": 0,
+              "unannotated_literal_candidate_headlines": 0
+            },
+            "AMZN": {
+              "annotated_headlines": 1,
+              "class_counts": {
+                "negative": 0,
+                "neutral": 1,
+                "positive": 0
+              },
+              "duplicate_groups": 1,
+              "literal_candidate_headlines": 1,
+              "literal_target_annotations": 1,
+              "mixed_label_headlines": 1,
+              "multi_target_headlines": 1,
+              "no_registered_alias_annotations": 0,
+              "registered_alias_only_annotations": 0,
+              "same_company_conflict_headlines": 0,
+              "same_company_multi_annotation_headlines": 0,
+              "single_target_headlines": 0,
+              "target_annotations": 1,
+              "unannotated_literal_candidate_headlines": 0
+            },
+            "GOOGL": {
+              "annotated_headlines": 0,
+              "class_counts": {
+                "negative": 0,
+                "neutral": 0,
+                "positive": 0
+              },
+              "duplicate_groups": 0,
+              "literal_candidate_headlines": 0,
+              "literal_target_annotations": 0,
+              "mixed_label_headlines": 0,
+              "multi_target_headlines": 0,
+              "no_registered_alias_annotations": 0,
+              "registered_alias_only_annotations": 0,
+              "same_company_conflict_headlines": 0,
+              "same_company_multi_annotation_headlines": 0,
+              "single_target_headlines": 0,
+              "target_annotations": 0,
+              "unannotated_literal_candidate_headlines": 0
+            },
+            "MSFT": {
+              "annotated_headlines": 2,
+              "class_counts": {
+                "negative": 1,
+                "neutral": 0,
+                "positive": 1
+              },
+              "duplicate_groups": 2,
+              "literal_candidate_headlines": 2,
+              "literal_target_annotations": 2,
+              "mixed_label_headlines": 1,
+              "multi_target_headlines": 1,
+              "no_registered_alias_annotations": 0,
+              "registered_alias_only_annotations": 0,
+              "same_company_conflict_headlines": 0,
+              "same_company_multi_annotation_headlines": 0,
+              "single_target_headlines": 1,
+              "target_annotations": 2,
+              "unannotated_literal_candidate_headlines": 0
+            },
+            "NVDA": {
+              "annotated_headlines": 0,
+              "class_counts": {
+                "negative": 0,
+                "neutral": 0,
+                "positive": 0
+              },
+              "duplicate_groups": 0,
+              "literal_candidate_headlines": 0,
+              "literal_target_annotations": 0,
+              "mixed_label_headlines": 0,
+              "multi_target_headlines": 0,
+              "no_registered_alias_annotations": 0,
+              "registered_alias_only_annotations": 0,
+              "same_company_conflict_headlines": 0,
+              "same_company_multi_annotation_headlines": 0,
+              "single_target_headlines": 0,
+              "target_annotations": 0,
+              "unannotated_literal_candidate_headlines": 0
+            }
+          }
+        }
+      }
+    }
+  },
+  "working_tree_dirty": false
+}
