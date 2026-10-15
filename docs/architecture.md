@@ -168,3 +168,15 @@ verified native examples and the existing target-cohort metrics. Training and
 inference are separate methods; prediction never fits preprocessing. No generic
 trainer, registry or service layer is added. Public reports contain aggregate
 metrics/size/provenance; fitted vocabularies and row predictions remain private.
+
+## Phase 4 extension: matched DeBERTa training (2026-10-15)
+
+`target_training.py` owns the concrete fresh-base loader, label-separated target
+collation, full-parameter optimization and validation-only inference. It reuses
+the established typed target examples, tokenizer safeguards, training config,
+early-stopping rule and safe artifact helpers. `target_deberta_experiment.py`
+coordinates the six fixed trials and existing cohort metrics. Optional artifact
+context binds input mode/data/provenance without altering legacy manifests when
+omitted. Verified completed trial reuse avoids unnecessary retraining; partial
+progress never resumes unchecked optimizer state. No generic trainer framework,
+new dependency, entity API or future-phase behavior is introduced.

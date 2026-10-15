@@ -248,3 +248,18 @@ F1 is 48.13% / 61.84%. Both fitted models are saved privately. These additive
 features contain no contextual target/text interactions. This does not change
 the fixed transformer plan or its historical preparation receipt; fresh matched
 headline-only and target-pair DeBERTa training remain pending.
+
+## Matched transformer comparison completed (2026-10-15)
+
+The [fixed six-trial DeBERTa study](target-deberta.md) is now complete, with every
+seed and both freshly initialized input formats saved. Mean validation macro F1
+is 81.19% headline-only / 88.96% target-pair; mixed-label F1 is 51.65% / 91.91%.
+Full initial-state/RNG fingerprints and actual epoch row-order hashes match per
+seed. Selected checkpoints reproduce their classification metrics and NLL after
+reload. All six prediction hashes and all 36 cohort metric sets independently
+verify on Mac; all 484 tests and Ruff checks pass on both machines. Six selected
+weights remain private on Windows. Raw probability ECE worsens despite better
+classification/Brier; no calibrator was applied/fitted. The immutable preparation
+receipt remains historical, while the new trial reports record actual training.
+Reserved target evaluation, entity identification, five-company coverage and the
+prediction API remain pending; no reserved test or original final result changed.

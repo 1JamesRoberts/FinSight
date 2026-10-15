@@ -780,7 +780,7 @@ calibration fitting, new LR search or Phase 4 implementation occurred.
 - [x] Train/save matched headline-only and additive headline/target TF-IDF Logistic Regression baselines; evaluate the fixed development cohorts.
 - [ ] Implement entity identification and explicit ambiguity handling.
 - [ ] Define target-level labels and create/validate an entity-labeled test collection.
-- [ ] Compare article-wide FinBERT against a target-aware approach (e.g. target + text pair).
+- [x] Compare headline-wide sentiment against target-aware conditioning with matched DeBERTa Base training on development validation (selected backbone replaces the original FinBERT proposal).
 - [ ] Evaluate macro F1 **per company target** and on multi-company examples.
 - [ ] Track errors from aliases, comparisons, neutral mentions, and conflicting cues.
 - [ ] Expose `predict(text, target_company)` returning probabilities and model version.
@@ -865,6 +865,26 @@ are unchanged. See `reports/experiments/target-tfidf-logreg.md` and
 Target features add entity sentiment offsets with no target/text interactions;
 matched DeBERTa training, independent target tests and broader Phase 4 tasks remain.
 No new source acquisition, tuning, calibration fitting or test scoring occurred.
+
+**Matched DeBERTa training verified (2026-10-15):** Six fresh Base trials
+(two input formats, seeds 42/43/44) train on the same 11,547 native annotations.
+Full initial-state/RNG and actual per-epoch row-order fingerprints match between
+arms for every seed. All six complete the fixed five-epoch budget (3,610 updates
+each); selected headline epochs are 4/3/4 and target-pair epochs 4/3/5.
+Mean validation macro F1: headline-only 81.19% / target-pair 88.96%; single-target
+87.47% / 88.11%, multi-target 73.15% / 89.81%, mixed-label 51.65% / 91.91%.
+Mean/sample SD are reported across all seeds; none is selected as a winner.
+Raw NLL/Brier improve, but ten-bin ECE rises from 0.0804 to 0.0882: classification
+gains do not establish calibrated probabilities. Six selected private checkpoints
+are verified/reloaded on Windows. Mac reconstructs every prediction hash and
+independently verifies all 36 cohort metric sets with scikit-learn/NumPy; source,
+initialization, row order and reload NLL checks also pass. Required Ruff gates
+and all 484 tests pass on Mac/Windows. See `reports/experiments/target-deberta.md`
+and `docs/target-deberta.md`. This completes the bounded development comparison
+using the selected DeBERTa backbone, not independent target test evaluation,
+five-company evaluation, error analysis, entity identification or the API.
+No reserved-test analysis, calibration fitting, new search or source/final/lock
+changes occurred; all weights and native row predictions remain private.
 
 **Deliverables:** Target-sentiment service and independent target-level evaluation.
 

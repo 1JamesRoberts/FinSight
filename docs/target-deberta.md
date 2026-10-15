@@ -89,3 +89,104 @@ Validation also selects epochs, so results are exploratory, not independent test
 evidence. Reserved tests, original final results and immutable preparation lock
 remain unchanged. This task does not create a target prediction API, entity
 recognizer, new labeled test collection or any later roadmap phase.
+
+## Verified results (2026-10-15)
+
+See [the aggregate report](../reports/experiments/target-deberta.md) and companion
+JSON for every seed, selected checkpoint, class metric and provenance field.
+All six runs executed cleanly at `88e308634e669f2e066e083a2de7b11f4340c110`.
+Aggregate JSON SHA-256:
+`bb564efcff73577393e8be002c1cc50315e6950db7ae6eb699f7cdbc592e629f`.
+
+| Validation cohort | Target annotations | Headline-only macro F1 | Target-pair macro F1 |
+| --- | ---: | ---: | ---: |
+| All targets | 1,410 | 81.19% ± 0.36 | 88.96% ± 0.42 |
+| Single-target | 781 | 87.47% ± 0.20 | 88.11% ± 0.41 |
+| Multi-target | 629 | 73.15% ± 0.79 | 89.81% ± 0.42 |
+| Mixed-label headlines | 283 | 51.65% ± 0.59 | 91.91% ± 0.12 |
+| Seen native target string | 1,147 | 81.10% ± 0.46 | 89.70% ± 0.32 |
+| Unseen native target string | 263 | 81.54% ± 1.53 | 85.70% ± 1.06 |
+
+Values summarize three seeds, with sample SD in percentage points. Cohorts overlap;
+no confidence interval or independent-test claim follows from this table.
+Single-target validation is the same 781-headline cohort used in Phase 3, but
+both fresh models use the broader native-target training view. It is separate
+from the already-consumed 766-headline single-target final test.
+
+The primary target-pair gain is **7.77 percentage points overall** and **40.26
+points on mixed-label examples**, calculated from unrounded means. The largest
+gain occurs where a headline-wide prediction cannot represent differing target
+labels. For these 283 mixed-label validation annotations, even an oracle that
+chooses the best single label separately for each headline is limited to 56.54%
+accuracy. This gold-derived structural ceiling is an accuracy bound, not a trained
+baseline or an F1 bound. No model predictions were chosen using that oracle.
+Target-pair predictions can differ across targets in 135/128/131 validation
+headlines for seeds 42/43/44; headline-only labels never differ within a headline.
+
+These findings support useful target conditioning on this validation corpus;
+they do not prove general contextual understanding or unseen-company identity.
+The seen-string gain is larger than the unseen-string gain, so entity familiarity
+and native label tendencies may still contribute. Qualitative error analysis and
+a separately locked target-level evaluation remain necessary before stronger claims.
+
+Raw probability quality is mixed: overall NLL changes from 0.5146 to 0.5059,
+Brier from 0.2828 to 0.1973, and ten-bin ECE from 0.0804 to 0.0882.
+Accuracy/F1 gains do not imply better calibration. No old temperature calibrator
+was applied and no new one fitted. Review/calibrate probabilities under a separate
+protocol before treating their magnitudes as reliable confidence estimates.
+
+## Saved models and verification
+
+Both input formats use exactly the same architecture: 12 layers, hidden size 768,
+12 attention heads, 184,424,451 parameters, FP32. The tokenizer input changes;
+there is no separate classifier head per company. Each saved model/tokenizer
+file set totals 740,189,720 bytes (excluding its artifact context manifest).
+All six actually trained five epochs/3,610 updates, taking approximately 71.5
+minutes combined inside the training loops on the RTX 4070 SUPER. This is a single
+local execution, not a hardware benchmark. Selected epochs are:
+
+| Seed | Headline-only | Target pair |
+| --- | ---: | ---: |
+| 42 | 4 | 4 |
+| 43 | 3 | 3 |
+| 44 | 4 | 5 |
+
+Every selected checkpoint is safely serialized and fully checksummed on Windows.
+To locate one, read `artifact_relative_path` and `artifact_manifest_sha256` from
+its public trial JSON under `reports/experiments/target-deberta-runs/` and prepend
+the Windows data root `C:\Hope\Project\financial-news-intelligence\data`.
+The input mode is also bound in its manifest `context`; retain it when building
+any later inference pipeline. The generic checkpoint loader alone does not infer
+the correct target/headline input formulation.
+
+Mac holds the same public reports, verified artifact manifests and reconstructed
+private target-level predictions; full trained weights remain on Windows.
+The export contained IDs/probabilities, not raw text/targets/gold labels. Mac
+rebuilt all native rows using its existing locked view, reproducing all six
+prediction hashes. Independent scikit-learn/NumPy calculations agree on accuracy,
+macro F1, confusion matrices, clipped NLL, Brier and ECE in all 36 run/cohort cells.
+Initial states/RNG, every shared epoch order, source code/data context and selected
+checkpoint reload NLL also verify. All 484 tests and required Ruff checks pass
+on both machines. Source freeze, original final result and immutable input plan/
+preparation lock are unchanged. The historical lock remains prepared_not_trained;
+these new trial reports, rather than edits to that receipt, record actual training.
+
+This training/comparison increment is complete. Next: qualitative target-level
+error analysis, followed by an explicit reserved-target evaluation contract.
+No reserved test was scored or used for any choice in this task.
+
+## Earlier baseline context
+
+| Model | All-target F1 | Single-target F1 | Multi-target F1 | Mixed-label F1 |
+| --- | ---: | ---: | ---: | ---: |
+| TF-IDF headline LR | 75.20% | 81.15% | 67.37% | 48.13% |
+| TF-IDF headline + target LR | 74.94% | 77.82% | 70.67% | 61.84% |
+| Saved DeBERTa headline control | 80.58% | 88.10% | 71.22% | 50.15% |
+| Matched DeBERTa headline-only | 81.19% | 87.47% | 73.15% | 51.65% |
+| Matched DeBERTa target-pair | 88.96% | 88.11% | 89.81% | 91.91% |
+
+All columns use the same development validation annotations. LR is one fixed
+fit; DeBERTa entries are three-seed means. The saved control trained on 6,299
+single-target headlines; every new LR/DeBERTa arm uses all 11,547 training
+annotations. The primary controlled comparison remains the two matched DeBERTa
+arms, not a causal comparison between architectures or against the saved control.

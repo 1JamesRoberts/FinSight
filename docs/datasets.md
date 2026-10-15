@@ -500,3 +500,15 @@ fitted weights, source rows and target predictions in ignored private storage;
 publish aggregate metrics, model sizes and provenance only. No test scoring,
 label repairs, class weighting, hyperparameter grid, calibration fitting or
 weight redistribution is authorized by this training task.
+
+The matched six-run training comparison completed on the authorized Windows GPU.
+Every trial used all original 11,547 training annotations and the same 1,410
+validation annotations, with matched starts and epoch row orders. Six selected
+checkpoints and intermediate improved checkpoints remain in ignored private
+storage. Aggregate/public trial reports contain metrics, hashes and architecture,
+not native examples. Mac reconstructs exact private prediction bytes using its
+already-held view plus IDs/probabilities; full weights stay on Windows. All 36
+cohort metric sets independently verify. Reported gains are exploratory validation
+results, not independent test or five-company generalization evidence. Probability
+ECE did not improve; no calibration was fitted. Original source/freeze/final/plan/
+lock bytes remain unchanged, and no reserved test was analyzed or scored.

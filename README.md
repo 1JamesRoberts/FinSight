@@ -25,12 +25,18 @@ The [saved headline-only baseline](reports/experiments/target-saved-control.md)
 now has mean validation macro F1 **80.58%** overall, **71.22%** on multi-target
 examples and **50.15%** on mixed-label headlines (three seeds). The earlier
 single-target result reproduces at **88.10%**. These are exploratory validation
-results; target-aware transformer training remains pending.
+results.
 The [matched TF-IDF Logistic Regression baselines](reports/experiments/target-tfidf-logreg.md)
 now compare headline-only versus separate headline/target features: overall
 validation macro F1 **75.20% / 74.94%**, multi-target **67.37% / 70.67%**,
 and mixed-label **48.13% / 61.84%**. Additive target features help the mixed-label
 subset but reduce single-target F1; they do not model target/text interactions.
+The [matched DeBERTa comparison](reports/experiments/target-deberta.md) is now
+complete: target-pair versus headline-only mean validation macro F1 is
+**88.96% / 81.19%** overall and **91.91% / 51.65%** on mixed-label examples
+(seeds 42/43/44). Initial weights and epoch row orders match per seed. These
+remain development/epoch-selection results; independent target evaluation and
+five-company claims are pending. Raw probability calibration still needs review.
 Mention identification is also pending. MLflow and
 length/batch ablations are deferred.
 
