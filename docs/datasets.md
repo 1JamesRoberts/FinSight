@@ -484,3 +484,19 @@ label examples but does not improve overall macro F1. This is exploratory eviden
 of entity label tendencies, not verified contextual target understanding or five-
 company performance. No source/test membership, label, final result or original
 transformer plan/lock was changed. Fitted artifacts and row results remain private.
+
+## Phase 4 matched DeBERTa training review (2026-10-15)
+
+The user authorized fresh matched headline-only and target-pair training under
+the already-fixed native-target plan. Reuse the reviewed noncommercial SEntFiN
+development view and the locally cached MIT-declared original Microsoft
+DeBERTa-v3 Base checkpoint at revision 8ccc9b6f36199bec6961081d44eb72fb3f7353f3.
+Verify every cached source file before local-only weight loading; no acquisition,
+hub call, previous fine-tuned initialization or remote model code is needed.
+Use all existing training annotations, seeds 42/43/44 and the fixed optimization
+budget; validate only on the existing development validation view. Bind saved
+artifacts to input mode, preparation/data identities and source ancestry. Keep
+fitted weights, source rows and target predictions in ignored private storage;
+publish aggregate metrics, model sizes and provenance only. No test scoring,
+label repairs, class weighting, hyperparameter grid, calibration fitting or
+weight redistribution is authorized by this training task.

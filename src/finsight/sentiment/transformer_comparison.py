@@ -164,6 +164,8 @@ def save_model(
     config: FineTuneConfig,
     epoch: int,
     membership: str,
+    *,
+    context: dict | None = None,
 ) -> tuple[Path, str]:
     root = data_dir / "interim/transformer-finetuned-models"
     root.mkdir(parents=True, exist_ok=True)
@@ -183,6 +185,8 @@ def save_model(
                 if p.is_file()
             },
         }
+        if context is not None:
+            manifest["context"] = context
         body = (json.dumps(manifest, indent=2, sort_keys=True) + "\n").encode()
         identifier = hashlib.sha256(body).hexdigest()
         (stage / "artifact-manifest.json").write_bytes(body)
