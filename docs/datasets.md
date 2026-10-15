@@ -512,3 +512,15 @@ cohort metric sets independently verify. Reported gains are exploratory validati
 results, not independent test or five-company generalization evidence. Probability
 ECE did not improve; no calibration was fitted. Original source/freeze/final/plan/
 lock bytes remain unchanged, and no reserved test was analyzed or scored.
+
+Target-backbone comparison decision (2026-10-15): the user requested matched
+RoBERTa Base and FinBERT comparisons before moving on. Reuse the already reviewed,
+pinned local sources and native SEntFiN train/validation target view under the
+existing noncommercial research scope. FinBERT's documented user authorization
+covers private adaptation and derivative storage despite unresolved hosted-weight
+license scope; it does not grant public redistribution. No new source acquisition,
+text publication, weight redistribution or test inference is authorized by this
+experiment. `configs/target-backbones-plan.json` records original source file
+identities, retained FinBERT head semantics, fresh RoBERTa head, prior selected
+learning rates and the unchanged original DeBERTa/data lineage. Known FinBERT
+PhraseBank supervision and unknown checkpoint pretraining exposure remain caveats.

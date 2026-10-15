@@ -47,8 +47,9 @@ def test_rejects_invalid_training_or_validation_membership(failure: str) -> None
 
 @pytest.mark.filterwarnings("ignore:.*torch.jit.script.*deprecated:DeprecationWarning")
 @pytest.mark.parametrize("mode", ["matched_headline_only", "target_pair"])
+@pytest.mark.parametrize("backbone", ["deberta", "bert", "roberta"])
 def test_tiny_training_updates_encoder_and_reloads_best_without_validation_gradients(
-    tmp_path, mode: str
+    tmp_path, mode: str, backbone: str
 ) -> None:
     torch = pytest.importorskip("torch")
     t = pytest.importorskip("transformers")
@@ -69,8 +70,13 @@ def test_tiny_training_updates_encoder_and_reloads_best_without_validation_gradi
     )
     tokenizer = t.BertTokenizerFast(vocab_file=str(vocab))
     labels = ("negative", "neutral", "positive")
-    model = t.DebertaV2ForSequenceClassification(
-        t.DebertaV2Config(
+    model_class, config_class = {
+        "deberta": (t.DebertaV2ForSequenceClassification, t.DebertaV2Config),
+        "bert": (t.BertForSequenceClassification, t.BertConfig),
+        "roberta": (t.RobertaForSequenceClassification, t.RobertaConfig),
+    }[backbone]
+    model = model_class(
+        config_class(
             vocab_size=12,
             hidden_size=8,
             num_hidden_layers=1,
@@ -94,7 +100,7 @@ def test_tiny_training_updates_encoder_and_reloads_best_without_validation_gradi
         learning_rate=0.01,
     )
     train, val = examples("train"), examples("validation")
-    original = model.deberta.embeddings.word_embeddings.weight.detach().clone()
+    original = model.base_model.embeddings.word_embeddings.weight.detach().clone()
     initial_sha = state_sha256(model)
     observations = []
     handle = model.register_forward_pre_hook(
@@ -115,7 +121,7 @@ def test_tiny_training_updates_encoder_and_reloads_best_without_validation_gradi
     asset = {
         "model_id": "synthetic/deberta",
         "revision": "synthetic",
-        "model_type": "deberta-v2",
+        "model_type": model.config.model_type,
     }
     context = {"input_mode": mode, "plan_sha256": "test-plan"}
     fit = fit_target(
@@ -130,7 +136,7 @@ def test_tiny_training_updates_encoder_and_reloads_best_without_validation_gradi
         context=context,
     )
     handle.remove()
-    assert not torch.equal(original, model.deberta.embeddings.word_embeddings.weight)
+    assert not torch.equal(original, model.base_model.embeddings.word_embeddings.weight)
     assert state_sha256(model) != initial_sha
     assert fit["optimizer_steps"] == 3
     assert any(
