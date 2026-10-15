@@ -37,6 +37,15 @@ complete: target-pair versus headline-only mean validation macro F1 is
 (seeds 42/43/44). Initial weights and epoch row orders match per seed. These
 remain development/epoch-selection results; independent target evaluation and
 five-company claims are pending. Raw probability calibration still needs review.
+The [matched backbone comparison](reports/experiments/target-backbones.md) now
+adds six RoBERTa Base and six FinBERT trials on the same target annotations.
+Mean headline-only → target-pair validation macro F1: RoBERTa **80.95% → 89.07%**,
+FinBERT **81.29% → 88.65%**, versus DeBERTa **81.19% → 88.96%**.
+All three benefit mainly on multi-target/mixed-label headlines; RoBERTa's 0.11 pp
+overall lead over DeBERTa is small relative to seed variation, not a confirmed
+winner. All 12 new selected checkpoints are verified privately; all 72 new cohort
+metric sets pass independent checks. See the [run guide](docs/target-backbones.md).
+These remain reused validation results; reserved tests are untouched.
 Mention identification is also pending. MLflow and
 length/batch ablations are deferred.
 

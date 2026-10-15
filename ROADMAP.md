@@ -781,6 +781,7 @@ calibration fitting, new LR search or Phase 4 implementation occurred.
 - [ ] Implement entity identification and explicit ambiguity handling.
 - [ ] Define target-level labels and create/validate an entity-labeled test collection.
 - [x] Compare headline-wide sentiment against target-aware conditioning with matched DeBERTa Base training on development validation (selected backbone replaces the original FinBERT proposal).
+- [x] Extend the matched target-conditioning development comparison to original RoBERTa Base and FinBERT, using three seeds per arm and the same native target cohorts.
 - [ ] Evaluate macro F1 **per company target** and on multi-company examples.
 - [ ] Track errors from aliases, comparisons, neutral mentions, and conflicting cues.
 - [ ] Expose `predict(text, target_company)` returning probabilities and model version.
@@ -885,6 +886,27 @@ using the selected DeBERTa backbone, not independent target test evaluation,
 five-company evaluation, error analysis, entity identification or the API.
 No reserved-test analysis, calibration fitting, new search or source/final/lock
 changes occurred; all weights and native row predictions remain private.
+
+**Matched backbone supplement verified (2026-10-15):** Twelve new trials
+compare original RoBERTa Base (new head, prior LR 2e-5) and original FinBERT
+(retained semantic head, prior LR 3e-5), two input arms × seeds 42/43/44.
+The original DeBERTa plan/lock/report and native 11,547/1,410 training/validation
+view remain unchanged. Initial full-state/RNG and common epoch row orders match
+within every pair. All targets/headlines fit without truncation or unknown target
+tokens; pair maxima are RoBERTa 50/39 and FinBERT 45/37 train/validation tokens.
+Mean overall headline → target macro F1: RoBERTa 80.95% → 89.07%, FinBERT
+81.29% → 88.65%; DeBERTa remains 81.19% → 88.96%. Target mixed-label F1 is
+92.60%, 89.80%, and 91.91%, respectively. RoBERTa's 0.11 pp overall mean lead
+is small relative to three-seed variation; no independent winner claim. Raw NLL
+and Brier improve on average, while overall ECE rises in every backbone.
+All 12 new selected checkpoints verify/reload on Windows. Mac reconstructs every
+prediction hash and independently checks classification, NLL, Brier and ECE in all
+72 new cohort evaluations. Required Ruff checks and all 491 tests pass on both
+machines. See `reports/experiments/target-backbones.md` and
+`docs/target-backbones.md`. Only this supplemental development task is complete;
+independent target evaluation, reliable five-company coverage, error analysis,
+entity identification and API remain open. No new acquisition, LR search,
+calibration fitting, reserved-test scoring or weight/text publication occurred.
 
 **Deliverables:** Target-sentiment service and independent target-level evaluation.
 
