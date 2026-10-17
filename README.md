@@ -46,6 +46,13 @@ overall lead over DeBERTa is small relative to seed variation, not a confirmed
 winner. All 12 new selected checkpoints are verified privately; all 72 new cohort
 metric sets pass independent checks. See the [run guide](docs/target-backbones.md).
 These remain reused validation results; reserved tests are untouched.
+The [target-error review](reports/experiments/target-error-analysis.md) now checks
+all 18 saved matched trials and reviews 36 private validation cases. All nine
+company-aware runs miss 51 annotations; at least one misses 293. Conditioning
+fixes more mistakes than it introduces in every model/seed, but actor attribution,
+neutral boundaries, comparisons and conflicting cues remain difficult. Eighteen
+selected cases have suspected gold/context ambiguity; this is exploratory review,
+not a corpus error rate or label correction. See the [review guide](docs/target-error-analysis.md).
 Mention identification is also pending. MLflow and
 length/batch ablations are deferred.
 

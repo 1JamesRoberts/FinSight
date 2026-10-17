@@ -783,7 +783,7 @@ calibration fitting, new LR search or Phase 4 implementation occurred.
 - [x] Compare headline-wide sentiment against target-aware conditioning with matched DeBERTa Base training on development validation (selected backbone replaces the original FinBERT proposal).
 - [x] Extend the matched target-conditioning development comparison to original RoBERTa Base and FinBERT, using three seeds per arm and the same native target cohorts.
 - [ ] Evaluate macro F1 **per company target** and on multi-company examples.
-- [ ] Track errors from aliases, comparisons, neutral mentions, and conflicting cues.
+- [x] Track validation errors from aliases/nonliteral forms, comparisons, neutral mentions and conflicting cues across all three matched target backbones; preserve native labels.
 - [ ] Expose `predict(text, target_company)` returning probabilities and model version.
 
 **Registry foundation verified (2026-10-14):** `configs/companies.json` version
@@ -907,6 +907,27 @@ machines. See `reports/experiments/target-backbones.md` and
 independent target evaluation, reliable five-company coverage, error analysis,
 entity identification and API remain open. No new acquisition, LR search,
 calibration fitting, reserved-test scoring or weight/text publication occurred.
+
+**Target error review verified (2026-10-17):** The saved 18 headline/target
+trials pass private report/prediction/native-gold/context/manifest checks and
+reproduce all 108 original cohort metric sets (1e-12 arithmetic tolerance,
+exact prediction bytes). No weights are loaded and no new model inference occurs.
+Across 1,410 validation annotations, all nine paired runs miss 51 and at least
+one misses 293. DeBERTa/RoBERTa/FinBERT have 112/101/106 recurring three-seed
+errors and 92/118/118 variable predictions. Persistent fixes are 74/67/79 versus
+5/9/6 harms; every matched seed fixes more than it harms. Independent NumPy
+recalculation verifies all seven cohort count sets, transitions and pairwise
+counts. The deterministic nine-stratum private sample has 36 annotations from
+36 headlines, with individually reviewed overlapping tags and reasoning.
+Eighteen have suspected gold/context ambiguity: exploratory Codex judgment,
+not independent adjudication or a population error estimate. All labels remain
+unchanged. Native text, names, IDs, predictions and notes remain private; public
+JSON/Markdown contain aggregate findings only. All 509 tests and required Ruff
+gates pass on Mac. See `reports/experiments/target-error-analysis.md` and
+`docs/target-error-analysis.md`. Only the bounded error-tracking task is complete;
+entity recognition, independent target testing, reliable per-company evaluation,
+model selection/calibration and API work remain open. Original data/freeze,
+model plans/comparison reports and Phase 3 final aggregate are unchanged.
 
 **Deliverables:** Target-sentiment service and independent target-level evaluation.
 

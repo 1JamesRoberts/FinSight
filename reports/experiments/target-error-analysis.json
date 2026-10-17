@@ -1,0 +1,1748 @@
+{
+  "code_revision": "af627d3341a1cd4fef49a393edfd56f7cbdbc340",
+  "cohorts": {
+    "all_targets": {
+      "all_nine_target_runs_correct": 1117,
+      "all_nine_target_runs_wrong": 51,
+      "any_target_run_wrong": 293,
+      "duplicate_groups": 1053,
+      "examples": 1410,
+      "headlines": 1053,
+      "models": {
+        "deberta_base": {
+          "conditioning_by_seed": [
+            {
+              "both_correct": 1110,
+              "both_wrong": 118,
+              "fixed": 143,
+              "harmed": 39,
+              "seed": 42
+            },
+            {
+              "both_correct": 1111,
+              "both_wrong": 121,
+              "fixed": 149,
+              "harmed": 29,
+              "seed": 43
+            },
+            {
+              "both_correct": 1102,
+              "both_wrong": 122,
+              "fixed": 147,
+              "harmed": 39,
+              "seed": 44
+            }
+          ],
+          "errors_in_k_of_three_seeds": {
+            "0": 1209,
+            "1": 46,
+            "2": 43,
+            "3": 112
+          },
+          "persistent_conditioning_fixes": 74,
+          "persistent_conditioning_harms": 5,
+          "prediction_varies_across_seeds": 92,
+          "recurring_error_gold_counts": {
+            "negative": 35,
+            "neutral": 51,
+            "positive": 26
+          }
+        },
+        "finbert": {
+          "conditioning_by_seed": [
+            {
+              "both_correct": 1092,
+              "both_wrong": 114,
+              "fixed": 155,
+              "harmed": 49,
+              "seed": 42
+            },
+            {
+              "both_correct": 1095,
+              "both_wrong": 114,
+              "fixed": 147,
+              "harmed": 54,
+              "seed": 43
+            },
+            {
+              "both_correct": 1117,
+              "both_wrong": 117,
+              "fixed": 146,
+              "harmed": 30,
+              "seed": 44
+            }
+          ],
+          "errors_in_k_of_three_seeds": {
+            "0": 1191,
+            "1": 66,
+            "2": 47,
+            "3": 106
+          },
+          "persistent_conditioning_fixes": 79,
+          "persistent_conditioning_harms": 6,
+          "prediction_varies_across_seeds": 118,
+          "recurring_error_gold_counts": {
+            "negative": 38,
+            "neutral": 35,
+            "positive": 33
+          }
+        },
+        "roberta_base": {
+          "conditioning_by_seed": [
+            {
+              "both_correct": 1104,
+              "both_wrong": 128,
+              "fixed": 141,
+              "harmed": 37,
+              "seed": 42
+            },
+            {
+              "both_correct": 1100,
+              "both_wrong": 111,
+              "fixed": 165,
+              "harmed": 34,
+              "seed": 43
+            },
+            {
+              "both_correct": 1099,
+              "both_wrong": 108,
+              "fixed": 159,
+              "harmed": 44,
+              "seed": 44
+            }
+          ],
+          "errors_in_k_of_three_seeds": {
+            "0": 1196,
+            "1": 67,
+            "2": 46,
+            "3": 101
+          },
+          "persistent_conditioning_fixes": 67,
+          "persistent_conditioning_harms": 9,
+          "prediction_varies_across_seeds": 118,
+          "recurring_error_gold_counts": {
+            "negative": 33,
+            "neutral": 44,
+            "positive": 24
+          }
+        }
+      },
+      "pairwise": [
+        {
+          "a": "deberta_base",
+          "b": "roberta_base",
+          "by_seed": [
+            {
+              "a_only_correct": 57,
+              "b_only_correct": 49,
+              "both_correct": 1196,
+              "both_wrong": 108,
+              "prediction_disagreements": 110,
+              "seed": 42
+            },
+            {
+              "a_only_correct": 43,
+              "b_only_correct": 48,
+              "both_correct": 1217,
+              "both_wrong": 102,
+              "prediction_disagreements": 97,
+              "seed": 43
+            },
+            {
+              "a_only_correct": 43,
+              "b_only_correct": 52,
+              "both_correct": 1206,
+              "both_wrong": 109,
+              "prediction_disagreements": 103,
+              "seed": 44
+            }
+          ]
+        },
+        {
+          "a": "deberta_base",
+          "b": "finbert",
+          "by_seed": [
+            {
+              "a_only_correct": 62,
+              "b_only_correct": 56,
+              "both_correct": 1191,
+              "both_wrong": 101,
+              "prediction_disagreements": 125,
+              "seed": 42
+            },
+            {
+              "a_only_correct": 70,
+              "b_only_correct": 52,
+              "both_correct": 1190,
+              "both_wrong": 98,
+              "prediction_disagreements": 128,
+              "seed": 43
+            },
+            {
+              "a_only_correct": 46,
+              "b_only_correct": 60,
+              "both_correct": 1203,
+              "both_wrong": 101,
+              "prediction_disagreements": 111,
+              "seed": 44
+            }
+          ]
+        },
+        {
+          "a": "roberta_base",
+          "b": "finbert",
+          "by_seed": [
+            {
+              "a_only_correct": 58,
+              "b_only_correct": 60,
+              "both_correct": 1187,
+              "both_wrong": 105,
+              "prediction_disagreements": 125,
+              "seed": 42
+            },
+            {
+              "a_only_correct": 65,
+              "b_only_correct": 42,
+              "both_correct": 1200,
+              "both_wrong": 103,
+              "prediction_disagreements": 112,
+              "seed": 43
+            },
+            {
+              "a_only_correct": 44,
+              "b_only_correct": 49,
+              "both_correct": 1214,
+              "both_wrong": 103,
+              "prediction_disagreements": 101,
+              "seed": 44
+            }
+          ]
+        }
+      ]
+    },
+    "mixed_label_headlines": {
+      "all_nine_target_runs_correct": 231,
+      "all_nine_target_runs_wrong": 5,
+      "any_target_run_wrong": 52,
+      "duplicate_groups": 122,
+      "examples": 283,
+      "headlines": 122,
+      "models": {
+        "deberta_base": {
+          "conditioning_by_seed": [
+            {
+              "both_correct": 145,
+              "both_wrong": 23,
+              "fixed": 115,
+              "harmed": 0,
+              "seed": 42
+            },
+            {
+              "both_correct": 147,
+              "both_wrong": 23,
+              "fixed": 113,
+              "harmed": 0,
+              "seed": 43
+            },
+            {
+              "both_correct": 144,
+              "both_wrong": 20,
+              "fixed": 117,
+              "harmed": 2,
+              "seed": 44
+            }
+          ],
+          "errors_in_k_of_three_seeds": {
+            "0": 249,
+            "1": 13,
+            "2": 8,
+            "3": 13
+          },
+          "persistent_conditioning_fixes": 72,
+          "persistent_conditioning_harms": 0,
+          "prediction_varies_across_seeds": 21,
+          "recurring_error_gold_counts": {
+            "negative": 3,
+            "neutral": 4,
+            "positive": 6
+          }
+        },
+        "finbert": {
+          "conditioning_by_seed": [
+            {
+              "both_correct": 142,
+              "both_wrong": 26,
+              "fixed": 112,
+              "harmed": 3,
+              "seed": 42
+            },
+            {
+              "both_correct": 145,
+              "both_wrong": 25,
+              "fixed": 110,
+              "harmed": 3,
+              "seed": 43
+            },
+            {
+              "both_correct": 148,
+              "both_wrong": 26,
+              "fixed": 109,
+              "harmed": 0,
+              "seed": 44
+            }
+          ],
+          "errors_in_k_of_three_seeds": {
+            "0": 246,
+            "1": 10,
+            "2": 8,
+            "3": 19
+          },
+          "persistent_conditioning_fixes": 67,
+          "persistent_conditioning_harms": 0,
+          "prediction_varies_across_seeds": 20,
+          "recurring_error_gold_counts": {
+            "negative": 8,
+            "neutral": 2,
+            "positive": 9
+          }
+        },
+        "roberta_base": {
+          "conditioning_by_seed": [
+            {
+              "both_correct": 144,
+              "both_wrong": 21,
+              "fixed": 118,
+              "harmed": 0,
+              "seed": 42
+            },
+            {
+              "both_correct": 147,
+              "both_wrong": 19,
+              "fixed": 117,
+              "harmed": 0,
+              "seed": 43
+            },
+            {
+              "both_correct": 145,
+              "both_wrong": 21,
+              "fixed": 116,
+              "harmed": 1,
+              "seed": 44
+            }
+          ],
+          "errors_in_k_of_three_seeds": {
+            "0": 247,
+            "1": 18,
+            "2": 10,
+            "3": 8
+          },
+          "persistent_conditioning_fixes": 61,
+          "persistent_conditioning_harms": 0,
+          "prediction_varies_across_seeds": 28,
+          "recurring_error_gold_counts": {
+            "negative": 3,
+            "neutral": 3,
+            "positive": 2
+          }
+        }
+      },
+      "pairwise": [
+        {
+          "a": "deberta_base",
+          "b": "roberta_base",
+          "by_seed": [
+            {
+              "a_only_correct": 10,
+              "b_only_correct": 12,
+              "both_correct": 250,
+              "both_wrong": 11,
+              "prediction_disagreements": 22,
+              "seed": 42
+            },
+            {
+              "a_only_correct": 7,
+              "b_only_correct": 11,
+              "both_correct": 253,
+              "both_wrong": 12,
+              "prediction_disagreements": 18,
+              "seed": 43
+            },
+            {
+              "a_only_correct": 7,
+              "b_only_correct": 7,
+              "both_correct": 254,
+              "both_wrong": 15,
+              "prediction_disagreements": 14,
+              "seed": 44
+            }
+          ]
+        },
+        {
+          "a": "deberta_base",
+          "b": "finbert",
+          "by_seed": [
+            {
+              "a_only_correct": 15,
+              "b_only_correct": 9,
+              "both_correct": 245,
+              "both_wrong": 14,
+              "prediction_disagreements": 26,
+              "seed": 42
+            },
+            {
+              "a_only_correct": 14,
+              "b_only_correct": 9,
+              "both_correct": 246,
+              "both_wrong": 14,
+              "prediction_disagreements": 25,
+              "seed": 43
+            },
+            {
+              "a_only_correct": 13,
+              "b_only_correct": 9,
+              "both_correct": 248,
+              "both_wrong": 13,
+              "prediction_disagreements": 23,
+              "seed": 44
+            }
+          ]
+        },
+        {
+          "a": "roberta_base",
+          "b": "finbert",
+          "by_seed": [
+            {
+              "a_only_correct": 14,
+              "b_only_correct": 6,
+              "both_correct": 248,
+              "both_wrong": 15,
+              "prediction_disagreements": 21,
+              "seed": 42
+            },
+            {
+              "a_only_correct": 15,
+              "b_only_correct": 6,
+              "both_correct": 249,
+              "both_wrong": 13,
+              "prediction_disagreements": 22,
+              "seed": 43
+            },
+            {
+              "a_only_correct": 10,
+              "b_only_correct": 6,
+              "both_correct": 251,
+              "both_wrong": 16,
+              "prediction_disagreements": 18,
+              "seed": 44
+            }
+          ]
+        }
+      ]
+    },
+    "multi_target": {
+      "all_nine_target_runs_correct": 506,
+      "all_nine_target_runs_wrong": 12,
+      "any_target_run_wrong": 123,
+      "duplicate_groups": 272,
+      "examples": 629,
+      "headlines": 272,
+      "models": {
+        "deberta_base": {
+          "conditioning_by_seed": [
+            {
+              "both_correct": 442,
+              "both_wrong": 41,
+              "fixed": 123,
+              "harmed": 23,
+              "seed": 42
+            },
+            {
+              "both_correct": 442,
+              "both_wrong": 48,
+              "fixed": 126,
+              "harmed": 13,
+              "seed": 43
+            },
+            {
+              "both_correct": 439,
+              "both_wrong": 46,
+              "fixed": 124,
+              "harmed": 20,
+              "seed": 44
+            }
+          ],
+          "errors_in_k_of_three_seeds": {
+            "0": 541,
+            "1": 27,
+            "2": 19,
+            "3": 42
+          },
+          "persistent_conditioning_fixes": 73,
+          "persistent_conditioning_harms": 3,
+          "prediction_varies_across_seeds": 47,
+          "recurring_error_gold_counts": {
+            "negative": 7,
+            "neutral": 24,
+            "positive": 11
+          }
+        },
+        "finbert": {
+          "conditioning_by_seed": [
+            {
+              "both_correct": 431,
+              "both_wrong": 43,
+              "fixed": 130,
+              "harmed": 25,
+              "seed": 42
+            },
+            {
+              "both_correct": 438,
+              "both_wrong": 43,
+              "fixed": 123,
+              "harmed": 25,
+              "seed": 43
+            },
+            {
+              "both_correct": 445,
+              "both_wrong": 45,
+              "fixed": 125,
+              "harmed": 14,
+              "seed": 44
+            }
+          ],
+          "errors_in_k_of_three_seeds": {
+            "0": 532,
+            "1": 36,
+            "2": 24,
+            "3": 37
+          },
+          "persistent_conditioning_fixes": 71,
+          "persistent_conditioning_harms": 3,
+          "prediction_varies_across_seeds": 62,
+          "recurring_error_gold_counts": {
+            "negative": 10,
+            "neutral": 10,
+            "positive": 17
+          }
+        },
+        "roberta_base": {
+          "conditioning_by_seed": [
+            {
+              "both_correct": 444,
+              "both_wrong": 47,
+              "fixed": 124,
+              "harmed": 14,
+              "seed": 42
+            },
+            {
+              "both_correct": 440,
+              "both_wrong": 43,
+              "fixed": 133,
+              "harmed": 13,
+              "seed": 43
+            },
+            {
+              "both_correct": 442,
+              "both_wrong": 43,
+              "fixed": 126,
+              "harmed": 18,
+              "seed": 44
+            }
+          ],
+          "errors_in_k_of_three_seeds": {
+            "0": 542,
+            "1": 30,
+            "2": 23,
+            "3": 34
+          },
+          "persistent_conditioning_fixes": 62,
+          "persistent_conditioning_harms": 3,
+          "prediction_varies_across_seeds": 56,
+          "recurring_error_gold_counts": {
+            "negative": 8,
+            "neutral": 17,
+            "positive": 9
+          }
+        }
+      },
+      "pairwise": [
+        {
+          "a": "deberta_base",
+          "b": "roberta_base",
+          "by_seed": [
+            {
+              "a_only_correct": 24,
+              "b_only_correct": 27,
+              "both_correct": 541,
+              "both_wrong": 37,
+              "prediction_disagreements": 51,
+              "seed": 42
+            },
+            {
+              "a_only_correct": 18,
+              "b_only_correct": 23,
+              "both_correct": 550,
+              "both_wrong": 38,
+              "prediction_disagreements": 44,
+              "seed": 43
+            },
+            {
+              "a_only_correct": 21,
+              "b_only_correct": 26,
+              "both_correct": 542,
+              "both_wrong": 40,
+              "prediction_disagreements": 51,
+              "seed": 44
+            }
+          ]
+        },
+        {
+          "a": "deberta_base",
+          "b": "finbert",
+          "by_seed": [
+            {
+              "a_only_correct": 30,
+              "b_only_correct": 26,
+              "both_correct": 535,
+              "both_wrong": 38,
+              "prediction_disagreements": 58,
+              "seed": 42
+            },
+            {
+              "a_only_correct": 32,
+              "b_only_correct": 25,
+              "both_correct": 536,
+              "both_wrong": 36,
+              "prediction_disagreements": 60,
+              "seed": 43
+            },
+            {
+              "a_only_correct": 22,
+              "b_only_correct": 29,
+              "both_correct": 541,
+              "both_wrong": 37,
+              "prediction_disagreements": 52,
+              "seed": 44
+            }
+          ]
+        },
+        {
+          "a": "roberta_base",
+          "b": "finbert",
+          "by_seed": [
+            {
+              "a_only_correct": 30,
+              "b_only_correct": 23,
+              "both_correct": 538,
+              "both_wrong": 38,
+              "prediction_disagreements": 54,
+              "seed": 42
+            },
+            {
+              "a_only_correct": 32,
+              "b_only_correct": 20,
+              "both_correct": 541,
+              "both_wrong": 36,
+              "prediction_disagreements": 54,
+              "seed": 43
+            },
+            {
+              "a_only_correct": 19,
+              "b_only_correct": 21,
+              "both_correct": 549,
+              "both_wrong": 40,
+              "prediction_disagreements": 45,
+              "seed": 44
+            }
+          ]
+        }
+      ]
+    },
+    "nonliteral_target": {
+      "all_nine_target_runs_correct": 4,
+      "all_nine_target_runs_wrong": 3,
+      "any_target_run_wrong": 4,
+      "duplicate_groups": 8,
+      "examples": 8,
+      "headlines": 8,
+      "models": {
+        "deberta_base": {
+          "conditioning_by_seed": [
+            {
+              "both_correct": 5,
+              "both_wrong": 3,
+              "fixed": 0,
+              "harmed": 0,
+              "seed": 42
+            },
+            {
+              "both_correct": 5,
+              "both_wrong": 3,
+              "fixed": 0,
+              "harmed": 0,
+              "seed": 43
+            },
+            {
+              "both_correct": 5,
+              "both_wrong": 3,
+              "fixed": 0,
+              "harmed": 0,
+              "seed": 44
+            }
+          ],
+          "errors_in_k_of_three_seeds": {
+            "0": 5,
+            "1": 0,
+            "2": 0,
+            "3": 3
+          },
+          "persistent_conditioning_fixes": 0,
+          "persistent_conditioning_harms": 0,
+          "prediction_varies_across_seeds": 0,
+          "recurring_error_gold_counts": {
+            "negative": 1,
+            "neutral": 2,
+            "positive": 0
+          }
+        },
+        "finbert": {
+          "conditioning_by_seed": [
+            {
+              "both_correct": 4,
+              "both_wrong": 3,
+              "fixed": 0,
+              "harmed": 1,
+              "seed": 42
+            },
+            {
+              "both_correct": 4,
+              "both_wrong": 3,
+              "fixed": 0,
+              "harmed": 1,
+              "seed": 43
+            },
+            {
+              "both_correct": 5,
+              "both_wrong": 3,
+              "fixed": 0,
+              "harmed": 0,
+              "seed": 44
+            }
+          ],
+          "errors_in_k_of_three_seeds": {
+            "0": 4,
+            "1": 0,
+            "2": 1,
+            "3": 3
+          },
+          "persistent_conditioning_fixes": 0,
+          "persistent_conditioning_harms": 0,
+          "prediction_varies_across_seeds": 1,
+          "recurring_error_gold_counts": {
+            "negative": 1,
+            "neutral": 2,
+            "positive": 0
+          }
+        },
+        "roberta_base": {
+          "conditioning_by_seed": [
+            {
+              "both_correct": 4,
+              "both_wrong": 3,
+              "fixed": 0,
+              "harmed": 1,
+              "seed": 42
+            },
+            {
+              "both_correct": 4,
+              "both_wrong": 3,
+              "fixed": 0,
+              "harmed": 1,
+              "seed": 43
+            },
+            {
+              "both_correct": 4,
+              "both_wrong": 3,
+              "fixed": 0,
+              "harmed": 1,
+              "seed": 44
+            }
+          ],
+          "errors_in_k_of_three_seeds": {
+            "0": 4,
+            "1": 0,
+            "2": 0,
+            "3": 4
+          },
+          "persistent_conditioning_fixes": 0,
+          "persistent_conditioning_harms": 1,
+          "prediction_varies_across_seeds": 0,
+          "recurring_error_gold_counts": {
+            "negative": 1,
+            "neutral": 2,
+            "positive": 1
+          }
+        }
+      },
+      "pairwise": [
+        {
+          "a": "deberta_base",
+          "b": "roberta_base",
+          "by_seed": [
+            {
+              "a_only_correct": 1,
+              "b_only_correct": 0,
+              "both_correct": 4,
+              "both_wrong": 3,
+              "prediction_disagreements": 1,
+              "seed": 42
+            },
+            {
+              "a_only_correct": 1,
+              "b_only_correct": 0,
+              "both_correct": 4,
+              "both_wrong": 3,
+              "prediction_disagreements": 1,
+              "seed": 43
+            },
+            {
+              "a_only_correct": 1,
+              "b_only_correct": 0,
+              "both_correct": 4,
+              "both_wrong": 3,
+              "prediction_disagreements": 1,
+              "seed": 44
+            }
+          ]
+        },
+        {
+          "a": "deberta_base",
+          "b": "finbert",
+          "by_seed": [
+            {
+              "a_only_correct": 1,
+              "b_only_correct": 0,
+              "both_correct": 4,
+              "both_wrong": 3,
+              "prediction_disagreements": 1,
+              "seed": 42
+            },
+            {
+              "a_only_correct": 1,
+              "b_only_correct": 0,
+              "both_correct": 4,
+              "both_wrong": 3,
+              "prediction_disagreements": 1,
+              "seed": 43
+            },
+            {
+              "a_only_correct": 0,
+              "b_only_correct": 0,
+              "both_correct": 5,
+              "both_wrong": 3,
+              "prediction_disagreements": 0,
+              "seed": 44
+            }
+          ]
+        },
+        {
+          "a": "roberta_base",
+          "b": "finbert",
+          "by_seed": [
+            {
+              "a_only_correct": 0,
+              "b_only_correct": 0,
+              "both_correct": 4,
+              "both_wrong": 4,
+              "prediction_disagreements": 0,
+              "seed": 42
+            },
+            {
+              "a_only_correct": 0,
+              "b_only_correct": 0,
+              "both_correct": 4,
+              "both_wrong": 4,
+              "prediction_disagreements": 0,
+              "seed": 43
+            },
+            {
+              "a_only_correct": 0,
+              "b_only_correct": 1,
+              "both_correct": 4,
+              "both_wrong": 3,
+              "prediction_disagreements": 1,
+              "seed": 44
+            }
+          ]
+        }
+      ]
+    },
+    "seen_native_target": {
+      "all_nine_target_runs_correct": 914,
+      "all_nine_target_runs_wrong": 41,
+      "any_target_run_wrong": 233,
+      "duplicate_groups": 891,
+      "examples": 1147,
+      "headlines": 891,
+      "models": {
+        "deberta_base": {
+          "conditioning_by_seed": [
+            {
+              "both_correct": 906,
+              "both_wrong": 94,
+              "fixed": 120,
+              "harmed": 27,
+              "seed": 42
+            },
+            {
+              "both_correct": 909,
+              "both_wrong": 94,
+              "fixed": 123,
+              "harmed": 21,
+              "seed": 43
+            },
+            {
+              "both_correct": 902,
+              "both_wrong": 99,
+              "fixed": 124,
+              "harmed": 22,
+              "seed": 44
+            }
+          ],
+          "errors_in_k_of_three_seeds": {
+            "0": 991,
+            "1": 38,
+            "2": 35,
+            "3": 83
+          },
+          "persistent_conditioning_fixes": 60,
+          "persistent_conditioning_harms": 2,
+          "prediction_varies_across_seeds": 75,
+          "recurring_error_gold_counts": {
+            "negative": 26,
+            "neutral": 35,
+            "positive": 22
+          }
+        },
+        "finbert": {
+          "conditioning_by_seed": [
+            {
+              "both_correct": 887,
+              "both_wrong": 94,
+              "fixed": 130,
+              "harmed": 36,
+              "seed": 42
+            },
+            {
+              "both_correct": 887,
+              "both_wrong": 96,
+              "fixed": 123,
+              "harmed": 41,
+              "seed": 43
+            },
+            {
+              "both_correct": 908,
+              "both_wrong": 93,
+              "fixed": 123,
+              "harmed": 23,
+              "seed": 44
+            }
+          ],
+          "errors_in_k_of_three_seeds": {
+            "0": 972,
+            "1": 53,
+            "2": 36,
+            "3": 86
+          },
+          "persistent_conditioning_fixes": 66,
+          "persistent_conditioning_harms": 4,
+          "prediction_varies_across_seeds": 94,
+          "recurring_error_gold_counts": {
+            "negative": 30,
+            "neutral": 27,
+            "positive": 29
+          }
+        },
+        "roberta_base": {
+          "conditioning_by_seed": [
+            {
+              "both_correct": 904,
+              "both_wrong": 106,
+              "fixed": 115,
+              "harmed": 22,
+              "seed": 42
+            },
+            {
+              "both_correct": 891,
+              "both_wrong": 90,
+              "fixed": 139,
+              "harmed": 27,
+              "seed": 43
+            },
+            {
+              "both_correct": 898,
+              "both_wrong": 84,
+              "fixed": 131,
+              "harmed": 34,
+              "seed": 44
+            }
+          ],
+          "errors_in_k_of_three_seeds": {
+            "0": 978,
+            "1": 54,
+            "2": 36,
+            "3": 79
+          },
+          "persistent_conditioning_fixes": 53,
+          "persistent_conditioning_harms": 5,
+          "prediction_varies_across_seeds": 93,
+          "recurring_error_gold_counts": {
+            "negative": 26,
+            "neutral": 33,
+            "positive": 20
+          }
+        }
+      },
+      "pairwise": [
+        {
+          "a": "deberta_base",
+          "b": "roberta_base",
+          "by_seed": [
+            {
+              "a_only_correct": 45,
+              "b_only_correct": 38,
+              "both_correct": 981,
+              "both_wrong": 83,
+              "prediction_disagreements": 87,
+              "seed": 42
+            },
+            {
+              "a_only_correct": 36,
+              "b_only_correct": 34,
+              "both_correct": 996,
+              "both_wrong": 81,
+              "prediction_disagreements": 74,
+              "seed": 43
+            },
+            {
+              "a_only_correct": 35,
+              "b_only_correct": 38,
+              "both_correct": 991,
+              "both_wrong": 83,
+              "prediction_disagreements": 78,
+              "seed": 44
+            }
+          ]
+        },
+        {
+          "a": "deberta_base",
+          "b": "finbert",
+          "by_seed": [
+            {
+              "a_only_correct": 53,
+              "b_only_correct": 44,
+              "both_correct": 973,
+              "both_wrong": 77,
+              "prediction_disagreements": 102,
+              "seed": 42
+            },
+            {
+              "a_only_correct": 60,
+              "b_only_correct": 38,
+              "both_correct": 972,
+              "both_wrong": 77,
+              "prediction_disagreements": 101,
+              "seed": 43
+            },
+            {
+              "a_only_correct": 37,
+              "b_only_correct": 42,
+              "both_correct": 989,
+              "both_wrong": 79,
+              "prediction_disagreements": 84,
+              "seed": 44
+            }
+          ]
+        },
+        {
+          "a": "roberta_base",
+          "b": "finbert",
+          "by_seed": [
+            {
+              "a_only_correct": 46,
+              "b_only_correct": 44,
+              "both_correct": 973,
+              "both_wrong": 84,
+              "prediction_disagreements": 95,
+              "seed": 42
+            },
+            {
+              "a_only_correct": 54,
+              "b_only_correct": 34,
+              "both_correct": 976,
+              "both_wrong": 83,
+              "prediction_disagreements": 89,
+              "seed": 43
+            },
+            {
+              "a_only_correct": 35,
+              "b_only_correct": 37,
+              "both_correct": 994,
+              "both_wrong": 81,
+              "prediction_disagreements": 77,
+              "seed": 44
+            }
+          ]
+        }
+      ]
+    },
+    "single_target": {
+      "all_nine_target_runs_correct": 611,
+      "all_nine_target_runs_wrong": 39,
+      "any_target_run_wrong": 170,
+      "duplicate_groups": 781,
+      "examples": 781,
+      "headlines": 781,
+      "models": {
+        "deberta_base": {
+          "conditioning_by_seed": [
+            {
+              "both_correct": 668,
+              "both_wrong": 77,
+              "fixed": 20,
+              "harmed": 16,
+              "seed": 42
+            },
+            {
+              "both_correct": 669,
+              "both_wrong": 73,
+              "fixed": 23,
+              "harmed": 16,
+              "seed": 43
+            },
+            {
+              "both_correct": 663,
+              "both_wrong": 76,
+              "fixed": 23,
+              "harmed": 19,
+              "seed": 44
+            }
+          ],
+          "errors_in_k_of_three_seeds": {
+            "0": 668,
+            "1": 19,
+            "2": 24,
+            "3": 70
+          },
+          "persistent_conditioning_fixes": 1,
+          "persistent_conditioning_harms": 2,
+          "prediction_varies_across_seeds": 45,
+          "recurring_error_gold_counts": {
+            "negative": 28,
+            "neutral": 27,
+            "positive": 15
+          }
+        },
+        "finbert": {
+          "conditioning_by_seed": [
+            {
+              "both_correct": 661,
+              "both_wrong": 71,
+              "fixed": 25,
+              "harmed": 24,
+              "seed": 42
+            },
+            {
+              "both_correct": 657,
+              "both_wrong": 71,
+              "fixed": 24,
+              "harmed": 29,
+              "seed": 43
+            },
+            {
+              "both_correct": 672,
+              "both_wrong": 72,
+              "fixed": 21,
+              "harmed": 16,
+              "seed": 44
+            }
+          ],
+          "errors_in_k_of_three_seeds": {
+            "0": 659,
+            "1": 30,
+            "2": 23,
+            "3": 69
+          },
+          "persistent_conditioning_fixes": 8,
+          "persistent_conditioning_harms": 3,
+          "prediction_varies_across_seeds": 56,
+          "recurring_error_gold_counts": {
+            "negative": 28,
+            "neutral": 25,
+            "positive": 16
+          }
+        },
+        "roberta_base": {
+          "conditioning_by_seed": [
+            {
+              "both_correct": 660,
+              "both_wrong": 81,
+              "fixed": 17,
+              "harmed": 23,
+              "seed": 42
+            },
+            {
+              "both_correct": 660,
+              "both_wrong": 68,
+              "fixed": 32,
+              "harmed": 21,
+              "seed": 43
+            },
+            {
+              "both_correct": 657,
+              "both_wrong": 65,
+              "fixed": 33,
+              "harmed": 26,
+              "seed": 44
+            }
+          ],
+          "errors_in_k_of_three_seeds": {
+            "0": 654,
+            "1": 37,
+            "2": 23,
+            "3": 67
+          },
+          "persistent_conditioning_fixes": 5,
+          "persistent_conditioning_harms": 6,
+          "prediction_varies_across_seeds": 62,
+          "recurring_error_gold_counts": {
+            "negative": 25,
+            "neutral": 27,
+            "positive": 15
+          }
+        }
+      },
+      "pairwise": [
+        {
+          "a": "deberta_base",
+          "b": "roberta_base",
+          "by_seed": [
+            {
+              "a_only_correct": 33,
+              "b_only_correct": 22,
+              "both_correct": 655,
+              "both_wrong": 71,
+              "prediction_disagreements": 59,
+              "seed": 42
+            },
+            {
+              "a_only_correct": 25,
+              "b_only_correct": 25,
+              "both_correct": 667,
+              "both_wrong": 64,
+              "prediction_disagreements": 53,
+              "seed": 43
+            },
+            {
+              "a_only_correct": 22,
+              "b_only_correct": 26,
+              "both_correct": 664,
+              "both_wrong": 69,
+              "prediction_disagreements": 52,
+              "seed": 44
+            }
+          ]
+        },
+        {
+          "a": "deberta_base",
+          "b": "finbert",
+          "by_seed": [
+            {
+              "a_only_correct": 32,
+              "b_only_correct": 30,
+              "both_correct": 656,
+              "both_wrong": 63,
+              "prediction_disagreements": 67,
+              "seed": 42
+            },
+            {
+              "a_only_correct": 38,
+              "b_only_correct": 27,
+              "both_correct": 654,
+              "both_wrong": 62,
+              "prediction_disagreements": 68,
+              "seed": 43
+            },
+            {
+              "a_only_correct": 24,
+              "b_only_correct": 31,
+              "both_correct": 662,
+              "both_wrong": 64,
+              "prediction_disagreements": 59,
+              "seed": 44
+            }
+          ]
+        },
+        {
+          "a": "roberta_base",
+          "b": "finbert",
+          "by_seed": [
+            {
+              "a_only_correct": 28,
+              "b_only_correct": 37,
+              "both_correct": 649,
+              "both_wrong": 67,
+              "prediction_disagreements": 71,
+              "seed": 42
+            },
+            {
+              "a_only_correct": 33,
+              "b_only_correct": 22,
+              "both_correct": 659,
+              "both_wrong": 67,
+              "prediction_disagreements": 58,
+              "seed": 43
+            },
+            {
+              "a_only_correct": 25,
+              "b_only_correct": 28,
+              "both_correct": 665,
+              "both_wrong": 63,
+              "prediction_disagreements": 56,
+              "seed": 44
+            }
+          ]
+        }
+      ]
+    },
+    "unseen_native_target": {
+      "all_nine_target_runs_correct": 203,
+      "all_nine_target_runs_wrong": 10,
+      "any_target_run_wrong": 60,
+      "duplicate_groups": 243,
+      "examples": 263,
+      "headlines": 243,
+      "models": {
+        "deberta_base": {
+          "conditioning_by_seed": [
+            {
+              "both_correct": 204,
+              "both_wrong": 24,
+              "fixed": 23,
+              "harmed": 12,
+              "seed": 42
+            },
+            {
+              "both_correct": 202,
+              "both_wrong": 27,
+              "fixed": 26,
+              "harmed": 8,
+              "seed": 43
+            },
+            {
+              "both_correct": 200,
+              "both_wrong": 23,
+              "fixed": 23,
+              "harmed": 17,
+              "seed": 44
+            }
+          ],
+          "errors_in_k_of_three_seeds": {
+            "0": 218,
+            "1": 8,
+            "2": 8,
+            "3": 29
+          },
+          "persistent_conditioning_fixes": 14,
+          "persistent_conditioning_harms": 3,
+          "prediction_varies_across_seeds": 17,
+          "recurring_error_gold_counts": {
+            "negative": 9,
+            "neutral": 16,
+            "positive": 4
+          }
+        },
+        "finbert": {
+          "conditioning_by_seed": [
+            {
+              "both_correct": 205,
+              "both_wrong": 20,
+              "fixed": 25,
+              "harmed": 13,
+              "seed": 42
+            },
+            {
+              "both_correct": 208,
+              "both_wrong": 18,
+              "fixed": 24,
+              "harmed": 13,
+              "seed": 43
+            },
+            {
+              "both_correct": 209,
+              "both_wrong": 24,
+              "fixed": 23,
+              "harmed": 7,
+              "seed": 44
+            }
+          ],
+          "errors_in_k_of_three_seeds": {
+            "0": 219,
+            "1": 13,
+            "2": 11,
+            "3": 20
+          },
+          "persistent_conditioning_fixes": 13,
+          "persistent_conditioning_harms": 2,
+          "prediction_varies_across_seeds": 24,
+          "recurring_error_gold_counts": {
+            "negative": 8,
+            "neutral": 8,
+            "positive": 4
+          }
+        },
+        "roberta_base": {
+          "conditioning_by_seed": [
+            {
+              "both_correct": 200,
+              "both_wrong": 22,
+              "fixed": 26,
+              "harmed": 15,
+              "seed": 42
+            },
+            {
+              "both_correct": 209,
+              "both_wrong": 21,
+              "fixed": 26,
+              "harmed": 7,
+              "seed": 43
+            },
+            {
+              "both_correct": 201,
+              "both_wrong": 24,
+              "fixed": 28,
+              "harmed": 10,
+              "seed": 44
+            }
+          ],
+          "errors_in_k_of_three_seeds": {
+            "0": 218,
+            "1": 13,
+            "2": 10,
+            "3": 22
+          },
+          "persistent_conditioning_fixes": 14,
+          "persistent_conditioning_harms": 4,
+          "prediction_varies_across_seeds": 25,
+          "recurring_error_gold_counts": {
+            "negative": 7,
+            "neutral": 11,
+            "positive": 4
+          }
+        }
+      },
+      "pairwise": [
+        {
+          "a": "deberta_base",
+          "b": "roberta_base",
+          "by_seed": [
+            {
+              "a_only_correct": 12,
+              "b_only_correct": 11,
+              "both_correct": 215,
+              "both_wrong": 25,
+              "prediction_disagreements": 23,
+              "seed": 42
+            },
+            {
+              "a_only_correct": 7,
+              "b_only_correct": 14,
+              "both_correct": 221,
+              "both_wrong": 21,
+              "prediction_disagreements": 23,
+              "seed": 43
+            },
+            {
+              "a_only_correct": 8,
+              "b_only_correct": 14,
+              "both_correct": 215,
+              "both_wrong": 26,
+              "prediction_disagreements": 25,
+              "seed": 44
+            }
+          ]
+        },
+        {
+          "a": "deberta_base",
+          "b": "finbert",
+          "by_seed": [
+            {
+              "a_only_correct": 9,
+              "b_only_correct": 12,
+              "both_correct": 218,
+              "both_wrong": 24,
+              "prediction_disagreements": 23,
+              "seed": 42
+            },
+            {
+              "a_only_correct": 10,
+              "b_only_correct": 14,
+              "both_correct": 218,
+              "both_wrong": 21,
+              "prediction_disagreements": 27,
+              "seed": 43
+            },
+            {
+              "a_only_correct": 9,
+              "b_only_correct": 18,
+              "both_correct": 214,
+              "both_wrong": 22,
+              "prediction_disagreements": 27,
+              "seed": 44
+            }
+          ]
+        },
+        {
+          "a": "roberta_base",
+          "b": "finbert",
+          "by_seed": [
+            {
+              "a_only_correct": 12,
+              "b_only_correct": 16,
+              "both_correct": 214,
+              "both_wrong": 21,
+              "prediction_disagreements": 30,
+              "seed": 42
+            },
+            {
+              "a_only_correct": 11,
+              "b_only_correct": 8,
+              "both_correct": 224,
+              "both_wrong": 20,
+              "prediction_disagreements": 23,
+              "seed": 43
+            },
+            {
+              "a_only_correct": 9,
+              "b_only_correct": 12,
+              "both_correct": 220,
+              "both_wrong": 22,
+              "prediction_disagreements": 24,
+              "seed": 44
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "definitions": {
+    "cohorts": "Annotation counts with separate headline/group counts; overlapping cohorts and repeated seeds are not independent observations. Seen/unseen means exact native string.",
+    "conditioning": "Per matched seed: fixed = headline wrong, pair correct; harmed = headline correct, pair wrong. Persistent requires all three seeds in each direction.",
+    "manual_review": "Purposive qualitative sample; overlapping tags; suspected ambiguity is reviewer judgment, not relabeling or independent adjudication.",
+    "persistence": "Wrong in k/3 separately trained target-pair seeds; predictions may differ even when all seeds are wrong."
+  },
+  "ensemble_created": false,
+  "environment": {
+    "numpy": "2.5.3",
+    "python": "3.12.2",
+    "scikit-learn": "1.7.2"
+  },
+  "final_test_evaluated": false,
+  "implementation_sha256": "32f0c9780202f4dbe0b94c9989e6774a4eb3821da2c9117841ade4473da360ba",
+  "inputs": [
+    {
+      "artifact_manifest_sha256": "5cde2976002dd53156f6e252b220111d31ffeb266bdf2519cdbf06da96cd85aa",
+      "mode": "matched_headline_only",
+      "model": "deberta_base",
+      "predictions_sha256": "9d31778af72a6dd92dc7e49ec17ed495eaea1dbec71e04b8cb83e613c1c8511d",
+      "report_sha256": "7b89644d6447add477a96dc13313e249a9000da709bfd7af9b7edff56ce048a3",
+      "seed": 42
+    },
+    {
+      "artifact_manifest_sha256": "55ccdc561ec49828d43c07d9cb5be861fbfe3326e52094445f65a32aed973700",
+      "mode": "matched_headline_only",
+      "model": "deberta_base",
+      "predictions_sha256": "0ae3e88686bb0ba154e65db7e7ec7f3db76633a5de159f4c0b3ed551fdc72dba",
+      "report_sha256": "575c9c2b7a3e63dfc645f1609b4f283c2e3d6cbfbf861e52d69fe232fff4aef0",
+      "seed": 43
+    },
+    {
+      "artifact_manifest_sha256": "fb48242a0f55de4caa35a23bc4093739becdb25a35d5c3ad854e5d61697af743",
+      "mode": "matched_headline_only",
+      "model": "deberta_base",
+      "predictions_sha256": "33f5a0a73ad9c709fa03a7669d9a73776067de1dd4343772cf4cfb6e10d060f6",
+      "report_sha256": "4ec0d11837e446c6811468ed8328569b4eb5a5528fa7e9da83e5a9fe6a397ba1",
+      "seed": 44
+    },
+    {
+      "artifact_manifest_sha256": "70390291822e14507260a6e87f43fc88b1e62cdb67103627e140f84e99a24d24",
+      "mode": "target_pair",
+      "model": "deberta_base",
+      "predictions_sha256": "931daafcaa2e194d0d44317ad9a0c56a8cb2993ff657c90ec92f6e360a015643",
+      "report_sha256": "e41cd01a3f8eb61d8be381d083db8738cee44fba6fc45de62516960782171ead",
+      "seed": 42
+    },
+    {
+      "artifact_manifest_sha256": "39eee2883ffe896cfa7a932ea2197ebf8d9b4d1cb7ff9586ac4904c9761b9934",
+      "mode": "target_pair",
+      "model": "deberta_base",
+      "predictions_sha256": "465992c4249669d912f16ad744c45d3a4dbec6d13e1d0a4a0402955686ca2ad4",
+      "report_sha256": "21cc3ef0f8019765967dca7de4771d00de3f11ac10b89272eb0d5b8a4a2ca2d2",
+      "seed": 43
+    },
+    {
+      "artifact_manifest_sha256": "6bcd511de0a6709b78f33fb741c948e21e8d6b8f06dd5c2abcc81e7f7fb02c61",
+      "mode": "target_pair",
+      "model": "deberta_base",
+      "predictions_sha256": "3ef268ce2e1743cdee272b015c03ad4fe14e6f4d372042167fdb256ac539172f",
+      "report_sha256": "5b4923ad9b6fb47cb3054990324924a7ec7230332fca27f1735cece1c34da483",
+      "seed": 44
+    },
+    {
+      "artifact_manifest_sha256": "5228a53087df78a4779149a2da8fca84c5dcb5260ebf3cd90b8fa0a0ce6a4a99",
+      "mode": "matched_headline_only",
+      "model": "roberta_base",
+      "predictions_sha256": "97fbdf38f38769c627af7884ce3b911b6f3123b4fec3c95d42596d17964622f1",
+      "report_sha256": "0ddd03374ccf69cdfa8f7fa05c0f90efca47fd2980231e4e228bd01a15554b8a",
+      "seed": 42
+    },
+    {
+      "artifact_manifest_sha256": "9a811160eec8023c7265a0303ee2939c6bc15d6baf5d180d3867cb958c93e736",
+      "mode": "matched_headline_only",
+      "model": "roberta_base",
+      "predictions_sha256": "b4dec41fd88afafe30800b65ae555e497f82f75d386aafba101756ad1e3fd311",
+      "report_sha256": "aacd09282453f319d65e1eb7e7549e96db4f7e67e3811b4f5b8e9e50ee8f77cb",
+      "seed": 43
+    },
+    {
+      "artifact_manifest_sha256": "0ad04ce1131488ed3a50a4ab47fa254b8636d4253775c312ab459f02ff2dc974",
+      "mode": "matched_headline_only",
+      "model": "roberta_base",
+      "predictions_sha256": "4b21f78bbb3ba71dd9738461b5d8d5d6ff372544fee6a85a6d77b5897b1db062",
+      "report_sha256": "07c7a3f2e8b596ad8a83c13ae600aae7f32202034e6c06f4f34f57d733ebab92",
+      "seed": 44
+    },
+    {
+      "artifact_manifest_sha256": "9b1e6db9d5a05af2bf6fb00fc5400550b007c0a6913616e118ce85b9da7b9b91",
+      "mode": "target_pair",
+      "model": "roberta_base",
+      "predictions_sha256": "5f9e234cdb26d824967ee0d1e0f151c0473524f2dbd5d289c36f640f185b24b2",
+      "report_sha256": "70ff7665e4e4858798e701c94a7fc29946e90129f3a227e075377c0fdb3e417d",
+      "seed": 42
+    },
+    {
+      "artifact_manifest_sha256": "2f742f69854f097b5b1351e4a1de126b54c28fe2c900edb3c2e41526cd32e855",
+      "mode": "target_pair",
+      "model": "roberta_base",
+      "predictions_sha256": "4413b0364dde48997a042b57d2df42fa1626bb350c07c943d8db22994904cd9f",
+      "report_sha256": "7b4638f5ae0b6db301512e59992027aa12c4df566195eb01ffbfc9056f923fb8",
+      "seed": 43
+    },
+    {
+      "artifact_manifest_sha256": "e155757620cca6f916122b636a901317a5512ea429b065bb37990208e8eebc93",
+      "mode": "target_pair",
+      "model": "roberta_base",
+      "predictions_sha256": "8501f790d4558b41b5b45616358fd328bdd61c9597e28e77c16942d24d4e29ae",
+      "report_sha256": "fe98aa23b31d9d7c7383ed5dd8b0eeb6971a2b721fcfc6370227fcebea6506c7",
+      "seed": 44
+    },
+    {
+      "artifact_manifest_sha256": "95ef91a6a538b72bf6609763bf79af1521aa34a34c8a442cf3323a9314abf461",
+      "mode": "matched_headline_only",
+      "model": "finbert",
+      "predictions_sha256": "dd65dc974ee44b1abe6599ed17703afd8b5cf48af5c740724eaaa72f4ee82f90",
+      "report_sha256": "ccc202a142dc5ba73ca42336143bca666607c2329431d100580e3dae6df8d40c",
+      "seed": 42
+    },
+    {
+      "artifact_manifest_sha256": "4f67457c66d2bf396f43b484c79ba2577ca8fcd8d5195fae961f5e399cecd422",
+      "mode": "matched_headline_only",
+      "model": "finbert",
+      "predictions_sha256": "e7137d0974868b44c4063ed66770174b82b6d0937e1c9ccc09722d0c6d1aeb4c",
+      "report_sha256": "ff7cb6d374515ca42d127bbe029cd6d7de9b219218885a8e4b794d613481f46c",
+      "seed": 43
+    },
+    {
+      "artifact_manifest_sha256": "ef810a3c512e3948009fc644b838ef994639f871aea70cf85573a14887c1d4fc",
+      "mode": "matched_headline_only",
+      "model": "finbert",
+      "predictions_sha256": "fc7f1046ca7fd8442ad04c33451f0917a5eb000cff132692ce1b10880618a73d",
+      "report_sha256": "aa3b90151be886f9963973d2344ef55c191571b66cb93cd93b1b88a40bc4ff36",
+      "seed": 44
+    },
+    {
+      "artifact_manifest_sha256": "87aeb1039b58ce01150b51f29e2c461c8b3e811a3d6d1c3c52af4e830f899ac6",
+      "mode": "target_pair",
+      "model": "finbert",
+      "predictions_sha256": "3b36813d2896ac47e0d9273a7613a43a286b5a21f22a91c3b161e3dadc4feb07",
+      "report_sha256": "d19ac2c5391e2367b2e7d1a916e38e964b3d642e67ca2e8bfed6263ca2dd61c2",
+      "seed": 42
+    },
+    {
+      "artifact_manifest_sha256": "bd59ec3980f1fe6e58f11affd7ad5dacaa526768d0617dfe396109ab5de540e6",
+      "mode": "target_pair",
+      "model": "finbert",
+      "predictions_sha256": "8c8a0901fb91ac388aee260ca9d4046b50bb74cf557104a70a53a1054693b9ef",
+      "report_sha256": "923655b4555f255da48b09e6bd200736409ee28d466a74d26ddd67b4e26d7e3a",
+      "seed": 43
+    },
+    {
+      "artifact_manifest_sha256": "c2b261a7b896b4c75491e899599038c0c668a7e28efc09a0a0b1d1307b7cd120",
+      "mode": "target_pair",
+      "model": "finbert",
+      "predictions_sha256": "148925fcb35a1aa2a9c5122cab3dfaeb269eafcdf51dd51b8e1b26becf1ed0b1",
+      "report_sha256": "79678db5a06308d79d405f8cc5e0e9c723fed30da1cd279187518fe78302d4f1",
+      "seed": 44
+    }
+  ],
+  "labels_changed": false,
+  "lockfile_sha256": "f1ace275d05568614b92993b8446d7323df824a8cb1dae9ac382116f906914f6",
+  "models_trained": false,
+  "new_inference": false,
+  "original_final_aggregate_sha256": "1c5a6334bc0f532075a1b3d9f6d821cb53901e6c83b14ee11dbf9156aa559dfe",
+  "qualitative_review": {
+    "annotations_sha256": "2e85e33ae9e33d72d4b9e8c48b80afd7442709386d3a3cc175cf44f9d943d644",
+    "category_counts": {
+      "alias_or_nonliteral_target": 5,
+      "comparison": 5,
+      "conflicting_cues": 9,
+      "event_interpretation": 12,
+      "financial_context": 25,
+      "insufficient_context": 3,
+      "neutral_boundary": 25,
+      "target_binding": 14
+    },
+    "gold_labels_changed": false,
+    "packet_sha256": "ab1caea2b89a25e0f8d4d412517147190c4e020bafd08bd4b36898ff4f0d1f6b",
+    "protocol": "Up to five annotation examples per declared stratum, distinct headline duplicate groups within a stratum; SHA-256(target-review-v1:42:example_id) order. Deduplicate example IDs across strata, preserving all selection reasons. All nine wrong = all three target-pair seeds of all three models wrong. Persistent fix/harm requires all three headline seeds wrong/correct and all three paired seeds correct/wrong within at least one model. Comparison regex and nonliteral matching select review candidates only, not automatic error tags. Selected annotation examples may share headlines across strata. Purposive, not representative; no error-category prevalence estimate. No ensemble model.",
+    "reviewed_annotations": 36,
+    "reviewed_headlines": 36,
+    "reviewer": "Codex exploratory qualitative review; not independent human adjudication",
+    "stratum_counts": {
+      "all_nine_wrong": 5,
+      "comparative_candidate_error": 5,
+      "conditioning_fix": 5,
+      "conditioning_harm": 5,
+      "mixed_label_error": 5,
+      "neutral_boundary_error": 5,
+      "nonliteral_target_error": 4,
+      "seed_instability": 5,
+      "stable_model_disagreement": 5
+    },
+    "suspected_gold_ambiguity": 18
+  },
+  "schema_version": 1,
+  "scope": "native SEntFiN development validation only",
+  "source_reports": {
+    "backbones": {
+      "path": "reports/experiments/target-backbones.json",
+      "sha256": "3f5e32fbfcfe714cb63efd796713ffe4f3d0bf0e4309731e55bc94acca90930c"
+    },
+    "deberta": {
+      "path": "reports/experiments/target-deberta.json",
+      "sha256": "bb564efcff73577393e8be002c1cc50315e6950db7ae6eb699f7cdbc592e629f"
+    }
+  },
+  "verification": "All 18 original private reports/prediction hashes, native ordered validation rows/gold, 108 cohort metric sets, artifact manifests and matched seed initialization/order. Metric tolerance is 1e-12; prediction bytes match exactly. Full weight bytes are not loaded in this analysis; prior Windows training verified them.",
+  "working_tree_dirty": true
+}
