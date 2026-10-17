@@ -524,3 +524,18 @@ experiment. `configs/target-backbones-plan.json` records original source file
 identities, retained FinBERT head semantics, fresh RoBERTa head, prior selected
 learning rates and the unchanged original DeBERTa/data lineage. Known FinBERT
 PhraseBank supervision and unknown checkpoint pretraining exposure remain caveats.
+
+## Phase 4 target-error review (2026-10-17)
+
+The user authorized qualitative analysis of the saved DeBERTa Base, RoBERTa Base
+and FinBERT target-conditioning comparisons. Reuse only the already reviewed
+native SEntFiN development validation view and its 18 saved prediction receipts.
+No acquisition, weight loading, new inference, training, threshold/temperature
+fitting or reserved-test analysis is needed. Verify receipt hashes, native target
+membership/gold, saved cohort metrics, source context and artifact manifests.
+Keep native headlines, target strings, source IDs, row predictions and reviewer
+notes in ignored `data/interim/target-error-review`. Publish only aggregate counts,
+methods, hashes and paraphrased findings. Multi-label review categories and
+suspected gold ambiguity are exploratory Codex judgments, not independent human
+adjudication or permission to modify the original labels or frozen benchmark.
+Existing noncommercial research and FinBERT weight-scope decisions are unchanged.
