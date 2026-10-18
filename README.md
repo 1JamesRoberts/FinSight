@@ -360,3 +360,15 @@ packet without fitting or scoring. Review notes stay local; qualitative judgment
 require inspecting the texts. Read the [tuning guide](docs/tfidf-tuning.md),
 [qualitative error review](reports/experiments/phase2-error-analysis.md), and
 [consolidated Phase 2 report](reports/experiments/phase2-comparison.md).
+
+The [sentiment code guide](docs/sentiment-code-guide.md) maps the organized
+modules and walks through model loading, training, validation and artifact saving.
+
+The [target evaluation contract](docs/target-final-evaluation.md) locks the
+validation-selected RoBERTa candidate, all three backbones and seeds, and the
+reserved multi-target comparison. Contract verification performs no test scoring.
+
+The [target evaluation runner guide](docs/target-evaluation-runner.md) explains
+metadata verification, development smoke testing, receipt preparation, verified
+resume and aggregate export. The implementation is verified locally; reserved
+test scoring and full GPU-machine verification remain pending.

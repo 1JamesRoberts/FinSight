@@ -782,6 +782,8 @@ calibration fitting, new LR search or Phase 4 implementation occurred.
 - [ ] Define target-level labels and create/validate an entity-labeled test collection.
 - [x] Compare headline-wide sentiment against target-aware conditioning with matched DeBERTa Base training on development validation (selected backbone replaces the original FinBERT proposal).
 - [x] Extend the matched target-conditioning development comparison to original RoBERTa Base and FinBERT, using three seeds per arm and the same native target cohorts.
+- [x] Lock validation-only backbone selection, saved checkpoints, baselines and the reserved multi-target evaluation contract; do not score reserved examples.
+- [x] Implement the locked target evaluation runner and verify synthetic inference, paired metrics, receipts/resume/export and native development smoke behavior; keep reserved scoring separate.
 - [ ] Evaluate macro F1 **per company target** and on multi-company examples.
 - [x] Track validation errors from aliases/nonliteral forms, comparisons, neutral mentions and conflicting cues across all three matched target backbones; preserve native labels.
 - [ ] Expose `predict(text, target_company)` returning probabilities and model version.
@@ -928,6 +930,58 @@ gates pass on Mac. See `reports/experiments/target-error-analysis.md` and
 entity recognition, independent target testing, reliable per-company evaluation,
 model selection/calibration and API work remain open. Original data/freeze,
 model plans/comparison reports and Phase 3 final aggregate are unchanged.
+
+**Readability refactor verified (2026-10-17):** Sentiment code is organized into
+models, shared training, explicit experiments and reusable evaluation, with
+checksums/manifests in `artifacts.py`. Comments explain the key training and
+prediction boundaries; `docs/sentiment-code-guide.md` maps the modules and flow.
+Legacy imports, commands and trusted local pickle class references remain usable.
+Historical source audits use recorded Git commits; new training records the full
+current source tree and rejects changed-code resumes. All 522 tests, required
+Ruff checks, source/wheel builds and ten CLI help checks pass locally. Imports
+also pass directly from the built wheel without the editable installation.
+A read-only audit verifies all 18 target receipts and reproduces all seven cohort
+summaries plus the exact 36-example review-packet hash. No research training,
+new inference, dataset changes or frozen-test scoring occurred. This completes
+only the requested organization task; Phase 4 research/API checkboxes are unchanged.
+
+**Target evaluation contract verified (2026-10-17):**
+`configs/target-evaluation-plan.json` and its SHA-256 lock select RoBERTa Base by
+unrounded three-seed mean all-target validation macro F1 (89.07%, versus 88.96%
+DeBERTa and 88.65% FinBERT), without claiming a clear winner. The contract pins
+18 matched transformer checkpoints, both saved sparse baselines and a training-only
+prior. Only the reserved 263 multi-target headlines / 594 native annotations are
+eligible; the 110 mixed-label headlines / 253 annotations are a declared subset.
+Consumed single-target tests and reserved PhraseBank are excluded. Seven paired
+contrasts, fixed seeds/metrics, raw probability policy and duplicate-group bootstrap
+are locked. Creation and metadata verification use published development reports
+and saved manifests without reading frozen record files. Metadata for all 18
+checkpoints verifies; full weight verification on the GPU machine, the separate
+receipt-bound execution runner and group-disjointness audit remain pending. All
+544 tests and required Ruff gates pass locally, including drift/corruption and
+no-test-read checks. No acquisition, training, new inference or test scoring occurred.
+See `docs/target-final-evaluation.md`. Only the bounded contract task is complete;
+Phase 4 target testing, entity work, calibration and the prediction API remain open.
+
+**Target evaluation runner verified locally (2026-10-18):**
+`experiments/target_final_evaluation.py` implements label-free local inference,
+receipt-bound final execution, group/text leakage audits, 21-variant persistence,
+explicit verified resume, fixed cohort/paired-bootstrap metrics and aggregate-only
+export. Synthetic tests include tiny BERT/RoBERTa/DeBERTa inference without labels,
+gradients or weight changes, independent whole-group interval recalculation,
+corruption/failure recovery, receipt/session gates and private/public boundaries.
+The native development smoke evaluates 629 multi-target annotations / 272 headlines:
+18 verified saved transformer replays and both fresh saved TF-IDF runs reproduce
+the original classification metrics exactly and NLL/Brier/ECE within 1e-12; the
+training-only prior completes all 21 variants. See
+`reports/experiments/target-runner-verification.json` and
+`docs/target-evaluation-runner.md`. All 574 tests, required Ruff gates and package
+builds pass on Mac. Full GPU-machine artifact/CUDA checks and a clean committed
+execution receipt remain pending. No new transformer inference, training,
+acquisition or reserved-test scoring occurred; the locked contract and original
+Phase 3 final result hashes are unchanged. Only the bounded runner implementation
+and local verification task is complete; target test results, entity/API work and
+reliable per-company evaluation remain open.
 
 **Deliverables:** Target-sentiment service and independent target-level evaluation.
 

@@ -539,3 +539,14 @@ methods, hashes and paraphrased findings. Multi-label review categories and
 suspected gold ambiguity are exploratory Codex judgments, not independent human
 adjudication or permission to modify the original labels or frozen benchmark.
 Existing noncommercial research and FinBERT weight-scope decisions are unchanged.
+
+## Target evaluation runner verification (2026-10-18)
+
+The runner's development smoke reuses the existing private native SEntFiN validation
+view and hash-verified saved transformer predictions. Both saved sparse baselines
+are loaded from trusted checksummed local pickles and predicted on development
+inputs only. This remains within the reviewed local noncommercial research scope;
+no new corpus/model acquisition, training, public text display or weight/prediction
+redistribution occurs. Published verification contains aggregate counts/digests only.
+Reserved scoring remains a separate receipt-bound action; original terms and
+pretraining-exposure limitations remain in force.
