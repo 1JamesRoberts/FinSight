@@ -208,6 +208,7 @@ def test_selection_exact_ties_and_invalid_scores():
 
 def test_cpu_override_preserves_original_manifest_configuration(tiny, tmp_path):
     from dataclasses import replace
+    from shutil import copytree
 
     from finsight.sentiment.artifacts import file_sha256, save_model
     from finsight.sentiment.models.transformer import load_saved
@@ -234,10 +235,13 @@ def test_cpu_override_preserves_original_manifest_configuration(tiny, tmp_path):
         load_saved(
             directory, identifier, asset, replace(training, max_length=20), device="cpu"
         )
-    weights = directory / "model.safetensors"
+    # Windows keeps loaded safetensors memory-mapped. Corrupt an independent
+    # copy so this integrity test does not depend on OS file-lock semantics.
+    corrupted = copytree(directory, tmp_path / "corrupted")
+    weights = corrupted / "model.safetensors"
     weights.write_bytes(weights.read_bytes() + b"corrupt")
     with pytest.raises(ValueError):
-        load_saved(directory, identifier, asset, training, device="cpu")
+        load_saved(corrupted, identifier, asset, training, device="cpu")
 
 
 def test_nonfinite_model_outputs_fail(tiny, monkeypatch):
