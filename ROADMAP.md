@@ -180,19 +180,19 @@ has not run yet; the CI acceptance criterion remains pending until pushed to Git
 
 **Comparison verification (2026-10-10):** Public cards, the PhraseBank loader,
 research papers, original FiQA challenge, and published license terms were reviewed.
-See `docs/dataset-comparison.md`. Comparison is complete; acquisition approval,
+See `docs/phase-01-data/acquisition/dataset-comparison.md`. Comparison is complete; acquisition approval,
 exact revision pinning, empirical inspection, and independent-test selection remain
 pending. FiQA mirror/original terms differ and require resolution.
 
 **Evaluation shortlist (2026-10-10):** SEntFiN, SemEval financial headlines,
 Twitter Financial News Sentiment, and FNSPID were reviewed using published
-sources. See `docs/evaluation-dataset-shortlist.md`. SEntFiN is the provisional
+sources. See `docs/phase-01-data/acquisition/evaluation-dataset-shortlist.md`. SEntFiN is the provisional
 preferred candidate; rights, exact revisions, duplicate/model-overlap checks,
 and final-test freezing remain pending. No additional checkbox is complete.
 
 **SEntFiN release review (2026-10-10):** Immutable dataset/model repository
 revisions and metadata/file identities are recorded in `configs/asset-revisions.json`.
-See `docs/sentfin-asset-review.md` for the local-research scope assessment and
+See `docs/phase-01-data/acquisition/sentfin-asset-review.md` for the local-research scope assessment and
 unresolved public-text rights, model-weight license, and overlap evidence. No
 CSV files or weights were acquired. The broader terms/revisions task and final
 independent-test task remain unchecked.
@@ -200,14 +200,14 @@ independent-test task remain unchecked.
 **Dataset loading verification (2026-10-10):** PhraseBank asset terms/revision
 review and local acquisition of PhraseBank/SEntFiN are complete. Typed source
 loaders, checksummed acquisition, and schema validation pass on real pinned
-artifacts; synthetic tests run offline. See `docs/dataset-loading.md` for counts,
+artifacts; synthetic tests run offline. See `docs/phase-01-data/acquisition/dataset-loading.md` for counts,
 source discrepancies, duplicates, and the limited exact-overlap check. The terms
 checkbox was left open at that stage because FiQA was deferred. Full EDA,
 split design, and independent final-test selection remain incomplete.
 
 **FiQA loading verification (2026-10-10):** The original noncommercial-use
 terms support local research. An accessible participant-hosted original-format
-copy was pinned, acquired, and validated; see `docs/fiqa-asset-review.md`. Its
+copy was pinned, acquired, and validated; see `docs/phase-01-data/acquisition/fiqa-asset-review.md`. Its
 1,113 training texts contain 1,178 scored annotations, and 192 test inputs have
 no gold scores. Scores, targets, aspects, snippets, groups, and source splits are
 preserved. One normalized original train/test text overlap is documented. The
@@ -238,7 +238,7 @@ annotation-quality review.
 **Duplicate/annotation review verification (2026-10-10):** Exact grouping,
 context-aware gold-conflict checks, and conservative word-trigram near-duplicate
 screening are complete. See `reports/annotation-review.md` and
-`docs/annotation-review-findings.md` for qualitative inspection and limitations.
+`docs/phase-01-data/quality/annotation-review-findings.md` for qualitative inspection and limitations.
 PhraseBank has eight exact groups (two conflicting); SEntFiN has 67 (seven
 same-target conflicts). FiQA has one original train/test overlap. The 25 near
 pairs include one FiQA–SEntFiN overlap. FiQA has 49 nonmatching snippet values
@@ -249,7 +249,7 @@ final-test selection, dataset cards, and figures remain pending.
 
 **Partition preparation verification (2026-10-10):** The versioned filtering policy
 and deterministic seed-42 group assignment are implemented and verified. See
-`docs/split-policy.md` and `reports/split-preparation.md`. Processed views retain
+`docs/phase-01-data/benchmark/split-policy.md` and `reports/split-preparation.md`. Processed views retain
 4,830 PhraseBank sentences, 10,682 SEntFiN headlines, and 1,112 scored FiQA texts;
 27 source records are quarantined, 61 redundant copies preserve lineage, and all
 192 original unscored FiQA inputs remain outside supervised partitions. All 48
@@ -263,7 +263,7 @@ adjudication, dataset cards, and EDA figures remain incomplete; no models exist.
 **Benchmark freeze verification (2026-10-10):** `sentfin-independent-v1` is curated
 and frozen before models: 1,029 headlines, 1,360 target annotations, 1,028 duplicate
 groups. Two malformed-target headline groups are excluded without repairing gold.
-See `docs/evaluation-contract.md`, `configs/benchmark-freeze.json`, and
+See `docs/phase-01-data/benchmark/evaluation-contract.md`, `configs/benchmark-freeze.json`, and
 `reports/frozen-benchmark.md`. Fixed cohorts separate single-target controls,
 multi-target examples, and mixed-target sentiment. Repeat runs reproduce the same
 receipt/artifacts; corruption and resplitting are rejected. The verified development
@@ -281,7 +281,7 @@ quality, intended roles, partitions, and limitations. The development-only noteb
 `notebooks/01_dataset_eda.ipynb` calls the tested EDA command; all three code cells
 executed in a fresh project kernel. Five exported figures were visually inspected.
 `reports/eda-summary.json` pins the source/freeze/development identities and exact
-aggregate values; `reports/phase1-eda.md` and `docs/phase1-findings.md` explain the
+aggregate values; `reports/phase1-eda.md` and `docs/phase-01-data/eda/phase1-findings.md` explain the
 14,963 retained development texts and distinct counting units. Repeated local
 generation produces identical figures/aggregate files and preserves the frozen
 receipt. Optional Matplotlib/ipykernel dependencies are locked in the EDA group;
@@ -333,7 +333,7 @@ is implemented or marked complete.
 **VADER verification (2026-10-11):** The MIT-licensed standalone package 3.3.2
 and bundled lexicon/emoji resources are reviewed, locked, and used unchanged.
 Typed inference preserves input cues and applies inclusive negative <= -0.05 /
-positive >= 0.05 compound thresholds. See `docs/vader.md` and `configs/vader.json`.
+positive >= 0.05 compound thresholds. See `docs/phase-02-baselines/models/vader.md` and `configs/vader.json`.
 The validation-only check covers 518 PhraseBank sentences and 781 single-target
 SEntFiN headlines, with training-majority controls and no threshold search.
 Macro F1 is 0.4895 / 0.4787 respectively; these are development scores, not final
@@ -355,7 +355,7 @@ training texts only; 518 / 781 validation texts are scored with persisted models
 One fixed configuration is recorded in `configs/tfidf-logreg.json`; no tuning,
 FiQA classification, mixed-target sentence gold, or final-test evaluation occurs.
 Validation accuracy is 0.7490 / 0.8182 and macro F1 is 0.6696 / 0.8165, versus
-VADER's 0.4895 / 0.4787 macro F1 on the same rows. See `docs/tfidf-logreg.md`
+VADER's 0.4895 / 0.4787 macro F1 on the same rows. See `docs/phase-02-baselines/models/tfidf-logreg.md`
 and `reports/experiments/tfidf-logreg-validation.md` plus aggregate JSON.
 Versioned fitted pipelines and per-record predictions stay ignored; artifact
 hashes, split/freeze/config/lock/code identities, parameters, and timings are
@@ -375,7 +375,7 @@ the original preset/report and frozen split. Balanced weights are calculated
 from training counts only and logged (negative 2.6959, neutral 0.5590, positive
 1.1903). Validation accuracy improves 0.7490 to 0.7645 and macro F1 0.6696 to
 0.7378; negative/positive recall rises while precision falls. See
-`docs/phrasebank-class-weights.md` for commands, input flow, and aggregate reports.
+`docs/phase-02-baselines/models/phrasebank-class-weights.md` for commands, input flow, and aggregate reports.
 Repeated balanced predictions/metrics match. All 199 tests, required Ruff checks,
 and sdist/wheel builds pass locally. Tests cover strict weight configuration,
 unchanged training-only features, weighted coefficients, saved-model round trips,
@@ -395,7 +395,7 @@ Validation accuracy / macro F1: PhraseBank unweighted 0.7799 / 0.7344, balanced
 Both use the same 3,785/6,299 training and 518/781 validation records as the
 corresponding LR cohorts. Balanced weighting helps PhraseBank modestly; SEntFiN
 changes little and remains below unweighted LR's 0.8165 macro F1.
-See `docs/tfidf-svm.md` for SVM mechanics, configuration, inputs, limitations,
+See `docs/phase-02-baselines/models/tfidf-svm.md` for SVM mechanics, configuration, inputs, limitations,
 and the two aggregate reports. Four fitted pipelines and per-record scores stay
 ignored; model/code/config/split/environment identities and metrics are logged.
 Repeat SVM predictions/metrics match; original LR and VADER metrics are unchanged.
@@ -428,7 +428,7 @@ Selected LR settings: PhraseBank C=10 balanced (accuracy 0.7780, macro F1 0.7446
 SEntFiN C=1 balanced (0.8195, 0.8181). Selected SVM settings: PhraseBank C=1 balanced
 (0.7819, 0.7444), SEntFiN C=0.1 balanced (0.8169, 0.8160). The tiny PhraseBank
 LR/SVM gap is not evidence of a meaningful advantage; selection scores remain
-development results. See `docs/tfidf-tuning.md` and the aggregate tuning report/JSON.
+development results. See `docs/phase-02-baselines/experiments/tfidf-tuning.md` and the aggregate tuning report/JSON.
 All candidate configs, code/split/dependency identities, class metrics, architecture,
 sizes, timings, and content-addressed local models are logged; original baseline
 reports and artifacts remain intact. Repeating the complete search reproduces all
@@ -473,7 +473,7 @@ runtime, and 16 checksum-verified reviewed dataset/split/freeze files. Synthetic
 CUDA computation, BERT imports, and the 14,963-record development loader pass.
 Mac and Windows Ruff checks and all 233 tests pass. A discovered Windows newline
 hash issue is fixed in baseline artifact writers, with regression assertions
-and a Windows CI job. See [setup and verification](docs/windows-gpu-setup.md).
+and a Windows CI job. See [setup and verification](docs/guides/windows-gpu-setup.md).
 FinBERT hosted-weight license scope remains unresolved; the user subsequently
 authorized local research use with this limitation documented in
 `docs/datasets.md`. At preparation time no weights had been downloaded and no
@@ -525,7 +525,7 @@ patience triggers at the five-epoch limit. Best Safetensors/tokenizer artifacts
 are saved under ignored Windows storage and reloaded with identical validation
 metrics. Original checkpoint and frozen-test bytes are unchanged. Public
 aggregate report: `reports/experiments/finbert-finetuning.md`/JSON; setup,
-architecture choice and code explanation: `docs/finbert-finetuning.md`.
+architecture choice and code explanation: `docs/phase-03-transformers/models/finbert-finetuning.md`.
 Mac Ruff passes with 269 tests passing and one optional-backend test skipped;
 Windows Ruff and all 270 tests pass, including actual tiny-model training/reload.
 The broad training-experiments task remains open: this is one configuration,
@@ -550,7 +550,7 @@ Mac and Windows Ruff and all 275 tests pass, including tiny-model training and
 reload for both architectures. Sources/derivatives remain ignored on Windows;
 Mac retains manifests and private prediction/run logs. Aggregate report:
 `reports/experiments/transformer-comparison.md`/JSON; reproduction/code guide:
-`docs/transformer-comparison.md`. Financial checkpoint sizes and prior training
+`docs/phase-03-transformers/comparisons/transformer-comparison.md`. Financial checkpoint sizes and prior training
 differ; incomplete upstream provenance prevents stronger independence claims.
 One configuration/seed per base does not complete the hyperparameter-comparison
 task. MLflow, calibration/error analysis and final evaluation remain open.
@@ -567,7 +567,7 @@ on Windows; saved best models reproduce metrics. Source/selected file hashes,
 prediction IDs/labels/metrics, code lineage, tokenizer consistency and unchanged
 frozen benchmark pass verification. Mac and Windows Ruff and all 280 tests pass.
 See `reports/experiments/transformer-followup.md`/JSON and
-`docs/transformer-followup.md`. Phase 3 remains in progress.
+`docs/phase-03-transformers/comparisons/transformer-followup.md`. Phase 3 remains in progress.
 
 Consolidated cohort report (2026-10-11):
 `reports/experiments/all-models-by-cohort.md` collects 29 recorded comparison
@@ -595,7 +595,7 @@ historical metrics. All improved model files, predictions/labels/metrics, split
 and code lineage, selection receipt and unchanged source/frozen hashes verified.
 Mac/Windows Ruff and all 288 tests pass. Per-run/aggregate reports and figure:
 `reports/experiments/transformer-tuning.md`/JSON and `transformer-tuning-runs/`;
-run guide: `docs/transformer-tuning.md`. The broader training-comparison task
+run guide: `docs/phase-03-transformers/tuning/transformer-tuning.md`. The broader training-comparison task
 remains open because length/batch settings have not been varied. MLflow,
 calibration/error review and final evaluation also remain open.
 
@@ -628,7 +628,7 @@ hash and selected artifact identity. Independent Windows checks verify all
 improved epoch files, private predictions, code/config/source lineage and frozen
 bytes. Saved-prediction calibration and 26 private qualitative reviews are in
 `reports/experiments/deberta-analysis.md`; source labels/probabilities remain
-unchanged. See `deberta-tuning.md` and `docs/deberta-study.md`. Only this bounded
+unchanged. See `deberta-tuning.md` and `docs/phase-03-transformers/tuning/deberta-study.md`. Only this bounded
 extension is complete; no test scores, ensemble or independent-superiority claim.
 Mac/Windows Ruff lint/format and all 307 tests pass. The complete analysis
 reproduces on Windows (numeric tolerance 1e-12), including private review hashes.
@@ -648,7 +648,7 @@ for future evaluation, without using their in-sample improvement as evidence.
 Independent optimization agrees with all 54 fits within 1e-6; no flooring or
 bound events occurred. Public reports contain aggregates/hashes; private outputs
 and fold memberships stay ignored. Source runs and frozen test bytes verify.
-See `docs/temperature-scaling.md` and the aggregate report/JSON. All 325 tests
+See `docs/phase-03-transformers/calibration/temperature-scaling.md` and the aggregate report/JSON. All 325 tests
 and required Ruff checks pass on Mac and Windows; the reviewed aggregate figure
 uses no private data. Windows reproduces all 1,046 numeric aggregates within
 1e-12 (platform math changes derived artifact bytes); exact published artifacts
@@ -670,7 +670,7 @@ The read-only verifier hashes frozen bytes without decoding records and never
 loads/predicts with a model. Mac metadata/lineage checks pass; Windows additionally
 verifies all 65 saved model/tokenizer/pipeline files. All 346 tests and required
 Ruff checks pass on both machines. Source text, weights and per-record outputs
-remain ignored. See `docs/final-evaluation.md`. This bounded protocol task is
+remain ignored. See `docs/phase-03-transformers/evaluation/final-evaluation.md`. This bounded protocol task is
 complete; the evaluation runner, execution receipt and final results remain
 pending. Phase 3 is not closed and no Phase 4 implementation begins.
 
@@ -689,7 +689,7 @@ unchanged. Independent NumPy/scikit-learn checks agree for all 2,343 example
 triads. All 362 tests and required Ruff checks pass on Mac and Windows; Windows
 reproduces all 700 numeric result values within 1e-12 and identical private vote
 bytes. Both locks and all 65 original model files reverify. Aggregate figure
-visually reviewed, per-record votes remain ignored. See `docs/ensemble-voting.md`.
+visually reviewed, per-record votes remain ignored. See `docs/phase-03-transformers/ensembles/ensemble-voting.md`.
 This bounded task is complete; final-test runner/evaluation and Phase 3 closure
 remain pending. No frozen test record is decoded or scored.
 
@@ -708,7 +708,7 @@ transformer probability outputs match exactly. Repeating reuses all 14 passes.
 Independent direct-resampling calculations agree with ten bootstrap intervals.
 Unscored receipt preparation succeeds and frozen bytes remain unchanged. All
 384 tests and required Ruff checks pass on Mac and Windows. See
-`docs/final-evaluation-runner.md` for setup, scope and future commands. This
+`docs/phase-03-transformers/evaluation/final-evaluation-runner.md` for setup, scope and future commands. This
 bounded implementation task is complete; final-test execution/results, Phase 3
 closure and all later phases remain pending.
 
@@ -782,9 +782,12 @@ calibration fitting, new LR search or Phase 4 implementation occurred.
 - [ ] Define target-level labels and create/validate an entity-labeled test collection.
 - [x] Compare headline-wide sentiment against target-aware conditioning with matched DeBERTa Base training on development validation (selected backbone replaces the original FinBERT proposal).
 - [x] Extend the matched target-conditioning development comparison to original RoBERTa Base and FinBERT, using three seeds per arm and the same native target cohorts.
+- [x] Lock validation-only backbone selection, saved checkpoints, baselines and the reserved multi-target evaluation contract; do not score reserved examples.
+- [x] Implement the locked target evaluation runner and verify synthetic inference, paired metrics, receipts/resume/export and native development smoke behavior; keep reserved scoring separate.
+- [x] Evaluate the fixed saved models on the revised frozen native multi-target cohort, with verified prediction caches, paired intervals and aggregate export.
 - [ ] Evaluate macro F1 **per company target** and on multi-company examples.
 - [x] Track validation errors from aliases/nonliteral forms, comparisons, neutral mentions and conflicting cues across all three matched target backbones; preserve native labels.
-- [ ] Expose `predict(text, target_company)` returning probabilities and model version.
+- [x] Expose `predict(text, target_company)` returning probabilities and model version.
 
 **Registry foundation verified (2026-10-14):** `configs/companies.json` version
 `companies-v1` records the five company identities, source URLs and explicit alias
@@ -794,7 +797,7 @@ ambiguous candidates separately from resolved identities. Bare Apple/Amazon/
 Alphabet require company context; Google parent grouping is a separate opt-in.
 GOOG remains distinguishable from GOOGL. Schema/collision checks and 39 synthetic
 behavior tests pass; the full Mac suite has 429 passing tests with required
-Ruff lint/format gates. See `docs/company-targets.md`. Frozen Phase 1 coverage
+Ruff lint/format gates. See `docs/phase-04-target-sentiment/data/company-targets.md`. Frozen Phase 1 coverage
 configuration, data and final results are unchanged. Only the mapping task is
 complete. Mention/span identification, development target coverage review,
 target-label collection, target-aware models, reserved multi-target evaluation
@@ -810,7 +813,7 @@ regional/import-related unresolved cues remain unsupported. Across the broader
 corpus 87/8 target annotations are not literal matches, retained without changing
 labels. Mac/Windows produce identical public aggregate bytes; direct independent
 counting verifies all 20 company/split/view cells, and 440 tests/Ruff checks pass.
-See `reports/company-coverage.md` and `docs/company-coverage.md`. Five-company
+See `reports/company-coverage.md` and `docs/phase-04-target-sentiment/data/company-coverage.md`. Five-company
 coverage cannot support reliable per-company validation. This bounded audit is
 complete; mention identification, target-pair preparation/eligibility, target-aware
 training, independent target evaluation and five-company label collection remain
@@ -829,7 +832,7 @@ need no truncation and have no target UNKs. Headline-only input conflicts are
 not performance scores. Saved-control manifests for seeds 42/43/44 are verified
 without loading weights. Mac reproduces Windows private view hashes and the full
 tokenizer audit; all 455 tests and Ruff gates pass on both platforms. See
-`reports/target-input-preparation.md` and `docs/target-sentiment-protocol.md`.
+`reports/target-input-preparation.md` and `docs/phase-04-target-sentiment/data/target-sentiment-protocol.md`.
 The lock says prepared_not_trained. Next: expanded validation headline control,
 then matched headline-only and target-pair training from the same original Base
 initialization and budget. No model inference/training or reserved test analysis
@@ -862,7 +865,7 @@ Independent scikit-learn/NumPy checks confirm F1/accuracy/confusion/NLL/Brier in
 all six cohorts; prediction bytes match their hashes. All 472 tests and required
 Ruff checks pass. Source freeze, original final aggregate and transformer plan/lock
 are unchanged. See `reports/experiments/target-tfidf-logreg.md` and
-`docs/target-tfidf.md`. Only this matched linear baseline task is complete.
+`docs/phase-04-target-sentiment/baselines/target-tfidf.md`. Only this matched linear baseline task is complete.
 Target features add entity sentiment offsets with no target/text interactions;
 matched DeBERTa training, independent target tests and broader Phase 4 tasks remain.
 No new source acquisition, tuning, calibration fitting or test scoring occurred.
@@ -881,7 +884,7 @@ are verified/reloaded on Windows. Mac reconstructs every prediction hash and
 independently verifies all 36 cohort metric sets with scikit-learn/NumPy; source,
 initialization, row order and reload NLL checks also pass. Required Ruff gates
 and all 484 tests pass on Mac/Windows. See `reports/experiments/target-deberta.md`
-and `docs/target-deberta.md`. This completes the bounded development comparison
+and `docs/phase-04-target-sentiment/training/target-deberta.md`. This completes the bounded development comparison
 using the selected DeBERTa backbone, not independent target test evaluation,
 five-company evaluation, error analysis, entity identification or the API.
 No reserved-test analysis, calibration fitting, new search or source/final/lock
@@ -903,7 +906,7 @@ All 12 new selected checkpoints verify/reload on Windows. Mac reconstructs every
 prediction hash and independently checks classification, NLL, Brier and ECE in all
 72 new cohort evaluations. Required Ruff checks and all 491 tests pass on both
 machines. See `reports/experiments/target-backbones.md` and
-`docs/target-backbones.md`. Only this supplemental development task is complete;
+`docs/phase-04-target-sentiment/training/target-backbones.md`. Only this supplemental development task is complete;
 independent target evaluation, reliable five-company coverage, error analysis,
 entity identification and API remain open. No new acquisition, LR search,
 calibration fitting, reserved-test scoring or weight/text publication occurred.
@@ -924,10 +927,122 @@ not independent adjudication or a population error estimate. All labels remain
 unchanged. Native text, names, IDs, predictions and notes remain private; public
 JSON/Markdown contain aggregate findings only. All 509 tests and required Ruff
 gates pass on Mac. See `reports/experiments/target-error-analysis.md` and
-`docs/target-error-analysis.md`. Only the bounded error-tracking task is complete;
+`docs/phase-04-target-sentiment/analysis/target-error-analysis.md`. Only the bounded error-tracking task is complete;
 entity recognition, independent target testing, reliable per-company evaluation,
 model selection/calibration and API work remain open. Original data/freeze,
 model plans/comparison reports and Phase 3 final aggregate are unchanged.
+
+**Readability refactor verified (2026-10-17):** Sentiment code is organized into
+models, shared training, explicit experiments and reusable evaluation, with
+checksums/manifests in `artifacts.py`. Comments explain the key training and
+prediction boundaries; `docs/guides/sentiment-code-guide.md` maps the modules and flow.
+Legacy imports, commands and trusted local pickle class references remain usable.
+Historical source audits use recorded Git commits; new training records the full
+current source tree and rejects changed-code resumes. All 522 tests, required
+Ruff checks, source/wheel builds and ten CLI help checks pass locally. Imports
+also pass directly from the built wheel without the editable installation.
+A read-only audit verifies all 18 target receipts and reproduces all seven cohort
+summaries plus the exact 36-example review-packet hash. No research training,
+new inference, dataset changes or frozen-test scoring occurred. This completes
+only the requested organization task; Phase 4 research/API checkboxes are unchanged.
+
+**Target evaluation contract verified (2026-10-17):**
+`configs/target-evaluation-plan.json` and its SHA-256 lock select RoBERTa Base by
+unrounded three-seed mean all-target validation macro F1 (89.07%, versus 88.96%
+DeBERTa and 88.65% FinBERT), without claiming a clear winner. The contract pins
+18 matched transformer checkpoints, both saved sparse baselines and a training-only
+prior. Only the reserved 263 multi-target headlines / 594 native annotations are
+eligible; the 110 mixed-label headlines / 253 annotations are a declared subset.
+Consumed single-target tests and reserved PhraseBank are excluded. Seven paired
+contrasts, fixed seeds/metrics, raw probability policy and duplicate-group bootstrap
+are locked. Creation and metadata verification use published development reports
+and saved manifests without reading frozen record files. Metadata for all 18
+checkpoints verifies; full weight verification on the GPU machine, the separate
+receipt-bound execution runner and group-disjointness audit remain pending. All
+544 tests and required Ruff gates pass locally, including drift/corruption and
+no-test-read checks. No acquisition, training, new inference or test scoring occurred.
+See `docs/phase-04-target-sentiment/evaluation/target-final-evaluation.md`. Only the bounded contract task is complete;
+Phase 4 target testing, entity work, calibration and the prediction API remain open.
+
+**Target evaluation runner verified locally (2026-10-18):**
+`experiments/target_final_evaluation.py` implements label-free local inference,
+receipt-bound final execution, group/text leakage audits, 21-variant persistence,
+explicit verified resume, fixed cohort/paired-bootstrap metrics and aggregate-only
+export. Synthetic tests include tiny BERT/RoBERTa/DeBERTa inference without labels,
+gradients or weight changes, independent whole-group interval recalculation,
+corruption/failure recovery, receipt/session gates and private/public boundaries.
+The native development smoke evaluates 629 multi-target annotations / 272 headlines:
+18 verified saved transformer replays and both fresh saved TF-IDF runs reproduce
+the original classification metrics exactly and NLL/Brier/ECE within 1e-12; the
+training-only prior completes all 21 variants. See
+`reports/experiments/target-runner-verification.json` and
+`docs/phase-04-target-sentiment/evaluation/target-evaluation-runner.md`. All 574 tests, required Ruff gates and package
+builds pass on Mac. Full GPU-machine artifact/CUDA checks and a clean committed
+execution receipt remain pending. No new transformer inference, training,
+acquisition or reserved-test scoring occurred; the locked contract and original
+Phase 3 final result hashes are unchanged. Only the bounded runner implementation
+and local verification task is complete; target test results, entity/API work and
+reliable per-company evaluation remain open.
+
+**Documentation navigation organized (2026-10-18):** Forty full guides now live
+under `docs/phase-00-foundation` through `docs/phase-04-target-sentiment` and shared
+`docs/guides`, with task subfolders and phase indexes. Shared architecture/rights
+ledgers retain stable paths. Twenty-one short legacy links preserve references from
+historical reports, templates and previous project entry points. `reports/README.md` and four phase indexes group
+readable reports, machine aggregates, per-trial archives and figures without moving
+or rewriting the original 200 report/config files. Current links and research
+artifact identities are verified; no future phase or research checkbox is closed.
+
+**Detached evaluation status (2026-10-18):** Windows checks passed all 574 tests,
+full artifact hashing and CUDA availability, and created an execution receipt.
+The required membership audit then stopped the run before model inference: one
+reserved multi-target headline / two annotations shares a duplicate group with
+the consumed Phase 3 single-target test cohort. No development group or exact-text
+overlap was found. No target test predictions/metrics were produced, no group was
+dropped and no audit bypassed. A separately versioned protocol decision is needed
+before retrying. The existing freeze, evaluation contract/lock and prior results
+remain unchanged. See `reports/phase-04-target-sentiment/README.md`.
+
+**Target evaluation v2 authorized and launched (2026-10-18):** The reviewed
+near-duplicate group is excluded only from the evaluation view, under additive
+`configs/target-evaluation-plan-v2.json` and its new lock. Membership is 262
+headlines / 592 annotations; mixed-label support is unchanged. Both original
+member hashes and excluded support are checked before inference; all other
+consumed/development overlaps still abort. The frozen benchmark, v1 contract and
+Phase 3 results remain byte-identical. Local Ruff checks and all 583 tests passed;
+the detached Windows task completed all 21 variants from clean commit `ce1207b`
+in 201.5 seconds, including all 583 passing Windows tests and Ruff. All transferred
+prediction caches, receipt/source/membership identities and private/public hashes
+verify; primary-cohort metrics independently recomputed from the saved outputs
+match within 1e-12. RoBERTa conditioning improves macro F1 from 72.82% to 88.34%
+(+15.52 pp; paired 95% interval [12.16, 19.10]). RoBERTa remains the validation-selected
+candidate; the secondary backbone contrasts do not establish a clear winner.
+The v2 test cohort is now consumed. Native-target test evaluation is complete;
+verified five-company evaluation, entity identification and the prediction API
+remain open. See `reports/experiments/phase4-target-final.md`.
+See `docs/phase-04-target-sentiment/evaluation/target-final-evaluation-v2.md`.
+
+**Reusable RoBERTa inference verified (2026-10-18):**
+`models/target_predictor.py` provides single/batch explicit-target prediction with
+one-time verified local loading, raw probabilities and artifact/config versions.
+`configs/target-roberta-inference.json` pins target-pair seed 43, epoch 2, selected
+only by saved all-target validation macro F1 (exact ties choose the lowest seed).
+This post-benchmark deployment choice does not change the three-seed benchmark.
+An optional company-registry wrapper abstains on ambiguous/unsupported names
+without replacing native target strings. CPU device overrides preserve original
+CUDA training provenance. The Python/CLI paths and 20 new behavior tests verify;
+all 603 tests pass on Mac and Windows. Isolated-checkout full Ruff gates pass.
+Full Mac working-tree Ruff commands are blocked by the unrelated empty
+`notebooks/experiment.ipynb`, which was left untouched; excluding only that file
+passes. On the real CUDA artifact, all 1,410 saved validation classifications and
+probabilities reproduce exactly, repeated requests reuse the model, and the CLI
+passes an invented-input smoke. Source commit `4b38fe4` and private verification
+record are preserved. No frozen test data/results are read by these checks; all
+prior research digests remain unchanged. See
+`docs/phase-04-target-sentiment/prediction.md` and
+`reports/phase-04-target-sentiment/target-prediction.md`. Only the prediction
+interface checkbox is newly complete; entity extraction, five-company test
+coverage, HTTP serving and aggregation remain separate tasks.
 
 **Deliverables:** Target-sentiment service and independent target-level evaluation.
 

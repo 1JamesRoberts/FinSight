@@ -1,31 +1,38 @@
 # Dataset, model, and API review checklist
 
+Phase 4 evaluation revision (2026-10-18): the user authorized excluding one
+previously evaluated near-duplicate group from the multi-target evaluation view.
+The original frozen SEntFiN records remain unchanged; the v2 contract records both
+member text hashes and the exclusion reason before any Phase 4 test prediction.
+No new acquisition, label revision, training or redistribution scope is involved.
+See the [v2 evaluation protocol](phase-04-target-sentiment/evaluation/target-final-evaluation-v2.md).
+
 PhraseBank, SEntFiN, and an original-format FiQA participant copy have been acquired for reviewed local noncommercial
 research; all source files remain in ignored storage. Local TF-IDF models are
 stored only in ignored directories; no pretrained weights or provider integration
-are present. See [dataset-loading.md](dataset-loading.md) for checksums,
+are present. See [dataset-loading.md](phase-01-data/acquisition/dataset-loading.md) for checksums,
 loading instructions, and measured integrity results.
 Phase 1's public-source candidate comparison is recorded in
-[dataset-comparison.md](dataset-comparison.md), reviewed on 2026-10-10.
+[dataset-comparison.md](phase-01-data/acquisition/dataset-comparison.md), reviewed on 2026-10-10.
 An independent-evaluation shortlist is recorded in
-[evaluation-dataset-shortlist.md](evaluation-dataset-shortlist.md).
+[evaluation-dataset-shortlist.md](phase-01-data/acquisition/evaluation-dataset-shortlist.md).
 SEntFiN's scoped local-research assessment and immutable revision are recorded in
-[sentfin-asset-review.md](sentfin-asset-review.md) and
+[sentfin-asset-review.md](phase-01-data/acquisition/sentfin-asset-review.md) and
 [asset-revisions.json](../configs/asset-revisions.json).
-The subsequent [evaluation contract](evaluation-contract.md) records the curated
+The subsequent [evaluation contract](phase-01-data/benchmark/evaluation-contract.md) records the curated
 SEntFiN freeze for local offline research; membership and gold digests are pinned
 in `configs/benchmark-freeze.json`. Known accessible-corpus overlap is excluded;
 full checkpoint pretraining exposure remains unknown.
-Completed cards summarize the selected artifacts: [PhraseBank](dataset-cards/phrasebank.md),
-[SEntFiN](dataset-cards/sentfin.md), and [FiQA copy](dataset-cards/fiqa.md).
+Completed cards summarize the selected artifacts: [PhraseBank](phase-01-data/dataset-cards/phrasebank.md),
+[SEntFiN](phase-01-data/dataset-cards/sentfin.md), and [FiQA copy](phase-01-data/dataset-cards/fiqa.md).
 Development-only figures and completion evidence are in
-[Phase 1 findings](phase1-findings.md).
+[Phase 1 findings](phase-01-data/eda/phase1-findings.md).
 **Other asset approvals and public-text rights remain pending.** This checklist
 is not a legal conclusion or authorization to acquire or redistribute an asset.
 
 VADER package/lexicon review (2026-10-11): standalone `vaderSentiment==3.3.2`
 is approved for local inference/research under its MIT grant, with attribution
-and notices retained. See [VADER asset decision and baseline](vader.md). Packaged
+and notices retained. See [VADER asset decision and baseline](phase-02-baselines/models/vader.md). Packaged
 code/lexicon/emoji digests are logged separately; the frozen source-data manifest
 is unchanged. No upstream evaluation datasets or model weights are acquired.
 
@@ -43,7 +50,7 @@ excluded; no new source assets or pretrained weights are acquired.
 
 The subsequent PhraseBank class-weight comparison uses the same reviewed local
 training/storage scope and the same frozen parent split. No terms or acquisition
-decision changes. See [comparison and input-flow guide](phrasebank-class-weights.md).
+decision changes. See [comparison and input-flow guide](phase-02-baselines/models/phrasebank-class-weights.md).
 
 Linear SVM review (2026-10-11): `LinearSVC` uses the already reviewed and locked
 scikit-learn 1.7.2 BSD-3-Clause distribution. Existing PhraseBank noncommercial
@@ -172,14 +179,14 @@ benchmark freezing does not extend the existing local research permissions.
 
 FiQA release selection, original noncommercial-use terms, participant-copy
 provenance, unscored test inputs, and mirror limitations are recorded in
-[FiQA asset review](fiqa-asset-review.md). Acquisition of that copy does not
+[FiQA asset review](phase-01-data/acquisition/fiqa-asset-review.md). Acquisition of that copy does not
 resolve the gated mirror’s broader MIT claim.
 
 Bounded TF-IDF tuning review (2026-10-11): the C/class-weight grid uses the
 same reviewed scikit-learn dependency, pinned development inputs, and local
 noncommercial training/storage scope as the earlier LR/SVM fits. No assets or
 rights decision changes; no corpus pooling or final-test scoring. Candidate
-models and predictions remain ignored. See [tuning guide](tfidf-tuning.md).
+models and predictions remain ignored. See [tuning guide](phase-02-baselines/experiments/tfidf-tuning.md).
 
 Phase 2 qualitative review (2026-10-11): the existing local-research scope
 supports joining saved validation predictions to reviewed local inputs. Only
@@ -196,7 +203,7 @@ checkpoint is acquired: reuse the checksum-pinned cached source. Train only on
 reviewed single-target SEntFiN training records; keep validation for checkpoint
 selection and withhold the frozen test. Safetensors/tokenizer artifacts and
 record-level predictions remain ignored. Historical asset/freeze manifests stay
-unchanged. See [training guide](finbert-finetuning.md).
+unchanged. See [training guide](phase-03-transformers/models/finbert-finetuning.md).
 
 RoBERTa/DeBERTa review (2026-10-11): the user authorized unchanged inference on
 financial sentiment checkpoints and SEntFiN training of two base models. Exact
@@ -389,7 +396,7 @@ no investor-page prose, market prices, news articles or new third-party alias
 dataset. Company names and ticker identities are factual reference metadata;
 this adds no dataset acquisition or expansion of the research text/weight scope.
 The curated alias policies and explicit Google-to-Alphabet grouping option are
-documented in `docs/company-targets.md`; this is not a licensed security master.
+documented in `docs/phase-04-target-sentiment/data/company-targets.md`; this is not a licensed security master.
 No frozen coverage rules, dataset bytes, labels, predictions or models change.
 Future provider data or additional corpora still require their own terms review.
 
@@ -409,7 +416,7 @@ analysis. No reserved-test annotation/text analysis, training or inference.
 Coverage audit verified: 9,651 development headlines, 12,957 source annotations;
 95 nonliteral-target diagnostics retained without label/eligibility changes.
 Publish only `reports/company-coverage.md`/JSON and aggregate interpretation in
-`docs/company-coverage.md`. Source IDs/targets/labels and the manual identity review
+`docs/phase-04-target-sentiment/data/company-coverage.md`. Source IDs/targets/labels and the manual identity review
 remain ignored/private. The five-company matches are too sparse for credible
 per-company validation; no test collection, corpus acquisition or redistribution
 was added. Frozen receipts/data and final evaluation aggregates are unchanged.
@@ -539,3 +546,37 @@ methods, hashes and paraphrased findings. Multi-label review categories and
 suspected gold ambiguity are exploratory Codex judgments, not independent human
 adjudication or permission to modify the original labels or frozen benchmark.
 Existing noncommercial research and FinBERT weight-scope decisions are unchanged.
+
+## Educational training notebook (2026-10-17)
+
+`notebooks/02_simple_transformer_training.ipynb` reuses the existing reviewed
+local noncommercial SEntFiN single-target development partitions and already
+reviewed pinned RoBERTa Base / DeBERTa Base checkpoints (or the previously
+authorized FinBERT scope). No new acquisition, redistribution permission,
+final-test evaluation, or independent-generalization claim is introduced.
+The notebook verifies local checkpoint hashes and loads only verified development
+records. Source texts, outputs and trained weights remain private; artifacts go
+under ignored `data/interim/notebook-training/`. This teaching run does not alter
+locked experiments or their reports. Existing source/model limitations apply.
+
+## Target evaluation runner verification (2026-10-18)
+
+The runner's development smoke reuses the existing private native SEntFiN validation
+view and hash-verified saved transformer predictions. Both saved sparse baselines
+are loaded from trusted checksummed local pickles and predicted on development
+inputs only. This remains within the reviewed local noncommercial research scope;
+no new corpus/model acquisition, training, public text display or weight/prediction
+redistribution occurs. Published verification contains aggregate counts/digests only.
+Reserved scoring remains a separate receipt-bound action; original terms and
+pretraining-exposure limitations remain in force.
+
+## Local RoBERTa target inference (2026-10-18)
+
+The user authorized a reusable interface using the existing locally trained
+RoBERTa Base target-pair checkpoint. Reuse the reviewed MIT base-model and
+SEntFiN local-research derivative-storage scope above. Select seed 43 from saved
+validation metadata only; no weights or dataset are acquired, relabeled, retrained
+or redistributed. Smoke inputs are invented or existing development-validation
+records. Weights, per-record outputs and runtime receipts stay ignored. This task
+adds local Python/CLI inference, not public serving or a new redistribution grant.
+See the [prediction guide](phase-04-target-sentiment/prediction.md).

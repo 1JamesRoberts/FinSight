@@ -12,6 +12,15 @@ LABELS = ("negative", "neutral", "positive")
 
 
 @dataclass(frozen=True)
+class TargetText:
+    """Inference receives text and identity only; no gold labels or partition flags."""
+
+    record_id: str
+    headline: str
+    target: str
+
+
+@dataclass(frozen=True)
 class TargetExample:
     example_id: str
     record_id: str
@@ -130,7 +139,7 @@ def examples_bytes(examples: tuple[TargetExample, ...], partition: str) -> bytes
 
 def encode_batch(
     tokenizer: Any,
-    examples: tuple[TargetExample, ...] | list[TargetExample],
+    examples: tuple[TargetExample, ...] | list[TargetExample] | list[TargetText],
     mode: str,
     *,
     max_length: int,

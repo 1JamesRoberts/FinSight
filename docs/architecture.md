@@ -145,7 +145,7 @@ registry; it has no import-time I/O. Sentiment, HTTP, storage and model framewor
 are not involved. Ambiguous names and optional subsidiary grouping are explicit
 policy choices; unsupported targets return structured results. Ticker observations
 are retained separately from the company-level project ticker. No generic entity
-service or NER dependency is introduced. See `docs/company-targets.md`.
+service or NER dependency is introduced. See `docs/phase-04-target-sentiment/data/company-targets.md`.
 
 ## Phase 4 extension: native target inputs (2026-10-14)
 
@@ -180,3 +180,32 @@ context binds input mode/data/provenance without altering legacy manifests when
 omitted. Verified completed trial reuse avoids unnecessary retraining; partial
 progress never resumes unchecked optimizer state. No generic trainer framework,
 new dependency, entity API or future-phase behavior is introduced.
+
+## Sentiment responsibility boundaries (2026-10-17)
+
+The Phase 2–4 sentiment implementations now use `models/`, `training/`,
+`experiments/`, and `evaluation/`, with checksum/manifest handling in `artifacts.py`.
+Models construct checkpoints and predict; shared training functions optimize
+sentence or native target examples; experiments coordinate reviewed assets, runs
+and reports; evaluation supplies reusable metrics and probability diagnostics.
+RoBERTa and DeBERTa share transformer I/O rather than duplicating loading code.
+No new dependencies, trainer hierarchy or model registry are introduced.
+
+Historical flat imports and commands are supported by aliases in `_compat/`,
+including old trusted local pickle class references. New runs fingerprint the
+complete source tree. Read-only audits verify original source hashes against the
+recorded Git commit; resuming training still rejects changed code. Published
+results and frozen plans retain their original identities. See
+[`sentiment-code-guide.md`](guides/sentiment-code-guide.md) for the directory map, input
+flow, examples, setup and verification commands. This is a readability refactor
+within Phase 4; it implements no subsequent roadmap task.
+
+## Phase 4 extension: locked target evaluation (2026-10-18)
+
+`models/target_inference.py` separates label-free `TargetText` prediction from
+training and metric records. `evaluation/target_data.py` owns explicit final-input
+membership audits; native development reads stay separate from frozen decoding.
+`evaluation/target_metrics.py` reuses fixed-label metrics and extends the existing
+group-bootstrap helper with optional declared contrasts, preserving Phase 3 defaults.
+The experiment runner coordinates receipts, atomic checkpoints, verified resume
+and aggregate-only export. No new dependency or generic evaluator framework is added.

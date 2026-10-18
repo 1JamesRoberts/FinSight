@@ -4,7 +4,7 @@ import argparse
 from pathlib import Path
 
 from finsight.config import Settings
-from finsight.sentiment.validation import run_validation
+from finsight.sentiment.experiments.vader_validation import run_validation
 
 
 def main() -> None:
@@ -55,7 +55,7 @@ def main() -> None:
         run = run_validation(args.data_dir, args.freeze_receipt, config, report)
         key = "vader"
     elif args.command == "fine-tune-finbert":
-        from finsight.sentiment.finbert_training import run_finetuning
+        from finsight.sentiment.training.sentence import run_finetuning
 
         if args.cohort == "phrasebank":
             parser.error("fine-tune-finbert supports SEntFiN only")
@@ -73,7 +73,9 @@ def main() -> None:
         print(f"Aggregate report saved to {report}")
         return
     elif args.command == "validate-finbert":
-        from finsight.sentiment.finbert_validation import run_finbert_validation
+        from finsight.sentiment.experiments.finbert_validation import (
+            run_finbert_validation,
+        )
 
         config = args.config or Path("configs/finbert.json")
         report = args.report_path or Path("reports/experiments/finbert-validation.md")
@@ -87,7 +89,7 @@ def main() -> None:
         )
         key = "finbert"
     else:
-        from finsight.sentiment.tfidf_validation import run_tfidf_validation
+        from finsight.sentiment.experiments.tfidf_validation import run_tfidf_validation
 
         svm = args.command == "validate-tfidf-svm"
         prefix = "tfidf-svm" if svm else "tfidf-logreg"

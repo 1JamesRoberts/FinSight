@@ -97,3 +97,9 @@ build/
 !/reports/experiments/proprak-deberta-adapted/
 !/reports/experiments/proprak-deberta-adapted/*.json
 !/reports/experiments/proprak-deberta-adaptation.json
+
+# Aggregate-only development verification of the Phase 4 evaluation runner.
+!/reports/experiments/target-runner-verification.json
+
+# Aggregate-only Phase 4 reserved evaluation results.
+!/reports/experiments/phase4-target-final.json

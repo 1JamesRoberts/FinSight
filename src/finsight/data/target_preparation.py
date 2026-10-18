@@ -13,8 +13,7 @@ from finsight.data.target_pairs import (
     examples_bytes,
     summarize_examples,
 )
-from finsight.sentiment.finbert import file_sha256
-from finsight.sentiment.transformer_comparison import verify_files
+from finsight.sentiment.artifacts import file_sha256, verify_files
 
 PLAN = Path("configs/target-sentiment-plan.json")
 ASSETS = Path("configs/transformer-assets.json")
