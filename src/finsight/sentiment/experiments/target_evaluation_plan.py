@@ -112,7 +112,7 @@ def build_plan(root: Path, data_dir: Path) -> dict:
     plan = {
         "schema_version": 1,
         "protocol_id": PROTOCOL,
-        "locked_date": "2026-10-17",
+        "locked_date": "2026-10-18",
         "test_evaluated": False,
         "selection": {
             "rule": SELECTION,
@@ -168,6 +168,7 @@ def build_plan(root: Path, data_dir: Path) -> dict:
         ),
         "limitations": [
             "validation_reused_for_epoch_selection_and_model_choice",
+            "phase3_single_target_test_previously_evaluated_one_related_group_excluded",
             "small_validation_gap_is_not_evidence_of_superiority",
             "native_financial_entities_not_verified_companies",
             "five_company_coverage_insufficient",

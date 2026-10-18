@@ -241,6 +241,7 @@ def run_final(
             report.update(
                 protocol_id=PROTOCOL,
                 scope="reserved_multi_target_test",
+                cohort_contract=plan["cohorts"],
                 test_scored=True,
                 plan_sha256=file_sha256(root / PLAN),
                 lock_sha256=file_sha256(root / LOCK),
@@ -273,6 +274,10 @@ def render_report(report: dict) -> str:
         "# Phase 4 reserved multi-target evaluation",
         "",
         f"Protocol: `{PROTOCOL}`.",
+        "",
+        "One previously evaluated near-duplicate group is excluded: "
+        "262 multi-target headlines / 592 annotations remain. "
+        "The original frozen benchmark and Phase 3 results are unchanged.",
         "",
         "The validation-selected candidate remains RoBERTa Base; "
         "test results do not change selection.",

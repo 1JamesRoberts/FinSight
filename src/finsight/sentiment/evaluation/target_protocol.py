@@ -1,5 +1,6 @@
 """Validate the Phase 4 target evaluation contract without reading test records."""
 
+import copy
 import json
 from pathlib import Path
 from typing import Any
@@ -8,13 +9,28 @@ from finsight.sentiment.artifacts import file_sha256
 from finsight.sentiment.evaluation.metrics import LABELS
 from finsight.sentiment.evaluation.protocol import safe_path, verify_artifact
 
-PROTOCOL = "phase4-sentfin-multi-target-v1"
-PLAN = "configs/target-evaluation-plan.json"
-LOCK = "configs/target-evaluation-lock.json"
+PROTOCOL = "phase4-sentfin-multi-target-v2"
+PLAN = "configs/target-evaluation-plan-v2.json"
+LOCK = "configs/target-evaluation-lock-v2.json"
 MODELS = ("deberta_base", "roberta_base", "finbert")
 ARMS = ("matched_headline_only", "target_pair")
 SEEDS = (42, 43, 44)
+# Reviewed before any Phase 4 test prediction. Hashes identify existing frozen
+# records without publishing source text or changing the original benchmark.
+PREVIOUSLY_CONSUMED_GROUP = {
+    "group_id": "6557c8658a8e203775339dd7fb516ed4a84d25cde55cd4797a3350e98f2ed634",
+    "reserved_text_sha256": (
+        "3de3fd4443ad28f61c1da3f11f1ed3e80645288b26dc86675a08270318fbf2fc"
+    ),
+    "consumed_text_sha256": (
+        "b34021cdc85cd1f377fc7385a634906072a88ae79b2989c8b8a56e41aba97919"
+    ),
+    "reserved_class_counts": {"neutral": 2},
+    "reason": "near_duplicate_group_previously_evaluated_in_phase3",
+}
 SOURCE_PATHS = (
+    "configs/target-evaluation-plan.json",
+    "configs/target-evaluation-lock.json",
     "configs/benchmark-freeze.json",
     "configs/target-sentiment-plan.json",
     "configs/target-sentiment-lock.json",
@@ -147,7 +163,11 @@ def trial_path(model: str, arm: str, seed: int) -> str:
 
 def cohort_contract(receipt: dict) -> dict:
     """Copy already-published counts; do not open frozen JSONL to derive new cohorts."""
-    summary = receipt["summary"]["cohorts"]
+    summary = copy.deepcopy(receipt["summary"]["cohorts"])
+    # The reviewed correction removes one same-label headline, not mixed labels.
+    summary["multi_target"]["headlines"] -= 1
+    summary["multi_target"]["target_annotations"] -= 2
+    summary["multi_target"]["class_counts"]["neutral"] -= 2
     return {
         "primary": "multi_target",
         "expected": {
@@ -163,7 +183,10 @@ def cohort_contract(receipt: dict) -> dict:
         "seen_target_rule": "exact_native_target_string_present_as_training_target",
         "single_target": "excluded_already_evaluated_in_phase3",
         "phrasebank": "excluded_remains_reserved",
-        "membership": "all_frozen_headlines_with_more_than_one_native_target",
+        "membership": "frozen_multi_target_excluding_locked_previously_consumed_group",
+        "excluded_previously_consumed_groups": [
+            copy.deepcopy(PREVIOUSLY_CONSUMED_GROUP)
+        ],
         "labels": "preserve_all_native_labels_no_post_prediction_exclusions",
         "group_audit": (
             "before_scoring_fail_on_overlap_with_development_or_consu"

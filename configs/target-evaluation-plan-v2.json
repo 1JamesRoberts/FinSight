@@ -1,0 +1,1140 @@
+{
+  "baselines": {
+    "tfidf.headline_only": {
+      "configuration_sha256": "1fdb30558779a9cb0ea79aa481c742f772f30a0874b0bd3deef49476a3af791a",
+      "relative_path": "interim/target-tfidf-models/7af81bb33fb6c99561de41c12f1ace63394757a8c18960c7f6f12f3eecc0d3ca/model.pkl",
+      "seed": 42,
+      "sha256": "7af81bb33fb6c99561de41c12f1ace63394757a8c18960c7f6f12f3eecc0d3ca"
+    },
+    "tfidf.headline_target": {
+      "configuration_sha256": "1fdb30558779a9cb0ea79aa481c742f772f30a0874b0bd3deef49476a3af791a",
+      "relative_path": "interim/target-tfidf-models/8c2d70438906d23b84814cfdb02e807098a6c2837885705155cf15012256a44f/model.pkl",
+      "seed": 42,
+      "sha256": "8c2d70438906d23b84814cfdb02e807098a6c2837885705155cf15012256a44f"
+    },
+    "training_prior": {
+      "counts": {
+        "negative": 3078,
+        "neutral": 4395,
+        "positive": 4074
+      },
+      "prediction": "neutral",
+      "probabilities": {
+        "negative": 0.2665627435697584,
+        "neutral": 0.3806183424266043,
+        "positive": 0.3528189140036373
+      }
+    }
+  },
+  "class_order": [
+    "negative",
+    "neutral",
+    "positive"
+  ],
+  "classification_metrics": [
+    "accuracy",
+    "macro_f1",
+    "per_class_precision_recall_f1_support",
+    "confusion_matrix"
+  ],
+  "cohorts": {
+    "excluded_previously_consumed_groups": [
+      {
+        "consumed_text_sha256": "b34021cdc85cd1f377fc7385a634906072a88ae79b2989c8b8a56e41aba97919",
+        "group_id": "6557c8658a8e203775339dd7fb516ed4a84d25cde55cd4797a3350e98f2ed634",
+        "reason": "near_duplicate_group_previously_evaluated_in_phase3",
+        "reserved_class_counts": {
+          "neutral": 2
+        },
+        "reserved_text_sha256": "3de3fd4443ad28f61c1da3f11f1ed3e80645288b26dc86675a08270318fbf2fc"
+      }
+    ],
+    "expected": {
+      "mixed_label_headlines": {
+        "class_counts": {
+          "negative": 51,
+          "neutral": 113,
+          "positive": 89
+        },
+        "headlines": 110,
+        "target_annotations": 253
+      },
+      "multi_target": {
+        "class_counts": {
+          "negative": 118,
+          "neutral": 287,
+          "positive": 187
+        },
+        "headlines": 262,
+        "target_annotations": 592
+      }
+    },
+    "group_audit": "before_scoring_fail_on_overlap_with_development_or_consumed_single_target_groups",
+    "labels": "preserve_all_native_labels_no_post_prediction_exclusions",
+    "membership": "frozen_multi_target_excluding_locked_previously_consumed_group",
+    "per_target": "private_descriptive_support_and_fixed_class_metrics; flag_support_below_20; no_company_generalization_claim",
+    "phrasebank": "excluded_remains_reserved",
+    "primary": "multi_target",
+    "secondary": [
+      "mixed_label_headlines",
+      "same_label_headlines",
+      "seen_native_target",
+      "unseen_native_target"
+    ],
+    "seen_target_rule": "exact_native_target_string_present_as_training_target",
+    "single_target": "excluded_already_evaluated_in_phase3"
+  },
+  "difference_direction": "left_minus_right",
+  "execution_gate": "separate_runner_required; clean_committed_execution_code; full_artifact_and_group_disjointness_audit_before_scoring; never_overwrite_original_phase3_results",
+  "failure_policy": "abort_on_missing_artifacts_invalid_probabilities_membership_or_checksum_mismatch; never_drop_failed_predictions",
+  "frozen_files": {
+    "processed/benchmarks/b7cc249017ddd87f0b2c52a3abf3ff5b96f6920832b411f18eac547fec0b0f1c/benchmark-manifest.json": "b7cc249017ddd87f0b2c52a3abf3ff5b96f6920832b411f18eac547fec0b0f1c",
+    "processed/benchmarks/b7cc249017ddd87f0b2c52a3abf3ff5b96f6920832b411f18eac547fec0b0f1c/test-records.jsonl": "144db27f984376867a04dae3724ad69ab4de9e6dbca8fdd43f41d1bca558f3ab"
+  },
+  "inference": {
+    "attention": "eager",
+    "batch_size": 32,
+    "calibration": "none_raw_probabilities",
+    "class_ties": [
+      "negative",
+      "neutral",
+      "positive"
+    ],
+    "deterministic": true,
+    "device": "cuda",
+    "headline_only": "one_prediction_per_headline_broadcast_to_native_targets",
+    "max_length": 128,
+    "precision": "float32",
+    "target_pair": "native_target_first_headline_second_only_second_truncation",
+    "tf32": false
+  },
+  "limitations": [
+    "validation_reused_for_epoch_selection_and_model_choice",
+    "phase3_single_target_test_previously_evaluated_one_related_group_excluded",
+    "small_validation_gap_is_not_evidence_of_superiority",
+    "native_financial_entities_not_verified_companies",
+    "five_company_coverage_insufficient",
+    "checkpoint_pretraining_exposure_unknown",
+    "raw_probabilities_not_calibrated",
+    "test_results_cannot_change_model_selection"
+  ],
+  "locked_date": "2026-10-18",
+  "paired_comparisons": [
+    {
+      "id": "roberta_conditioning",
+      "left": "roberta_base.target_pair",
+      "right": "roberta_base.matched_headline_only",
+      "role": "primary"
+    },
+    {
+      "id": "deberta_conditioning",
+      "left": "deberta_base.target_pair",
+      "right": "deberta_base.matched_headline_only",
+      "role": "secondary"
+    },
+    {
+      "id": "finbert_conditioning",
+      "left": "finbert.target_pair",
+      "right": "finbert.matched_headline_only",
+      "role": "secondary"
+    },
+    {
+      "id": "roberta_vs_deberta",
+      "left": "roberta_base.target_pair",
+      "right": "deberta_base.target_pair",
+      "role": "secondary"
+    },
+    {
+      "id": "roberta_vs_finbert",
+      "left": "roberta_base.target_pair",
+      "right": "finbert.target_pair",
+      "role": "secondary"
+    },
+    {
+      "id": "roberta_vs_sparse",
+      "left": "roberta_base.target_pair",
+      "right": "tfidf.headline_target",
+      "role": "secondary"
+    },
+    {
+      "id": "sparse_conditioning",
+      "left": "tfidf.headline_target",
+      "right": "tfidf.headline_only",
+      "role": "secondary"
+    }
+  ],
+  "primary_metric": "macro_f1",
+  "probability_metrics": [
+    "nll_clip_1e-15",
+    "brier_unnormalized",
+    "ece_10_equal_width_bins"
+  ],
+  "protocol_id": "phase4-sentfin-multi-target-v2",
+  "repository_inputs": {
+    "configs/benchmark-freeze.json": "ab0c9f0581612ee52f3c03a5bbbc03e7ebc621fdf76bb00d7d85bc2973b593f7",
+    "configs/final-evaluation-lock.json": "e4671bfd3323ab5ded3990c235056db5e35e8d08a043c5f04b469ad5549ef039",
+    "configs/final-evaluation-plan.json": "e749b1879fd3337d947184106ea06cd32b41143fcf9279f51b57b2055f8a2601",
+    "configs/target-backbones-plan.json": "3d614de7ff65314ac7eab57a4c83dab7869afa94a65b27c201974394b4fff62b",
+    "configs/target-evaluation-lock.json": "1ff79641edbe572c618863646bad8a942a61b1170ac3c79fbb3edab47424fc78",
+    "configs/target-evaluation-plan.json": "d09e18addeceb63557fd8d7a210dd039f90f628fb00d8f14dc27860476be13a4",
+    "configs/target-sentiment-lock.json": "7e2152da50886f684f0ae73de32d7cb42d2b71bfc49cdd1d8c8060075ed4a292",
+    "configs/target-sentiment-plan.json": "d8c87e545ec2546cace4a41f3f5840b1ad077d04cdcefec81447973524185a81",
+    "configs/transformer-assets.json": "32cb41eb439f12ab6ed373082e21a244301dda28a9f7a4b82e4d8dfdd1afd609",
+    "reports/experiments/phase3-final.json": "1c5a6334bc0f532075a1b3d9f6d821cb53901e6c83b14ee11dbf9156aa559dfe",
+    "reports/experiments/target-backbones.json": "3f5e32fbfcfe714cb63efd796713ffe4f3d0bf0e4309731e55bc94acca90930c",
+    "reports/experiments/target-deberta.json": "bb564efcff73577393e8be002c1cc50315e6950db7ae6eb699f7cdbc592e629f",
+    "reports/experiments/target-error-analysis.json": "ffb1200e032c9c690c7982b90b24295560a1909e76f1b9bc484add6477f64e9c",
+    "reports/experiments/target-tfidf-logreg.json": "05a7e2ce603ae002499a6b9c784c6be3cac61cf8e9513cd02f1ee8269e26a962",
+    "uv.lock": "f1ace275d05568614b92993b8446d7323df824a8cb1dae9ac382116f906914f6"
+  },
+  "schema_version": 1,
+  "seed_policy": {
+    "ensemble": false,
+    "metric_aggregation": "mean_and_sample_standard_deviation",
+    "report_each_seed": true,
+    "retrain": false,
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "train_plus_validation": false
+  },
+  "selection": {
+    "rule": {
+      "aggregation": "arithmetic_mean_of_three_seed_metrics",
+      "arm": "target_pair",
+      "best_seed_selection": false,
+      "cohort": "all_targets",
+      "data": "development_validation_only",
+      "interpretation": "validation-selected candidate; not an independent test winner",
+      "metric": "macro_f1",
+      "tie_order": [
+        "deberta_base",
+        "roberta_base",
+        "finbert"
+      ]
+    },
+    "selected_model": "roberta_base",
+    "validation_scores": {
+      "deberta_base": 0.8895924438856274,
+      "finbert": 0.8865421375173835,
+      "roberta_base": 0.8906795156278338
+    }
+  },
+  "test_evaluated": false,
+  "timing": "record_loading_and_prediction_separately; warmup_before_timing; log_hardware_batch_size_token_lengths_and_peak_memory",
+  "transformers": {
+    "deberta_base": [
+      {
+        "arm": "matched_headline_only",
+        "artifact": {
+          "files": {
+            "added_tokens.json": {
+              "sha256": "a4b6bfe668f2b3cf6f0cd535e98a0663d2d0d4a4a15f13075ad3597d33985a23",
+              "size_bytes": 26
+            },
+            "config.json": {
+              "sha256": "e7bacbeb3248af55dcb99c39951a916053b1de393bcb7ed62ab38098b82c4339",
+              "size_bytes": 1047
+            },
+            "model.safetensors": {
+              "sha256": "615344d6a1103f68185c7eea286b6e0e86d0ce4d0f041866c5b1f18cea864133",
+              "size_bytes": 737722356
+            },
+            "special_tokens_map.json": {
+              "sha256": "ed7c099c988dbb414b18a6980d20cb57b91b7cd119f6f6941eb364b0e892e712",
+              "size_bytes": 301
+            },
+            "spm.model": {
+              "sha256": "c679fbf93643d19aab7ee10c0b99e460bdbc02fedf34b92b05af343b4af586fd",
+              "size_bytes": 2464616
+            },
+            "tokenizer_config.json": {
+              "sha256": "700dba386cc05b6b14e74add7fe9293a6cb3ab16f3aa2eb177c76e288592bf01",
+              "size_bytes": 1374
+            }
+          },
+          "kind": "transformer",
+          "manifest_sha256": "5cde2976002dd53156f6e252b220111d31ffeb266bdf2519cdbf06da96cd85aa",
+          "relative_path": "interim/transformer-finetuned-models/5cde2976002dd53156f6e252b220111d31ffeb266bdf2519cdbf06da96cd85aa"
+        },
+        "configuration": {
+          "device": "cuda",
+          "evaluation_batch_size": 32,
+          "learning_rate": 1e-05,
+          "max_epochs": 5,
+          "max_grad_norm": 1.0,
+          "max_length": 128,
+          "patience": 2,
+          "seed": 42,
+          "train_batch_size": 16,
+          "warmup_ratio": 0.1,
+          "weight_decay": 0.01
+        },
+        "report_path": "reports/experiments/target-deberta-runs/matched_headline_only/seed-42.json",
+        "report_sha256": "7b89644d6447add477a96dc13313e249a9000da709bfd7af9b7edff56ce048a3",
+        "seed": 42,
+        "selected_epoch": 4
+      },
+      {
+        "arm": "matched_headline_only",
+        "artifact": {
+          "files": {
+            "added_tokens.json": {
+              "sha256": "a4b6bfe668f2b3cf6f0cd535e98a0663d2d0d4a4a15f13075ad3597d33985a23",
+              "size_bytes": 26
+            },
+            "config.json": {
+              "sha256": "e7bacbeb3248af55dcb99c39951a916053b1de393bcb7ed62ab38098b82c4339",
+              "size_bytes": 1047
+            },
+            "model.safetensors": {
+              "sha256": "78663df5570ef5ba7ae3ac716fdad8627b4886745be99eaaf757601ac107cb35",
+              "size_bytes": 737722356
+            },
+            "special_tokens_map.json": {
+              "sha256": "ed7c099c988dbb414b18a6980d20cb57b91b7cd119f6f6941eb364b0e892e712",
+              "size_bytes": 301
+            },
+            "spm.model": {
+              "sha256": "c679fbf93643d19aab7ee10c0b99e460bdbc02fedf34b92b05af343b4af586fd",
+              "size_bytes": 2464616
+            },
+            "tokenizer_config.json": {
+              "sha256": "700dba386cc05b6b14e74add7fe9293a6cb3ab16f3aa2eb177c76e288592bf01",
+              "size_bytes": 1374
+            }
+          },
+          "kind": "transformer",
+          "manifest_sha256": "55ccdc561ec49828d43c07d9cb5be861fbfe3326e52094445f65a32aed973700",
+          "relative_path": "interim/transformer-finetuned-models/55ccdc561ec49828d43c07d9cb5be861fbfe3326e52094445f65a32aed973700"
+        },
+        "configuration": {
+          "device": "cuda",
+          "evaluation_batch_size": 32,
+          "learning_rate": 1e-05,
+          "max_epochs": 5,
+          "max_grad_norm": 1.0,
+          "max_length": 128,
+          "patience": 2,
+          "seed": 43,
+          "train_batch_size": 16,
+          "warmup_ratio": 0.1,
+          "weight_decay": 0.01
+        },
+        "report_path": "reports/experiments/target-deberta-runs/matched_headline_only/seed-43.json",
+        "report_sha256": "575c9c2b7a3e63dfc645f1609b4f283c2e3d6cbfbf861e52d69fe232fff4aef0",
+        "seed": 43,
+        "selected_epoch": 3
+      },
+      {
+        "arm": "matched_headline_only",
+        "artifact": {
+          "files": {
+            "added_tokens.json": {
+              "sha256": "a4b6bfe668f2b3cf6f0cd535e98a0663d2d0d4a4a15f13075ad3597d33985a23",
+              "size_bytes": 26
+            },
+            "config.json": {
+              "sha256": "e7bacbeb3248af55dcb99c39951a916053b1de393bcb7ed62ab38098b82c4339",
+              "size_bytes": 1047
+            },
+            "model.safetensors": {
+              "sha256": "0fd3695016863ffb20754f0806a78af70c86252f1df72b18f8b88306fb2637e8",
+              "size_bytes": 737722356
+            },
+            "special_tokens_map.json": {
+              "sha256": "ed7c099c988dbb414b18a6980d20cb57b91b7cd119f6f6941eb364b0e892e712",
+              "size_bytes": 301
+            },
+            "spm.model": {
+              "sha256": "c679fbf93643d19aab7ee10c0b99e460bdbc02fedf34b92b05af343b4af586fd",
+              "size_bytes": 2464616
+            },
+            "tokenizer_config.json": {
+              "sha256": "700dba386cc05b6b14e74add7fe9293a6cb3ab16f3aa2eb177c76e288592bf01",
+              "size_bytes": 1374
+            }
+          },
+          "kind": "transformer",
+          "manifest_sha256": "fb48242a0f55de4caa35a23bc4093739becdb25a35d5c3ad854e5d61697af743",
+          "relative_path": "interim/transformer-finetuned-models/fb48242a0f55de4caa35a23bc4093739becdb25a35d5c3ad854e5d61697af743"
+        },
+        "configuration": {
+          "device": "cuda",
+          "evaluation_batch_size": 32,
+          "learning_rate": 1e-05,
+          "max_epochs": 5,
+          "max_grad_norm": 1.0,
+          "max_length": 128,
+          "patience": 2,
+          "seed": 44,
+          "train_batch_size": 16,
+          "warmup_ratio": 0.1,
+          "weight_decay": 0.01
+        },
+        "report_path": "reports/experiments/target-deberta-runs/matched_headline_only/seed-44.json",
+        "report_sha256": "4ec0d11837e446c6811468ed8328569b4eb5a5528fa7e9da83e5a9fe6a397ba1",
+        "seed": 44,
+        "selected_epoch": 4
+      },
+      {
+        "arm": "target_pair",
+        "artifact": {
+          "files": {
+            "added_tokens.json": {
+              "sha256": "a4b6bfe668f2b3cf6f0cd535e98a0663d2d0d4a4a15f13075ad3597d33985a23",
+              "size_bytes": 26
+            },
+            "config.json": {
+              "sha256": "e7bacbeb3248af55dcb99c39951a916053b1de393bcb7ed62ab38098b82c4339",
+              "size_bytes": 1047
+            },
+            "model.safetensors": {
+              "sha256": "468caf48260fa26dbceba11fcd3751d2378fa5ab25060902f98f65eacfc112b7",
+              "size_bytes": 737722356
+            },
+            "special_tokens_map.json": {
+              "sha256": "ed7c099c988dbb414b18a6980d20cb57b91b7cd119f6f6941eb364b0e892e712",
+              "size_bytes": 301
+            },
+            "spm.model": {
+              "sha256": "c679fbf93643d19aab7ee10c0b99e460bdbc02fedf34b92b05af343b4af586fd",
+              "size_bytes": 2464616
+            },
+            "tokenizer_config.json": {
+              "sha256": "700dba386cc05b6b14e74add7fe9293a6cb3ab16f3aa2eb177c76e288592bf01",
+              "size_bytes": 1374
+            }
+          },
+          "kind": "transformer",
+          "manifest_sha256": "70390291822e14507260a6e87f43fc88b1e62cdb67103627e140f84e99a24d24",
+          "relative_path": "interim/transformer-finetuned-models/70390291822e14507260a6e87f43fc88b1e62cdb67103627e140f84e99a24d24"
+        },
+        "configuration": {
+          "device": "cuda",
+          "evaluation_batch_size": 32,
+          "learning_rate": 1e-05,
+          "max_epochs": 5,
+          "max_grad_norm": 1.0,
+          "max_length": 128,
+          "patience": 2,
+          "seed": 42,
+          "train_batch_size": 16,
+          "warmup_ratio": 0.1,
+          "weight_decay": 0.01
+        },
+        "report_path": "reports/experiments/target-deberta-runs/target_pair/seed-42.json",
+        "report_sha256": "e41cd01a3f8eb61d8be381d083db8738cee44fba6fc45de62516960782171ead",
+        "seed": 42,
+        "selected_epoch": 4
+      },
+      {
+        "arm": "target_pair",
+        "artifact": {
+          "files": {
+            "added_tokens.json": {
+              "sha256": "a4b6bfe668f2b3cf6f0cd535e98a0663d2d0d4a4a15f13075ad3597d33985a23",
+              "size_bytes": 26
+            },
+            "config.json": {
+              "sha256": "e7bacbeb3248af55dcb99c39951a916053b1de393bcb7ed62ab38098b82c4339",
+              "size_bytes": 1047
+            },
+            "model.safetensors": {
+              "sha256": "ac08c40ee930e47b3096c14fac348a49533a170e6127d4864f43fb4ed78e6b91",
+              "size_bytes": 737722356
+            },
+            "special_tokens_map.json": {
+              "sha256": "ed7c099c988dbb414b18a6980d20cb57b91b7cd119f6f6941eb364b0e892e712",
+              "size_bytes": 301
+            },
+            "spm.model": {
+              "sha256": "c679fbf93643d19aab7ee10c0b99e460bdbc02fedf34b92b05af343b4af586fd",
+              "size_bytes": 2464616
+            },
+            "tokenizer_config.json": {
+              "sha256": "700dba386cc05b6b14e74add7fe9293a6cb3ab16f3aa2eb177c76e288592bf01",
+              "size_bytes": 1374
+            }
+          },
+          "kind": "transformer",
+          "manifest_sha256": "39eee2883ffe896cfa7a932ea2197ebf8d9b4d1cb7ff9586ac4904c9761b9934",
+          "relative_path": "interim/transformer-finetuned-models/39eee2883ffe896cfa7a932ea2197ebf8d9b4d1cb7ff9586ac4904c9761b9934"
+        },
+        "configuration": {
+          "device": "cuda",
+          "evaluation_batch_size": 32,
+          "learning_rate": 1e-05,
+          "max_epochs": 5,
+          "max_grad_norm": 1.0,
+          "max_length": 128,
+          "patience": 2,
+          "seed": 43,
+          "train_batch_size": 16,
+          "warmup_ratio": 0.1,
+          "weight_decay": 0.01
+        },
+        "report_path": "reports/experiments/target-deberta-runs/target_pair/seed-43.json",
+        "report_sha256": "21cc3ef0f8019765967dca7de4771d00de3f11ac10b89272eb0d5b8a4a2ca2d2",
+        "seed": 43,
+        "selected_epoch": 3
+      },
+      {
+        "arm": "target_pair",
+        "artifact": {
+          "files": {
+            "added_tokens.json": {
+              "sha256": "a4b6bfe668f2b3cf6f0cd535e98a0663d2d0d4a4a15f13075ad3597d33985a23",
+              "size_bytes": 26
+            },
+            "config.json": {
+              "sha256": "e7bacbeb3248af55dcb99c39951a916053b1de393bcb7ed62ab38098b82c4339",
+              "size_bytes": 1047
+            },
+            "model.safetensors": {
+              "sha256": "6a095ac4243d4ddbb11d1d390b06fa0d999bda3971f7fc6fcbbcdb5fbefb4ea9",
+              "size_bytes": 737722356
+            },
+            "special_tokens_map.json": {
+              "sha256": "ed7c099c988dbb414b18a6980d20cb57b91b7cd119f6f6941eb364b0e892e712",
+              "size_bytes": 301
+            },
+            "spm.model": {
+              "sha256": "c679fbf93643d19aab7ee10c0b99e460bdbc02fedf34b92b05af343b4af586fd",
+              "size_bytes": 2464616
+            },
+            "tokenizer_config.json": {
+              "sha256": "700dba386cc05b6b14e74add7fe9293a6cb3ab16f3aa2eb177c76e288592bf01",
+              "size_bytes": 1374
+            }
+          },
+          "kind": "transformer",
+          "manifest_sha256": "6bcd511de0a6709b78f33fb741c948e21e8d6b8f06dd5c2abcc81e7f7fb02c61",
+          "relative_path": "interim/transformer-finetuned-models/6bcd511de0a6709b78f33fb741c948e21e8d6b8f06dd5c2abcc81e7f7fb02c61"
+        },
+        "configuration": {
+          "device": "cuda",
+          "evaluation_batch_size": 32,
+          "learning_rate": 1e-05,
+          "max_epochs": 5,
+          "max_grad_norm": 1.0,
+          "max_length": 128,
+          "patience": 2,
+          "seed": 44,
+          "train_batch_size": 16,
+          "warmup_ratio": 0.1,
+          "weight_decay": 0.01
+        },
+        "report_path": "reports/experiments/target-deberta-runs/target_pair/seed-44.json",
+        "report_sha256": "5b4923ad9b6fb47cb3054990324924a7ec7230332fca27f1735cece1c34da483",
+        "seed": 44,
+        "selected_epoch": 5
+      }
+    ],
+    "finbert": [
+      {
+        "arm": "matched_headline_only",
+        "artifact": {
+          "files": {
+            "config.json": {
+              "sha256": "bb3696e8dde1c5ff83e072d10dc64ee5b675c8658a30fc756dadc568f57af3d8",
+              "size_bytes": 875
+            },
+            "model.safetensors": {
+              "sha256": "a4c75495fb1066c53ea6f98077d6ee0969257db2eb196dbd3070c78f16c12c82",
+              "size_bytes": 437961724
+            },
+            "special_tokens_map.json": {
+              "sha256": "3c3507f36dff57bce437223db3b3081d1e2b52ec3e56ee55438193ecb2c94dd6",
+              "size_bytes": 132
+            },
+            "tokenizer_config.json": {
+              "sha256": "a5c2e5a7b1a29a0702cd28c08a399b5ecc110c263009d17f7e3b415f25905fd8",
+              "size_bytes": 1330
+            },
+            "vocab.txt": {
+              "sha256": "b49e80874c5efbc7f4cde245a812673b05ef1360ced56b8bc8c750eaeef3fe0f",
+              "size_bytes": 262030
+            }
+          },
+          "kind": "transformer",
+          "manifest_sha256": "95ef91a6a538b72bf6609763bf79af1521aa34a34c8a442cf3323a9314abf461",
+          "relative_path": "interim/transformer-finetuned-models/95ef91a6a538b72bf6609763bf79af1521aa34a34c8a442cf3323a9314abf461"
+        },
+        "configuration": {
+          "device": "cuda",
+          "evaluation_batch_size": 32,
+          "learning_rate": 3e-05,
+          "max_epochs": 5,
+          "max_grad_norm": 1.0,
+          "max_length": 128,
+          "patience": 2,
+          "seed": 42,
+          "train_batch_size": 16,
+          "warmup_ratio": 0.1,
+          "weight_decay": 0.01
+        },
+        "report_path": "reports/experiments/target-backbones-runs/finbert/matched_headline_only/seed-42.json",
+        "report_sha256": "ccc202a142dc5ba73ca42336143bca666607c2329431d100580e3dae6df8d40c",
+        "seed": 42,
+        "selected_epoch": 5
+      },
+      {
+        "arm": "matched_headline_only",
+        "artifact": {
+          "files": {
+            "config.json": {
+              "sha256": "bb3696e8dde1c5ff83e072d10dc64ee5b675c8658a30fc756dadc568f57af3d8",
+              "size_bytes": 875
+            },
+            "model.safetensors": {
+              "sha256": "6a48d89c22b182541bd8b4d884e5e035cdd79edab0679f6ae26c190ed62f879e",
+              "size_bytes": 437961724
+            },
+            "special_tokens_map.json": {
+              "sha256": "3c3507f36dff57bce437223db3b3081d1e2b52ec3e56ee55438193ecb2c94dd6",
+              "size_bytes": 132
+            },
+            "tokenizer_config.json": {
+              "sha256": "a5c2e5a7b1a29a0702cd28c08a399b5ecc110c263009d17f7e3b415f25905fd8",
+              "size_bytes": 1330
+            },
+            "vocab.txt": {
+              "sha256": "b49e80874c5efbc7f4cde245a812673b05ef1360ced56b8bc8c750eaeef3fe0f",
+              "size_bytes": 262030
+            }
+          },
+          "kind": "transformer",
+          "manifest_sha256": "4f67457c66d2bf396f43b484c79ba2577ca8fcd8d5195fae961f5e399cecd422",
+          "relative_path": "interim/transformer-finetuned-models/4f67457c66d2bf396f43b484c79ba2577ca8fcd8d5195fae961f5e399cecd422"
+        },
+        "configuration": {
+          "device": "cuda",
+          "evaluation_batch_size": 32,
+          "learning_rate": 3e-05,
+          "max_epochs": 5,
+          "max_grad_norm": 1.0,
+          "max_length": 128,
+          "patience": 2,
+          "seed": 43,
+          "train_batch_size": 16,
+          "warmup_ratio": 0.1,
+          "weight_decay": 0.01
+        },
+        "report_path": "reports/experiments/target-backbones-runs/finbert/matched_headline_only/seed-43.json",
+        "report_sha256": "ff7cb6d374515ca42d127bbe029cd6d7de9b219218885a8e4b794d613481f46c",
+        "seed": 43,
+        "selected_epoch": 5
+      },
+      {
+        "arm": "matched_headline_only",
+        "artifact": {
+          "files": {
+            "config.json": {
+              "sha256": "bb3696e8dde1c5ff83e072d10dc64ee5b675c8658a30fc756dadc568f57af3d8",
+              "size_bytes": 875
+            },
+            "model.safetensors": {
+              "sha256": "30e3ea17d4576b7745e43b2efd9aa7e2f0948564fbd3286d07783520817f5676",
+              "size_bytes": 437961724
+            },
+            "special_tokens_map.json": {
+              "sha256": "3c3507f36dff57bce437223db3b3081d1e2b52ec3e56ee55438193ecb2c94dd6",
+              "size_bytes": 132
+            },
+            "tokenizer_config.json": {
+              "sha256": "a5c2e5a7b1a29a0702cd28c08a399b5ecc110c263009d17f7e3b415f25905fd8",
+              "size_bytes": 1330
+            },
+            "vocab.txt": {
+              "sha256": "b49e80874c5efbc7f4cde245a812673b05ef1360ced56b8bc8c750eaeef3fe0f",
+              "size_bytes": 262030
+            }
+          },
+          "kind": "transformer",
+          "manifest_sha256": "ef810a3c512e3948009fc644b838ef994639f871aea70cf85573a14887c1d4fc",
+          "relative_path": "interim/transformer-finetuned-models/ef810a3c512e3948009fc644b838ef994639f871aea70cf85573a14887c1d4fc"
+        },
+        "configuration": {
+          "device": "cuda",
+          "evaluation_batch_size": 32,
+          "learning_rate": 3e-05,
+          "max_epochs": 5,
+          "max_grad_norm": 1.0,
+          "max_length": 128,
+          "patience": 2,
+          "seed": 44,
+          "train_batch_size": 16,
+          "warmup_ratio": 0.1,
+          "weight_decay": 0.01
+        },
+        "report_path": "reports/experiments/target-backbones-runs/finbert/matched_headline_only/seed-44.json",
+        "report_sha256": "aa3b90151be886f9963973d2344ef55c191571b66cb93cd93b1b88a40bc4ff36",
+        "seed": 44,
+        "selected_epoch": 5
+      },
+      {
+        "arm": "target_pair",
+        "artifact": {
+          "files": {
+            "config.json": {
+              "sha256": "bb3696e8dde1c5ff83e072d10dc64ee5b675c8658a30fc756dadc568f57af3d8",
+              "size_bytes": 875
+            },
+            "model.safetensors": {
+              "sha256": "f781041cf6f9e7b36bd993317472cfc4edfdd91392af56383113bd3adbf0d326",
+              "size_bytes": 437961724
+            },
+            "special_tokens_map.json": {
+              "sha256": "3c3507f36dff57bce437223db3b3081d1e2b52ec3e56ee55438193ecb2c94dd6",
+              "size_bytes": 132
+            },
+            "tokenizer_config.json": {
+              "sha256": "a5c2e5a7b1a29a0702cd28c08a399b5ecc110c263009d17f7e3b415f25905fd8",
+              "size_bytes": 1330
+            },
+            "vocab.txt": {
+              "sha256": "b49e80874c5efbc7f4cde245a812673b05ef1360ced56b8bc8c750eaeef3fe0f",
+              "size_bytes": 262030
+            }
+          },
+          "kind": "transformer",
+          "manifest_sha256": "87aeb1039b58ce01150b51f29e2c461c8b3e811a3d6d1c3c52af4e830f899ac6",
+          "relative_path": "interim/transformer-finetuned-models/87aeb1039b58ce01150b51f29e2c461c8b3e811a3d6d1c3c52af4e830f899ac6"
+        },
+        "configuration": {
+          "device": "cuda",
+          "evaluation_batch_size": 32,
+          "learning_rate": 3e-05,
+          "max_epochs": 5,
+          "max_grad_norm": 1.0,
+          "max_length": 128,
+          "patience": 2,
+          "seed": 42,
+          "train_batch_size": 16,
+          "warmup_ratio": 0.1,
+          "weight_decay": 0.01
+        },
+        "report_path": "reports/experiments/target-backbones-runs/finbert/target_pair/seed-42.json",
+        "report_sha256": "d19ac2c5391e2367b2e7d1a916e38e964b3d642e67ca2e8bfed6263ca2dd61c2",
+        "seed": 42,
+        "selected_epoch": 4
+      },
+      {
+        "arm": "target_pair",
+        "artifact": {
+          "files": {
+            "config.json": {
+              "sha256": "bb3696e8dde1c5ff83e072d10dc64ee5b675c8658a30fc756dadc568f57af3d8",
+              "size_bytes": 875
+            },
+            "model.safetensors": {
+              "sha256": "03688dd0aa73396a6bd85a41ce07671a5f14644b87adb71c5b3691bc53b26454",
+              "size_bytes": 437961724
+            },
+            "special_tokens_map.json": {
+              "sha256": "3c3507f36dff57bce437223db3b3081d1e2b52ec3e56ee55438193ecb2c94dd6",
+              "size_bytes": 132
+            },
+            "tokenizer_config.json": {
+              "sha256": "a5c2e5a7b1a29a0702cd28c08a399b5ecc110c263009d17f7e3b415f25905fd8",
+              "size_bytes": 1330
+            },
+            "vocab.txt": {
+              "sha256": "b49e80874c5efbc7f4cde245a812673b05ef1360ced56b8bc8c750eaeef3fe0f",
+              "size_bytes": 262030
+            }
+          },
+          "kind": "transformer",
+          "manifest_sha256": "bd59ec3980f1fe6e58f11affd7ad5dacaa526768d0617dfe396109ab5de540e6",
+          "relative_path": "interim/transformer-finetuned-models/bd59ec3980f1fe6e58f11affd7ad5dacaa526768d0617dfe396109ab5de540e6"
+        },
+        "configuration": {
+          "device": "cuda",
+          "evaluation_batch_size": 32,
+          "learning_rate": 3e-05,
+          "max_epochs": 5,
+          "max_grad_norm": 1.0,
+          "max_length": 128,
+          "patience": 2,
+          "seed": 43,
+          "train_batch_size": 16,
+          "warmup_ratio": 0.1,
+          "weight_decay": 0.01
+        },
+        "report_path": "reports/experiments/target-backbones-runs/finbert/target_pair/seed-43.json",
+        "report_sha256": "923655b4555f255da48b09e6bd200736409ee28d466a74d26ddd67b4e26d7e3a",
+        "seed": 43,
+        "selected_epoch": 2
+      },
+      {
+        "arm": "target_pair",
+        "artifact": {
+          "files": {
+            "config.json": {
+              "sha256": "bb3696e8dde1c5ff83e072d10dc64ee5b675c8658a30fc756dadc568f57af3d8",
+              "size_bytes": 875
+            },
+            "model.safetensors": {
+              "sha256": "47e58a89592b797e3361f5b41e287279e3ccc03ebcf517fb21a165954049aefe",
+              "size_bytes": 437961724
+            },
+            "special_tokens_map.json": {
+              "sha256": "3c3507f36dff57bce437223db3b3081d1e2b52ec3e56ee55438193ecb2c94dd6",
+              "size_bytes": 132
+            },
+            "tokenizer_config.json": {
+              "sha256": "a5c2e5a7b1a29a0702cd28c08a399b5ecc110c263009d17f7e3b415f25905fd8",
+              "size_bytes": 1330
+            },
+            "vocab.txt": {
+              "sha256": "b49e80874c5efbc7f4cde245a812673b05ef1360ced56b8bc8c750eaeef3fe0f",
+              "size_bytes": 262030
+            }
+          },
+          "kind": "transformer",
+          "manifest_sha256": "c2b261a7b896b4c75491e899599038c0c668a7e28efc09a0a0b1d1307b7cd120",
+          "relative_path": "interim/transformer-finetuned-models/c2b261a7b896b4c75491e899599038c0c668a7e28efc09a0a0b1d1307b7cd120"
+        },
+        "configuration": {
+          "device": "cuda",
+          "evaluation_batch_size": 32,
+          "learning_rate": 3e-05,
+          "max_epochs": 5,
+          "max_grad_norm": 1.0,
+          "max_length": 128,
+          "patience": 2,
+          "seed": 44,
+          "train_batch_size": 16,
+          "warmup_ratio": 0.1,
+          "weight_decay": 0.01
+        },
+        "report_path": "reports/experiments/target-backbones-runs/finbert/target_pair/seed-44.json",
+        "report_sha256": "79678db5a06308d79d405f8cc5e0e9c723fed30da1cd279187518fe78302d4f1",
+        "seed": 44,
+        "selected_epoch": 5
+      }
+    ],
+    "roberta_base": [
+      {
+        "arm": "matched_headline_only",
+        "artifact": {
+          "files": {
+            "config.json": {
+              "sha256": "a1b65ff8b7d429722ce10db2c1331883aeafd9f97621d54a221f53f91bca95a9",
+              "size_bytes": 889
+            },
+            "merges.txt": {
+              "sha256": "84809de545b2f3e79275acfaefa4af5055438ddb13d9eed9cff02eacf5cc19fc",
+              "size_bytes": 506319
+            },
+            "model.safetensors": {
+              "sha256": "21f5546f73899d65e45add49b43142d44c41d8cf4532f1de82f1b1a51fc55758",
+              "size_bytes": 498615900
+            },
+            "special_tokens_map.json": {
+              "sha256": "b72f59af007f804a5b6514f6ed8d59b4723349105471bcc3a881591fd586e2d5",
+              "size_bytes": 1009
+            },
+            "tokenizer_config.json": {
+              "sha256": "b8ba42ca3b041cc57a06e2e64e255bfb7b335a1ca802cfa201cc0e11d71e908a",
+              "size_bytes": 1279
+            },
+            "vocab.json": {
+              "sha256": "078c509073469aae3ed14de5dee8f1a36cf4555abe6e88d840e6266b599492eb",
+              "size_bytes": 1049622
+            }
+          },
+          "kind": "transformer",
+          "manifest_sha256": "5228a53087df78a4779149a2da8fca84c5dcb5260ebf3cd90b8fa0a0ce6a4a99",
+          "relative_path": "interim/transformer-finetuned-models/5228a53087df78a4779149a2da8fca84c5dcb5260ebf3cd90b8fa0a0ce6a4a99"
+        },
+        "configuration": {
+          "device": "cuda",
+          "evaluation_batch_size": 32,
+          "learning_rate": 2e-05,
+          "max_epochs": 5,
+          "max_grad_norm": 1.0,
+          "max_length": 128,
+          "patience": 2,
+          "seed": 42,
+          "train_batch_size": 16,
+          "warmup_ratio": 0.1,
+          "weight_decay": 0.01
+        },
+        "report_path": "reports/experiments/target-backbones-runs/roberta_base/matched_headline_only/seed-42.json",
+        "report_sha256": "0ddd03374ccf69cdfa8f7fa05c0f90efca47fd2980231e4e228bd01a15554b8a",
+        "seed": 42,
+        "selected_epoch": 4
+      },
+      {
+        "arm": "matched_headline_only",
+        "artifact": {
+          "files": {
+            "config.json": {
+              "sha256": "a1b65ff8b7d429722ce10db2c1331883aeafd9f97621d54a221f53f91bca95a9",
+              "size_bytes": 889
+            },
+            "merges.txt": {
+              "sha256": "84809de545b2f3e79275acfaefa4af5055438ddb13d9eed9cff02eacf5cc19fc",
+              "size_bytes": 506319
+            },
+            "model.safetensors": {
+              "sha256": "215e6c1614a62dc4bd65073a1ce76607c5b1517fc0a0c1731380525ac5cbfab0",
+              "size_bytes": 498615900
+            },
+            "special_tokens_map.json": {
+              "sha256": "b72f59af007f804a5b6514f6ed8d59b4723349105471bcc3a881591fd586e2d5",
+              "size_bytes": 1009
+            },
+            "tokenizer_config.json": {
+              "sha256": "b8ba42ca3b041cc57a06e2e64e255bfb7b335a1ca802cfa201cc0e11d71e908a",
+              "size_bytes": 1279
+            },
+            "vocab.json": {
+              "sha256": "078c509073469aae3ed14de5dee8f1a36cf4555abe6e88d840e6266b599492eb",
+              "size_bytes": 1049622
+            }
+          },
+          "kind": "transformer",
+          "manifest_sha256": "9a811160eec8023c7265a0303ee2939c6bc15d6baf5d180d3867cb958c93e736",
+          "relative_path": "interim/transformer-finetuned-models/9a811160eec8023c7265a0303ee2939c6bc15d6baf5d180d3867cb958c93e736"
+        },
+        "configuration": {
+          "device": "cuda",
+          "evaluation_batch_size": 32,
+          "learning_rate": 2e-05,
+          "max_epochs": 5,
+          "max_grad_norm": 1.0,
+          "max_length": 128,
+          "patience": 2,
+          "seed": 43,
+          "train_batch_size": 16,
+          "warmup_ratio": 0.1,
+          "weight_decay": 0.01
+        },
+        "report_path": "reports/experiments/target-backbones-runs/roberta_base/matched_headline_only/seed-43.json",
+        "report_sha256": "aacd09282453f319d65e1eb7e7549e96db4f7e67e3811b4f5b8e9e50ee8f77cb",
+        "seed": 43,
+        "selected_epoch": 2
+      },
+      {
+        "arm": "matched_headline_only",
+        "artifact": {
+          "files": {
+            "config.json": {
+              "sha256": "a1b65ff8b7d429722ce10db2c1331883aeafd9f97621d54a221f53f91bca95a9",
+              "size_bytes": 889
+            },
+            "merges.txt": {
+              "sha256": "84809de545b2f3e79275acfaefa4af5055438ddb13d9eed9cff02eacf5cc19fc",
+              "size_bytes": 506319
+            },
+            "model.safetensors": {
+              "sha256": "38c33194cddb85831f34e221d43b71164caa98f244ec777e34d4b7c8c4c565e3",
+              "size_bytes": 498615900
+            },
+            "special_tokens_map.json": {
+              "sha256": "b72f59af007f804a5b6514f6ed8d59b4723349105471bcc3a881591fd586e2d5",
+              "size_bytes": 1009
+            },
+            "tokenizer_config.json": {
+              "sha256": "b8ba42ca3b041cc57a06e2e64e255bfb7b335a1ca802cfa201cc0e11d71e908a",
+              "size_bytes": 1279
+            },
+            "vocab.json": {
+              "sha256": "078c509073469aae3ed14de5dee8f1a36cf4555abe6e88d840e6266b599492eb",
+              "size_bytes": 1049622
+            }
+          },
+          "kind": "transformer",
+          "manifest_sha256": "0ad04ce1131488ed3a50a4ab47fa254b8636d4253775c312ab459f02ff2dc974",
+          "relative_path": "interim/transformer-finetuned-models/0ad04ce1131488ed3a50a4ab47fa254b8636d4253775c312ab459f02ff2dc974"
+        },
+        "configuration": {
+          "device": "cuda",
+          "evaluation_batch_size": 32,
+          "learning_rate": 2e-05,
+          "max_epochs": 5,
+          "max_grad_norm": 1.0,
+          "max_length": 128,
+          "patience": 2,
+          "seed": 44,
+          "train_batch_size": 16,
+          "warmup_ratio": 0.1,
+          "weight_decay": 0.01
+        },
+        "report_path": "reports/experiments/target-backbones-runs/roberta_base/matched_headline_only/seed-44.json",
+        "report_sha256": "07c7a3f2e8b596ad8a83c13ae600aae7f32202034e6c06f4f34f57d733ebab92",
+        "seed": 44,
+        "selected_epoch": 3
+      },
+      {
+        "arm": "target_pair",
+        "artifact": {
+          "files": {
+            "config.json": {
+              "sha256": "a1b65ff8b7d429722ce10db2c1331883aeafd9f97621d54a221f53f91bca95a9",
+              "size_bytes": 889
+            },
+            "merges.txt": {
+              "sha256": "84809de545b2f3e79275acfaefa4af5055438ddb13d9eed9cff02eacf5cc19fc",
+              "size_bytes": 506319
+            },
+            "model.safetensors": {
+              "sha256": "2e3bae2577ca4b6cf3891789bfba2b0a7f551bc1364742eec3ed7f6fbfae3ed8",
+              "size_bytes": 498615900
+            },
+            "special_tokens_map.json": {
+              "sha256": "b72f59af007f804a5b6514f6ed8d59b4723349105471bcc3a881591fd586e2d5",
+              "size_bytes": 1009
+            },
+            "tokenizer_config.json": {
+              "sha256": "b8ba42ca3b041cc57a06e2e64e255bfb7b335a1ca802cfa201cc0e11d71e908a",
+              "size_bytes": 1279
+            },
+            "vocab.json": {
+              "sha256": "078c509073469aae3ed14de5dee8f1a36cf4555abe6e88d840e6266b599492eb",
+              "size_bytes": 1049622
+            }
+          },
+          "kind": "transformer",
+          "manifest_sha256": "9b1e6db9d5a05af2bf6fb00fc5400550b007c0a6913616e118ce85b9da7b9b91",
+          "relative_path": "interim/transformer-finetuned-models/9b1e6db9d5a05af2bf6fb00fc5400550b007c0a6913616e118ce85b9da7b9b91"
+        },
+        "configuration": {
+          "device": "cuda",
+          "evaluation_batch_size": 32,
+          "learning_rate": 2e-05,
+          "max_epochs": 5,
+          "max_grad_norm": 1.0,
+          "max_length": 128,
+          "patience": 2,
+          "seed": 42,
+          "train_batch_size": 16,
+          "warmup_ratio": 0.1,
+          "weight_decay": 0.01
+        },
+        "report_path": "reports/experiments/target-backbones-runs/roberta_base/target_pair/seed-42.json",
+        "report_sha256": "70ff7665e4e4858798e701c94a7fc29946e90129f3a227e075377c0fdb3e417d",
+        "seed": 42,
+        "selected_epoch": 5
+      },
+      {
+        "arm": "target_pair",
+        "artifact": {
+          "files": {
+            "config.json": {
+              "sha256": "a1b65ff8b7d429722ce10db2c1331883aeafd9f97621d54a221f53f91bca95a9",
+              "size_bytes": 889
+            },
+            "merges.txt": {
+              "sha256": "84809de545b2f3e79275acfaefa4af5055438ddb13d9eed9cff02eacf5cc19fc",
+              "size_bytes": 506319
+            },
+            "model.safetensors": {
+              "sha256": "352f716f9225f8c842c96fdddf15eb7041790b7dca593d5fd984668c7a9d1cdc",
+              "size_bytes": 498615900
+            },
+            "special_tokens_map.json": {
+              "sha256": "b72f59af007f804a5b6514f6ed8d59b4723349105471bcc3a881591fd586e2d5",
+              "size_bytes": 1009
+            },
+            "tokenizer_config.json": {
+              "sha256": "b8ba42ca3b041cc57a06e2e64e255bfb7b335a1ca802cfa201cc0e11d71e908a",
+              "size_bytes": 1279
+            },
+            "vocab.json": {
+              "sha256": "078c509073469aae3ed14de5dee8f1a36cf4555abe6e88d840e6266b599492eb",
+              "size_bytes": 1049622
+            }
+          },
+          "kind": "transformer",
+          "manifest_sha256": "2f742f69854f097b5b1351e4a1de126b54c28fe2c900edb3c2e41526cd32e855",
+          "relative_path": "interim/transformer-finetuned-models/2f742f69854f097b5b1351e4a1de126b54c28fe2c900edb3c2e41526cd32e855"
+        },
+        "configuration": {
+          "device": "cuda",
+          "evaluation_batch_size": 32,
+          "learning_rate": 2e-05,
+          "max_epochs": 5,
+          "max_grad_norm": 1.0,
+          "max_length": 128,
+          "patience": 2,
+          "seed": 43,
+          "train_batch_size": 16,
+          "warmup_ratio": 0.1,
+          "weight_decay": 0.01
+        },
+        "report_path": "reports/experiments/target-backbones-runs/roberta_base/target_pair/seed-43.json",
+        "report_sha256": "7b4638f5ae0b6db301512e59992027aa12c4df566195eb01ffbfc9056f923fb8",
+        "seed": 43,
+        "selected_epoch": 2
+      },
+      {
+        "arm": "target_pair",
+        "artifact": {
+          "files": {
+            "config.json": {
+              "sha256": "a1b65ff8b7d429722ce10db2c1331883aeafd9f97621d54a221f53f91bca95a9",
+              "size_bytes": 889
+            },
+            "merges.txt": {
+              "sha256": "84809de545b2f3e79275acfaefa4af5055438ddb13d9eed9cff02eacf5cc19fc",
+              "size_bytes": 506319
+            },
+            "model.safetensors": {
+              "sha256": "a8948807b7733b2c66b4141eacc995d7fba27c9c1c9b4966418b6d9a09073ecd",
+              "size_bytes": 498615900
+            },
+            "special_tokens_map.json": {
+              "sha256": "b72f59af007f804a5b6514f6ed8d59b4723349105471bcc3a881591fd586e2d5",
+              "size_bytes": 1009
+            },
+            "tokenizer_config.json": {
+              "sha256": "b8ba42ca3b041cc57a06e2e64e255bfb7b335a1ca802cfa201cc0e11d71e908a",
+              "size_bytes": 1279
+            },
+            "vocab.json": {
+              "sha256": "078c509073469aae3ed14de5dee8f1a36cf4555abe6e88d840e6266b599492eb",
+              "size_bytes": 1049622
+            }
+          },
+          "kind": "transformer",
+          "manifest_sha256": "e155757620cca6f916122b636a901317a5512ea429b065bb37990208e8eebc93",
+          "relative_path": "interim/transformer-finetuned-models/e155757620cca6f916122b636a901317a5512ea429b065bb37990208e8eebc93"
+        },
+        "configuration": {
+          "device": "cuda",
+          "evaluation_batch_size": 32,
+          "learning_rate": 2e-05,
+          "max_epochs": 5,
+          "max_grad_norm": 1.0,
+          "max_length": 128,
+          "patience": 2,
+          "seed": 44,
+          "train_batch_size": 16,
+          "warmup_ratio": 0.1,
+          "weight_decay": 0.01
+        },
+        "report_path": "reports/experiments/target-backbones-runs/roberta_base/target_pair/seed-44.json",
+        "report_sha256": "fe98aa23b31d9d7c7383ed5dd8b0eeb6971a2b721fcfc6370227fcebea6506c7",
+        "seed": 44,
+        "selected_epoch": 5
+      }
+    ]
+  },
+  "uncertainty": {
+    "interval": "percentile_95",
+    "paired": true,
+    "replicates": 1000,
+    "resample_training_seeds": false,
+    "secondary_intervals": "exploratory_without_multiplicity_correction",
+    "seed": 42,
+    "seed_aggregation": "mean_of_seed_metrics_within_each_replicate",
+    "subgroups": "retain_all_targets_from_each_sampled_group",
+    "unit": "headline_duplicate_group"
+  }
+}

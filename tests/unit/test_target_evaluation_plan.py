@@ -95,8 +95,8 @@ def test_selection_uses_unrounded_means_and_fixed_exact_tie_order() -> None:
 def test_published_contract_matches_validation_evidence(contract: dict) -> None:
     validate_plan(contract)
     assert contract["selection"]["selected_model"] == "roberta_base"
-    assert contract["cohorts"]["expected"]["multi_target"]["target_annotations"] == 594
-    assert contract["cohorts"]["expected"]["multi_target"]["headlines"] == 263
+    assert contract["cohorts"]["expected"]["multi_target"]["target_annotations"] == 592
+    assert contract["cohorts"]["expected"]["multi_target"]["headlines"] == 262
     assert len(contract["paired_comparisons"]) == 7
 
 

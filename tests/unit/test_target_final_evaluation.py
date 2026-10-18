@@ -11,6 +11,7 @@ import pytest
 from finsight.sentiment.evaluation.metrics import LABELS, classification_metrics
 from finsight.sentiment.evaluation.target_data import expand_frozen
 from finsight.sentiment.evaluation.target_metrics import families, summarize
+from finsight.sentiment.evaluation.target_protocol import PLAN
 from finsight.sentiment.experiments import target_final_evaluation as runner
 from finsight.sentiment.models.target_inference import TargetText, unique_inputs
 
@@ -18,7 +19,7 @@ ROOT = Path(__file__).resolve().parents[2]
 
 
 def plan():
-    result = json.loads((ROOT / "configs/target-evaluation-plan.json").read_bytes())
+    result = json.loads((ROOT / PLAN).read_bytes())
     result["uncertainty"]["replicates"] = 30  # Synthetic bootstrap test budget only.
     return result
 
@@ -495,3 +496,86 @@ def test_verified_export_contains_only_aggregates_and_never_overwrites(execution
     private.write_bytes(private.read_bytes() + b" ")
     with pytest.raises(ValueError, match="checksums"):
         runner.export_results(root, receipt.parent, root / "reports/other")
+
+
+def exclusion_fixture():
+    """A consumed near-duplicate of one reserved group; no real test data."""
+    from finsight.data.review import text_hash
+
+    rows, _ = frozen_fixture()
+    reserved = rows[0]
+    reserved["native_record"]["sentiments"] = [
+        {"target": "alpha", "label": "neutral"},
+        {"target": "beta", "label": "neutral"},
+    ]
+    consumed = copy.deepcopy(reserved)
+    consumed["record_id"] = "previously-evaluated"
+    consumed["native_record"]["title"] = "a shortened related headline"
+    consumed["native_record"]["sentiments"].pop()
+    rows.append(consumed)
+    registry = [
+        {
+            "group_id": reserved["group_id"],
+            "reserved_text_sha256": text_hash(reserved["native_record"]["title"]),
+            "consumed_text_sha256": text_hash(consumed["native_record"]["title"]),
+            "reserved_class_counts": {"neutral": 2},
+            "reason": "near_duplicate_group_previously_evaluated_in_phase3",
+        }
+    ]
+    counts = {
+        "headlines": 1,
+        "target_annotations": 2,
+        "class_counts": {"positive": 1, "negative": 1},
+    }
+    return rows, {"multi_target": counts, "mixed_label_headlines": counts}, registry
+
+
+def test_versioned_exclusion_removes_only_reviewed_reserved_group():
+    rows, expected, registry = exclusion_fixture()
+    original = copy.deepcopy(rows)
+    with pytest.raises(ValueError, match="overlaps"):
+        expand_frozen(rows, [], expected)  # v1 retains its original abort behavior.
+    actual = expand_frozen(rows, [], expected, exclusions=registry)
+    assert len(actual) == 2
+    assert {r["headline_id"] for r in actual} == {"1"}
+    assert [r["gold"] for r in actual] == ["positive", "negative"]
+    assert rows == original  # Never edit the frozen benchmark in place.
+
+
+@pytest.mark.parametrize(
+    "change",
+    [
+        "missing_member",
+        "reserved_text",
+        "consumed_text",
+        "labels",
+        "reason",
+        "duplicate_exclusion",
+        "development_overlap",
+        "unexpected_consumed_group",
+    ],
+)
+def test_versioned_exclusion_rejects_unreviewed_scope_changes(change):
+    rows, expected, registry = exclusion_fixture()
+    development = []
+    if change == "missing_member":
+        rows.pop()
+    elif change == "reserved_text":
+        registry[0]["reserved_text_sha256"] = "0" * 64
+    elif change == "consumed_text":
+        registry[0]["consumed_text_sha256"] = "0" * 64
+    elif change == "labels":
+        rows[0]["native_record"]["sentiments"][0]["label"] = "positive"
+    elif change == "reason":
+        registry[0]["reason"] = "model_performance"
+    elif change == "duplicate_exclusion":
+        registry.append(copy.deepcopy(registry[0]))
+    elif change == "development_overlap":
+        development = [{"group_id": rows[0]["group_id"], "headline": "training"}]
+    else:
+        extra = copy.deepcopy(rows[1])
+        extra["record_id"] = "unexpected-consumed"
+        extra["native_record"]["sentiments"].pop()
+        rows.append(extra)
+    with pytest.raises(ValueError):
+        expand_frozen(rows, development, expected, exclusions=registry)

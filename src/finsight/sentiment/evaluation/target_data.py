@@ -5,6 +5,7 @@ from collections import Counter
 from pathlib import Path
 
 from finsight.data.audit import text_identity
+from finsight.data.review import text_hash
 from finsight.sentiment.artifacts import file_sha256, sha, verify_files
 from finsight.sentiment.evaluation.metrics import LABELS
 from finsight.sentiment.evaluation.protocol import safe_path
@@ -59,13 +60,44 @@ def evaluation_rows(examples: list[dict]) -> list[dict]:
 
 
 def expand_frozen(
-    rows: list[dict], development: list[dict], expected: dict
+    rows: list[dict],
+    development: list[dict],
+    expected: dict,
+    *,
+    exclusions: list[dict] | None = None,
 ) -> list[dict]:
     """Audit all groups before emitting any reserved multi-target model inputs."""
     if len({r["record_id"] for r in rows}) != len(rows):
         raise ValueError("duplicate frozen headline identity")
     consumed = [r for r in rows if len(r["native_record"]["sentiments"]) == 1]
     selected = [r for r in rows if len(r["native_record"]["sentiments"]) > 1]
+    # An explicit v2 registry is the only permitted exclusion. Default behavior
+    # retains the v1 failure gate. Match both members and labels before filtering;
+    # any unexpected overlap or missing/changed registry member still aborts.
+    excluded = set()
+    for exclusion in exclusions or []:
+        group = exclusion["group_id"]
+        reserved = [r for r in selected if r["group_id"] == group]
+        prior = [r for r in consumed if r["group_id"] == group]
+        if (
+            group in excluded
+            or len(reserved) != 1
+            or len(prior) != 1
+            or any(r["group_id"] == group for r in development)
+            or text_hash(reserved[0]["native_record"]["title"])
+            != exclusion["reserved_text_sha256"]
+            or text_hash(prior[0]["native_record"]["title"])
+            != exclusion["consumed_text_sha256"]
+            or dict(
+                Counter(a["label"] for a in reserved[0]["native_record"]["sentiments"])
+            )
+            != exclusion["reserved_class_counts"]
+            or exclusion["reason"]
+            != "near_duplicate_group_previously_evaluated_in_phase3"
+        ):
+            raise ValueError("previously consumed group exclusion differs")
+        excluded.add(group)
+    selected = [r for r in selected if r["group_id"] not in excluded]
     groups = {r["group_id"] for r in selected}
     forbidden_groups = {r["group_id"] for r in development + consumed}
     forbidden_text = {text_identity(r["headline"]) for r in development} | {
@@ -101,7 +133,7 @@ def expand_frozen(
             for a in annotations
         ):
             raise ValueError("invalid frozen annotations")
-        if len(annotations) < 2:
+        if len(annotations) < 2 or row["group_id"] in excluded:
             continue
         for index, annotation in enumerate(annotations):
             identity = sha(
@@ -142,4 +174,9 @@ def frozen_inputs(
     if file_sha256(path) != plan["frozen_files"][relative]:
         raise ValueError("frozen records changed before decoding")
     rows = [json.loads(line) for line in path.read_bytes().splitlines()]
-    return expand_frozen(rows, development, plan["cohorts"]["expected"])
+    return expand_frozen(
+        rows,
+        development,
+        plan["cohorts"]["expected"],
+        exclusions=plan["cohorts"].get("excluded_previously_consumed_groups"),
+    )
