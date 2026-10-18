@@ -2,7 +2,7 @@
 
 import json
 import os
-from dataclasses import asdict
+from dataclasses import asdict, replace
 from pathlib import Path
 from time import perf_counter
 from typing import Any
@@ -103,7 +103,12 @@ def load_source(asset: dict, config: FineTuneConfig, data_dir: Path) -> tuple:
 
 
 def load_saved(
-    directory: Path, identifier: str, asset: dict, config: FineTuneConfig
+    directory: Path,
+    identifier: str,
+    asset: dict,
+    config: FineTuneConfig,
+    *,
+    device: str | None = None,
 ) -> tuple:
     # Check ancestry, configuration and file bytes before constructing a model.
     if file_sha256(directory / "artifact-manifest.json") != identifier:
@@ -114,7 +119,10 @@ def load_saved(
     verify_files(directory, manifest["files"])
     from transformers import AutoModelForSequenceClassification, AutoTokenizer
 
-    torch = runtime(config)
+    # Validate original training provenance above, then apply an explicit runtime
+    # device override without rewriting the saved configuration or artifact.
+    execution = replace(config, device=device) if device is not None else config
+    torch = runtime(execution)
     model, info = AutoModelForSequenceClassification.from_pretrained(
         directory,
         local_files_only=True,
@@ -131,7 +139,7 @@ def load_saved(
         trust_remote_code=False,
         use_fast=(directory / "tokenizer.json").exists(),
     )
-    model.to(device=config.device, dtype=torch.float32)
+    model.to(device=execution.device, dtype=torch.float32)
     return torch, tokenizer, model, manifest
 
 
