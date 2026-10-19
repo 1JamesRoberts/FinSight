@@ -35,4 +35,6 @@ Native target conditioning, matched baselines, error analysis and reserved evalu
 
 ## Prediction
 
+- [Company mention detection and automatic sentiment](company-mentions.md)
+
 - [Reusable RoBERTa target prediction: Python and CLI](prediction.md)

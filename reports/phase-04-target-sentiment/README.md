@@ -77,3 +77,8 @@ private caches and logs remain in ignored storage on both research machines.
 
 - [RoBERTa deployment selection and verification](target-prediction.md)
 - [Python/CLI usage](../../docs/phase-04-target-sentiment/prediction.md)
+
+## Company mention detection
+
+- [Registry baseline rules and verification](company-mentions.md)
+- [Detection and automatic sentiment usage](../../docs/phase-04-target-sentiment/company-mentions.md)

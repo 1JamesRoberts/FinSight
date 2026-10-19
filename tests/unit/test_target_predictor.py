@@ -291,3 +291,97 @@ def test_cli_config_and_prediction_use_explicit_inputs(tiny, monkeypatch, capsys
     result = json.loads(capsys.readouterr().out)
     assert [r["target"] for r in result] == ["alpha", "beta"]
     assert loaded[0]["device"] == "cpu" and len(loaded) == 1
+
+
+def test_headline_detection_batches_unique_companies_and_keeps_mentions(tiny):
+    from finsight.sentiment.companies import load_registry
+
+    predictor, _, _, model = tiny
+    registry = load_registry(ROOT / "configs/companies.json")
+    calls = []
+    handle = model.register_forward_pre_hook(lambda *args: calls.append(True))
+    text = "MSFT gained; Microsoft expanded while Apple Inc. reported losses."
+    result = predictor.predict_headline(text, registry)
+    assert len(calls) == 1
+    assert [c.company_id for c in result.companies] == ["microsoft", "apple"]
+    assert [c.target for c in result.companies] == ["MSFT", "Apple Inc."]
+    assert [m.text for m in result.companies[0].mentions] == ["MSFT", "Microsoft"]
+    for company in result.companies:
+        assert company.prediction.target == company.target
+        assert company.prediction.model_version == predictor.model_version
+    assert result.target_selection == "first_resolved_mention_per_company"
+    handle.remove()
+
+
+def test_ambiguous_and_absent_mentions_never_reach_model(tiny):
+    from finsight.sentiment.companies import load_registry
+
+    predictor, _, _, model = tiny
+    registry = load_registry(ROOT / "configs/companies.json")
+    calls = []
+    handle = model.register_forward_pre_hook(lambda *args: calls.append(True))
+    result = predictor.predict_headline("Apple and Amazon grew; Tesla fell.", registry)
+    assert not result.companies
+    assert [m.text for m in result.detection.ambiguous] == ["Apple", "Amazon"]
+    assert not calls
+    handle.remove()
+
+
+def test_cli_detection_without_accepted_names_does_not_load_weights(
+    monkeypatch, capsys
+):
+    from finsight.sentiment import predict as command
+
+    def forbidden(**kwargs):
+        pytest.fail("CLI loaded weights for unresolved/absent company mentions")
+
+    monkeypatch.setattr(command.TargetSentimentPredictor, "load", forbidden)
+    monkeypatch.setattr(
+        "sys.argv", ["predict", "--text", "Apple and Tesla grew.", "--detect-companies"]
+    )
+    command.main()
+    result = json.loads(capsys.readouterr().out)
+    assert result["companies"] == []
+    assert result["detection"]["ambiguous"][0]["text"] == "Apple"
+
+
+def test_cli_automatic_mentions_predict_through_loaded_model(tiny, monkeypatch, capsys):
+    from finsight.sentiment import predict as command
+
+    predictor, _, _, _ = tiny
+    monkeypatch.setattr(
+        command.TargetSentimentPredictor, "load", lambda **kwargs: predictor
+    )
+    monkeypatch.setattr(
+        "sys.argv",
+        [
+            "predict",
+            "--text",
+            "Microsoft rose while Apple Inc. fell.",
+            "--detect-companies",
+            "--device",
+            "cpu",
+        ],
+    )
+    command.main()
+    result = json.loads(capsys.readouterr().out)
+    assert [c["target"] for c in result["companies"]] == ["Microsoft", "Apple Inc."]
+    assert all(
+        c["prediction"]["model_version"] == predictor.model_version
+        for c in result["companies"]
+    )
+
+
+@pytest.mark.parametrize("extra", [["--target", "Microsoft"], ["--company"]])
+def test_cli_automatic_mode_rejects_conflicting_explicit_target_flags(
+    monkeypatch, extra
+):
+    from finsight.sentiment import predict as command
+
+    monkeypatch.setattr(
+        "sys.argv",
+        ["predict", "--text", "Microsoft rose.", "--detect-companies", *extra],
+    )
+    with pytest.raises(SystemExit) as error:
+        command.main()
+    assert error.value.code == 2

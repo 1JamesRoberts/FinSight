@@ -14,6 +14,11 @@ from finsight.sentiment.companies import (
 )
 from finsight.sentiment.deployment import CONFIG, check_deployment
 from finsight.sentiment.evaluation.protocol import safe_path
+from finsight.sentiment.mentions import (
+    CompanyMention,
+    MentionDetection,
+    detect_companies,
+)
 from finsight.sentiment.models.transformer import checked_labels, load_saved
 from finsight.sentiment.training.config import FineTuneConfig
 
@@ -34,11 +39,27 @@ class CompanyPrediction:
     prediction: TargetPrediction | None
 
 
+@dataclass(frozen=True)
+class MentionPrediction:
+    company_id: str
+    target: str
+    mentions: tuple[CompanyMention, ...]
+    prediction: TargetPrediction
+
+
+@dataclass(frozen=True)
+class HeadlinePrediction:
+    detection: MentionDetection
+    companies: tuple[MentionPrediction, ...]
+    target_selection: str = "first_resolved_mention_per_company"
+
+
 class TargetSentimentPredictor:
     """Load once, then score explicit native targets without training or gold labels.
 
-    Callers supply the intended target. Scoring does not identify entities, verify
-    target relevance, or imply reliable coverage of the five-company registry.
+    Direct prediction uses caller-supplied targets; predict_headline adds the
+    reviewed registry detector. Neither verifies target relevance nor establishes
+    reliable five-company generalization.
     """
 
     def __init__(
@@ -200,3 +221,44 @@ class TargetSentimentPredictor:
             else None
         )
         return CompanyPrediction(resolution, prediction)
+
+    def predict_headline(
+        self,
+        text: str,
+        registry: CompanyRegistry,
+        *,
+        company_context: bool = False,
+        allow_parent_rollup: bool = False,
+    ) -> HeadlinePrediction:
+        """Detect known mentions, then batch one original target per company.
+
+        Retain all resolved spans/share-class metadata and all ambiguous candidates.
+        The first resolved surface in text is a deterministic representative, not
+        a choice based on confidence. Never score ambiguous-only or absent targets.
+        """
+        detection = detect_companies(
+            text,
+            registry,
+            company_context=company_context,
+            allow_parent_rollup=allow_parent_rollup,
+        )
+        groups: dict[str, list[CompanyMention]] = {}
+        for mention in detection.resolved:
+            company = mention.resolution.company
+            assert company is not None  # Resolved registry invariant.
+            groups.setdefault(company.company_id, []).append(mention)
+        if not groups:
+            return HeadlinePrediction(detection, ())
+        targets = [mentions[0].text for mentions in groups.values()]
+        predictions = self.predict_many([text] * len(targets), targets)
+        return HeadlinePrediction(
+            detection,
+            tuple(
+                MentionPrediction(
+                    company_id, mentions[0].text, tuple(mentions), prediction
+                )
+                for (company_id, mentions), prediction in zip(
+                    groups.items(), predictions, strict=True
+                )
+            ),
+        )

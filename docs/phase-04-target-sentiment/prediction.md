@@ -111,11 +111,11 @@ headline. Output is a JSON list of results. `--data-dir` locates private artifac
 inference config file. `--show-config` verifies public metadata without loading
 weights or reading datasets. No predictions are automatically written to disk.
 
-On the current GPU computer, use the verified isolated checkout and existing
-Python environment (the original checkout has not been overwritten):
+On the current GPU computer, use the updated primary checkout and its existing
+Python environment. The old isolated execution checkout is archived:
 
 ```powershell
-$env:PYTHONPATH = 'C:\Hope\Project\financial-news-intelligence-evaluation-20261018\src'
+$env:PYTHONPATH = 'C:\Hope\Project\financial-news-intelligence\src'
 & 'C:\Hope\Project\financial-news-intelligence\.venv\Scripts\python.exe' `
   -m finsight.sentiment.predict `
   --data-dir 'C:\Hope\Project\financial-news-intelligence\data' `
@@ -131,8 +131,9 @@ $env:PYTHONPATH = 'C:\Hope\Project\financial-news-intelligence-evaluation-202610
   overrides preserve original training provenance.
 - `sentiment/predict.py`: argument parsing and JSON output.
 
-Entity extraction, new company-labeled test collection, HTTP serving and sentiment
-aggregation are separate roadmap tasks. Existing frozen data and evaluation
+A [registry mention baseline](company-mentions.md) now adds automatic targets via
+`predict_headline()` and `--detect-companies`. General NER, a new company-labeled
+test collection, HTTP serving and sentiment aggregation remain separate tasks. Existing frozen data and evaluation
 receipts/results are preserved.
 
 ## Verification

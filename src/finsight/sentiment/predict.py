@@ -1,4 +1,4 @@
-"""Score explicit targets with the pinned saved RoBERTa model; no acquisition."""
+"""Score explicit or registry-detected targets with the pinned saved RoBERTa."""
 
 import argparse
 import json
@@ -8,7 +8,11 @@ from pathlib import Path
 from finsight.sentiment.artifacts import project_root
 from finsight.sentiment.companies import load_registry
 from finsight.sentiment.deployment import CONFIG, check_deployment
-from finsight.sentiment.models.target_predictor import TargetSentimentPredictor
+from finsight.sentiment.mentions import detect_companies
+from finsight.sentiment.models.target_predictor import (
+    HeadlinePrediction,
+    TargetSentimentPredictor,
+)
 
 
 def main() -> None:
@@ -29,6 +33,11 @@ def main() -> None:
         action="store_true",
         help="Require registry resolution; default targets are explicit native names",
     )
+    parser.add_argument(
+        "--detect-companies",
+        action="store_true",
+        help="Detect registry mentions and score accepted companies automatically",
+    )
     parser.add_argument("--company-context", action="store_true")
     parser.add_argument("--allow-parent-rollup", action="store_true")
     parser.add_argument(
@@ -41,15 +50,32 @@ def main() -> None:
     if args.show_config:
         print(json.dumps(check_deployment(args.root, config_path), indent=2))
         return
-    if (
-        not args.text
-        or not args.text.strip()
-        or not args.target
-        or any(not t.strip() for t in args.target)
-    ):
-        parser.error("--text and at least one nonempty --target are required")
-    if not args.company and (args.company_context or args.allow_parent_rollup):
-        parser.error("company policy flags require --company")
+    if not args.text or not args.text.strip():
+        parser.error("a nonempty --text is required")
+    if args.detect_companies:
+        if args.target or args.company:
+            parser.error(
+                "--detect-companies cannot be combined with --target or --company"
+            )
+        registry = load_registry(args.root / "configs/companies.json")
+        detection = detect_companies(
+            args.text,
+            registry,
+            company_context=args.company_context,
+            allow_parent_rollup=args.allow_parent_rollup,
+        )
+        # No model is needed for a headline with only ambiguous/unknown names.
+        # This path works on the Mac even without local model weights or CUDA.
+        if not detection.resolved:
+            print(json.dumps(asdict(HeadlinePrediction(detection, ())), indent=2))
+            return
+    else:
+        if not args.target or any(not t.strip() for t in args.target):
+            parser.error(
+                "at least one nonempty --target or --detect-companies is required"
+            )
+        if not args.company and (args.company_context or args.allow_parent_rollup):
+            parser.error("company policy flags require --company or --detect-companies")
     predictor = TargetSentimentPredictor.load(
         root=args.root,
         data_dir=args.data_dir,
@@ -57,6 +83,15 @@ def main() -> None:
         device=args.device,
         batch_size=args.batch_size,
     )
+    if args.detect_companies:
+        result = predictor.predict_headline(
+            args.text,
+            registry,
+            company_context=args.company_context,
+            allow_parent_rollup=args.allow_parent_rollup,
+        )
+        print(json.dumps(asdict(result), indent=2))
+        return
     if args.company:
         registry = load_registry(args.root / "configs/companies.json")
         results = [

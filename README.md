@@ -55,7 +55,7 @@ fixes more mistakes than it introduces in every model/seed, but actor attributio
 neutral boundaries, comparisons and conflicting cues remain difficult. Eighteen
 selected cases have suspected gold/context ambiguity; this is exploratory review,
 not a corpus error rate or label correction. See the [review guide](docs/phase-04-target-sentiment/analysis/target-error-analysis.md).
-Mention identification is also pending. MLflow and
+A registry-based mention detector is now available; general NER and a labeled mention benchmark remain pending. MLflow and
 length/batch ablations are deferred.
 
 A later [exploratory financial DeBERTa Base adaptation](reports/experiments/proprak-deberta-adaptation.md)
@@ -395,5 +395,12 @@ for explicit targets. It loads the saved model once, supports batching, and retu
 raw probabilities plus artifact/config versions. The deployment checkpoint is
 seed 43, selected from saved validation results; the completed benchmark remains
 a three-seed comparison. The optional company registry wrapper abstains on
-ambiguous/unsupported names. No automatic entity extraction or HTTP serving is
-included.
+ambiguous/unsupported names. The explicit-target path performs no entity
+extraction; registry-based detection is available separately. HTTP serving remains
+outside this interface.
+
+The [company mention baseline](docs/phase-04-target-sentiment/company-mentions.md)
+now detects reviewed names/tickers/aliases and flags ambiguous candidates. Use
+`--detect-companies` to predict one sentiment per accepted company automatically,
+or run `python -m finsight.sentiment.mentions` for detection without model weights.
+Unknown companies still require explicit targets; broader NER remains separate.

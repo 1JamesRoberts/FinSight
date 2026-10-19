@@ -778,7 +778,7 @@ calibration fitting, new LR search or Phase 4 implementation occurred.
 - [x] Prepare native target–headline development pairs, verify tokenizer eligibility/truncation, and lock the saved-control/matched-headline/target-pair comparison before training.
 - [x] Run the three saved DeBERTa headline controls on expanded native-target validation and verify target-level joining/cohort metrics.
 - [x] Train/save matched headline-only and additive headline/target TF-IDF Logistic Regression baselines; evaluate the fixed development cohorts.
-- [ ] Implement entity identification and explicit ambiguity handling.
+- [x] Implement registry-based company mention identification and explicit ambiguity handling (initial baseline; general NER remains separate).
 - [ ] Define target-level labels and create/validate an entity-labeled test collection.
 - [x] Compare headline-wide sentiment against target-aware conditioning with matched DeBERTa Base training on development validation (selected backbone replaces the original FinBERT proposal).
 - [x] Extend the matched target-conditioning development comparison to original RoBERTa Base and FinBERT, using three seeds per arm and the same native target cohorts.
@@ -1043,6 +1043,26 @@ prior research digests remain unchanged. See
 `reports/phase-04-target-sentiment/target-prediction.md`. Only the prediction
 interface checkbox is newly complete; entity extraction, five-company test
 coverage, HTTP serving and aggregation remain separate tasks.
+
+**Registry mention baseline verified (2026-10-19):** `sentiment/mentions.py`
+adds original-span, leftmost-longest matching against unchanged `companies-v1`.
+Accepted and ambiguous candidates are separate; ordinary ambiguous names require
+caller context, and Google parent rollup remains opt-in. Bare tickers require
+uppercase; cashtags/NASDAQ forms are case-insensitive. `predict_headline()` batches
+one first-resolved literal target per company, retaining all mentions/share-class
+metadata. The CLI adds `--detect-companies`; detection-only and unresolved-only
+paths need no model weights. Explicit arbitrary-target prediction remains usable.
+Thirty detector checks and six new pipeline/CLI cases pass: 639 total tests on
+both machines, full isolated Windows Ruff gates, and local Ruff gates excluding
+only the unchanged scratch notebook. Full Mac workspace commands still encounter
+that notebook's existing lint/format errors. Real CUDA automatic predictions match
+explicit-target predictions exactly on invented inputs; actual CLI/source hashes
+verify. No frozen data/results were accessed by the model smoke, and prior
+research/registry hashes remain unchanged. This completes only the bounded
+registry-based identification baseline; general NER and real-news mention accuracy
+are not established, and the company-label collection/coverage tasks remain open.
+See `docs/phase-04-target-sentiment/company-mentions.md` and
+`reports/phase-04-target-sentiment/company-mentions.md`.
 
 **Deliverables:** Target-sentiment service and independent target-level evaluation.
 

@@ -580,3 +580,15 @@ or redistributed. Smoke inputs are invented or existing development-validation
 records. Weights, per-record outputs and runtime receipts stay ignored. This task
 adds local Python/CLI inference, not public serving or a new redistribution grant.
 See the [prediction guide](phase-04-target-sentiment/prediction.md).
+
+## Registry mention baseline (2026-10-19)
+
+Reuse the existing reviewed five-company names/tickers/aliases and their existing
+identity policies. Matching and integration tests use invented headlines only;
+no new data source, provider, tokenizer, model or dependency is acquired. The
+optional local RoBERTa smoke uses invented inputs and the already approved private
+checkpoint. No frozen record is read/scored and no labels, weights or existing
+benchmark results change. Publish implementation/rules and synthetic verification,
+not private news examples. This remains the existing local-research scope; no
+new public serving or redistribution permission is implied. See the
+[mention baseline guide](phase-04-target-sentiment/company-mentions.md).
