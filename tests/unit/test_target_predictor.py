@@ -15,7 +15,13 @@ def test_deployment_selection_reads_validation_metadata_only(monkeypatch):
     read = Path.read_bytes
 
     def guarded(path):
-        if "data" in path.parts or "phase4-target-final" in path.name:
+        # The checkout itself may live under a parent's ignored data directory.
+        # Guard project-relative reads, and reject reads outside this checkout.
+        if (
+            not path.is_relative_to(ROOT)
+            or "data" in path.relative_to(ROOT).parts
+            or "phase4-target-final" in path.name
+        ):
             pytest.fail("deployment selection accessed private or final-test data")
         return read(path)
 

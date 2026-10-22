@@ -1,0 +1,87 @@
+{
+  "benchmark_sha256": "ae4f46f90c1d812cad2de719caf8b44e1604be6933e82c2e05d4b1be17e891ff",
+  "correct_typed_exact_spans": 0,
+  "decision_coverage": 0.0,
+  "decisions_by_reference": {
+    "other_organization": {
+      "company": 0,
+      "other_organization": 0,
+      "unmatched_span": 0
+    },
+    "unresolved": {
+      "company": 22,
+      "other_organization": 4,
+      "unmatched_span": 4
+    },
+    "verified_company": {
+      "company": 0,
+      "other_organization": 0,
+      "unmatched_span": 0
+    }
+  },
+  "decisions_sha256": "cbb230802749133177f5a906ad557e3c1646ce674d5f49f3faf90b80bfd5fa09",
+  "error_review_sha256": "0c5eb2b1762bff836bbed38e33cb5b3f00e02fbfa4b53dd60939b3e00757ed84",
+  "experiment": "organization-resolution-v1",
+  "extraction_error_categories": {
+    "complete_omission": 4,
+    "merged_names": 1,
+    "overextended_span": 2,
+    "reference_lost_to_boundary": 4,
+    "spurious_span": 1
+  },
+  "frozen_records_read": false,
+  "headlines": 50,
+  "model_inference_performed": false,
+  "other_organization_extraction": {
+    "f1": 0.0,
+    "false_negatives": 7,
+    "false_positives": 0,
+    "headlines": 50,
+    "precision": null,
+    "predicted_spans": 0,
+    "recall": 0.0,
+    "reference_spans": 7,
+    "true_positives": 0
+  },
+  "policy": {
+    "allow_parent_rollup": false,
+    "company_context": false,
+    "gold_in_resolver": false,
+    "unknown_names": "unresolved"
+  },
+  "prediction_cache_sha256": "1d5c929bfc2d0febb43ed3bb055c06cb31e52b1f9e785efe1442e5ea31886553",
+  "private_packet_id": "74efa90012f401f4a4270725734264f361ec3b15658eb5a9f50fae822395c710",
+  "proposed_spans": 30,
+  "raw_org_as_company": {
+    "f1": 0.7719298245614035,
+    "false_negatives": 5,
+    "false_positives": 8,
+    "headlines": 50,
+    "precision": 0.7333333333333333,
+    "predicted_spans": 30,
+    "recall": 0.8148148148148148,
+    "reference_spans": 27,
+    "true_positives": 22
+  },
+  "reference_quality": "assistant_drafted_user_accepted_development",
+  "reference_sha256": "9d465f9aa12f9b2d0109af86e0763a1eb5dd118085b8e0fc8b23b1a2c6ea1a67",
+  "registry_sha256": "3414bd464620472b37f23944f0c6d8011f77fc8460491c4001010d2aa820d285",
+  "selective_typed_exact_precision": null,
+  "source_sha256": {
+    "companies.py": "96c51568d44e45e5e973def5e945af8b6c6cee76c437e83357c9df3c59db580a",
+    "experiments/organization_resolution.py": "c7f4508fb7863aeeded96061fcebff8c80bb2bcefc72a678daf785e66697c37a",
+    "organization_resolution.py": "93827ab65d73fb1b57275406831fad289d639d68a0046b1189640b450bc6102c"
+  },
+  "training_performed": false,
+  "verified_company_extraction": {
+    "f1": 0.0,
+    "false_negatives": 27,
+    "false_positives": 0,
+    "headlines": 50,
+    "precision": null,
+    "predicted_spans": 0,
+    "recall": 0.0,
+    "reference_spans": 27,
+    "true_positives": 0
+  }
+}

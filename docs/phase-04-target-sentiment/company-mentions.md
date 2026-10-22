@@ -97,8 +97,23 @@ encoding, training configuration, evaluation results or frozen datasets.
 
 ## Code
 
+For the existing SEntFiN development coverage run, use
+`uv run --locked python -m finsight.sentiment.experiments.company_mentions`.
+See the [counts and qualitative review](../../reports/phase-04-target-sentiment/experiments/company-mention-coverage.md).
+This loads only verified train/validation views, keeps full examples under ignored
+data, and publishes aggregate counts. It does not run sentiment inference or
+measure exhaustive NER accuracy.
+
 - `sentiment/mentions.py`: matching, original spans, ambiguity and detection CLI.
 - `models/target_predictor.py`: grouping accepted mentions and batched sentiment.
 - `sentiment/predict.py`: explicit versus automatic CLI modes and no-model empty path.
 - `tests/unit/test_company_mentions.py`: invented matching/ambiguity cases.
 - `tests/unit/test_target_predictor.py`: synthetic inference and CLI behavior.
+
+## Experimental broader organization detector
+
+A separate [pretrained ORG candidate path](organization-detection.md) now supports
+names beyond this registry, with optional saved-model sentiment. See the
+[validation comparison](../../reports/phase-04-target-sentiment/experiments/organization-detection.md)
+for fragmented-name and non-company failures. It does not change this registry
+policy or the existing `--detect-companies` mode.

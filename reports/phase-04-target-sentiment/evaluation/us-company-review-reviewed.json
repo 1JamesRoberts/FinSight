@@ -1,0 +1,104 @@
+{
+  "experiment": "us-company-linking-dev-v1",
+  "headlines": 20,
+  "category_counts": {
+    "Apple Inc.": 4,
+    "Boeing": 4,
+    "General Motors": 4,
+    "Microsoft": 4,
+    "Tesla Motors": 4
+  },
+  "reference_status": "human_reviewed",
+  "counts_are_not_accuracy": true,
+  "methods": {
+    "registry_only": {
+      "proposed_spans": 21,
+      "linked_spans": 5,
+      "decision_reasons": {
+        "exact_alias": 5,
+        "unknown_target": 16
+      }
+    },
+    "registry_plus_sec": {
+      "proposed_spans": 21,
+      "linked_spans": 8,
+      "decision_reasons": {
+        "exact_alias": 5,
+        "exact_ticker": 1,
+        "suffix_normalized_name": 2,
+        "unknown_us_listed_name": 13
+      }
+    }
+  },
+  "provenance": {
+    "sample_manifest_sha256": "0712af66f547a820e4b6a1ac039d613e7239bea4a51ef45edb3cab251cf44fbc",
+    "plan_sha256": "62e245689c10073f2a0d2d96a1cbba5bad97e9df0cc27913e828a7f610f57dad",
+    "directory_sha256": "d76a4e6fd5d7cc540b3ef6974ece2ca508b3fd16360e8d9eca7b94ddce9f528b",
+    "registry_sha256": "3414bd464620472b37f23944f0c6d8011f77fc8460491c4001010d2aa820d285",
+    "ner_revision": "d1a3e8f13f8c3566299d95fcfc9a8d2382a9affc",
+    "device": "cpu",
+    "prediction_sha256": "79d942f008cb83e393710add2023bace80c29e9cdf72492638d98a46d7a75674",
+    "annotation_sha256": "f317af60c3c031b6df1712d06bdd816d35c701df2d0d0e243ef987c6c5c6929d",
+    "runner_sha256": "1a6a960525cdece398be73ee44d038bc6ffac7f72f2d98af187dcea2ceb27610",
+    "source_sha256": {
+      "src/finsight/sentiment/organizations.py": "5ee810cd3e4b213a4de5a2cf7c9c5867c5245494a100335ad75acf4ee9b2b448",
+      "src/finsight/sentiment/organization_resolution.py": "9d7483f2078373ca3e617a81aaa7a475fcca9d1a9bb7783a66bdcd9ee8206276",
+      "src/finsight/data/us_listed_companies.py": "cb1bc26524ebb4d90cd95397f5c6ab848fbf0c81f4a0a29ffead3d2ed1421dc6",
+      "src/finsight/sentiment/evaluation/company_linking.py": "db3d86aef510edab64da625c642185fcb8971d96d19cd051ca84d96ea9e3414b"
+    },
+    "uv_lock_sha256": "f1ace275d05568614b92993b8446d7323df824a8cb1dae9ac382116f906914f6"
+  },
+  "training": false,
+  "frozen_records_read": false,
+  "metrics": {
+    "registry_only": {
+      "company_span_extraction": {
+        "headlines": 20,
+        "reference_spans": 15,
+        "predicted_spans": 21,
+        "true_positives": 15,
+        "false_positives": 6,
+        "false_negatives": 0,
+        "precision": 0.7142857142857143,
+        "recall": 1.0,
+        "f1": 0.8333333333333334
+      },
+      "issuer_links": {
+        "true_positives": 5,
+        "false_positives": 0,
+        "false_negatives": 7,
+        "reference_links": 12,
+        "accepted_links": 5,
+        "precision": 1.0,
+        "recall": 0.4166666666666667,
+        "f1": 0.5882352941176471
+      },
+      "reference_status": "human_reviewed"
+    },
+    "registry_plus_sec": {
+      "company_span_extraction": {
+        "headlines": 20,
+        "reference_spans": 15,
+        "predicted_spans": 21,
+        "true_positives": 15,
+        "false_positives": 6,
+        "false_negatives": 0,
+        "precision": 0.7142857142857143,
+        "recall": 1.0,
+        "f1": 0.8333333333333334
+      },
+      "issuer_links": {
+        "true_positives": 8,
+        "false_positives": 0,
+        "false_negatives": 4,
+        "reference_links": 12,
+        "accepted_links": 8,
+        "precision": 1.0,
+        "recall": 0.6666666666666666,
+        "f1": 0.8
+      },
+      "reference_status": "human_reviewed"
+    }
+  },
+  "review_scope": "user bulk-accepted assistant drafts; current CIK associations, not historical continuity; not independent annotation"
+}

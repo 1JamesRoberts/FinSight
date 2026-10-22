@@ -1,406 +1,251 @@
 # FinSight
 
-FinSight is a financial news sentiment intelligence portfolio project for Data
-Scientist, ML Engineer, and AI Engineer internships. Its primary research focus
-is comparing traditional NLP methods, FinBERT, and company-specific sentiment.
-A secondary study will test whether sentiment improves stock prediction over
-market-only baselines, using time-respecting evaluation.
+**Financial news sentiment intelligence, from sentence classification to
+company-specific analysis.**
 
-Browse the [documentation by phase](docs/README.md) and [reports by phase/task](reports/README.md).
+FinSight is a Data Scientist, ML Engineer, and AI Engineer portfolio project.
+It compares traditional NLP baselines with FinBERT, RoBERTa, and DeBERTa, then
+examines how sentiment changes for different companies in the same headline.
+A planned secondary study will test whether sentiment improves stock prediction
+over market-only baselines using chronological evaluation.
 
-**Status: Phases 1 and 2 complete; Phase 3 sentence and Phase 4 native-target evaluations complete.**
-The [final test report](reports/experiments/phase3-final.md) evaluates all 766
-single-target frozen SEntFiN headlines. Mean macro F1: soft voting **90.28%**,
-hard voting **90.03%**, DeBERTa Base **89.32%**, RoBERTa Base **88.68%** and
-fine-tuned FinBERT **88.28%**. Paired ensemble-minus-DeBERTa intervals span zero;
-the observed ensemble lead is inconclusive. Locked calibration lowers held-out
-NLL for all three transformers. PhraseBank tests remain reserved.
-Phase 4 includes the [company target registry](docs/phase-04-target-sentiment/data/company-targets.md);
-the [development coverage audit](reports/company-coverage.md) finds only
-AAPL 21/0, MSFT 4/2, NVDA 0/0, AMZN 2/1 and Alphabet 0/0 labeled
-train/validation headlines (optional Google grouping adds 1/0). Broader SEntFiN
-target-aware work remains viable; five-company evaluation needs additional labels.
-The [target-input protocol](docs/phase-04-target-sentiment/data/target-sentiment-protocol.md) now fixes native
-target–headline pairs and a matched baseline comparison; 11,547/1,410 private
-train/validation examples pass the tokenizer audit without truncation.
-The [saved headline-only baseline](reports/experiments/target-saved-control.md)
-now has mean validation macro F1 **80.58%** overall, **71.22%** on multi-target
-examples and **50.15%** on mixed-label headlines (three seeds). The earlier
-single-target result reproduces at **88.10%**. These are exploratory validation
-results.
-The [matched TF-IDF Logistic Regression baselines](reports/experiments/target-tfidf-logreg.md)
-now compare headline-only versus separate headline/target features: overall
-validation macro F1 **75.20% / 74.94%**, multi-target **67.37% / 70.67%**,
-and mixed-label **48.13% / 61.84%**. Additive target features help the mixed-label
-subset but reduce single-target F1; they do not model target/text interactions.
-The [matched DeBERTa comparison](reports/experiments/target-deberta.md) is now
-complete: target-pair versus headline-only mean validation macro F1 is
-**88.96% / 81.19%** overall and **91.91% / 51.65%** on mixed-label examples
-(seeds 42/43/44). Initial weights and epoch row orders match per seed. These
-remain development/epoch-selection results; independent target evaluation and
-five-company claims are pending. Raw probability calibration still needs review.
-The [matched backbone comparison](reports/experiments/target-backbones.md) now
-adds six RoBERTa Base and six FinBERT trials on the same target annotations.
-Mean headline-only → target-pair validation macro F1: RoBERTa **80.95% → 89.07%**,
-FinBERT **81.29% → 88.65%**, versus DeBERTa **81.19% → 88.96%**.
-All three benefit mainly on multi-target/mixed-label headlines; RoBERTa's 0.11 pp
-overall lead over DeBERTa is small relative to seed variation, not a confirmed
-winner. All 12 new selected checkpoints are verified privately; all 72 new cohort
-metric sets pass independent checks. See the [run guide](docs/phase-04-target-sentiment/training/target-backbones.md).
-These are reused validation results; the later frozen multi-target evaluation is linked below.
-The [target-error review](reports/experiments/target-error-analysis.md) now checks
-all 18 saved matched trials and reviews 36 private validation cases. All nine
-company-aware runs miss 51 annotations; at least one misses 293. Conditioning
-fixes more mistakes than it introduces in every model/seed, but actor attribution,
-neutral boundaries, comparisons and conflicting cues remain difficult. Eighteen
-selected cases have suspected gold/context ambiguity; this is exploratory review,
-not a corpus error rate or label correction. See the [review guide](docs/phase-04-target-sentiment/analysis/target-error-analysis.md).
-A registry-based mention detector is now available; general NER and a labeled mention benchmark remain pending. MLflow and
-length/batch ablations are deferred.
+[Project status](#project-status) · [Results](#research-results) ·
+[Setup](#setup) · [Usage](#usage) · [Structure](#repository-structure) ·
+[Documentation](#documentation)
 
-A later [exploratory financial DeBERTa Base adaptation](reports/experiments/proprak-deberta-adaptation.md)
-reports **88.15% validation macro F1** across three seeds, versus **88.10%**
-for the existing trained Base. It adds no final-test score or replacement claim.
+## Project status
 
-Earlier development work and comparisons:
-Reviewed PhraseBank, SEntFiN, and original-format FiQA files are available in ignored local storage.
-VADER, TF-IDF Logistic Regression, and Linear SVM have validation comparisons,
-bounded tuning, saved local models, and qualitative error review. See the
-[Phase 2 comparison](reports/experiments/phase2-comparison.md). The frozen final
-test was unscored during these development studies. Phase 3 started with an unchanged pretrained FinBERT
-validation run on the Windows GPU; see [results](reports/experiments/finbert-validation.md)
-and [run instructions](docs/phase-03-transformers/models/finbert.md). The first SEntFiN FinBERT adaptation
-selects epoch 3 with validation macro F1 0.8762; see the
-[fine-tuning report](reports/experiments/finbert-finetuning.md) and
-[training/loading guide](docs/phase-03-transformers/models/finbert-finetuning.md). Four RoBERTa/DeBERTa
-experiments now compare unchanged financial checkpoints with SEntFiN-trained
-base models; see the [transformer comparison](reports/experiments/transformer-comparison.md)
-and [reproduction guide](docs/phase-03-transformers/comparisons/transformer-comparison.md). RoBERTa Base has the
-highest observed validation macro F1 (0.8849) in the initial single-seed setup.
-Financial checkpoints have also been adapted on SEntFiN, and both original base
-models trained separately on PhraseBank; see the
-[follow-up results](reports/experiments/transformer-followup.md) and
-[training guide](docs/phase-03-transformers/comparisons/transformer-followup.md).
-The [all-model cohort report](reports/experiments/all-models-by-cohort.md) brings
-together traditional and transformer variants, class metrics, architecture/size,
-transfer results and missing evaluation coverage.
-A [controlled learning-rate/seed study](reports/experiments/transformer-tuning.md)
-now reports RoBERTa Base macro F1 0.8760 ± 0.0082 and FinBERT 0.8748 ± 0.0023
-across three seeds at their selected rates; no superiority claim or test scoring.
-A [calibration/error review](reports/experiments/transformer-analysis.md) now
-analyzes all six selected-rate runs, with reliability plots, recurring errors and
-39 private qualitative reviews; both models remain overconfident on validation.
-See the [reproduction guide](docs/phase-03-transformers/analysis/transformer-analysis.md).
-The same [DeBERTa Base study](reports/experiments/deberta-tuning.md) now selects
-1e-5 and reports macro F1 0.8810 ± 0.0044 across three seeds; its
-[calibration/error review](reports/experiments/deberta-analysis.md) compares all
-three candidates and reviews 26 private examples, before final-test scoring.
-A [temperature-scaling experiment](reports/experiments/temperature-scaling.md)
-now improves cross-fitted validation NLL, Brier and ECE for all nine selected
-model/seed runs while preserving class predictions. Separate full-validation
-calibrators were saved and used in the completed locked evaluation; these validation
-results remain exploratory. See the [calibration guide](docs/phase-03-transformers/calibration/temperature-scaling.md).
-A [locked final-evaluation protocol](docs/phase-03-transformers/evaluation/final-evaluation.md) fixes the
-766-headline single-target SEntFiN comparison, model/seed/calibrator identities,
-baselines and metrics. Length/batch ablations and MLflow are explicitly deferred.
-The verifier checks hashes without test scoring. The protocol governed the
-completed frozen-test comparison linked above.
-A [soft/democratic voting study](reports/experiments/ensemble-voting.md) reuses
-the calibrated validation outputs: mean macro F1 0.8846/0.8859, versus DeBERTa
-Base 0.8810. Soft voting improves NLL/Brier but has higher ECE than calibrated
-DeBERTa. An additive v2 protocol predeclares both supplementary final comparisons;
-the original primary lock stays unchanged. See [voting rules and guide](docs/phase-03-transformers/ensembles/ensemble-voting.md).
-The [final evaluation runner](docs/phase-03-transformers/evaluation/final-evaluation-runner.md) now supports
-local saved-model inference, receipt-bound execution, atomic per-model resume,
-shared grouped-bootstrap intervals and aggregate-only export. Its implementation
-was verified without final-test scoring before the completed evaluation;
-preparation and execution remain separate commands. Final results and execution lineage
-are linked above; reproduce metrics from saved outputs rather than repeating inference.
-News ingestion, stock prediction, API, and dashboard remain unimplemented.
-See [ROADMAP.md](ROADMAP.md)
-for the phase sequence and acceptance criteria.
+The current implementation covers dataset curation, sentiment experiments,
+frozen sentence/target evaluations, and local company-sentiment inference.
+News ingestion, daily aggregation, stock prediction, API, and dashboard work
+remain ahead in the [roadmap](ROADMAP.md).
+
+| Phase | Verified scope and remaining work | Final report |
+|---|---|---|
+| 0 — Foundation | Python package, locked environment, tests and CI workflow; hosted CI status must be checked separately | [Report](reports/phase-00-foundation/final-report.md) |
+| 1 — Data | Dataset review, quality audits, grouped splits, benchmark freeze and EDA complete within local research scope | [Report](reports/phase-01-data/final-report.md) |
+| 2 — Baselines | VADER, TF-IDF Logistic Regression/Linear SVM, bounded tuning and validation error review complete | [Report](reports/phase-02-baselines/final-report.md) |
+| 3 — Sentence transformers | Locked single-target evaluation complete; MLflow and length/batch ablations deferred | [Report](reports/phase-03-transformers/final-report.md) |
+| 4 — Target sentiment | Target conditioning, organization/issuer resolution and GPU inference verified; independent company-test and per-company evaluation criteria remain open | [Report](reports/phase-04-target-sentiment/final-report.md) |
+
+**How to read this table:** phases are roadmap work areas. Verified scope describes
+completed tasks, not unconditional phase closure. Each final report separates
+results, decisions, limitations and remaining acceptance criteria.
+
+## Research results
+
+### Sentence-level sentiment
+
+The locked Phase 3 evaluation uses **766 single-target SEntFiN headlines**.
+Mean macro F1 across three seeds is **89.32% for DeBERTa Base**, **88.68% for
+RoBERTa Base**, and **88.28% for fine-tuned FinBERT**. Supplementary soft voting
+reaches **90.28%**, but its paired advantage over DeBERTa is inconclusive because
+the 95% interval includes zero. Validation-fitted temperature scaling improves
+held-out negative log likelihood for all three transformers.
+
+[Results and interpretation](reports/phase-03-transformers/final-report.md) ·
+[Full evaluation and provenance](reports/experiments/phase3-final.md)
+
+### Target-specific sentiment
+
+The locked Phase 4 evaluation uses **262 multi-target headlines with 592 native
+target annotations**. It compares matched headline-only and target-aware models:
+
+| Model | Headline-only macro F1 (%) | Target-aware macro F1 (%) | Gain (pp) |
+|---|---:|---:|---:|
+| TF-IDF Logistic Regression | 68.47 | 76.15 | +7.68 |
+| FinBERT | 73.19 | 86.84 | +13.65 |
+| RoBERTa Base | 72.82 | 88.34 | +15.52 |
+| DeBERTa Base | 74.53 | 88.75 | +14.23 |
+
+**How to read this table:** macro F1 equally averages negative, neutral and positive
+class F1 on the same target annotations. Transformer values average seeds 42–44;
+TF-IDF is one fixed pipeline. Gain is the paired difference in percentage points,
+computed before rounding. These are target-level results, separate from the
+sentence cohort above. Native SEntFiN targets include entities other than companies.
+
+RoBERTa's conditioning gain has a paired 95% interval of **[12.16, 19.10] pp**.
+The comparison does not establish a clear RoBERTa/DeBERTa winner. The local
+predictor uses the validation-selected **RoBERTa Base seed 43, epoch 2** checkpoint;
+the three-seed benchmark average is not that checkpoint's individual score.
+The target-format study supports retaining original target/headline pairs.
+
+[Results and limitations](reports/phase-04-target-sentiment/final-report.md) ·
+[Full evaluation](reports/experiments/phase4-target-final.md) ·
+[Target-format study](reports/phase-04-target-sentiment/experiments/target-format-comparison.md)
 
 ## Setup
 
-Install [uv](https://docs.astral.sh/uv/getting-started/installation/) first.
-Python 3.11+ is supported; `.python-version` selects Python 3.12 for local work.
-Run these commands from the repository root:
+Install [uv](https://docs.astral.sh/uv/getting-started/installation/), then run
+from the repository root. Python 3.11+ is supported; `.python-version` selects 3.12.
 
 ```sh
+git clone https://github.com/1JamesRoberts/financial-news-intelligence.git
+cd financial-news-intelligence
 uv python install 3.12
 uv sync --locked
+```
+
+This creates `.venv` with the locked package and development dependencies.
+`uv run` uses that environment without activation. Dataset contents and model
+weights are excluded from Git; cloning does not install research artifacts.
+The default environment supports traditional baselines and offline tests.
+
+Optional environments:
+
+```sh
+# Plotting and notebook kernel
+uv sync --locked --group eda
+
+# PyTorch / Transformers for local model work
+uv sync --locked --extra transformer
+```
+
+For the existing RTX 4070 SUPER environment, use the
+[Windows GPU setup guide](docs/guides/windows-gpu-setup.md). The configured
+Windows launchers use its existing Python environment and do not require `uv`.
+
+### Configuration
+
+Defaults work without `.env`. Copy `.env.example` to the ignored `.env` file
+for local overrides, and pass `--env-file .env` to `uv run` when needed.
+
+- `FINSIGHT_DATA_DIR`: research storage, default `data`; relative paths resolve
+  from the current working directory.
+- `FINSIGHT_LOG_LEVEL`: default `INFO`; also accepts `DEBUG`, `WARNING`, `ERROR`
+  and `CRITICAL`.
+
+Keep credentials and contact details out of committed files.
+See [configuration and architecture](docs/architecture.md).
+
+## Usage
+
+### Inspect the selected sentiment configuration
+
+```sh
+uv run --locked python -m finsight.sentiment.predict --show-config
+```
+
+This verifies public selection metadata without loading weights or scoring data.
+
+### Predict sentiment for explicit targets
+
+On a machine with the saved RoBERTa artifact and transformer dependencies installed:
+
+```sh
+uv run --locked --extra transformer python -m finsight.sentiment.predict --text "Acme profits rose while Beta reported a loss." --target Acme --target Beta --device cpu
+```
+
+Use `--device cuda` on the configured GPU machine. Each target receives a separate
+prediction using **target first, headline second**, with tokenizer-managed special
+tokens. Explicit targets do not require company detection or registry membership.
+Returned probabilities are uncalibrated. Missing weights fail explicitly; the
+command does not download the trained artifact.
+
+[Python API and CLI guide](docs/phase-04-target-sentiment/prediction.md) ·
+[Current GPU launchers](docs/phase-04-target-sentiment/issuer-alias-gpu.md)
+
+### Detect companies and route sentiment
+
+The automatic path uses pretrained BERT organization extraction, conservative
+company-type checks, and optional US-listed issuer/alias linking before target
+sentiment. Organization detection, company classification and issuer identity
+are separate decisions; an unresolved identity is not neutral sentiment.
+Parent-company rollup requires explicit permission through `--allow-parent-rollup`.
+
+Use the [company detection/resolution guide](docs/phase-04-target-sentiment/company-resolution.md)
+and [reviewed-alias GPU commands](docs/phase-04-target-sentiment/issuer-alias-gpu.md)
+for required local assets, policy flags and end-to-end examples.
+
+### Reproduce development experiments
+
+Review the [data rights ledger](docs/datasets.md) and
+[dataset loading guide](docs/phase-01-data/acquisition/dataset-loading.md)
+before acquiring assets. With the reviewed data prepared locally:
+
+```sh
+uv run --locked python -m finsight.sentiment validate-vader
+uv run --locked python -m finsight.sentiment validate-tfidf-logreg
+uv run --locked python -m finsight.sentiment validate-tfidf-svm
+```
+
+These commands use development cohorts. Follow the phase guides for class weights,
+bounded tuning, EDA, transformer training and saved-output verification.
+Completed frozen-test evaluations are documented separately; use saved outputs
+to reproduce metrics rather than rerunning test inference during development.
+
+## Repository structure
+
+```text
+configs/                    # Pinned assets, experiment plans and inference settings
+src/finsight/
+  config.py                 # Typed environment settings
+  data/                     # Acquisition, validation, curation and split integrity
+  sentiment/
+    models/                 # Model loading and prediction
+    training/               # Shared training loops and configurations
+    experiments/            # Reproducible study runners
+    evaluation/             # Metrics, calibration and evaluation contracts
+    artifacts.py            # Checksums and model manifest verification
+  features/                 # Reserved for aggregation/features
+  prediction/               # Reserved for stock prediction
+  pipelines/                # Reserved for orchestration
+  api/                      # Reserved for delivery adapters
+tests/                      # Unit and synthetic integration tests
+scripts/                    # Research helpers and execution scripts
+notebooks/                  # EDA and training walkthroughs
+reports/phase-*/             # Phase indexes, final summaries and task evidence
+reports/experiments/         # Shared experiment aggregates and run reports
+reports/figures/             # Aggregate research figures
+docs/                       # Phase guides, architecture and rights ledger
+data/{raw,interim,processed}/ # Ignored datasets, caches and private artifacts
+models/                     # Ignored local model artifacts
+.github/workflows/ci.yml     # Locked lint, formatting, tests and package build
+frontend/                   # Reserved for the dashboard
+infrastructure/             # Deployment scaffolding
+```
+
+Training and inference remain separate. Research runners reuse shared model,
+training, evaluation and artifact modules. See the
+[sentiment code guide](docs/guides/sentiment-code-guide.md) for an end-to-end walkthrough.
+
+## Verification and CI
+
+```sh
 uv run --locked ruff check .
 uv run --locked ruff format --check .
 uv run --locked pytest
 ```
 
-`uv sync` creates `.venv`, installs FinSight in editable mode, and installs the
-development dependencies from `uv.lock`. No environment activation is required.
-Commit `uv.lock`; use `uv lock` deliberately when changing dependencies, then
-rerun the checks. To apply formatting, run `uv run --locked ruff format .`.
+GitHub Actions runs locked checks and a package build on Ubuntu with Python
+3.11/3.12 and Windows with Python 3.12. CI also installs the optional EDA group
+and uses synthetic data; it requires no dataset or model downloads.
+Check hosted workflow results separately from local verification.
 
-For the optional PyTorch/Transformers environment on the RTX 4070 SUPER research
-computer, see [Windows GPU setup and data integrity checks](docs/guides/windows-gpu-setup.md).
-The runtime is optional; baseline installation and CI do not download it.
+The latest local verification has **813 passing tests** and passing full Ruff
+lint and formatting checks. Notebook execution outputs are cleared before commit
+to keep local dataset contents out of Git. Hosted CI must still be verified separately.
 
-## Configuration
+## Data and evaluation boundaries
 
-Defaults work without a `.env` file. For local overrides:
+- PhraseBank, SEntFiN and the selected FiQA release have documented roles and
+  local research-use reviews. Source text and weights are not redistributed here;
+  consult [dataset/model terms](docs/datasets.md) before acquiring or sharing assets.
+- FinBERT was trained on Financial PhraseBank, so its PhraseBank results cannot
+  establish independent generalization. Complete pretraining exposure is unknown.
+- Training and tuning exclude frozen tests. The evaluated Phase 3 and Phase 4
+  SEntFiN cohorts are consumed; PhraseBank tests remain reserved. Phase 4 v2
+  excludes a reviewed overlap group while preserving the original freeze.
+- SEntFiN company coverage is uneven and does not establish performance for the
+  five planned MVP stocks. Mention/linking reviews are small development studies,
+  separate from the frozen sentiment benchmark.
+- Stock prediction and any claim of trading value remain future research.
 
-```sh
-cp .env.example .env
-uv run --locked --env-file .env python -c 'from finsight.config import Settings; print(Settings.from_env())'
-```
+## Documentation
 
-`FINSIGHT_DATA_DIR` defaults to `data` and is relative to the current working
-directory unless absolute. `FINSIGHT_LOG_LEVEL` defaults to `INFO`; allowed values
-are `DEBUG`, `INFO`, `WARNING`, `ERROR`, and `CRITICAL` (case-insensitive).
-`Settings.from_env()` reads the environment only when called; it does not load
-`.env` automatically, create directories, or configure logging. An explicit
-mapping can be supplied for tests. No API credentials are needed yet.
-
-Keep secrets in the ignored `.env` file or deployment environment. Add only
-redacted variable examples when a later phase introduces a provider.
-
-## Structure
-
-```text
-.github/workflows/ci.yml   # Formatting, lint, tests, and package build
-configs/                  # Asset identities and provisional split policy
-src/finsight/
-  config.py               # Typed environment settings
-  data/                   # Reviewed acquisition, loaders, and integrity checks
-  sentiment/              # Future sentiment research
-  features/               # Future aggregation and features
-  prediction/             # Future downstream prediction study
-  pipelines/              # Future workflow orchestration
-  api/                    # Future delivery adapters
-tests/unit/              # Configuration and dataset behavior tests
-tests/integration/       # Synthetic offline acquisition/loading workflow
-data/{raw,interim,processed}/  # Ignored local research data
- models/                  # Ignored model artifacts
- notebooks/               # Reproducible development-only Phase 1 EDA
- scripts/                 # Future command entry points
- reports/{figures,experiments}/ # Research outputs
- frontend/                # Reserved for Phase 8
- infrastructure/          # Reserved for Phase 9
- docs/                    # Architecture and data-use review checklist
-```
-
-Data preparation and traditional sentiment baselines are implemented; other folders reserve
-later roadmap boundaries. Details and
-tradeoffs are in [docs/architecture.md](docs/architecture.md). Review the
-[dataset/model/API checklist](docs/datasets.md) before acquiring any research
-assets. PhraseBank, SEntFiN, and the selected FiQA copy are reviewed for local noncommercial research; public
-source-text redistribution and model-weight license scope remain unresolved.
-The [evaluation dataset shortlist](docs/phase-01-data/acquisition/evaluation-dataset-shortlist.md) records
-candidate findings. The subsequent [evaluation contract](docs/phase-01-data/benchmark/evaluation-contract.md)
-defines the frozen SEntFiN holdout and its independence/coverage limitations.
-
-## Verification and CI
-
-GitHub Actions runs the same locked checks on Python 3.11 and 3.12 for pushes
-and pull requests, and builds the package with `uv build`. CI uses
-[setup-uv](https://github.com/astral-sh/setup-uv) to install uv and select Python.
-After pushing to GitHub, confirm the workflow results before claiming CI passed.
-Local checks alone cannot verify a hosted Actions run.
-
-Work one roadmap task at a time, add tests for reusable behavior, and update
-checkboxes only after verification. Keep the final test set separate from
-training and tuning; record dataset provenance and model versions; compare
-against baselines; prevent look-ahead bias. Negative research results are valid.
-
-## Local research datasets
-
-```sh
-uv run --locked python -m finsight.data acquire
-uv run --locked python -m finsight.data validate
-uv run --locked python -m finsight.data analyze-labels
-uv run --locked python -m finsight.data analyze-lengths
-uv run --locked python -m finsight.data review-annotations
-uv run --locked python -m finsight.data prepare-splits
-uv run --locked python -m finsight.data freeze-benchmark
-uv run --locked --group eda python -m finsight.data eda
-```
-
-The first command acquires reviewed pinned files, verifies checksums, and reuses a
-valid cache. The second validates schemas and writes an ignored aggregate integrity
-report. See [loading instructions and findings](docs/phase-01-data/acquisition/dataset-loading.md),
-[PhraseBank terms](docs/phase-01-data/acquisition/phrasebank-asset-review.md), and
-[SEntFiN terms](docs/phase-01-data/acquisition/sentfin-asset-review.md), and
-[FiQA release and terms](docs/phase-01-data/acquisition/fiqa-asset-review.md).
-FiQA training annotations retain continuous scores; its original test inputs
-have no gold scores and cannot be used for supervised evaluation. No dataset contents are committed;
-CI uses synthetic examples and requires no dataset downloads. The curated
-SEntFiN final holdout is frozen and stays withheld from Phase 2 development.
-
-The [label analysis report](reports/label-analysis.md) compares source-class
-frequencies and FiQA training-score distributions. Its machine-readable output
-is ignored local data; its checked-in Markdown contains aggregate statistics only.
-No FiQA class thresholds are assigned by label analysis.
-
-The [text-length report](reports/length-analysis.md) summarizes characters and
-whitespace-separated words, with label/source-type comparisons. These counts
-are descriptive and do not determine model token limits or filtering rules.
-
-The [duplicate/annotation report](reports/annotation-review.md) records exact and
-lexical near-duplicate candidates. [Qualitative findings](docs/phase-01-data/quality/annotation-review-findings.md)
-document conflicts, target-coverage differences, and FiQA snippet issues. Detailed
-source examples remain in ignored local storage; review itself changes no rows.
-
-The [split policy](docs/phase-01-data/benchmark/split-policy.md) applies reversible filtering and groups
-known exact/near duplicates before seeded provisional partitioning. The
-[split preparation report](reports/split-preparation.md) records retained counts
-and class distributions. Raw data stays intact; detailed processed records and
-lineage are ignored. Test candidates remain separate from training and tuning,
-and the subsequent benchmark release freezes the curated SEntFiN membership.
-
-The [frozen benchmark report](reports/frozen-benchmark.md) describes 1,029 headlines
-and 1,360 native target labels. The [freeze receipt](configs/benchmark-freeze.json)
-pins exact local artifacts without publishing dataset text. Two malformed-target
-groups remain excluded. Use the verified development loader documented in the
-[evaluation contract](docs/phase-01-data/benchmark/evaluation-contract.md); changing the official split
-after freezing fails. This is held out from FinSight development with no known
-accessible-corpus overlap. Complete FinBERT pretraining exposure remains unknown,
-and this corpus does not establish performance on all five MVP companies.
-
-## Phase 1 dataset cards and EDA
-
-Read the [PhraseBank](docs/phase-01-data/dataset-cards/phrasebank.md),
-[SEntFiN](docs/phase-01-data/dataset-cards/sentfin.md), and [FiQA copy](docs/phase-01-data/dataset-cards/fiqa.md)
-cards for schemas, provenance, rights, roles, partitions, and limitations.
-The [Phase 1 findings](docs/phase-01-data/eda/phase1-findings.md) record completion evidence;
-the [EDA report](reports/phase1-eda.md) contains five reviewed aggregate figures.
-The figures use only the 14,963 retained train/validation texts.
-
-Install optional plotting/notebook tools with `uv sync --locked --group eda`.
-Regenerate the report with `uv run --locked --group eda python -m finsight.data eda`.
-Open `notebooks/01_dataset_eda.ipynb` in a Jupyter-compatible editor using the
-project `.venv/bin/python` kernel. CLI plotting does not need a notebook server.
-Use `uv run --locked --group eda pytest` to include the synthetic plotting check.
-Source datasets and notebook outputs stay uncommitted; the five aggregate PNGs,
-summary JSON, and Markdown report are safe research outputs. Matplotlib and
-ipykernel belong only to the optional EDA group; VADER is a runtime dependency.
-Phase 2 includes VADER, TF-IDF + Logistic Regression, and TF-IDF + Linear SVM.
-
-## VADER baseline
-
-```sh
-uv sync --locked
-uv run --locked python -m finsight.sentiment validate-vader
-```
-
-VADER uses the unchanged packaged lexicon and rules, with compound thresholds
-<= -0.05 negative, >= 0.05 positive, and neutral between. It needs no training
-or inference-time network access. The validation check uses PhraseBank and
-single-target SEntFiN development cohorts with a training-majority control;
-the frozen benchmark is never scored. Read [how VADER works](docs/phase-02-baselines/models/vader.md) and
-the [validation results](reports/experiments/vader-validation.md). Aggregate JSON
-records configurations, scoring-resource hashes, split identity, code provenance,
-and timing; per-record predictions stay ignored. VADER's proportions are not
-calibrated class probabilities, and its predictions are not company-specific.
-
-## TF-IDF + Logistic Regression
-
-```sh
-uv sync --locked
-uv run --locked python -m finsight.sentiment validate-tfidf-logreg
-```
-
-The pipeline learns word/phrase weights and sentiment coefficients from training
-only, then scores validation with separate PhraseBank and single-target SEntFiN
-models. Read [how it works and setup](docs/phase-02-baselines/models/tfidf-logreg.md) and the
-[comparison report](reports/experiments/tfidf-logreg-validation.md). Validation
-macro F1 is 0.6696 / 0.8165, compared with VADER's 0.4895 / 0.4787 on the same
-rows. Fitted models and per-record outputs remain ignored local artifacts.
-This initial configuration was untuned. Subsequent bounded tuning selected the
-SEntFiN balanced C=1 pipeline, now included in the locked final evaluation with
-native probability diagnostics. The reserved PhraseBank test remains withheld.
-
-For the subsequent PhraseBank-only class-weight experiment:
-
-```sh
-uv run --locked python -m finsight.sentiment validate-tfidf-logreg \
-  --cohort phrasebank \
-  --config configs/tfidf-logreg-balanced.json \
-  --report-path reports/experiments/tfidf-logreg-phrasebank-balanced.md
-```
-
-[The comparison and input-flow guide](docs/phase-02-baselines/models/phrasebank-class-weights.md) explains
-how command arguments select settings and how prepared texts/labels enter the
-pipeline. Balanced weighting improves validation macro F1 from 0.6696 to 0.7378;
-the unweighted preset remains the default, and final-test data stays withheld.
-
-## TF-IDF + Linear SVM
-
-```sh
-uv run --locked python -m finsight.sentiment validate-tfidf-svm
-uv run --locked python -m finsight.sentiment validate-tfidf-svm \
-  --config configs/tfidf-svm-balanced.json \
-  --report-path reports/experiments/tfidf-svm-balanced-validation.md
-```
-
-These commands train four separate models: unweighted/balanced for PhraseBank and
-single-target SEntFiN. Validation macro F1 is 0.7344 / 0.7444 on PhraseBank and
-0.8072 / 0.8075 on SEntFiN. Read [how SVM works and setup](docs/phase-02-baselines/models/tfidf-svm.md),
-the [unweighted report](reports/experiments/tfidf-svm-validation.md), and the
-[balanced report](reports/experiments/tfidf-svm-balanced-validation.md).
-Decision scores are signed margins, not probabilities. TF-IDF fits on training
-only; fitted artifacts stay ignored and the frozen final test remains withheld.
-
-## Phase 2 tuning and error review
-
-```sh
-uv run --locked python -m finsight.sentiment.tuning
-uv run --locked python -m finsight.sentiment.error_analysis
-```
-
-The first command compares 24 separately fitted pipelines using the declared
-C/class-weight grid; it preserves earlier public baseline reports. The second
-verifies saved validation predictions and prepares a deterministic local error
-packet without fitting or scoring. Review notes stay local; qualitative judgments
-require inspecting the texts. Read the [tuning guide](docs/phase-02-baselines/experiments/tfidf-tuning.md),
-[qualitative error review](reports/experiments/phase2-error-analysis.md), and
-[consolidated Phase 2 report](reports/experiments/phase2-comparison.md).
-
-## Learn the training flow
-
-[Simple transformer training notebook](notebooks/02_simple_transformer_training.ipynb)
-shows dataset loading, tokenization, a direct PyTorch training loop, validation,
-saving/reloading and prediction in order. It defaults to RoBERTa; switch
-`MODEL_KEY` for DeBERTa or FinBERT. It uses existing reviewed local data/checkpoints,
-needs the transformer extra and EDA kernel, and leaves final tests reserved.
-
-The [sentiment code guide](docs/guides/sentiment-code-guide.md) maps the organized
-modules and walks through model loading, training, validation and artifact saving.
-
-The [v2 target evaluation contract](docs/phase-04-target-sentiment/evaluation/target-final-evaluation-v2.md) locks the
-validation-selected RoBERTa candidate, all three backbones and seeds, and the
-reserved multi-target comparison. Contract verification performs no test scoring.
-
-The [target evaluation runner guide](docs/phase-04-target-sentiment/evaluation/target-evaluation-runner.md) explains
-metadata verification, development smoke testing, receipt preparation, verified
-resume and aggregate export. All 21 fixed variants completed on 262 multi-target
-headlines / 592 annotations. RoBERTa target conditioning reached 88.34% macro F1
-versus 72.82% for its matched headline-only control (+15.52 pp; paired 95% interval
-[12.16, 19.10]). The validation-selected candidate remains unchanged. See the
-[final test report](reports/experiments/phase4-target-final.md) and
-[scope and interpretation](reports/phase-04-target-sentiment/README.md#final-test-results).
-One previously evaluated near-duplicate group was excluded by the reviewed v2
-protocol; the original freeze and Phase 3 results remain unchanged. The evaluated
-cohort is now consumed. Both machines passed 583 tests and Ruff checks.
-
-Use the [reusable target-aware RoBERTa predictor](docs/phase-04-target-sentiment/prediction.md)
-for explicit targets. It loads the saved model once, supports batching, and returns
-raw probabilities plus artifact/config versions. The deployment checkpoint is
-seed 43, selected from saved validation results; the completed benchmark remains
-a three-seed comparison. The optional company registry wrapper abstains on
-ambiguous/unsupported names. The explicit-target path performs no entity
-extraction; registry-based detection is available separately. HTTP serving remains
-outside this interface.
-
-The [company mention baseline](docs/phase-04-target-sentiment/company-mentions.md)
-now detects reviewed names/tickers/aliases and flags ambiguous candidates. Use
-`--detect-companies` to predict one sentiment per accepted company automatically,
-or run `python -m finsight.sentiment.mentions` for detection without model weights.
-Unknown companies still require explicit targets; broader NER remains separate.
+- [Final reports for Phases 0–4](reports/README.md): outcomes, decisions and open work.
+- [Guides by phase](docs/README.md): data, models, training and evaluation methods.
+- [Roadmap](ROADMAP.md): task sequence and acceptance criteria.
+- [Architecture](docs/architecture.md): module boundaries and design choices.
+- [Dataset/model rights ledger](docs/datasets.md): provenance and usage decisions.
+- [Simple transformer training notebook](notebooks/02_simple_transformer_training.ipynb): loading, tokenization, training, saving and prediction.

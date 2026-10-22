@@ -1,0 +1,384 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-22",
+  "purpose": "Phase 4 report organization; historical receipts retain original path strings.",
+  "files": [
+    {
+      "old_path": "reports/phase-04-target-sentiment/company-mention-coverage.json",
+      "new_path": "reports/phase-04-target-sentiment/experiments/company-mention-coverage.json",
+      "before_sha256": "f51013fab045cb794ebe5d60f244afad86cb567c150d2cccef6f053e02a1ae39",
+      "after_sha256": "f51013fab045cb794ebe5d60f244afad86cb567c150d2cccef6f053e02a1ae39"
+    },
+    {
+      "old_path": "reports/phase-04-target-sentiment/company-mention-coverage.md",
+      "new_path": "reports/phase-04-target-sentiment/experiments/company-mention-coverage.md",
+      "before_sha256": "1721888a4854878da039133295983b6830ca4c0acde745fa685fc59d703501b6",
+      "after_sha256": "1721888a4854878da039133295983b6830ca4c0acde745fa685fc59d703501b6"
+    },
+    {
+      "old_path": "reports/phase-04-target-sentiment/company-mention-routing-gpu-verification.json",
+      "new_path": "reports/phase-04-target-sentiment/verification/company-mention-routing-gpu-verification.json",
+      "before_sha256": "4e08f6b0212bf561ee3a708177b5a2e15ab76d63f14024c0abcded7c5d55bbd1",
+      "after_sha256": "4e08f6b0212bf561ee3a708177b5a2e15ab76d63f14024c0abcded7c5d55bbd1"
+    },
+    {
+      "old_path": "reports/phase-04-target-sentiment/company-mention-routing-gpu.json",
+      "new_path": "reports/phase-04-target-sentiment/verification/company-mention-routing-gpu.json",
+      "before_sha256": "aa711f15a72331344f97d09ba4e0db3ae85fe1cf7316bfa3a854334543b564ad",
+      "after_sha256": "aa711f15a72331344f97d09ba4e0db3ae85fe1cf7316bfa3a854334543b564ad"
+    },
+    {
+      "old_path": "reports/phase-04-target-sentiment/company-mention-routing-gpu.md",
+      "new_path": "reports/phase-04-target-sentiment/verification/company-mention-routing-gpu.md",
+      "before_sha256": "5b4cc9dda0a31ce6aaa78725d5b3853cdbab4a4a85816161abfcaee1f201da53",
+      "after_sha256": "1341442fedd4bc20dfd96cf8eefa8d87aeec3231d2d3aa100a31df56396e569e"
+    },
+    {
+      "old_path": "reports/phase-04-target-sentiment/company-mention-routing-smoke.json",
+      "new_path": "reports/phase-04-target-sentiment/verification/company-mention-routing-smoke.json",
+      "before_sha256": "38e2ade2c7e755cd5713ffc2b34db1b038f5f5da00334af41083ece041045db3",
+      "after_sha256": "38e2ade2c7e755cd5713ffc2b34db1b038f5f5da00334af41083ece041045db3"
+    },
+    {
+      "old_path": "reports/phase-04-target-sentiment/company-mention-routing-verification.json",
+      "new_path": "reports/phase-04-target-sentiment/verification/company-mention-routing-verification.json",
+      "before_sha256": "1a8134f4b78053166ec6c69020cf8ed24aecfaf6b9abf09b904dbcb4013983e0",
+      "after_sha256": "1a8134f4b78053166ec6c69020cf8ed24aecfaf6b9abf09b904dbcb4013983e0"
+    },
+    {
+      "old_path": "reports/phase-04-target-sentiment/company-mention-routing.md",
+      "new_path": "reports/phase-04-target-sentiment/experiments/company-mention-routing.md",
+      "before_sha256": "3f8a4c7df9d80fdfc36d96ee4a1185e0a0c91c8c09e89886b82938b053eeb062",
+      "after_sha256": "cd43fa854a8311f66c9dac29b69349db68d50f8b57e457531c9bde751ed0dcab"
+    },
+    {
+      "old_path": "reports/phase-04-target-sentiment/company-mentions.md",
+      "new_path": "reports/phase-04-target-sentiment/experiments/company-mentions.md",
+      "before_sha256": "de62d67dd92dda5a563e1e05509d5635639d3e8129982927c8f57bbd66081b41",
+      "after_sha256": "9ef96442a2604bbacc617b4f860dbb4b63451b024459440781dc3cfbae34280d"
+    },
+    {
+      "old_path": "reports/phase-04-target-sentiment/issuer-alias-gpu-verification.json",
+      "new_path": "reports/phase-04-target-sentiment/verification/issuer-alias-gpu-verification.json",
+      "before_sha256": "5ab93ef7d90ae2040f965bd5f085709ca401cb735bbc342461a26089fda4635a",
+      "after_sha256": "5ab93ef7d90ae2040f965bd5f085709ca401cb735bbc342461a26089fda4635a"
+    },
+    {
+      "old_path": "reports/phase-04-target-sentiment/issuer-alias-gpu.json",
+      "new_path": "reports/phase-04-target-sentiment/verification/issuer-alias-gpu.json",
+      "before_sha256": "d080d77744e79e8d965fe9f454fea4a77a35b1178ca0ba0a805db8935f06b34f",
+      "after_sha256": "d080d77744e79e8d965fe9f454fea4a77a35b1178ca0ba0a805db8935f06b34f"
+    },
+    {
+      "old_path": "reports/phase-04-target-sentiment/issuer-alias-gpu.md",
+      "new_path": "reports/phase-04-target-sentiment/verification/issuer-alias-gpu.md",
+      "before_sha256": "a34258d2e1e38aa80b4eb90cb2272900ff3f08ee75905839839e47e152333d32",
+      "after_sha256": "b29260a960de5097d621e9c4bae0265b0be7a7c5806f5589e56cb5b0b1c8ff9f"
+    },
+    {
+      "old_path": "reports/phase-04-target-sentiment/issuer-alias-review-reviewed-verification.json",
+      "new_path": "reports/phase-04-target-sentiment/verification/issuer-alias-review-reviewed-verification.json",
+      "before_sha256": "787f78590ec83fce96fa877951cfebb49ac794a2b4fe5054a041d8540a906f5b",
+      "after_sha256": "787f78590ec83fce96fa877951cfebb49ac794a2b4fe5054a041d8540a906f5b"
+    },
+    {
+      "old_path": "reports/phase-04-target-sentiment/issuer-alias-review-reviewed.json",
+      "new_path": "reports/phase-04-target-sentiment/evaluation/issuer-alias-review-reviewed.json",
+      "before_sha256": "0393d79f5c5e02171927f70eda253696003a7e0ab8e25677db4506fd1395d689",
+      "after_sha256": "0393d79f5c5e02171927f70eda253696003a7e0ab8e25677db4506fd1395d689"
+    },
+    {
+      "old_path": "reports/phase-04-target-sentiment/issuer-alias-review-reviewed.md",
+      "new_path": "reports/phase-04-target-sentiment/evaluation/issuer-alias-review-reviewed.md",
+      "before_sha256": "d90d7ba896ca9690c877150988db3846c8b8deb7e3ddc838a2c388809b263eee",
+      "after_sha256": "8fa627331a4d216661b3b92b32de855fcc7afbf4ce83e70f367347fbfaf055b4"
+    },
+    {
+      "old_path": "reports/phase-04-target-sentiment/issuer-alias-review-verification.json",
+      "new_path": "reports/phase-04-target-sentiment/verification/issuer-alias-review-verification.json",
+      "before_sha256": "97ed771d46f5cd7e7c8d4aedb92869aa8072f5882394f62a059653f17023a83e",
+      "after_sha256": "97ed771d46f5cd7e7c8d4aedb92869aa8072f5882394f62a059653f17023a83e"
+    },
+    {
+      "old_path": "reports/phase-04-target-sentiment/issuer-alias-review.json",
+      "new_path": "reports/phase-04-target-sentiment/evaluation/issuer-alias-review.json",
+      "before_sha256": "20b2d79657241e693db8d38d4cdbf097870e96dc83b4ef0d9d35d031dc530349",
+      "after_sha256": "20b2d79657241e693db8d38d4cdbf097870e96dc83b4ef0d9d35d031dc530349"
+    },
+    {
+      "old_path": "reports/phase-04-target-sentiment/issuer-alias-review.md",
+      "new_path": "reports/phase-04-target-sentiment/evaluation/issuer-alias-review.md",
+      "before_sha256": "aefaab7fb944debdcf11774ef63ef6b3ff8ed8f064f61890ef0b829b57aa41ed",
+      "after_sha256": "673d264c6dd0f45bc161a6bb8e6ac1ce09a61a206132ba8db609ebd99441f5fd"
+    },
+    {
+      "old_path": "reports/phase-04-target-sentiment/organization-annotation-review-status.json",
+      "new_path": "reports/phase-04-target-sentiment/verification/organization-annotation-review-status.json",
+      "before_sha256": "cda412211429cfb928420d507ddc07b10191149e717e2234f2d7ed9b0b7cd823",
+      "after_sha256": "cda412211429cfb928420d507ddc07b10191149e717e2234f2d7ed9b0b7cd823"
+    },
+    {
+      "old_path": "reports/phase-04-target-sentiment/organization-benchmark-provisional.json",
+      "new_path": "reports/phase-04-target-sentiment/evaluation/organization-benchmark-provisional.json",
+      "before_sha256": "a7c85bf2053751a1b8e98eaa921b431671ecdf16e994cebb2865f36e3827df03",
+      "after_sha256": "a7c85bf2053751a1b8e98eaa921b431671ecdf16e994cebb2865f36e3827df03"
+    },
+    {
+      "old_path": "reports/phase-04-target-sentiment/organization-benchmark-reviewed-verification.json",
+      "new_path": "reports/phase-04-target-sentiment/verification/organization-benchmark-reviewed-verification.json",
+      "before_sha256": "9920a6983b15deddb6e541b09ab5f61c505ed02c45849a307e6fa60dbfe66c3a",
+      "after_sha256": "9920a6983b15deddb6e541b09ab5f61c505ed02c45849a307e6fa60dbfe66c3a"
+    },
+    {
+      "old_path": "reports/phase-04-target-sentiment/organization-benchmark-reviewed.json",
+      "new_path": "reports/phase-04-target-sentiment/evaluation/organization-benchmark-reviewed.json",
+      "before_sha256": "ae4f46f90c1d812cad2de719caf8b44e1604be6933e82c2e05d4b1be17e891ff",
+      "after_sha256": "ae4f46f90c1d812cad2de719caf8b44e1604be6933e82c2e05d4b1be17e891ff"
+    },
+    {
+      "old_path": "reports/phase-04-target-sentiment/organization-benchmark-reviewed.md",
+      "new_path": "reports/phase-04-target-sentiment/evaluation/organization-benchmark-reviewed.md",
+      "before_sha256": "4d99a2380d1eb948326d88e73411fdfb5b554b45637a56363e9823d86e2e1dc0",
+      "after_sha256": "0809455c6e5fe0fc285458b038ec0286ab1f8bc281bcfb9627ebd1e6025b2838"
+    },
+    {
+      "old_path": "reports/phase-04-target-sentiment/organization-benchmark-verification.json",
+      "new_path": "reports/phase-04-target-sentiment/verification/organization-benchmark-verification.json",
+      "before_sha256": "bbc884d5c8ffa14fcd77a55e96e07813bf13d9dd74c5d6347b3bb081271f75cb",
+      "after_sha256": "bbc884d5c8ffa14fcd77a55e96e07813bf13d9dd74c5d6347b3bb081271f75cb"
+    },
+    {
+      "old_path": "reports/phase-04-target-sentiment/organization-benchmark.md",
+      "new_path": "reports/phase-04-target-sentiment/evaluation/organization-benchmark.md",
+      "before_sha256": "badbf51dc1588bdb1c34d337532459b54de9d8fc7f2bdb5d2b699971f2950715",
+      "after_sha256": "1163051d9f78f6f0b90c37a59569f9d9ee5c16798f50377d09a8bac9d60c1eef"
+    },
+    {
+      "old_path": "reports/phase-04-target-sentiment/organization-detection-verification.json",
+      "new_path": "reports/phase-04-target-sentiment/verification/organization-detection-verification.json",
+      "before_sha256": "698dd905fe0ae8f1777f0f885f613cc305332bb65617205ec3c7e1ac90e1127f",
+      "after_sha256": "698dd905fe0ae8f1777f0f885f613cc305332bb65617205ec3c7e1ac90e1127f"
+    },
+    {
+      "old_path": "reports/phase-04-target-sentiment/organization-detection.json",
+      "new_path": "reports/phase-04-target-sentiment/experiments/organization-detection.json",
+      "before_sha256": "d0c280e1a31c0ef97f128d40c67e8cd8a6984208989a1062eefb7903fac3d98f",
+      "after_sha256": "d0c280e1a31c0ef97f128d40c67e8cd8a6984208989a1062eefb7903fac3d98f"
+    },
+    {
+      "old_path": "reports/phase-04-target-sentiment/organization-detection.md",
+      "new_path": "reports/phase-04-target-sentiment/experiments/organization-detection.md",
+      "before_sha256": "9e31ee93f3c15c5390d529bd2eb820156f131268c9928af0b4cfe3b4f4aebff9",
+      "after_sha256": "ba313e4c71ecd2ce6ded5f6b7ce2920401c9de55d11c84516cb1c2c9efc20259"
+    },
+    {
+      "old_path": "reports/phase-04-target-sentiment/organization-resolution-smoke.json",
+      "new_path": "reports/phase-04-target-sentiment/verification/organization-resolution-smoke.json",
+      "before_sha256": "5d3c7b370a5c1f6a6d7a23ffecadb67aa4f6ffeca143b9bdf167f2e4f2572307",
+      "after_sha256": "5d3c7b370a5c1f6a6d7a23ffecadb67aa4f6ffeca143b9bdf167f2e4f2572307"
+    },
+    {
+      "old_path": "reports/phase-04-target-sentiment/organization-resolution-verification.json",
+      "new_path": "reports/phase-04-target-sentiment/verification/organization-resolution-verification.json",
+      "before_sha256": "24d9df746f150c16ccc1fa7b41cdc47a53f1756e2487bae78f3d3826acd68f4f",
+      "after_sha256": "24d9df746f150c16ccc1fa7b41cdc47a53f1756e2487bae78f3d3826acd68f4f"
+    },
+    {
+      "old_path": "reports/phase-04-target-sentiment/organization-resolution.json",
+      "new_path": "reports/phase-04-target-sentiment/experiments/organization-resolution.json",
+      "before_sha256": "b8744c97571d6c0d8552bf00c012c74f37ca98b2f5e4f78cfbe60b1e4684be1f",
+      "after_sha256": "b8744c97571d6c0d8552bf00c012c74f37ca98b2f5e4f78cfbe60b1e4684be1f"
+    },
+    {
+      "old_path": "reports/phase-04-target-sentiment/organization-resolution.md",
+      "new_path": "reports/phase-04-target-sentiment/experiments/organization-resolution.md",
+      "before_sha256": "90fd5e63ce49df6fb6dd544abf48acaa007e367d8cce8af61672ee093be77f5a",
+      "after_sha256": "c60b2e9531458ce9cb49b9fbc743a0e1c3be324ad26e546b70aa1e5ec40b7f52"
+    },
+    {
+      "old_path": "reports/phase-04-target-sentiment/organization-sentiment-smoke.json",
+      "new_path": "reports/phase-04-target-sentiment/verification/organization-sentiment-smoke.json",
+      "before_sha256": "6f76ea3482d77c6f70a704ae1447c6c0f4f4e061bb361803bd464e448a71e3a3",
+      "after_sha256": "6f76ea3482d77c6f70a704ae1447c6c0f4f4e061bb361803bd464e448a71e3a3"
+    },
+    {
+      "old_path": "reports/phase-04-target-sentiment/organization-word-aware-smoke.json",
+      "new_path": "reports/phase-04-target-sentiment/verification/organization-word-aware-smoke.json",
+      "before_sha256": "61ab46bf78e0b18ce5758945788b56915ec5a997a81df917716c47f3c347a5af",
+      "after_sha256": "61ab46bf78e0b18ce5758945788b56915ec5a997a81df917716c47f3c347a5af"
+    },
+    {
+      "old_path": "reports/phase-04-target-sentiment/overlap-review.md",
+      "new_path": "reports/phase-04-target-sentiment/evaluation/overlap-review.md",
+      "before_sha256": "fa1106de6645adc3bd6ede8fa2f4027f68a255755f9ac705093c16740cf7ce54",
+      "after_sha256": "1b1b8fbb4a174b6c82d642579fea08009e51fc74c116c4698420e0e86a6078e6"
+    },
+    {
+      "old_path": "reports/phase-04-target-sentiment/target-format-comparison.md",
+      "new_path": "reports/phase-04-target-sentiment/experiments/target-format-comparison.md",
+      "before_sha256": "0c837d80318d684ebd0c614183f374419e756b416be073414c3451a10ef04b85",
+      "after_sha256": "3e81d681a081e688b913d8dcce5291056bb69e1122a77ca151fa2714762e9e3d"
+    },
+    {
+      "old_path": "reports/phase-04-target-sentiment/target-format-training.md",
+      "new_path": "reports/phase-04-target-sentiment/experiments/target-format-training.md",
+      "before_sha256": "114cefc1ee03aeff2814994032d236f4dc9a226914f64907599bf4c2d7ad0b3f",
+      "after_sha256": "e4647c0bf2d8d6c8f2229a069c25cc075a7be9976ec9cead7c6e5ab83d8b3829"
+    },
+    {
+      "old_path": "reports/phase-04-target-sentiment/target-name-stress.md",
+      "new_path": "reports/phase-04-target-sentiment/experiments/target-name-stress.md",
+      "before_sha256": "7db9a8c86f1bd4e37406cd8e62c74e5d860faeb48bb7dfa07404e7499f30b218",
+      "after_sha256": "9f5a5984644631b5063e08ccb94e3cd92417359d71b2add8db2c46aa39317ce5"
+    },
+    {
+      "old_path": "reports/phase-04-target-sentiment/target-prediction.md",
+      "new_path": "reports/phase-04-target-sentiment/evaluation/target-prediction.md",
+      "before_sha256": "5a76a5f4d66510ad1f461276730a9ca1bfb217d89e22a4e818292a7775b1072a",
+      "after_sha256": "dde53f59ee223bce126cfcc05e175c97b9734cfa5a76bb7a6760ef5561a5eff0"
+    },
+    {
+      "old_path": "reports/phase-04-target-sentiment/target-span-audit.json",
+      "new_path": "reports/phase-04-target-sentiment/evaluation/target-span-audit.json",
+      "before_sha256": "f853d518f2dc863ef38ff34c6fa55401932e7f7fa19dd2def166d824d74d1963",
+      "after_sha256": "f853d518f2dc863ef38ff34c6fa55401932e7f7fa19dd2def166d824d74d1963"
+    },
+    {
+      "old_path": "reports/phase-04-target-sentiment/target-span-audit.md",
+      "new_path": "reports/phase-04-target-sentiment/evaluation/target-span-audit.md",
+      "before_sha256": "df95734362ea4b9b55979168e5a917360c9ec6dc4c1310110d7f996e8a9f7585",
+      "after_sha256": "261028b72b06bce83de63bf8c2dfe99a5fb3c57b71f55f137b3310881a6c672f"
+    },
+    {
+      "old_path": "reports/phase-04-target-sentiment/target-tokenizer-audit.json",
+      "new_path": "reports/phase-04-target-sentiment/evaluation/target-tokenizer-audit.json",
+      "before_sha256": "f0e3ea2ca047240d7f32dfdc2bfa625a6d4464968bf0462e7034160224f97a56",
+      "after_sha256": "f0e3ea2ca047240d7f32dfdc2bfa625a6d4464968bf0462e7034160224f97a56"
+    },
+    {
+      "old_path": "reports/phase-04-target-sentiment/target-tokenizer-audit.md",
+      "new_path": "reports/phase-04-target-sentiment/evaluation/target-tokenizer-audit.md",
+      "before_sha256": "14293de981d48be5c48e4d4daee7f2175b0f61d020f9e94be3b0be1bde283948",
+      "after_sha256": "0b959d756abefd8a646ce53f3ad5cbcc0a7a70f788ce6e8b3a97b08f0ab50e5e"
+    },
+    {
+      "old_path": "reports/phase-04-target-sentiment/us-company-review-reviewed-verification.json",
+      "new_path": "reports/phase-04-target-sentiment/verification/us-company-review-reviewed-verification.json",
+      "before_sha256": "94aabaaf7bb3a13e95eb99074b74d699f9fe6233772ab924920e5e62d0d73f1e",
+      "after_sha256": "94aabaaf7bb3a13e95eb99074b74d699f9fe6233772ab924920e5e62d0d73f1e"
+    },
+    {
+      "old_path": "reports/phase-04-target-sentiment/us-company-review-reviewed.json",
+      "new_path": "reports/phase-04-target-sentiment/evaluation/us-company-review-reviewed.json",
+      "before_sha256": "fd69dbab9968ef6bc6b9c866c1459819f4e39f54705792e78da364ef987eca2a",
+      "after_sha256": "fd69dbab9968ef6bc6b9c866c1459819f4e39f54705792e78da364ef987eca2a"
+    },
+    {
+      "old_path": "reports/phase-04-target-sentiment/us-company-review-reviewed.md",
+      "new_path": "reports/phase-04-target-sentiment/evaluation/us-company-review-reviewed.md",
+      "before_sha256": "242ccfa254866735596ecabc185399d5a9680a3c4d935c1d49ddbe713f4ad5d5",
+      "after_sha256": "cb69a32679b903e612a047eaf20445579f02237eff77be4970677590572394ed"
+    },
+    {
+      "old_path": "reports/phase-04-target-sentiment/us-company-review-verification.json",
+      "new_path": "reports/phase-04-target-sentiment/verification/us-company-review-verification.json",
+      "before_sha256": "66443e2c56617cb4a2829dce1983f1f9b4cc248ea981df00fde8307b24ccf2ec",
+      "after_sha256": "66443e2c56617cb4a2829dce1983f1f9b4cc248ea981df00fde8307b24ccf2ec"
+    },
+    {
+      "old_path": "reports/phase-04-target-sentiment/us-company-review.json",
+      "new_path": "reports/phase-04-target-sentiment/evaluation/us-company-review.json",
+      "before_sha256": "e8b80047d24685d0a096900d2299c7dfc13bb56880b2ef7d5f116d1f22dcf2fc",
+      "after_sha256": "e8b80047d24685d0a096900d2299c7dfc13bb56880b2ef7d5f116d1f22dcf2fc"
+    },
+    {
+      "old_path": "reports/phase-04-target-sentiment/us-company-review.md",
+      "new_path": "reports/phase-04-target-sentiment/evaluation/us-company-review.md",
+      "before_sha256": "72195f276216d9692f5bec479af2cec47221b325593a10539915431b8e562904",
+      "after_sha256": "938eb8f168ca4943125c4c46a46e7e97c3869be66ef064e63a68f87b0a863e22"
+    },
+    {
+      "old_path": "reports/phase-04-target-sentiment/us-listed-directory-smoke.json",
+      "new_path": "reports/phase-04-target-sentiment/verification/us-listed-directory-smoke.json",
+      "before_sha256": "5fe11dca8483e77909150dcc691c3cea5eec2852dccca439a3ec310f4b7fd322",
+      "after_sha256": "5fe11dca8483e77909150dcc691c3cea5eec2852dccca439a3ec310f4b7fd322"
+    },
+    {
+      "old_path": "reports/phase-04-target-sentiment/us-listed-directory-verification.json",
+      "new_path": "reports/phase-04-target-sentiment/verification/us-listed-directory-verification.json",
+      "before_sha256": "1352894c790ff687615af2a710d1b830b36c6c32b4217b0ba6c3dec51d51239d",
+      "after_sha256": "1352894c790ff687615af2a710d1b830b36c6c32b4217b0ba6c3dec51d51239d"
+    },
+    {
+      "old_path": "reports/phase-04-target-sentiment/us-listed-directory.json",
+      "new_path": "reports/phase-04-target-sentiment/experiments/us-listed-directory.json",
+      "before_sha256": "0f8065a0ab7e6e8a473d912b1386e916a504310cfc3dd90d0eab2d3bcb70e01f",
+      "after_sha256": "0f8065a0ab7e6e8a473d912b1386e916a504310cfc3dd90d0eab2d3bcb70e01f"
+    },
+    {
+      "old_path": "reports/phase-04-target-sentiment/us-listed-directory.md",
+      "new_path": "reports/phase-04-target-sentiment/experiments/us-listed-directory.md",
+      "before_sha256": "1e72c6eabb12d2678cda9212f0d6571388661ade598726d54f5423452c8d316b",
+      "after_sha256": "ad7e8670384ed1768313cdd3b062c23c18119d8016edf4ed9f9961e91fbf0ab2"
+    }
+  ],
+  "frozen_config_sha256_unchanged": {
+    "configs/us-company-review-plan.json": "62e245689c10073f2a0d2d96a1cbba5bad97e9df0cc27913e828a7f610f57dad",
+    "configs/organization-annotation-plan.json": "3e869c7c26bdae802c31eca4722a6b084dad97f80c72f9885bad228dedeeed5f",
+    "configs/target-evaluation-lock-v2.json": "7929f0f75265420441e16dde1793c8c9f81642f69d04dd1f76ce41b2d25f4a1f",
+    "configs/vader.json": "e0339925c519f59e22613b641351329c7ff9a4300040247cf95ff82ed12fb7c7",
+    "configs/target-backbones-plan.json": "3d614de7ff65314ac7eab57a4c83dab7869afa94a65b27c201974394b4fff62b",
+    "configs/benchmark-policy.json": "61a374ab260d0c439ea4a4cdf0afaf51da3a54095dce66a444426029e558ddd1",
+    "configs/issuer-alias-review-plan.json": "36d783961a310d83f9a71b200b8f4f238ec712f8d3d40605f3a6d3f8099994bc",
+    "configs/tfidf-svm-balanced.json": "1f0e34d2c1e05322e1d1d0ce8404b0deb029019242e15c92893801e69541a77f",
+    "configs/target-format-lock.json": "b6dfd3f87f14f3375383680c03b541cc02e9d56ece0ccd2c17b44e6d35e1a9f7",
+    "configs/target-format-plan.json": "30a729eb782cc3b4c2248bf5d5e1ec791d12ca28c3255d9f3cc42b1964f6d185",
+    "configs/finbert.json": "9871500b846e7a21b6a79ac29a57d2b1e4bedce1fbe55e4e6d0eb8be86ec632c",
+    "configs/tfidf-tuning.json": "5410893d67cd1399cf8d00f62fc5bff6de9e4eef03a6ecae90df4286658a0a31",
+    "configs/transformer-assets.json": "32cb41eb439f12ab6ed373082e21a244301dda28a9f7a4b82e4d8dfdd1afd609",
+    "configs/us-company-aliases.json": "6567153dfa3bcb007c78585c91d429cc377553811d2679853f37448717c3e5c5",
+    "configs/proprak-deberta-training-plan.json": "868a31cd6456233d944f8635d3552b0d8d8552d4821a7457de1a3982e93edac0",
+    "configs/split-policy.json": "c5eb053c4a9fd6997cd92ccf7b3b9f40b8163c314ed23aa681173323a5440167",
+    "configs/us-listed-directory.json": "15de6f91bb4cf96cb407fd3e5cb03e0bc12eabf3e000541001a2750c824b67e4",
+    "configs/tfidf-logreg-balanced.json": "07a7aec414dcee93594b5b63a8597e9c60a92f7e4fc813e300c0ca5d873d923e",
+    "configs/final-evaluation-ensembles-v2.json": "40c95d80dee56cd5d7c783b1806d4124fe2b79bbe3d6755c1f93214574f3744a",
+    "configs/final-evaluation-plan.json": "e749b1879fd3337d947184106ea06cd32b41143fcf9279f51b57b2055f8a2601",
+    "configs/final-evaluation-lock.json": "e4671bfd3323ab5ded3990c235056db5e35e8d08a043c5f04b469ad5549ef039",
+    "configs/target-tfidf.json": "1fdb30558779a9cb0ea79aa481c742f772f30a0874b0bd3deef49476a3af791a",
+    "configs/tfidf-svm.json": "5996e0cf337e8415416dc392c4fc89e8e1a770e496520e9f9c415599dbbb51a5",
+    "configs/proprak-deberta-asset.json": "1ba75d3816c9532e0d2f57d520cdf9ec2d5ecbf50d221806a15b7222c6e41e36",
+    "configs/temperature-scaling.json": "d9c24f9a05e5264dec5ec5da8770b44db7ac145c88792406a35c1df3f8898357",
+    "configs/target-roberta-inference.json": "e5092415a03e442852e43d503c5cab52ac3d9387d3287ef8221b499c8b6e34da",
+    "configs/organization-ner-plan.json": "45548b7b6384b7f367626b6ad884671c776e754e87e2a4908eb6c2d6b812fcf9",
+    "configs/companies.json": "3414bd464620472b37f23944f0c6d8011f77fc8460491c4001010d2aa820d285",
+    "configs/finbert-finetune.json": "fa25c85ae802bd4ce66b3f232f504385b840407cdf6e05a2ab35c9769d04bec4",
+    "configs/transformer-training.json": "fa25c85ae802bd4ce66b3f232f504385b840407cdf6e05a2ab35c9769d04bec4",
+    "configs/target-sentiment-lock.json": "7e2152da50886f684f0ae73de32d7cb42d2b71bfc49cdd1d8c8060075ed4a292",
+    "configs/target-sentiment-plan.json": "d8c87e545ec2546cace4a41f3f5840b1ad077d04cdcefec81447973524185a81",
+    "configs/final-evaluation-ensembles-v2-lock.json": "8e971e3d2fdf9b89ee6ec7a2c583cd946e270fb823631388a0190d86c10d2668",
+    "configs/company-coverage.json": "1b6ca24e45f351c8db3d0a356706ce788a7accab7f5c3162e53eb24bc1ce2752",
+    "configs/benchmark-freeze.json": "ab0c9f0581612ee52f3c03a5bbbc03e7ebc621fdf76bb00d7d85bc2973b593f7",
+    "configs/target-evaluation-plan-v2.json": "319284b20eb0ed7d095a65c536081c29cea75c113f25fd788b32da3dfd5f63cb",
+    "configs/asset-revisions.json": "e937655fe70b8db4576b9e1652a6d574e4c172dcf4a80f2b759fd17540df4793",
+    "configs/ensemble-voting.json": "7de866a2cd242e4fd84c01bd9976cd68ce49e4d9b1a7d4def10b9a6b8cd17a7d",
+    "configs/target-name-stress-plan.json": "8bea3441785e706dfd14a7da17bd0736dac4e6ebca404ab72a50622789febc30",
+    "configs/tfidf-logreg.json": "29436d9220fc06216c1ceb25aedd9cbd62f67b4ac519c2dbe807cd84cc330f45",
+    "configs/target-evaluation-plan.json": "d09e18addeceb63557fd8d7a210dd039f90f628fb00d8f14dc27860476be13a4",
+    "configs/target-evaluation-lock.json": "1ff79641edbe572c618863646bad8a942a61b1170ac3c79fbb3edab47424fc78"
+  },
+  "verification": {
+    "moved_files": 53,
+    "moved_json_files_byte_identical": 32,
+    "local_links_checked": 898,
+    "broken_local_links": 0,
+    "pytest_passed": 813,
+    "ruff_check_excluding_existing_scratch_notebook": "passed",
+    "ruff_format_excluding_existing_scratch_notebook": "passed",
+    "full_ruff_remaining_issues": "9 pre-existing lint issues and formatting differences in notebooks/experiment.ipynb",
+    "git_diff_check": "passed",
+    "training_or_dataset_inference_performed": false
+  },
+  "canonical_report_after_sha256": "aaf234d21f56cc532b4647b66a12ffd79622a28c571e4d26ce5e02353e96a72c",
+  "historical_receipt_note": "reports/final-report-verification.json describes the pre-migration consolidation. The canonical Phase 4 summary now has rebased links; moved evidence JSON hashes are unchanged. Historical source checks require their archived release.",
+  "canonical_report_before_sha256": "54b749effa8d96142d74c7c4205f4a179da5879238082081933285eeb7106093"
+}

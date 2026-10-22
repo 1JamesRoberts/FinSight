@@ -1,7 +1,7 @@
 # Registry company-mention baseline
 
 The first mention detector uses the unchanged `companies-v1` registry and no new
-model or dependency. The [guide](../../docs/phase-04-target-sentiment/company-mentions.md)
+model or dependency. The [guide](../../../docs/phase-04-target-sentiment/company-mentions.md)
 describes exact matching rules, ambiguity policy, CLI and Python usage.
 
 The detector records original spans and uses leftmost longest matching. Accepted

@@ -1,0 +1,442 @@
+{
+  "task": "company-mention-routing-cuda-smoke",
+  "passed": true,
+  "invented_inputs_only": true,
+  "frozen_records_read": false,
+  "training": false,
+  "source_manifest_sha256": "3be40da98596b9b065358bbc01bb529d04db1720e1d8b7080163362698517924",
+  "device": "cuda",
+  "gpu": "NVIDIA GeForce RTX 4070 SUPER",
+  "torch": "2.11.0+cu128",
+  "cuda_runtime": "12.8",
+  "actual_ner_inference": true,
+  "actual_sentiment_inference": true,
+  "full_organization_cli_verified": true,
+  "direct_target_cli_verified": true,
+  "confirmed_unlinked_company_verified": true,
+  "registry_linked_company_verified": true,
+  "sec_linked_company_verified": true,
+  "uncertain_and_empty_skip_weight_loading_verified": true,
+  "direct_probability_max_abs_difference": 0.0,
+  "probability_tolerance": 1e-06,
+  "model_manifest_sha256": "2f742f69854f097b5b1351e4a1de126b54c28fe2c900edb3c2e41526cd32e855",
+  "deployment_sha256": "e5092415a03e442852e43d503c5cab52ac3d9387d3287ef8221b499c8b6e34da",
+  "directory_manifest_sha256": "d76a4e6fd5d7cc540b3ef6974ece2ca508b3fd16360e8d9eca7b94ddce9f528b",
+  "masking_applied": false,
+  "elapsed_seconds": 56.669384800014086,
+  "combined_result": {
+    "detector_version": "organization-ner-v2",
+    "model_id": "dslim/bert-base-NER",
+    "revision": "d1a3e8f13f8c3566299d95fcfc9a8d2382a9affc",
+    "aggregation_strategy": "first",
+    "candidate_type": "organization_not_verified_company",
+    "mentions": [
+      {
+        "text": "Toyota",
+        "start": 0,
+        "end": 6,
+        "score": 0.9987735152244568
+      },
+      {
+        "text": "Microsoft",
+        "start": 37,
+        "end": 46,
+        "score": 0.9984234571456909
+      }
+    ],
+    "resolver_version": "organization-resolution-v3",
+    "registry_sha256": "3414bd464620472b37f23944f0c6d8011f77fc8460491c4001010d2aa820d285",
+    "us_directory_sha256": null,
+    "resolution_policy": {
+      "company_context": false,
+      "confirmed_companies": [
+        "Toyota"
+      ],
+      "allow_parent_rollup": false
+    },
+    "resolutions": [
+      {
+        "mention": {
+          "text": "Toyota",
+          "start": 0,
+          "end": 6,
+          "score": 0.9987735152244568
+        },
+        "status": "unresolved",
+        "reason": "unknown_target",
+        "company_id": null,
+        "primary_ticker": null,
+        "matched_ticker": null,
+        "registry_sha256": "3414bd464620472b37f23944f0c6d8011f77fc8460491c4001010d2aa820d285",
+        "sec_cik": null,
+        "listings": [],
+        "directory_sha256": null,
+        "company_type": "company",
+        "classification_reason": "caller_confirmed_company_name",
+        "identity_status": "unresolved"
+      },
+      {
+        "mention": {
+          "text": "Microsoft",
+          "start": 37,
+          "end": 46,
+          "score": 0.9984234571456909
+        },
+        "status": "verified_company",
+        "reason": "exact_alias",
+        "company_id": "microsoft",
+        "primary_ticker": "MSFT",
+        "matched_ticker": null,
+        "registry_sha256": "3414bd464620472b37f23944f0c6d8011f77fc8460491c4001010d2aa820d285",
+        "sec_cik": null,
+        "listings": [],
+        "directory_sha256": null,
+        "company_type": "company",
+        "classification_reason": "accepted_identity_policy",
+        "identity_status": "linked"
+      }
+    ],
+    "company_sentiments": [
+      {
+        "target": "Toyota",
+        "company_type": "company",
+        "classification_reason": "caller_confirmed_company_name",
+        "identity_status": "unresolved",
+        "company_identity_verified": false,
+        "identity_verification_scope": "not_verified",
+        "company_id": null,
+        "sec_cik": null,
+        "primary_ticker": null,
+        "matched_ticker": null,
+        "listings": [],
+        "registry_sha256": "3414bd464620472b37f23944f0c6d8011f77fc8460491c4001010d2aa820d285",
+        "directory_sha256": null,
+        "aggregation_eligible": false,
+        "mentions": [
+          {
+            "text": "Toyota",
+            "start": 0,
+            "end": 6,
+            "score": 0.9987735152244568
+          }
+        ],
+        "sentiment": {
+          "target": "Toyota",
+          "label": "positive",
+          "probabilities": {
+            "negative": 0.0024687093682587147,
+            "neutral": 0.006149914115667343,
+            "positive": 0.9913813471794128
+          },
+          "model_version": "2f742f69854f097b5b1351e4a1de126b54c28fe2c900edb3c2e41526cd32e855",
+          "deployment_sha256": "e5092415a03e442852e43d503c5cab52ac3d9387d3287ef8221b499c8b6e34da",
+          "probabilities_calibrated": false
+        }
+      },
+      {
+        "target": "Microsoft",
+        "company_type": "company",
+        "classification_reason": "accepted_identity_policy",
+        "identity_status": "linked",
+        "company_identity_verified": true,
+        "identity_verification_scope": "registry_match_under_explicit_policy",
+        "company_id": "microsoft",
+        "sec_cik": null,
+        "primary_ticker": "MSFT",
+        "matched_ticker": null,
+        "listings": [],
+        "registry_sha256": "3414bd464620472b37f23944f0c6d8011f77fc8460491c4001010d2aa820d285",
+        "directory_sha256": null,
+        "aggregation_eligible": true,
+        "mentions": [
+          {
+            "text": "Microsoft",
+            "start": 37,
+            "end": 46,
+            "score": 0.9984234571456909
+          }
+        ],
+        "sentiment": {
+          "target": "Microsoft",
+          "label": "negative",
+          "probabilities": {
+            "negative": 0.8065283894538879,
+            "neutral": 0.16391022503376007,
+            "positive": 0.029561426490545273
+          },
+          "model_version": "2f742f69854f097b5b1351e4a1de126b54c28fe2c900edb3c2e41526cd32e855",
+          "deployment_sha256": "e5092415a03e442852e43d503c5cab52ac3d9387d3287ef8221b499c8b6e34da",
+          "probabilities_calibrated": false
+        }
+      }
+    ],
+    "sentiment_policy": "company_mentions_only"
+  },
+  "sec_result": {
+    "detector_version": "organization-ner-v2",
+    "model_id": "dslim/bert-base-NER",
+    "revision": "d1a3e8f13f8c3566299d95fcfc9a8d2382a9affc",
+    "aggregation_strategy": "first",
+    "candidate_type": "organization_not_verified_company",
+    "mentions": [
+      {
+        "text": "Tesla",
+        "start": 0,
+        "end": 5,
+        "score": 0.9956165552139282
+      }
+    ],
+    "resolver_version": "organization-resolution-v3",
+    "registry_sha256": "3414bd464620472b37f23944f0c6d8011f77fc8460491c4001010d2aa820d285",
+    "us_directory_sha256": "d76a4e6fd5d7cc540b3ef6974ece2ca508b3fd16360e8d9eca7b94ddce9f528b",
+    "resolution_policy": {
+      "company_context": true,
+      "confirmed_companies": [],
+      "allow_parent_rollup": false
+    },
+    "resolutions": [
+      {
+        "mention": {
+          "text": "Tesla",
+          "start": 0,
+          "end": 5,
+          "score": 0.9956165552139282
+        },
+        "status": "verified_company",
+        "reason": "suffix_normalized_name",
+        "company_id": "sec-cik:0001318605",
+        "primary_ticker": null,
+        "matched_ticker": null,
+        "registry_sha256": "3414bd464620472b37f23944f0c6d8011f77fc8460491c4001010d2aa820d285",
+        "sec_cik": "0001318605",
+        "listings": [
+          {
+            "exchange": "Nasdaq",
+            "ticker": "TSLA"
+          }
+        ],
+        "directory_sha256": "d76a4e6fd5d7cc540b3ef6974ece2ca508b3fd16360e8d9eca7b94ddce9f528b",
+        "company_type": "company",
+        "classification_reason": "accepted_identity_policy",
+        "identity_status": "linked"
+      }
+    ],
+    "company_sentiments": [
+      {
+        "target": "Tesla",
+        "company_type": "company",
+        "classification_reason": "accepted_identity_policy",
+        "identity_status": "linked",
+        "company_identity_verified": true,
+        "identity_verification_scope": "sec_issuer_association_not_security_type_verification",
+        "company_id": "sec-cik:0001318605",
+        "sec_cik": "0001318605",
+        "primary_ticker": null,
+        "matched_ticker": null,
+        "listings": [
+          {
+            "exchange": "Nasdaq",
+            "ticker": "TSLA"
+          }
+        ],
+        "registry_sha256": "3414bd464620472b37f23944f0c6d8011f77fc8460491c4001010d2aa820d285",
+        "directory_sha256": "d76a4e6fd5d7cc540b3ef6974ece2ca508b3fd16360e8d9eca7b94ddce9f528b",
+        "aggregation_eligible": true,
+        "mentions": [
+          {
+            "text": "Tesla",
+            "start": 0,
+            "end": 5,
+            "score": 0.9956165552139282
+          }
+        ],
+        "sentiment": {
+          "target": "Tesla",
+          "label": "positive",
+          "probabilities": {
+            "negative": 0.0018254336901009083,
+            "neutral": 0.003560140961781144,
+            "positive": 0.9946144223213196
+          },
+          "model_version": "2f742f69854f097b5b1351e4a1de126b54c28fe2c900edb3c2e41526cd32e855",
+          "deployment_sha256": "e5092415a03e442852e43d503c5cab52ac3d9387d3287ef8221b499c8b6e34da",
+          "probabilities_calibrated": false
+        }
+      }
+    ],
+    "sentiment_policy": "company_mentions_only"
+  },
+  "skipped_results": [
+    {
+      "detector_version": "organization-ner-v2",
+      "model_id": "dslim/bert-base-NER",
+      "revision": "d1a3e8f13f8c3566299d95fcfc9a8d2382a9affc",
+      "aggregation_strategy": "first",
+      "candidate_type": "organization_not_verified_company",
+      "mentions": [
+        {
+          "text": "NASA",
+          "start": 0,
+          "end": 4,
+          "score": 0.9989660978317261
+        }
+      ],
+      "resolver_version": "organization-resolution-v3",
+      "registry_sha256": "3414bd464620472b37f23944f0c6d8011f77fc8460491c4001010d2aa820d285",
+      "us_directory_sha256": null,
+      "resolution_policy": {
+        "company_context": false,
+        "confirmed_companies": [],
+        "allow_parent_rollup": false
+      },
+      "resolutions": [
+        {
+          "mention": {
+            "text": "NASA",
+            "start": 0,
+            "end": 4,
+            "score": 0.9989660978317261
+          },
+          "status": "unresolved",
+          "reason": "unknown_target",
+          "company_id": null,
+          "primary_ticker": null,
+          "matched_ticker": null,
+          "registry_sha256": "3414bd464620472b37f23944f0c6d8011f77fc8460491c4001010d2aa820d285",
+          "sec_cik": null,
+          "listings": [],
+          "directory_sha256": null,
+          "company_type": "uncertain",
+          "classification_reason": "no_company_type_evidence",
+          "identity_status": "unresolved"
+        }
+      ],
+      "company_sentiments": [],
+      "sentiment_policy": "company_mentions_only"
+    },
+    {
+      "detector_version": "organization-ner-v2",
+      "model_id": "dslim/bert-base-NER",
+      "revision": "d1a3e8f13f8c3566299d95fcfc9a8d2382a9affc",
+      "aggregation_strategy": "first",
+      "candidate_type": "organization_not_verified_company",
+      "mentions": [],
+      "resolver_version": "organization-resolution-v3",
+      "registry_sha256": "3414bd464620472b37f23944f0c6d8011f77fc8460491c4001010d2aa820d285",
+      "us_directory_sha256": null,
+      "resolution_policy": {
+        "company_context": false,
+        "confirmed_companies": [],
+        "allow_parent_rollup": false
+      },
+      "resolutions": [],
+      "company_sentiments": [],
+      "sentiment_policy": "company_mentions_only"
+    }
+  ],
+  "launchers": {
+    "finsight-organizations.cmd": {
+      "sha256": "d9cd5f6b4ba6e31f027ba148acf8aaa6d42adc72a0ab8d7a421ea9be7c611d9d",
+      "help_verified": true
+    },
+    "finsight-predict.cmd": {
+      "sha256": "71e9238f2369f7341b765caa5873d158289ad73cba5aee3d917278f8f01b7a7c",
+      "help_verified": true
+    }
+  },
+  "launcher_real_cuda_inference_verified": true,
+  "launcher_result": {
+    "detector_version": "organization-ner-v2",
+    "model_id": "dslim/bert-base-NER",
+    "revision": "d1a3e8f13f8c3566299d95fcfc9a8d2382a9affc",
+    "aggregation_strategy": "first",
+    "candidate_type": "organization_not_verified_company",
+    "mentions": [
+      {
+        "text": "Toyota",
+        "start": 0,
+        "end": 6,
+        "score": 0.9988023042678833
+      }
+    ],
+    "resolver_version": "organization-resolution-v3",
+    "registry_sha256": "3414bd464620472b37f23944f0c6d8011f77fc8460491c4001010d2aa820d285",
+    "us_directory_sha256": null,
+    "resolution_policy": {
+      "company_context": false,
+      "confirmed_companies": [
+        "Toyota"
+      ],
+      "allow_parent_rollup": false
+    },
+    "resolutions": [
+      {
+        "mention": {
+          "text": "Toyota",
+          "start": 0,
+          "end": 6,
+          "score": 0.9988023042678833
+        },
+        "status": "unresolved",
+        "reason": "unknown_target",
+        "company_id": null,
+        "primary_ticker": null,
+        "matched_ticker": null,
+        "registry_sha256": "3414bd464620472b37f23944f0c6d8011f77fc8460491c4001010d2aa820d285",
+        "sec_cik": null,
+        "listings": [],
+        "directory_sha256": null,
+        "company_type": "company",
+        "classification_reason": "caller_confirmed_company_name",
+        "identity_status": "unresolved"
+      }
+    ],
+    "company_sentiments": [
+      {
+        "target": "Toyota",
+        "company_type": "company",
+        "classification_reason": "caller_confirmed_company_name",
+        "identity_status": "unresolved",
+        "company_identity_verified": false,
+        "identity_verification_scope": "not_verified",
+        "company_id": null,
+        "sec_cik": null,
+        "primary_ticker": null,
+        "matched_ticker": null,
+        "listings": [],
+        "registry_sha256": "3414bd464620472b37f23944f0c6d8011f77fc8460491c4001010d2aa820d285",
+        "directory_sha256": null,
+        "aggregation_eligible": false,
+        "mentions": [
+          {
+            "text": "Toyota",
+            "start": 0,
+            "end": 6,
+            "score": 0.9988023042678833
+          }
+        ],
+        "sentiment": {
+          "target": "Toyota",
+          "label": "positive",
+          "probabilities": {
+            "negative": 0.0018445757450535893,
+            "neutral": 0.002956525655463338,
+            "positive": 0.9951989054679871
+          },
+          "model_version": "2f742f69854f097b5b1351e4a1de126b54c28fe2c900edb3c2e41526cd32e855",
+          "deployment_sha256": "e5092415a03e442852e43d503c5cab52ac3d9387d3287ef8221b499c8b6e34da",
+          "probabilities_calibrated": false
+        }
+      }
+    ],
+    "sentiment_policy": "company_mentions_only"
+  },
+  "archive_sha256": "c1d45a3f34a49e7096c49df779dd0ec24365d8e313ad55ec1c14c49252bde454",
+  "source_files_verified": 140,
+  "post_installation_audit": {
+    "installed_files_verified": 140,
+    "tracked_checkout_unchanged": true,
+    "archive_removed": true,
+    "git_status": "?? finsight-organizations.cmd\n?? finsight-predict.cmd\n"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "task": "reviewed-alias-gpu-release-verification",
+  "passed": true,
+  "gpu_receipt_sha256": "d080d77744e79e8d965fe9f454fea4a77a35b1178ca0ba0a805db8935f06b34f",
+  "source_manifest_sha256": "f36459ecf9743b434df509b84963aa676bc135d4d025dcfc173758373ecc264a",
+  "installed_files_verified": 142,
+  "toyota_boeing_auto_link_verified": true,
+  "dell_strict_and_rollup_verified": true,
+  "direct_model_and_launcher_probabilities_identical": true,
+  "context_uncertain_empty_load_skip_verified": true,
+  "previous_launchers_saved_for_rollback": true,
+  "tracked_gpu_checkout_unchanged": true,
+  "temporary_transfer_zip_removed": true,
+  "protected_local_artifacts_unchanged": true,
+  "approved_reference_unchanged": true,
+  "pytest_passed": 811,
+  "ruff_full": "nine pre-existing scratch notebook errors only",
+  "ruff_format_full": "pre-existing scratch notebook formatting only",
+  "ruff_excluding_notebook": "passed",
+  "diff_check": "passed",
+  "new_training": false,
+  "frozen_records_read": false
+}

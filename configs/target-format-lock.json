@@ -1,0 +1,9 @@
+{
+  "data_manifest_sha256": "9eab447b2c6c123a5ce9fd5775a3c76a5878bc963404ce6afedce346d22a9c18",
+  "experiment": "roberta-target-format-v1",
+  "frozen_test_access": false,
+  "plan_sha256": "30a729eb782cc3b4c2248bf5d5e1ec791d12ca28c3255d9f3cc42b1964f6d185",
+  "report_sha256": "f0e3ea2ca047240d7f32dfdc2bfa625a6d4464968bf0462e7034160224f97a56",
+  "training_started": false,
+  "uv_lock_sha256": "f1ace275d05568614b92993b8446d7323df824a8cb1dae9ac382116f906914f6"
+}

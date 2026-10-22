@@ -4,11 +4,12 @@ import hashlib
 import json
 import math
 import random
+from collections.abc import Mapping
 from pathlib import Path
 from time import perf_counter
 from typing import Any
 
-from finsight.data.target_pairs import LABELS, TargetExample, encode_batch
+from finsight.data.target_pairs import LABELS, TargetExample, TargetText, encode_batch
 from finsight.sentiment.artifacts import verify_files
 from finsight.sentiment.models.finbert import standardize_bert_head
 from finsight.sentiment.models.transformer import (
@@ -93,12 +94,24 @@ def collate_examples(
     max_length: int,
     *,
     labels: bool,
+    input_views: Mapping[str, TargetText] | None = None,
 ) -> dict:
     if any(e.partition not in ("train", "validation") for e in examples):
         raise ValueError("development examples only")
     # Pair mode passes the target and headline as distinct tokenizer sequences;
     # the tokenizer inserts architecture-specific separators (no manual [SEP]).
-    encoded = encode_batch(tokenizer, examples, mode, max_length=max_length)
+    texts = examples
+    if input_views is not None:
+        if mode != "target_pair":
+            raise ValueError("prepared input views require target-pair encoding")
+        texts = [input_views[e.example_id] for e in examples]
+        if any(
+            t.record_id != e.example_id for t, e in zip(texts, examples, strict=True)
+        ):
+            raise ValueError("input view annotation identity differs")
+    # Native metadata/labels stay on examples; only these two text sequences go
+    # to the tokenizer. This preserves native seen/unseen cohorts under masking.
+    encoded = encode_batch(tokenizer, texts, mode, max_length=max_length)
     inputs = {
         key: torch.tensor(value, dtype=torch.long) for key, value in encoded.items()
     }
@@ -117,6 +130,8 @@ def score_examples(
     examples: tuple[TargetExample, ...],
     mode: str,
     config: FineTuneConfig,
+    *,
+    input_views: Mapping[str, TargetText] | None = None,
 ) -> tuple[list[dict], dict]:
     """Inference receives no gold-label tensor and never enables gradients."""
     from dataclasses import asdict
@@ -129,7 +144,13 @@ def score_examples(
     model.eval()
     with torch.inference_mode():
         warm = collate_examples(
-            torch, tokenizer, examples[:1], mode, config.max_length, labels=False
+            torch,
+            tokenizer,
+            examples[:1],
+            mode,
+            config.max_length,
+            labels=False,
+            input_views=input_views,
         )
         model(**{k: v.to(config.device) for k, v in warm.items()})
     if config.device == "cuda":
@@ -139,7 +160,13 @@ def score_examples(
     for start in range(0, len(examples), config.evaluation_batch_size):
         batch = examples[start : start + config.evaluation_batch_size]
         inputs = collate_examples(
-            torch, tokenizer, batch, mode, config.max_length, labels=False
+            torch,
+            tokenizer,
+            batch,
+            mode,
+            config.max_length,
+            labels=False,
+            input_views=input_views,
         )
         max_tokens = max(
             max_tokens, int(inputs["attention_mask"].sum(dim=1).max().item())

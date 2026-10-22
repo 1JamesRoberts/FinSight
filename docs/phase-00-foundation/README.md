@@ -1,5 +1,7 @@
 # Phase 0 — Foundation
 
+**Phase outcome:** [Final report](../../reports/phase-00-foundation/final-report.md) · [All final reports](../../reports/README.md).
+
 Project layout, environment and architectural boundaries.
 
 [All documentation](../README.md) · [Report navigation](../../reports/README.md)

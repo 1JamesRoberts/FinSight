@@ -1,0 +1,76 @@
+{
+  "schema_version": 1,
+  "experiment": "issuer-alias-review-v1",
+  "source_files": [
+    {
+      "category": "Microsoft",
+      "request_url": "https://en.wikinews.org/w/api.php?action=query&list=categorymembers&cmtitle=Category%3AMicrosoft&cmnamespace=0&cmlimit=500&format=json",
+      "retrieved_at_utc": "2026-10-21T04:52:10.267606+00:00",
+      "file": "Microsoft.json",
+      "rows": 131,
+      "path": "data/raw/wikinews-us-review/Microsoft.json",
+      "sha256": "ed300cf63cc3de111acb30d4cda204266d6c30608ae556d7d0307815ef5a219f"
+    },
+    {
+      "category": "Boeing",
+      "request_url": "https://en.wikinews.org/w/api.php?action=query&list=categorymembers&cmtitle=Category%3ABoeing&cmnamespace=0&cmlimit=500&format=json",
+      "retrieved_at_utc": "2026-10-21T04:52:11.204408+00:00",
+      "file": "Boeing.json",
+      "rows": 40,
+      "path": "data/raw/wikinews-us-review/Boeing.json",
+      "sha256": "f9034026ce21ea83223cb8b6ce9a5bda098627c6c3114e7ea4f294fe395e9e88"
+    },
+    {
+      "category": "General Motors",
+      "request_url": "https://en.wikinews.org/w/api.php?action=query&list=categorymembers&cmtitle=Category%3AGeneral+Motors&cmnamespace=0&cmlimit=500&format=json",
+      "retrieved_at_utc": "2026-10-21T04:52:12.762909+00:00",
+      "file": "General_Motors.json",
+      "rows": 20,
+      "path": "data/raw/wikinews-us-review/General_Motors.json",
+      "sha256": "3b43185fa3b2f0d2fec435945c8a60e89b6b900c957ddfae8b8e9484fdd525bd"
+    },
+    {
+      "category": "Dell",
+      "file": "Dell.json",
+      "request_url": "https://en.wikinews.org/w/api.php?action=query&list=categorymembers&cmtitle=Category%3ADell&cmnamespace=0&cmlimit=500&format=json",
+      "retrieved_at_utc": "2026-10-21T16:53:46.100548+00:00",
+      "rows": 18,
+      "path": "data/raw/wikinews-alias-review/Dell.json",
+      "sha256": "6c166a5412965d98fd2e7929ecbeabb1072a4625b683e19154d01dd5e31abd58"
+    },
+    {
+      "category": "Toyota",
+      "file": "Toyota.json",
+      "request_url": "https://en.wikinews.org/w/api.php?action=query&list=categorymembers&cmtitle=Category%3AToyota&cmnamespace=0&cmlimit=500&format=json",
+      "retrieved_at_utc": "2026-10-21T16:53:46.470127+00:00",
+      "rows": 20,
+      "path": "data/raw/wikinews-alias-review/Toyota.json",
+      "sha256": "45be5ee78fb62ca502c9632d5c862e68994d942b80bdc5459c558af1c5f72f3f"
+    }
+  ],
+  "sample_size": 20,
+  "per_category": 4,
+  "seed": 43,
+  "ranking_namespace": "us-company-linking-dev-v1",
+  "previous_packet": "data/interim/us-company-review/0712af66f547a820e4b6a1ac039d613e7239bea4a51ef45edb3cab251cf44fbc",
+  "exclusions": "all previous page IDs and normalized title keys; not an event-disjoint claim",
+  "sampling_uses_predictions": false,
+  "aliases_path": "configs/us-company-aliases.json",
+  "aliases_sha256": "6567153dfa3bcb007c78585c91d429cc377553811d2679853f37448717c3e5c5",
+  "directory_sha256": "d76a4e6fd5d7cc540b3ef6974ece2ca508b3fd16360e8d9eca7b94ddce9f528b",
+  "baseline_release": "3be40da98596b9b065358bbc01bb529d04db1720e1d8b7080163362698517924",
+  "methods": [
+    "archived_v3",
+    "suffix_only",
+    "reviewed_aliases",
+    "reviewed_aliases_parent_rollup"
+  ],
+  "company_context": true,
+  "primary_allow_parent_rollup": false,
+  "ner_revision": "d1a3e8f13f8c3566299d95fcfc9a8d2382a9affc",
+  "aggregation_strategy": "first",
+  "reference_status": "pending_fresh_user_review",
+  "training": false,
+  "frozen_test_access": false,
+  "independent_test_claims": false
+}

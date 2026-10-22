@@ -1,0 +1,135 @@
+{
+  "annotation_sha256": "1a8d697985b7a39841419afefc552bfbe24e00aa67e6b45e26a5bbeb0fe0c036",
+  "approved_reference_headlines": 0,
+  "deployment_change": false,
+  "device": "cpu",
+  "empty_reference_headlines": 23,
+  "experiment": "organization-mentions-dev-v1",
+  "frozen_records_read": false,
+  "headlines": 50,
+  "human_review_required_for_reference_claims": true,
+  "inference_seconds": {
+    "first": 0.3448162500280887,
+    "simple": 0.38936399994418025
+  },
+  "metrics": {
+    "ner_first": {
+      "all_organizations": {
+        "f1": 0.8125,
+        "false_negatives": 8,
+        "false_positives": 4,
+        "headlines": 50,
+        "precision": 0.8666666666666667,
+        "predicted_spans": 30,
+        "recall": 0.7647058823529411,
+        "reference_spans": 34,
+        "true_positives": 26
+      },
+      "all_proposals_as_company_candidates": {
+        "f1": 0.7719298245614035,
+        "false_negatives": 5,
+        "false_positives": 8,
+        "headlines": 50,
+        "precision": 0.7333333333333333,
+        "predicted_spans": 30,
+        "recall": 0.8148148148148148,
+        "reference_spans": 27,
+        "true_positives": 22
+      }
+    },
+    "ner_simple": {
+      "all_organizations": {
+        "f1": 0.6086956521739131,
+        "false_negatives": 13,
+        "false_positives": 14,
+        "headlines": 50,
+        "precision": 0.6,
+        "predicted_spans": 35,
+        "recall": 0.6176470588235294,
+        "reference_spans": 34,
+        "true_positives": 21
+      },
+      "all_proposals_as_company_candidates": {
+        "f1": 0.5483870967741935,
+        "false_negatives": 10,
+        "false_positives": 18,
+        "headlines": 50,
+        "precision": 0.4857142857142857,
+        "predicted_spans": 35,
+        "recall": 0.6296296296296297,
+        "reference_spans": 27,
+        "true_positives": 17
+      }
+    },
+    "registry_all_candidates": {
+      "all_organizations": {
+        "f1": 0.0,
+        "false_negatives": 34,
+        "false_positives": 0,
+        "headlines": 50,
+        "precision": null,
+        "predicted_spans": 0,
+        "recall": 0.0,
+        "reference_spans": 34,
+        "true_positives": 0
+      },
+      "all_proposals_as_company_candidates": {
+        "f1": 0.0,
+        "false_negatives": 27,
+        "false_positives": 0,
+        "headlines": 50,
+        "precision": null,
+        "predicted_spans": 0,
+        "recall": 0.0,
+        "reference_spans": 27,
+        "true_positives": 0
+      }
+    },
+    "registry_resolved": {
+      "all_organizations": {
+        "f1": 0.0,
+        "false_negatives": 34,
+        "false_positives": 0,
+        "headlines": 50,
+        "precision": null,
+        "predicted_spans": 0,
+        "recall": 0.0,
+        "reference_spans": 34,
+        "true_positives": 0
+      },
+      "all_proposals_as_company_candidates": {
+        "f1": 0.0,
+        "false_negatives": 27,
+        "false_positives": 0,
+        "headlines": 50,
+        "precision": null,
+        "predicted_spans": 0,
+        "recall": 0.0,
+        "reference_spans": 27,
+        "true_positives": 0
+      }
+    }
+  },
+  "model_revision": "d1a3e8f13f8c3566299d95fcfc9a8d2382a9affc",
+  "ner_model_plan_sha256": "45548b7b6384b7f367626b6ad884671c776e754e87e2a4908eb6c2d6b812fcf9",
+  "plan_sha256": "3e869c7c26bdae802c31eca4722a6b084dad97f80c72f9885bad228dedeeed5f",
+  "policy_sha256": "d42d507dd969acc5b3ad5997d41412d3a1b6685d4d84c1d892f6044f0d97a57a",
+  "predictions_sha256": "1d5c929bfc2d0febb43ed3bb055c06cb31e52b1f9e785efe1442e5ea31886553",
+  "reference_entity_counts": {
+    "company": 27,
+    "other_organization": 7
+  },
+  "reference_status": "assistant_provisional",
+  "registry_sha256": "3414bd464620472b37f23944f0c6d8011f77fc8460491c4001010d2aa820d285",
+  "runner_sha256": "592988c5815b11afac185ba92f9577dd27c463eafb09a0a5d6820f9fc72d9bfb",
+  "sample_manifest_sha256": "dec8836961e3891902bd6134fdc3dd942cc4ce920c3ec9440693f272922f8b03",
+  "source_sha256": {
+    "data/organization_annotations.py": "612a277344d8d01dc873acc5c810f718984abf1ae665920045f477aeac17a91b",
+    "sentiment/evaluation/organization_metrics.py": "f7f9178b8604efc7d26f15b96a29ac778e54089f694c54d9ae5e189d35c10a9e",
+    "sentiment/experiments/organization_benchmark.py": "592988c5815b11afac185ba92f9577dd27c463eafb09a0a5d6820f9fc72d9bfb",
+    "sentiment/organizations.py": "4366137ca267cf6adc7300cf6a8b090cd0c1a23069d9ab0c5dd0e51efb968e38"
+  },
+  "training_performed": false,
+  "uncertain_reference_entities": 3,
+  "uv_lock_sha256": "f1ace275d05568614b92993b8446d7323df824a8cb1dae9ac382116f906914f6"
+}

@@ -144,4 +144,4 @@ Ruff parsing and was left unchanged. Checks excluding only that file pass.
 The real CUDA checkpoint reproduced all 1,410 original validation predictions and
 probabilities exactly, and repeated calls reused the loaded model. The actual CLI
 also passed an invented-input smoke test. See the
-[verification report](../../reports/phase-04-target-sentiment/target-prediction.md).
+[verification report](../../reports/phase-04-target-sentiment/evaluation/target-prediction.md).

@@ -1,5 +1,9 @@
 # FinSight — Project Roadmap
 
+**Phase outcomes:** [Final reports for Phases 0–4](reports/README.md). Each summary
+separates verified results, decisions and remaining acceptance criteria; this
+documentation consolidation does not close deferred tasks or start later phases.
+
 > **Financial News Sentiment Intelligence & Stock Prediction**  
 > Primary focus: **financial NLP and company-specific sentiment analysis**.  
 > Secondary focus: determine whether sentiment adds predictive value for next-day stock returns.  
@@ -774,6 +778,11 @@ calibration fitting, new LR search or Phase 4 implementation occurred.
 
 ### Tasks
 - [x] Build ticker/name/alias mapping for initial five companies.
+- [x] Add an opt-in, checksum-pinned SEC US-listed issuer directory with CIK identities, all listing associations, conservative ambiguity/type holds and NER resolution integration; verify synthetic behavior and actual CPU NER/resolver smoke.
+- [x] Implement source-backed Dell/Boeing/Toyota aliases, Co/Company suffix handling, collision/parent-roll-up guards, and a disjoint 20-headline prediction-only comparison against archived resolver code.
+- [x] Record user bulk acceptance of the fresh alias-development references and verify fixed company-classification/issuer-link development accuracy; preserve assistant-draft, shared-source and no-parent-roll-up limitations.
+- [x] Prepare a prediction-free, source-attributed 20-headline US-company development review packet, pending exhaustive span/CIK drafts, and gated two-resolver evaluation runner; verify actual CPU prediction-only counts.
+- [x] Record user bulk acceptance/current-identity finalization of the US-company packet and report exact-span/issuer-link development accuracy for the fixed resolver comparison; retain assistant-draft and non-independent-reference limitations.
 - [x] Audit five-company target/label coverage on train/validation, including multi-target rows, ambiguity and nonliteral mentions; keep reserved tests untouched.
 - [x] Prepare native target–headline development pairs, verify tokenizer eligibility/truncation, and lock the saved-control/matched-headline/target-pair comparison before training.
 - [x] Run the three saved DeBERTa headline controls on expanded native-target validation and verify target-level joining/cohort metrics.
@@ -788,6 +797,96 @@ calibration fitting, new LR search or Phase 4 implementation occurred.
 - [ ] Evaluate macro F1 **per company target** and on multi-company examples.
 - [x] Track validation errors from aliases/nonliteral forms, comparisons, neutral mentions and conflicting cues across all three matched target backbones; preserve native labels.
 - [x] Expose `predict(text, target_company)` returning probabilities and model version.
+- [x] Separate company-type confirmation from issuer identity in the NER sentiment path; score confirmed unlinked company mentions without inventing CIK/ticker or merging names, retain the original trained input format, and verify routing/type/identity gates.
+- [x] Install a checksum-verified inference release and launchers on the GPU PC; verify real CUDA NER-to-RoBERTa linked/unlinked routing, uncertain/empty load skipping, direct-target equivalence and preserved checkpoint/deployment bytes on invented inputs.
+- [x] Deploy the reviewed-alias GPU release after CUDA checks; verify automatic Toyota/Boeing linking, Dell company-only scoring and explicit parent roll-up, direct-target equivalence, guarded loading and rollback-preserved launchers.
+- [x] Audit native-target literal spans and prepare shared character-aligned membership for an original-pair / target-marker / target-replacement experiment; preserve complete headline annotations and original splits.
+- [x] Verify pinned RoBERTa tokenizer eligibility across all three formats and lock shared membership/configuration for nine fresh trials; keep consumed test records untouched.
+- [x] Implement and verify the locked target-format runner with native metadata preserved under transformed inputs, matching/resume guards and detached Windows execution support.
+- [x] Complete and review all nine locked development target-format training trials; keep the consumed test cohort untouched.
+- [x] Run and verify a fixed synthetic company-name sensitivity diagnostic on development examples using all nine saved format checkpoints; no training, synthetic gold labels or frozen-test access.
+- [x] Compare the five-company registry with pinned pretrained organization NER on validation, review missed/extra proposals, and verify an explicit candidate-to-sentiment bridge without changing default detection.
+- [x] Prepare a prediction-free 50-headline mention development sample, annotation policy, provisional exhaustive assistant labels and exact-span review/evaluation tools; compare simple versus word-aware grouping descriptively.
+- [x] Record user acceptance/adjudication of all 50 assistant-drafted mention references and rerun exact-span development evaluation; document bulk-review scope and limitations.
+- [x] Select word-aware first grouping for the experimental NER path and verify the full detected-target-to-sentiment CUDA CLI and empty-result behavior with pinned files and isolated source.
+- [x] Review the remaining word-aware extraction errors and implement/evaluate conservative registry-company, institutional-title and unresolved decisions with verified-only default sentiment routing.
+
+**Conservative resolution baseline verified (2026-10-21):** All four extra
+word-aware spans and eight missed references were reviewed in eight headlines.
+The resolver accepts whole-name registry matches, uses four explicit full-title
+institution rules and abstains on unknown names/acronyms. Default ORG sentiment
+scores only verified companies; raw candidate scoring requires an explicit flag.
+On the fixed development sample, all 30 proposals remain unresolved (22 exact
+company, four exact other-organization, four unmatched spans): zero decision
+coverage, undefined selective precision, and zero verified-company recall/F1.
+This exposes identity coverage limits, not improved extraction accuracy. Unknown
+companies are not relabeled non-company or removed from evaluation. The GPU CLI
+verifies Microsoft-only default scoring, unresolved-only abstention, raw-candidate
+override and direct-prediction equality on invented text. All 763 tests pass;
+Ruff failures remain only in the unchanged scratch notebook, with exclusion
+checks passing. Registry/reference/model bytes stay unchanged; no training or
+frozen-record access. See `reports/phase-04-target-sentiment/experiments/organization-resolution.md`.
+Only this bounded baseline is complete; broader reviewed identity coverage and
+the independent company-labeled test collection remain open.
+
+**Mention development review completed (2026-10-20):** User acceptance and
+sourced adjudication finalize all 50 assistant-drafted development references
+(34 organization spans; no unresolved type flags). Rows 1–10 were approved
+individually and the remainder in bulk; this is not independent double annotation.
+The new reviewed run and all four methods/eight metric views independently verify.
+Exact organization F1 remains 60.87% for simple and 81.25% for word-aware first
+grouping because no reference spans/types changed. Select first for the separate
+experimental ORG loader/CLI, retaining explicit simple overrides and historical
+baseline arms. No company-type classifier or ticker-linking claim is added. All
+739 tests pass; full Ruff failures remain only in the unchanged scratch notebook,
+with exclusions passing. See `reports/phase-04-target-sentiment/evaluation/organization-benchmark-reviewed.md`.
+The independent entity-labeled test collection remains open. The full CUDA CLI
+now verifies complete Infosys/Microsoft detection and exact direct-prediction
+equality, plus empty organization results, on invented text. Seven NER files and
+the isolated 128-file source bundle verify on the PC; its primary checkout is
+unchanged. Receipt: `reports/phase-04-target-sentiment/verification/organization-word-aware-smoke.json`.
+
+**Mention development packet prepared (2026-10-20):** A fixed hash sample of
+50 validation headlines, selected without predictions or native sentiment labels,
+has 34 provisional organization spans (27 company/seven other; three uncertain
+types) and 23 empty-reference headlines. Draft and policy hashes were fixed before
+new sample predictions. All 50 human reviews are pending. Explicit provisional
+exact-span organization F1 is 60.87% for simple grouping and 81.25% for word-aware
+first grouping; these are assistant-reference development diagnostics, not human
+gold or independent test scores. Normal evaluation rejects pending/uncertain
+references before loading; review files and all text remain private. Four-method
+metrics independently recompute and simple spans match the previous cache. All
+735 tests pass; full Ruff failures remain confined to the unchanged scratch
+notebook, with exclusion checks passing. No training, frozen-record access or
+deployment change. See `reports/phase-04-target-sentiment/evaluation/organization-benchmark.md`.
+Only packet/tooling/provisional comparison is complete; human review and the
+separate entity-labeled test collection remain open.
+
+**Pretrained organization baseline verified (2026-10-20):** Reviewed/pinned
+`dslim/bert-base-NER` weights and local-use scope; scan all 1,053 validation
+headlines only. NER yields 1,062 organization proposals and exact/overlap coverage
+of 44/70 and 62/70 fixed company-target annotations. These are positive-only
+coverage diagnostics, not exhaustive company precision/recall. All 24 sampled
+headlines were reviewed; fragments, non-company organizations and person errors
+preclude default promotion. A separate explicit CLI bridges candidate surfaces to
+the saved RoBERTa model. Actual detected Tesla/Microsoft surfaces reproduce direct
+CUDA predictions on invented text exactly. No training or frozen-record access;
+registry policy and deployment remain unchanged. All 721 tests pass; required
+full Ruff runs fail only on the unchanged scratch notebook, with exclusions
+passing. See `reports/phase-04-target-sentiment/experiments/organization-detection.md`. Only
+this bounded comparison/bridge task is complete; the company-labeled evaluation
+collection, ticker linking and production extraction accuracy remain separate.
+
+**Name-sensitivity diagnostic verified (2026-10-20):** Fixed 67 annotations / 64
+validation headlines, two substitute names and all nine saved checkpoints yield
+1,206 paired comparisons. Original-cache replays and independently recomputed
+private prediction metrics verify. Pair/markers flip rates average 4.73%/2.74%;
+replacement has zero flips with identical masked text by construction. The original
+format recommendation and deployed checkpoint remain unchanged. All 700 tests
+pass; Ruff passes excluding only the unchanged scratch notebook, which blocks
+full workspace Ruff checks. See `reports/phase-04-target-sentiment/experiments/target-name-stress.md`.
+This completes only the bounded diagnostic; company detection work and the
+remaining Phase 4 tasks are separate.
 
 **Registry foundation verified (2026-10-14):** `configs/companies.json` version
 `companies-v1` records the five company identities, source URLs and explicit alias
@@ -1040,7 +1139,7 @@ passes an invented-input smoke. Source commit `4b38fe4` and private verification
 record are preserved. No frozen test data/results are read by these checks; all
 prior research digests remain unchanged. See
 `docs/phase-04-target-sentiment/prediction.md` and
-`reports/phase-04-target-sentiment/target-prediction.md`. Only the prediction
+`reports/phase-04-target-sentiment/evaluation/target-prediction.md`. Only the prediction
 interface checkbox is newly complete; entity extraction, five-company test
 coverage, HTTP serving and aggregation remain separate tasks.
 
@@ -1062,7 +1161,7 @@ research/registry hashes remain unchanged. This completes only the bounded
 registry-based identification baseline; general NER and real-news mention accuracy
 are not established, and the company-label collection/coverage tasks remain open.
 See `docs/phase-04-target-sentiment/company-mentions.md` and
-`reports/phase-04-target-sentiment/company-mentions.md`.
+`reports/phase-04-target-sentiment/experiments/company-mentions.md`.
 
 **Deliverables:** Target-sentiment service and independent target-level evaluation.
 
@@ -1073,6 +1172,14 @@ See `docs/phase-04-target-sentiment/company-mentions.md` and
 - [ ] Baselines and transformer compared fairly.
 - [ ] Company-specific model evaluated on target-labeled examples.
 - [ ] Results, failure cases, and limitations documented.
+
+Phase 4 development mention audit (2026-10-19): the unchanged registry detector
+scanned 8,598 training and 1,053 validation headlines. Candidates occur in 29/2
+headlines, with resolved companies in 7/2; ambiguous names stay separate. Full
+31-case assistant review remains private, with aggregate findings in
+`reports/phase-04-target-sentiment/experiments/company-mention-coverage.md`. This completes
+the bounded detection run, not an exhaustive NER benchmark or the still-open
+company-labeled test collection. No sentiment inference or frozen-record access.
 
 ## Phase 5 — Sentiment aggregation and time-series analytics
 

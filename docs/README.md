@@ -1,6 +1,6 @@
 # Documentation
 
-Start with the current phase, then open its task-specific guide. For measured outcomes, use the [report index](../reports/README.md).
+Start with the current phase, then open its task-specific guide. For outcomes, decisions and remaining work, use the [final phase reports](../reports/README.md).
 
 | Phase | Guides |
 | --- | --- |

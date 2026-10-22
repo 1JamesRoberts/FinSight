@@ -1,84 +1,84 @@
-# Phase 4 — Company-targeted sentiment reports
+# Phase 4 — Company-targeted sentiment
 
-Native target conditioning, matched baselines, error analysis and reserved evaluation.
+**Start here: [Final report](final-report.md).** It contains the phase conclusions,
+results, decisions and remaining work. Supporting evidence stays available below.
 
-[All reports](../README.md) · [Methods and reproduction guides](../../docs/phase-04-target-sentiment/README.md)
+[All phase reports](../README.md) · [Methods and setup](../../docs/phase-04-target-sentiment/README.md)
+
+```text
+phase-04-target-sentiment/
+├── README.md              # Reading guide
+├── final-report.md        # Canonical phase summary
+├── experiments/           # Development studies and comparisons
+├── evaluation/            # Audits, reviewed benchmarks and serving selection
+└── verification/          # Receipts, smoke checks and GPU execution evidence
+```
+
+## Experiments
+
+[All experiment evidence](experiments/README.md)
+
+- [Target-format comparison and decision](experiments/target-format-comparison.md)
+- [Company-name sensitivity](experiments/target-name-stress.md)
+- [Company mention coverage](experiments/company-mention-coverage.md)
+- [Pretrained NER comparison](experiments/organization-detection.md)
+- [Company type and issuer routing](experiments/company-mention-routing.md)
+- [US-listed issuer directory](experiments/us-listed-directory.md)
+
+## Evaluation
+
+[All evaluation evidence](evaluation/README.md)
+
+- [Overlap review](evaluation/overlap-review.md)
+- [Target-span alignment](evaluation/target-span-audit.md) and [tokenizer audit](evaluation/target-tokenizer-audit.md)
+- [Reviewed organization benchmark](evaluation/organization-benchmark-reviewed.md)
+- [Approved US-company review](evaluation/us-company-review-reviewed.md)
+- [Approved issuer-alias review](evaluation/issuer-alias-review-reviewed.md)
+- [RoBERTa prediction selection](evaluation/target-prediction.md)
+
+The earlier provisional benchmarks are retained for provenance; use the reviewed
+versions for accepted development-review results. These reviews are distinct from
+the frozen sentiment test.
+
+## Verification
+
+[All receipts and execution checks](verification/README.md)
+
+- [Reviewed-alias GPU release](verification/issuer-alias-gpu.md)
+- [Company-routing GPU check](verification/company-mention-routing-gpu.md)
+- [Report layout migration record](verification/report-layout-migration.json)
+
+These are artifact and runtime checks. Invented-input smoke checks do not measure
+sentiment accuracy or supply a new independent company benchmark.
 
 ## Evaluation execution status
 
-The detached v1 evaluation on 2026-10-18 passed 574 Windows tests and full artifact verification, then stopped at the frozen membership audit before inference. One duplicate group is shared with the consumed Phase 3 single-target cohort (one reserved headline, two target annotations); there is no development group or exact-text overlap. V1 correctly forbids silent exclusion.
+The v1 execution stopped before inference after detecting a duplicate group shared
+with the consumed Phase 3 sentence test. The authorized v2 evaluation excluded
+that group and completed all 21 fixed variants on the RTX 4070 SUPER. The original
+freeze and v1 contract remain unchanged. The v2 cohort is consumed and must not
+be used for tuning. See the [overlap review](evaluation/overlap-review.md) and
+[v2 protocol](../../docs/phase-04-target-sentiment/evaluation/target-final-evaluation-v2.md).
 
-The authorized v2 protocol excludes that reviewed group from the evaluation view,
-leaving 262 headlines / 592 annotations. All 21 fixed variants completed on the RTX 4070 SUPER in a detached Windows
-job lasting 201.5 seconds, including verification. Mac and Windows each passed
-583 tests and Ruff. All prediction caches, receipt/membership/private-result hashes
-and recomputed primary-cohort metrics verify. The original freeze, v1 contract
-and prior results remain unchanged. This v2 test cohort is now consumed and must
-not be used for further tuning or model selection.
-
-- [Development-only runner verification JSON](../experiments/target-runner-verification.json)
-- [Locked evaluation contract](../../docs/phase-04-target-sentiment/evaluation/target-final-evaluation.md)
-- [Overlap review and proposed cohort correction](overlap-review.md)
-- [Authorized v2 evaluation protocol](../../docs/phase-04-target-sentiment/evaluation/target-final-evaluation-v2.md)
 ## Final test results
 
-[Full evaluation report](../experiments/phase4-target-final.md) ·
-[Metrics, architecture, size, timing and provenance JSON](../experiments/phase4-target-final.json)
+Use the [final report](final-report.md#results) for the explained result tables,
+[full frozen evaluation](../experiments/phase4-target-final.md) for detailed
+contrasts and [aggregate JSON](../experiments/phase4-target-final.json) for exact
+metrics and provenance. Shared model-comparison artifacts remain under
+`reports/experiments/`, where their existing protocols expect them.
 
-| Backbone | Headline-only macro F1 (%) | Target-aware macro F1 (%) | Conditioning gain (pp) |
-| --- | ---: | ---: | ---: |
-| DeBERTa Base | 74.53 | 88.75 | +14.23 |
-| RoBERTa Base | 72.82 | 88.34 | +15.52 |
-| FinBERT | 73.19 | 86.84 | +13.65 |
-| TF-IDF Logistic Regression | 68.47 | 76.15 | +7.68 |
+## Evidence preservation
 
-Transformer values average the three fixed seeds; gains use unrounded metrics.
-The primary RoBERTa conditioning contrast is +15.52 pp, paired 95% interval
-[12.16, 19.10]. On mixed-sentiment headlines, RoBERTa improves from 49.45% to
-85.96% macro F1 (+36.51 pp). On same-label headlines its gain is only +0.16 pp,
-with an interval spanning zero. Conditioning is most useful when targets differ
-in sentiment; it does not establish an improvement for every subgroup.
+This layout migration moved supporting files; it did not discard experiments.
+All moved JSON evidence remains byte-identical. Markdown links were rebased;
+the migration record stores both original and current hashes and locations.
+Historical receipts retain their original path strings and describe their original
+execution. Resolve those paths through the migration record when reviewing them.
+The frozen target-format plan still pins its original audit path and hash; the
+runner locates the moved audit without changing that plan. Source-pinned historical
+execution checks still require the matching archived source release: current
+runner output paths have changed, and old source checksums were not relaxed.
 
-RoBERTa minus DeBERTa is -0.41 pp, interval [-1.62, 0.87]; RoBERTa minus FinBERT
-is +1.50 pp, interval [-0.23, 3.29]. These exploratory contrasts do not establish
-a clear backbone winner. The validation-selected RoBERTa candidate remains fixed.
-Native entities are not all verified companies; this is not a five-ticker benchmark.
-
-Execution receipt: `a712c2c921b6a5966f6d9986a2dadb493e768da6af2b9b2301f2ba76236da88b`.
-Aggregate SHA-256: `cded5333aa6dc0716fbcb8ac250b3cd4a8c974c4549d1ecaaa6142a8d2f9c9cf`.
-The clean execution source commit is `ce1207b75e450695def45db3853fc7afe16331a0`;
-private caches and logs remain in ignored storage on both research machines.
-
-## Start here: consolidated comparisons
-
-| Readable report | Machine-readable artifact |
-| --- | --- |
-| [Target conditioning across three backbones](../experiments/target-backbones.md) | [JSON](../experiments/target-backbones.json) |
-
-## Target inputs and matched baselines
-
-| Readable report | Machine-readable artifact |
-| --- | --- |
-| [Five-company SEntFiN development coverage](../company-coverage.md) | [JSON](../company-coverage.json) |
-| [Matched DeBERTa target-conditioning comparison](../experiments/target-deberta.md) | [JSON](../experiments/target-deberta.json) |
-| [Saved DeBERTa headline control: target-level validation](../experiments/target-saved-control.md) | [JSON](../experiments/target-saved-control.json) |
-| [Matched TF-IDF + Logistic Regression target baselines](../experiments/target-tfidf-logreg.md) | [JSON](../experiments/target-tfidf-logreg.json) |
-| [Target-aware input preparation](../target-input-preparation.md) | [JSON](../target-input-preparation.json) |
-
-
-## Diagnostics and error review
-
-| Readable report | Machine-readable artifact |
-| --- | --- |
-| [Phase 4 target-sentiment error analysis](../experiments/target-error-analysis.md) | [JSON](../experiments/target-error-analysis.json) |
-
-
-## Prediction interface
-
-- [RoBERTa deployment selection and verification](target-prediction.md)
-- [Python/CLI usage](../../docs/phase-04-target-sentiment/prediction.md)
-
-## Company mention detection
-
-- [Registry baseline rules and verification](company-mentions.md)
-- [Detection and automatic sentiment usage](../../docs/phase-04-target-sentiment/company-mentions.md)
+Independent company-labeled test collection and per-company-target acceptance
+criteria remain open; organizing these reports does not close Phase 4.

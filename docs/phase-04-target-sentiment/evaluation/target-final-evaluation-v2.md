@@ -7,7 +7,7 @@ Phase 4 test predictions. The authoritative
 The [v1 contract](target-final-evaluation.md), its lock, the original frozen
 benchmark and Phase 3 results remain preserved.
 
-The [overlap review](../../../reports/phase-04-target-sentiment/overlap-review.md)
+The [overlap review](../../../reports/phase-04-target-sentiment/evaluation/overlap-review.md)
 identified one multi-target headline whose near-duplicate was already evaluated
 in Phase 3. V2 excludes only this group's reserved member: **262 headlines and
 592 annotations**, with 118 negative, 287 neutral and 187 positive labels. Mixed

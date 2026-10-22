@@ -1,0 +1,48 @@
+{
+  "text": "Tesla reported higher earnings while Microsoft announced a new product.",
+  "device": "cpu",
+  "sentiment_executed": false,
+  "company_context": true,
+  "directory_sha256": "d76a4e6fd5d7cc540b3ef6974ece2ca508b3fd16360e8d9eca7b94ddce9f528b",
+  "resolutions": [
+    {
+      "mention": {
+        "text": "Tesla",
+        "start": 0,
+        "end": 5,
+        "score": 0.9973239898681641
+      },
+      "status": "verified_company",
+      "reason": "suffix_normalized_name",
+      "company_id": "sec-cik:0001318605",
+      "primary_ticker": null,
+      "matched_ticker": null,
+      "registry_sha256": "3414bd464620472b37f23944f0c6d8011f77fc8460491c4001010d2aa820d285",
+      "sec_cik": "0001318605",
+      "listings": [
+        {
+          "exchange": "Nasdaq",
+          "ticker": "TSLA"
+        }
+      ],
+      "directory_sha256": "d76a4e6fd5d7cc540b3ef6974ece2ca508b3fd16360e8d9eca7b94ddce9f528b"
+    },
+    {
+      "mention": {
+        "text": "Microsoft",
+        "start": 37,
+        "end": 46,
+        "score": 0.9985271692276001
+      },
+      "status": "verified_company",
+      "reason": "exact_alias",
+      "company_id": "microsoft",
+      "primary_ticker": "MSFT",
+      "matched_ticker": null,
+      "registry_sha256": "3414bd464620472b37f23944f0c6d8011f77fc8460491c4001010d2aa820d285",
+      "sec_cik": null,
+      "listings": [],
+      "directory_sha256": "d76a4e6fd5d7cc540b3ef6974ece2ca508b3fd16360e8d9eca7b94ddce9f528b"
+    }
+  ]
+}

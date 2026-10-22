@@ -1,0 +1,159 @@
+{
+  "code_revision": "773f705a2b4a0d446cd5035a2434325bd307572b",
+  "detector_version": "registry-mentions-v1",
+  "frozen_records_read": false,
+  "inputs": {
+    "files": {
+      "train.jsonl": {
+        "sha256": "96ebfda4540eda88a15f2c6af40c7c7eadd64e82ebaf5037c82dcd5153716fef",
+        "size_bytes": 5215961
+      },
+      "validation.jsonl": {
+        "sha256": "f3ae0e512f565cdc05c7cbc1251fcca16c8d8c8d32b9f7de81c2a4a179de5173",
+        "size_bytes": 644091
+      }
+    },
+    "manifest_sha256": "be33e779e278b2c786c48ee3205cbad4f9e6bee98839d4c3b6509009a51a856c"
+  },
+  "partitions": {
+    "train": {
+      "ambiguous_span_reasons": {
+        "company_context_required": 23,
+        "parent_rollup_required": 1
+      },
+      "companies": {
+        "alphabet": {
+          "ambiguous_headlines": 1,
+          "native_target_ambiguous_only": 0,
+          "native_target_headlines": 0,
+          "native_target_no_candidate": 0,
+          "native_target_resolved": 0,
+          "resolved_headlines": 0,
+          "resolved_without_native_target": 0
+        },
+        "amazon": {
+          "ambiguous_headlines": 2,
+          "native_target_ambiguous_only": 2,
+          "native_target_headlines": 2,
+          "native_target_no_candidate": 0,
+          "native_target_resolved": 0,
+          "resolved_headlines": 0,
+          "resolved_without_native_target": 0
+        },
+        "apple": {
+          "ambiguous_headlines": 20,
+          "native_target_ambiguous_only": 19,
+          "native_target_headlines": 21,
+          "native_target_no_candidate": 0,
+          "native_target_resolved": 2,
+          "resolved_headlines": 2,
+          "resolved_without_native_target": 0
+        },
+        "microsoft": {
+          "ambiguous_headlines": 0,
+          "native_target_ambiguous_only": 0,
+          "native_target_headlines": 4,
+          "native_target_no_candidate": 0,
+          "native_target_resolved": 4,
+          "resolved_headlines": 5,
+          "resolved_without_native_target": 1
+        },
+        "nvidia": {
+          "ambiguous_headlines": 0,
+          "native_target_ambiguous_only": 0,
+          "native_target_headlines": 0,
+          "native_target_no_candidate": 0,
+          "native_target_resolved": 0,
+          "resolved_headlines": 0,
+          "resolved_without_native_target": 0
+        }
+      },
+      "totals": {
+        "ambiguous_headlines": 23,
+        "ambiguous_spans": 24,
+        "candidate_headlines": 29,
+        "headlines": 8598,
+        "multi_resolved_company_headlines": 0,
+        "resolved_headlines": 7,
+        "resolved_spans": 7,
+        "target_annotations": 11547
+      }
+    },
+    "validation": {
+      "ambiguous_span_reasons": {
+        "company_context_required": 1
+      },
+      "companies": {
+        "alphabet": {
+          "ambiguous_headlines": 0,
+          "native_target_ambiguous_only": 0,
+          "native_target_headlines": 0,
+          "native_target_no_candidate": 0,
+          "native_target_resolved": 0,
+          "resolved_headlines": 0,
+          "resolved_without_native_target": 0
+        },
+        "amazon": {
+          "ambiguous_headlines": 1,
+          "native_target_ambiguous_only": 1,
+          "native_target_headlines": 1,
+          "native_target_no_candidate": 0,
+          "native_target_resolved": 0,
+          "resolved_headlines": 0,
+          "resolved_without_native_target": 0
+        },
+        "apple": {
+          "ambiguous_headlines": 0,
+          "native_target_ambiguous_only": 0,
+          "native_target_headlines": 0,
+          "native_target_no_candidate": 0,
+          "native_target_resolved": 0,
+          "resolved_headlines": 0,
+          "resolved_without_native_target": 0
+        },
+        "microsoft": {
+          "ambiguous_headlines": 0,
+          "native_target_ambiguous_only": 0,
+          "native_target_headlines": 2,
+          "native_target_no_candidate": 0,
+          "native_target_resolved": 2,
+          "resolved_headlines": 2,
+          "resolved_without_native_target": 0
+        },
+        "nvidia": {
+          "ambiguous_headlines": 0,
+          "native_target_ambiguous_only": 0,
+          "native_target_headlines": 0,
+          "native_target_no_candidate": 0,
+          "native_target_resolved": 0,
+          "resolved_headlines": 0,
+          "resolved_without_native_target": 0
+        }
+      },
+      "totals": {
+        "ambiguous_headlines": 1,
+        "ambiguous_spans": 1,
+        "candidate_headlines": 2,
+        "headlines": 1053,
+        "multi_resolved_company_headlines": 0,
+        "resolved_headlines": 2,
+        "resolved_spans": 2,
+        "target_annotations": 1410
+      }
+    }
+  },
+  "policy": {
+    "allow_parent_rollup": false,
+    "company_context": false
+  },
+  "private_packet_headlines": 31,
+  "private_packet_sha256": "b924ba4bdf36e7a080966e868ff805bdbcb52f04591d84730a2da7a1fdcaf2c2",
+  "registry_sha256": "3414bd464620472b37f23944f0c6d8011f77fc8460491c4001010d2aa820d285",
+  "sentiment_inference": false,
+  "source_sha256": {
+    "companies.py": "96c51568d44e45e5e973def5e945af8b6c6cee76c437e83357c9df3c59db580a",
+    "evaluation/target_data.py": "b08655b2da0d99745212cbe975475d3c67c9c699d12c91efe07e25cb72399c0f",
+    "experiments/company_mentions.py": "20a8780562387fdd6870f1af888ba57a001ae7d542dab6f1a2bb75bf2523f7f7",
+    "mentions.py": "557597b5fce19b7d0881da4e32c25c06b097509752386e23e9f6b45b8dd6d39f"
+  }
+}

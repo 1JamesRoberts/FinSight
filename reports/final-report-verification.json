@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "task": "consistent-final-phase-reports",
+  "as_of": "2026-10-22",
+  "report_sha256": {
+    "reports/phase-00-foundation/final-report.md": "46554ef24cb4dd24e9dac603d337d26bb66e2340447fff1c8dc3edc17871dd8d",
+    "reports/phase-01-data/final-report.md": "f37960f236eacadfa41c862c49885e8e3514b20d0e40c60bf83646bc2eaa8090",
+    "reports/phase-02-baselines/final-report.md": "257d3a0626c9328fb466f7e99d6f6b1be6c3bae9a0c17d35b09c023e84cfeb4d",
+    "reports/phase-03-transformers/final-report.md": "93c07e4c4bb0f00cdf3e4d4ef7eefbe293f58630255884a2758115460b37cafd",
+    "reports/phase-04-target-sentiment/final-report.md": "54b749effa8d96142d74c7c4205f4a179da5879238082081933285eeb7106093"
+  },
+  "source_sha256": {
+    "reports/experiments/phase2-comparison.md": "1142ae1bcaa37f92327c4d490df4e523d16a97ab36f0e8be3e7528eb2fd5810f",
+    "reports/experiments/phase2-comparison.json": "32b3c353839c8aa903b82310eada60200c14eee34925d39d882a90a1f2af4d2d",
+    "reports/experiments/phase3-final.md": "c84005089a7e1d810b7adde7d2d6fb16b6cd5eb884a9bed3504b0b4adaff6d26",
+    "reports/experiments/phase3-final.json": "1c5a6334bc0f532075a1b3d9f6d821cb53901e6c83b14ee11dbf9156aa559dfe",
+    "reports/experiments/phase4-target-final.md": "0a73f63d0b0356a2c1ef70f63b47043cbf4977709e73d8bd6d6b952b623eb0e6",
+    "reports/experiments/phase4-target-final.json": "cded5333aa6dc0716fbcb8ac250b3cd4a8c974c4549d1ecaaa6142a8d2f9c9cf",
+    "reports/phase-04-target-sentiment/issuer-alias-review-reviewed.json": "0393d79f5c5e02171927f70eda253696003a7e0ab8e25677db4506fd1395d689",
+    "reports/phase-04-target-sentiment/issuer-alias-gpu.json": "d080d77744e79e8d965fe9f454fea4a77a35b1178ca0ba0a805db8935f06b34f",
+    "configs/benchmark-freeze.json": "ab0c9f0581612ee52f3c03a5bbbc03e7ebc621fdf76bb00d7d85bc2973b593f7",
+    "configs/target-roberta-inference.json": "e5092415a03e442852e43d503c5cab52ac3d9387d3287ef8221b499c8b6e34da"
+  },
+  "prior_evidence_and_documents_unchanged": 305,
+  "common_sections_verified": true,
+  "new_table_attributes_verified": true,
+  "all_phase_report_and_guide_entry_points_verified": true,
+  "summary_numeric_cells_cross_checked": 51,
+  "pytest_passed": 811,
+  "ruff_full": "nine pre-existing scratch notebook errors only",
+  "ruff_format_full": "existing scratch notebook formatting only",
+  "ruff_excluding_notebook": "passed",
+  "diff_check": "passed",
+  "future_roadmap_tasks_marked_complete": false,
+  "new_training": false,
+  "new_model_inference": false,
+  "frozen_records_read": false,
+  "gpu_release_changed": false,
+  "verified_local_links_in_reports_and_catalog": 101
+}

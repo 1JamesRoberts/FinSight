@@ -1,0 +1,20 @@
+{
+  "task": "gpu-company-pipeline-release",
+  "passed": true,
+  "gpu_receipt_sha256": "aa711f15a72331344f97d09ba4e0db3ae85fe1cf7316bfa3a854334543b564ad",
+  "source_manifest_sha256": "3be40da98596b9b065358bbc01bb529d04db1720e1d8b7080163362698517924",
+  "files_verified": 140,
+  "launchers_verified": true,
+  "launcher_real_cuda_prediction_verified": true,
+  "tracked_gpu_checkout_unchanged": true,
+  "temporary_transfer_archive_removed": true,
+  "direct_probabilities_identical": true,
+  "pytest_passed": 795,
+  "ruff_full": "nine pre-existing scratch notebook lint errors only",
+  "ruff_format_full": "pre-existing scratch notebook formatting only",
+  "ruff_excluding_notebook": "passed",
+  "diff_check": "passed",
+  "protected_local_artifacts_unchanged": true,
+  "frozen_records_read": false,
+  "training": false
+}

@@ -592,3 +592,358 @@ benchmark results change. Publish implementation/rules and synthetic verificatio
 not private news examples. This remains the existing local-research scope; no
 new public serving or redistribution permission is implied. See the
 [mention baseline guide](phase-04-target-sentiment/company-mentions.md).
+
+## SEntFiN development mention audit (2026-10-19)
+
+Reuse the existing hash-verified native train/validation target pairs under the
+reviewed local-research terms. No acquisition, training, new labels or public
+source-text redistribution occurs. Full matched headlines, native annotations
+and assistant review notes remain in ignored local data; the public report
+contains aggregate coverage counts and descriptions of issues only. Frozen
+records are not opened. Native targets are not exhaustive company mention gold;
+this task grants no new redistribution or deployment rights. See the
+[development detection review](../reports/phase-04-target-sentiment/experiments/company-mention-coverage.md).
+
+## Native target-format span preparation (2026-10-19)
+
+The user authorized investigating target markers/replacement before aggregation,
+with company detection deferred. Reuse only the existing locked SEntFiN native
+train/validation pairs under the reviewed local-research scope. Dry-run literal
+span transformations and save eligible IDs/full review text in ignored private
+storage; publish aggregate counts, policies and digests only. No new corpus,
+tokenizer or weights are acquired, no native labels are repaired, and no frozen
+record is opened. No training or public derivative-text redistribution occurs in
+this preparation task. Existing limitations and redistribution restrictions apply.
+See the [span audit](../reports/phase-04-target-sentiment/evaluation/target-span-audit.md).
+
+## RoBERTa target-format tokenizer preparation (2026-10-20)
+
+Reuse the reviewed MIT-declared `FacebookAI/roberta-base` snapshot at
+`e2da8e2f811d1448a5b465c236feacd80ffbac7b` and the existing local-research SEntFiN
+development views. Copy only six existing tokenizer/config files from the user's
+authorized PC cache to ignored Mac storage; verify original asset hashes and load
+locally with remote code disabled. No new model/corpus is acquired and no weights
+are read. Literal marker/replacement views and native labels remain in ignored,
+content-addressed local storage. Public outputs contain aggregate tokenizer
+counts, the nine-run protocol and hashes only. No frozen record, training,
+inference or public derivative-text/weight redistribution occurs. Existing data
+limitations and redistribution restrictions remain in force. See the
+[tokenizer audit and lock](../reports/phase-04-target-sentiment/evaluation/target-tokenizer-audit.md).
+
+## Detached RoBERTa target-format training (2026-10-20)
+
+The user authorized the locked nine-trial comparison as a detached job on the
+authorized RTX 4070 SUPER PC. Reuse the original pinned MIT RoBERTa Base snapshot
+and the existing SEntFiN local-research derivative-storage scope. Transfer only
+the public source snapshot and the already-prepared private target-format views
+to that same research computer; verify hashes before reuse. No new corpus/model
+acquisition or frozen-test access is authorized by this training task. Native
+labels remain unchanged. Saved checkpoints, row predictions and execution logs
+stay ignored/private; public exports contain aggregate metrics/configuration only.
+Company detection and production model selection remain deferred.
+
+## Target-format result verification and review (2026-10-20)
+
+Reuse only the completed nine-run study's local artifacts and native development
+prediction caches under the same reviewed research scope. Verify checkpoint and
+cache hashes and recompute existing metrics on the PC without model inference,
+training or frozen-record reads. Retrieve aggregate reports and preserve the exact
+public execution source in private Git bundles on both machines; weights and row
+predictions remain private. Publish only aggregate metrics, source/configuration
+provenance and verification digests. No raw text, source example IDs or weights
+are added to public reports, and no new redistribution rights are implied. See
+the [reviewed comparison](../reports/phase-04-target-sentiment/experiments/target-format-comparison.md).
+
+## Synthetic company-name sensitivity diagnostic (2026-10-20)
+
+The user authorized a development-only name-substitution check with saved models.
+Reuse the reviewed local SEntFiN derivative-storage and MIT RoBERTa checkpoint
+scope. A fixed native-company-target allowlist selects 67 existing validation
+annotations; two fixed name strings create private synthetic views. No new corpus,
+entity detector, tokenizer or model is acquired or trained. Counterfactual labels
+are not created or assumed; measure prediction/probability changes only. Native
+headlines, synthetic text and per-record outputs stay ignored on the user's two
+research machines. Public reports contain aggregate counts/diagnostics and hashes,
+with no source examples or weights. No frozen-record access or new public-serving
+or redistribution grant is implied. See the
+[diagnostic protocol](phase-04-target-sentiment/analysis/target-name-stress.md).
+
+## Pretrained organization detector review (2026-10-20)
+
+For the bounded Phase 4 comparison, use `dslim/bert-base-NER` at immutable revision
+`d1a3e8f13f8c3566299d95fcfc9a8d2382a9affc`. The publisher's
+[model card](https://huggingface.co/dslim/bert-base-NER/blob/d1a3e8f13f8c3566299d95fcfc9a8d2382a9affc/README.md)
+declares MIT licensing and identifies BERT-base-cased fine-tuned on English
+CoNLL-2003 Reuters news. Local acquisition, storage and research inference of the
+published checkpoint are supported under that declaration. Keep weights/card
+under ignored data; no weight or source-news redistribution is performed.
+This does not grant rights to acquire or republish Reuters/CoNLL training text;
+that corpus is not downloaded. The repository card declares the model license;
+an independent provenance/rights audit of upstream training text is unavailable.
+
+`configs/organization-ner-plan.json` pins all acquired file SHA-256 values and
+sizes before weight acquisition (LFS identity for weights; small blobs checked
+against repository Git identities). No remote code or pickle weights are used.
+Reuse the already reviewed local SEntFiN validation derivative only; no new data
+acquisition, training, frozen-test access or hosted inference is involved.
+Headlines and per-row detections remain private; publish aggregates and review
+findings only. Native sentiment targets are incomplete financial-entity annotations,
+not exhaustive company/organization mention gold. Model-card CoNLL accuracy is not
+FinSight accuracy. `ORG` predictions include institutions and other non-company
+organizations; they do not establish ticker identity or authorize parent rollup.
+
+## Organization mention development annotations (2026-10-20)
+
+Reuse only the previously reviewed local SEntFiN validation derivative and pinned
+MIT-declared BERT NER files. No new dataset/model acquisition, training, external
+annotation service, or frozen-test access is needed. The user authorized a small
+fully annotated development collection and grouping comparison. A prediction-free
+hash sample fixes 50 validation headlines. Source text, full organization-span
+drafts, reviewer notes and per-record detections remain under ignored local data;
+public artifacts contain only policy, code, aggregate metrics and checksums.
+The existing local derivative-storage scope supports this research annotation
+work; it does not clear public news-text redistribution.
+
+Assistant drafts attempt exhaustive company/other-organization spans independently
+of displayed native sentiment targets and current sampled model outputs. They
+remain provisional, with pending human review and explicit uncertain types.
+Earlier NER inference already covered the entire validation set; two selected
+headlines overlap the prior assistant review. This is development analysis, not
+an unseen, independent or human-gold test collection. Review and source provenance
+must remain explicit. Do not replace SEntFiN sentiment labels or the frozen test.
+See the [annotation policy](phase-04-target-sentiment/data/organization-annotation-policy.md).
+
+## Shortlist: company-linked news and market outcomes (2026-10-20)
+
+The user requested shortlisting only for
+[News Sentiment Analysis for Stock Data by Company](https://www.kaggle.com/datasets/sidarcidiacono/news-sentiment-analysis-for-stock-data-by-company)
+by Sid Arcidiacono. Status: **candidate for a later Phase 6 provenance/timing audit;
+not acquired, approved for use, or selected**. Only the public dataset card was
+reviewed; actual file schema, dates, rows and five-company support are unverified.
+
+The publisher describes r/WorldNews headlines associated with US stock symbols
+and Yahoo Finance market data. Its labels encode stock direction by market close
+on the publication day: 0 down, 1 up, 2 unchanged. These are market-outcome labels,
+not human financial-sentiment annotations, so do not use them as sentiment or
+company-mention gold. The card does not establish the exact price baseline.
+
+Before acquisition/use, verify company-linking provenance, source rights, precise
+publication/availability timestamps, target construction, company/date coverage,
+duplicate story groups and chronological evaluation eligibility. Same-day labels
+need a cutoff audit to avoid including news unavailable before the predicted move.
+The card lists "Data files © Original Authors"; local storage, derivative use and
+redistribution permissions remain unresolved. No download, experiment, integration
+or Phase 5/6 implementation is authorized by this shortlist entry.
+
+## Reviewed mention reference and word-aware NER verification (2026-10-20)
+
+The user accepted the assistant-drafted 50-headline development annotations and
+authorized finalization after sourced adjudication of UTI, Fin Tech and National
+Buildings. Record the exact review scope: rows 1–10 were individually approved;
+remaining rows were accepted in bulk and finalized after the follow-up. This is
+an assistant-drafted, user-accepted development reference, not independent double
+annotation or an unseen test set. Keep original drafts, discussion/evidence notes,
+approved reference snapshots and per-record predictions private. Public results
+contain aggregates and hashes only. Type uncertainty is resolved without changing
+written source spans or native SEntFiN sentiment labels.
+
+The same reviewed BERT checkpoint is reused with word-aware `first` aggregation;
+no training, new corpus, remote annotation service or frozen-record access is
+involved. Existing local-use scope also covers a copy of the pinned seven-file
+NER checkpoint on the user's GPU PC, under ignored project data, for invented-text
+end-to-end verification with the existing RoBERTa artifact. No weights or news
+text are redistributed publicly; no new upstream rights are inferred. Preserve
+historical `simple` experiments and their source snapshots separately from the
+new experimental default.
+
+## Conservative organization resolution (2026-10-21)
+
+Reuse the accepted local 50-headline development reference and checksummed saved
+word-aware predictions. The task adds handwritten whole-title institution rules
+and exact resolution through the unchanged five-company registry; it acquires no
+company directory, entity-linking dataset, news, model or external service. No
+new model is trained, and native sentiment labels/reference spans are unchanged.
+The resolver never receives gold types, sentiment predictions or model confidence
+as identity evidence. Unknown names/acronyms stay unresolved rather than being
+labeled non-company or added to the registry from the benchmark.
+
+Full error contexts and per-span resolution decisions remain under ignored local
+data. Public artifacts contain only aggregate counts, implementation policy,
+provenance and invented-input smoke results. Existing local-use terms cover cache
+analysis and invented-text inference with the already verified GPU checkpoints.
+No frozen records are accessed or additional redistribution rights inferred.
+
+## US-listed issuer identity source review (2026-10-21)
+
+The user authorized broader US-listed identity coverage within Phase 4. Select the
+SEC's official `company_tickers_exchange.json` association file:
+https://www.sec.gov/files/company_tickers_exchange.json . The SEC's
+[access guidance](https://www.sec.gov/search-filings/edgar-search-assistance/accessing-edgar-data)
+identifies it as conformed company-name/CIK/ticker/exchange associations, permits
+public downloads, asks clients to declare a User-Agent and limits automated
+requests (currently ten/second). Use one bulk request with a truthful FinSight
+identity and the user-supplied contact address, configured locally only. Never
+commit the address or copy it into snapshots/reports; do not impersonate browsers,
+crawl filings or use retry loops to evade access controls.
+
+The SEC's [website dissemination policy](https://www.sec.gov/about/privacy-information#website)
+states its website information may be copied and further distributed without
+permission, with SEC attribution requested. This supports local acquisition,
+storage and derived identity indexes of this factual association file. Do not
+use SEC logos or imply endorsement; this decision does not grant rights to
+third-party news or treat company trademarks as licensed branding. Original bytes
+and source/retrieval hashes will remain in ignored data; public outputs use
+aggregate counts and provenance.
+
+Scope: Nasdaq, NYSE, CBOE and TXSE association rows, excluding OTC/null/other exchange
+rows. US-listed does not mean US-domiciled: foreign issuers/ADRs may remain. CIK is
+the issuer identity; preserve all listings and do not invent a primary share class.
+The file is not a guaranteed complete/accurate universe or a security-type master.
+Obvious ETF/fund/trust names require separate type review rather than automatic
+company verification. Remaining matches establish an issuer association, not
+verified operating-company status. Current snapshots are not historical listing
+membership and must not be applied as point-in-time financial features. No news,
+price ingestion, stock prediction or new model training belongs to this task.
+
+Acquired one bulk snapshot on 2026-10-21 (523,851 bytes; SHA-256
+`6c29e2e3db973d4479875164603c2434f81ad22e14c9f1694999aca9cca246cb`).
+The corrected exchange policy retains 6,071 CIK issuers and 7,699 listing
+associations; 531 issuers have a conservative entity-type hold. Source bytes and
+contact configuration stay ignored locally. The public pin is
+`configs/us-listed-directory.json`; see the
+[coverage and verification report](../reports/phase-04-target-sentiment/experiments/us-listed-directory.md).
+
+## US-news mention/linking development review source (2026-10-21)
+
+For the user-authorized small US-company news review, use English Wikinews
+headline titles with attribution, source-category URLs, retrieval time and saved
+response checksums. The [official copyright policy](https://en.wikinews.org/wiki/Wikinews:Copyright)
+permits text reuse under CC BY 4.0 for material published after December 16, 2024,
+CC BY 2.5 for September 25, 2005–December 15, 2024, and public domain earlier.
+Retain both applicable license links and Wikinews attribution when publication
+version is not established; do not claim all headlines use the newest license.
+Only headline titles/category metadata are acquired, not articles, third-party
+quotations, images or linked publisher material. No Kaggle acquisition is implied.
+
+Select a small, deterministic, category-balanced corporate-news convenience sample
+without inspecting NER/resolver outputs. Company categories intentionally enrich
+US-company mentions; category membership is not a gold mention or CIK label.
+Historical headlines are allowed for extraction/linking diagnostics, but today's
+SEC directory cannot establish historical listings or security types. Unknown
+model pretraining exposure, older text, search/category selection, and limited
+sectors prevent representative or independent-test claims. Human review remains
+required: assistant drafts are not approved reference labels. Keep raw text and
+predictions in ignored local data and publish aggregate/provenance outputs only.
+This is bounded Phase 4 development work, with no sentiment training, model tuning,
+price features, frozen sentiment records or historical investment simulation.
+
+## US-company review acceptance (2026-10-21)
+
+The user bulk-approved all 20 assistant-drafted Wikinews references. Record this
+as user-accepted development data, not independent human annotation. Original
+drafts and source/selection bytes are preserved. The current-identity policy
+finalizes Chrysler/Saturn/Yahoo as company mentions without accepted standalone
+current directory links, retaining null CIKs without inferring historical absence
+or rolling up to parent issuers. Dell/GM refer to current identities only;
+Microsoft Research Asia remains an organizational unit without a company link.
+The user's bulk approval is not evidence of individual historical identity checks.
+Per-record drafts, reviewed references, acceptance metadata and predictions stay
+private; public metrics/provenance and limitations are in the
+[reviewed report](../reports/phase-04-target-sentiment/evaluation/us-company-review-reviewed.md).
+
+## Company-type/identity routing separation (2026-10-21)
+
+The user authorized separating company-mention sentiment from issuer linking.
+This bounded Phase 4 change uses already reviewed local NER/SEC sources and
+caller-supplied exact company-name confirmations. No new source, alias dictionary,
+training data, checkpoint acquisition or redistribution is introduced. The
+original deployment/input encoding remains unchanged; target masking is not an
+identity source. Invented-text CPU NER plus stub sentiment-routing verification
+uses the existing local research scope. Prior approved references and frozen
+records remain unchanged. See the
+[routing report](../reports/phase-04-target-sentiment/experiments/company-mention-routing.md).
+
+## GPU routing verification scope (2026-10-21)
+
+The user explicitly authorized updating their GPU PC and verifying the complete
+company pipeline with real sentiment inference. Reuse the already reviewed NER
+and RoBERTa checkpoint files on that user-controlled machine; no new model
+acquisition or public weight redistribution is involved. Transfer only an
+allowlisted source/evidence bundle and the factual SEC snapshot under its
+recorded source-use decision. No contact configuration or `.env` is copied.
+Use invented headlines only for CUDA extraction, resolution, sentiment and direct
+prediction equivalence; do not access news labels or frozen sentiment records.
+No training, calibration fitting or benchmark update is authorized by this check.
+[GPU report](../reports/phase-04-target-sentiment/verification/company-mention-routing-gpu.md).
+
+## Reviewed issuer aliases and fresh development sample (2026-10-21)
+
+User-authorized Phase 4 scope: improve Dell/Boeing/Toyota name handling and review
+on fresh headlines without changing earlier references/results. Verify aliases
+from factual corporate identity statements, keeping links/attribution and brief
+notes rather than copying web pages, logos or substantial text:
+
+- Boeing's [official company site](https://www.boeing.com/) identifies Boeing as
+  the aerospace company. The pinned SEC source lists BOEING CO, CIK 0000012927.
+- Toyota's [official 2026 statement](https://global.toyota/en/album/images/43839258/)
+  explicitly uses Toyota as shorthand for Toyota Motor Corporation. Its pinned
+  SEC CIK is 0001094517. Other Toyota group companies must not be shortened to it.
+- Dell's [2026 issuer-hosted filing](https://investors.delltechnologies.com/sec-filings/all-sec-filings/content/0001193125-26-271266/d159213d424b2.htm)
+  defines Dell as Dell Inc., an indirect wholly owned subsidiary of Dell
+  Technologies. CIK 0001571996 is the listed parent, not proof that Dell Inc. and
+  Dell Technologies are the same issuer. Require explicit parent roll-up for
+  that mapping; company-type evidence can still be retained without a CIK link.
+
+These are curated factual identity relationships, not a license to redistribute
+corporate content or proof of historical corporate continuity. Archive only
+configuration/evidence URLs and paraphrased decisions. Existing SEC association
+rights/local storage decisions apply; no new SEC request or contact transfer.
+
+Reuse the retained, previously permitted Wikinews category responses and make
+up to two bounded category API requests (Dell/Toyota) under the existing text
+license/attribution decision. Freeze a deterministic disjoint sample before NER,
+excluding all prior page IDs and normalized headline texts. Category choice is
+explicitly targeted to known linking gaps and controls, so this is development
+coverage evidence, not an unbiased or independent benchmark. Source dates are
+not established; current listings cannot validate historical membership. New
+assistant reference drafts require fresh user review; earlier bulk approval does
+not extend to them. Keep raw text/predictions private and frozen sentiment data
+untouched. No new model training, weight acquisition or Phase 5 implementation.
+
+Fresh alias-review packet selected from the allowed category snapshots:
+`ad6bb8ddb3553db5412f480a27f0839a3d8254a3df684274a1dbd0e4fd04794b`.
+Twenty headlines have zero prior ID/normalized-title overlap, without asserting
+event/pretraining independence. New assistant drafts remain pending; no old bulk
+approval was reused. Original current-identity references/results are preserved,
+including their historical Dell interpretation; the new no-parent-roll-up policy
+is explicit and does not rewrite them. See the
+[comparison report](../reports/phase-04-target-sentiment/evaluation/issuer-alias-review.md).
+
+## Fresh alias-reference bulk acceptance (2026-10-22)
+
+The user approved the fresh 20-headline packet in response to the explicit
+review request. Record bulk acceptance of assistant-authored labels (including
+eight flagged and two empty rows), not independent or individual annotation.
+Keep original draft bytes; update only review metadata/uncertainty flags in a
+new reviewed file. Company spans, types, CIK values, link statuses and source
+notes remain unchanged. The no-implicit-parent-roll-up policy is preserved; Dell
+remains a company without an assigned parent CIK. Score only the fixed primary
+three resolver arms against that policy. Parent roll-up remains a coverage
+diagnostic with no accuracy score under mismatched reference identities.
+Actual CPU NER is rerun with unchanged weights and outputs, without sentiment
+training/inference, source acquisition or frozen sentiment access. See the
+[reviewed results](../reports/phase-04-target-sentiment/evaluation/issuer-alias-review-reviewed.md).
+
+## Reviewed-alias GPU release verification (2026-10-22)
+
+The user explicitly authorized installing the reviewed aliases on the GPU PC and
+verifying real CUDA inference. Reuse the existing reviewed NER/RoBERTa weights and
+SEC snapshot with no acquisition, training or public weight redistribution.
+Transfer only allowlisted source/configuration/public deployment evidence and an
+invented-input smoke script; exclude all news/reference records, `.env`, contact
+configuration and credentials. Verify alias/SEC/model/source hashes. Exercise
+Toyota/Boeing automatic linking under explicit company context, Dell company-only
+sentiment under the default policy, and explicit Dell parent roll-up. Check direct
+prediction equivalence and uncertain/context-missing load skipping. Preserve the
+previous source release and launcher bytes; switch launchers only after passing.
+No source terms, frozen benchmarks, reference decisions or Phase 5 scope change.

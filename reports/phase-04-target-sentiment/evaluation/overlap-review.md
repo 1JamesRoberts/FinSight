@@ -24,7 +24,7 @@ similarity rule introduced after evaluation.
 Full source text, record/group identifiers and the original edge are retained in
 ignored `data/interim/target-overlap-review/20261018/review.json`. This public
 report contains only descriptive findings and aggregate counts under the existing
-[local-research data scope](../../docs/datasets.md).
+[local-research data scope](../../../docs/datasets.md).
 
 ## Why it was allowed before but blocks this run
 

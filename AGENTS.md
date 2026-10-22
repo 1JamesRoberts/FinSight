@@ -51,6 +51,9 @@ After implementation:
 - Identify remaining issues.
 - Report which roadmap tasks are complete.
 - Do not mark tasks complete unless verified.
+- In reports, explain every table measure or attribute directly below the table,
+  including what is counted, units, and whether categories overlap. Define
+  technical terms and give a short example when it helps interpretation.
 
 ## Important
 

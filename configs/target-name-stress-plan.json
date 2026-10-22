@@ -1,0 +1,56 @@
+{
+  "counterfactual_gold_policy": "none; original labels are lineage only, not assumed gold for synthetic names; no counterfactual accuracy/F1 claims",
+  "experiment": "target-name-stress-v1",
+  "frozen_test_access": false,
+  "identity_scope": "native literal names only; no aliases, coreference or company detector",
+  "limitations": [
+    "fixed manual company-target allowlist is not an exhaustive entity benchmark",
+    "synthetic renaming may change real-world meaning or grammatical plausibility",
+    "remaining aliases/products/context can reveal identity",
+    "replacement input invariance is a construction control, not a generalization result"
+  ],
+  "max_length": 128,
+  "metrics": [
+    "label_flip_rate",
+    "mean_total_variation",
+    "maximum_absolute_class_probability_change"
+  ],
+  "model_selection": false,
+  "native_target_allowlist": [
+    "Infosys",
+    "TCS",
+    "ONGC",
+    "Sun Pharma",
+    "SBI",
+    "BPCL",
+    "HUL",
+    "Tata Steel",
+    "Tech Mahindra",
+    "ICICI Bank",
+    "Wipro",
+    "HDFC Bank"
+  ],
+  "partition": "validation",
+  "preparation_lock_sha256": "b6dfd3f87f14f3375383680c03b541cc02e9d56ece0ccd2c17b44e6d35e1a9f7",
+  "probability_policy": "raw softmax, no calibration fitting",
+  "probability_tolerance": 1e-05,
+  "schema_version": 1,
+  "seeds": [
+    42,
+    43,
+    44
+  ],
+  "selection": "all locked eligible validation annotations with exact native target in the fixed company-name allowlist; no selection by label, confidence or model errors",
+  "source_report_sha256": "74beb760cfba0ede12a74c1b90451ef3e8f1f8b8db47bf7001eaa4545c481b89",
+  "substitute_names": [
+    "Cedar Group",
+    "Northstar Holdings"
+  ],
+  "substitution": "replace every audited literal target span in headline and the requested target; preserve all other text; keep all substitutions shared across model variants/seeds",
+  "training_performed": false,
+  "variants": [
+    "target_pair",
+    "target_markers",
+    "target_replacement"
+  ]
+}

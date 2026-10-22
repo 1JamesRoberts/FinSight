@@ -103,3 +103,15 @@ build/
 
 # Aggregate-only Phase 4 reserved evaluation results.
 !/reports/experiments/phase4-target-final.json
+
+# Aggregate-only RoBERTa target-format development study; private rows stay in data.
+!/reports/experiments/target-format.json
+!/reports/experiments/target-format-verification.json
+!/reports/experiments/target-format-runs/
+/reports/experiments/target-format-runs/**
+!/reports/experiments/target-format-runs/**/
+!/reports/experiments/target-format-runs/**/*.json
+
+# Aggregate-only synthetic name diagnostic; paired rows remain private.
+!/reports/experiments/target-name-stress.json
+!/reports/experiments/target-name-stress-verification.json

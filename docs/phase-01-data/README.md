@@ -1,5 +1,7 @@
 # Phase 1 — Data curation and EDA
 
+**Phase outcome:** [Final report](../../reports/phase-01-data/final-report.md) · [All final reports](../../reports/README.md).
+
 Dataset selection, rights, quality review, leakage-aware splits and benchmark freeze.
 
 [All documentation](../README.md) · [Report navigation](../../reports/README.md)

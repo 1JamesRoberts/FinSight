@@ -1,0 +1,11 @@
+{
+  "all_decision_and_error_counts_recomputed": true,
+  "decisions_verified": 30,
+  "error_headlines_reviewed": 8,
+  "error_instances_verified": 12,
+  "experiment": "organization-resolution-v1",
+  "frozen_records_read": false,
+  "reference_and_registry_unchanged": true,
+  "result_sha256": "b8744c97571d6c0d8552bf00c012c74f37ca98b2f5e4f78cfbe60b1e4684be1f",
+  "review_sha256": "77ec0f8228d3a67f6d5b7013b3fe79d72c2cdd495477e88eb23b13de1000752b"
+}

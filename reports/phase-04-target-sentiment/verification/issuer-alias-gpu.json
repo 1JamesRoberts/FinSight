@@ -1,0 +1,1166 @@
+{
+  "task": "reviewed-alias-gpu-release",
+  "passed": true,
+  "source_manifest_sha256": "f36459ecf9743b434df509b84963aa676bc135d4d025dcfc173758373ecc264a",
+  "device": "cuda",
+  "gpu": "NVIDIA GeForce RTX 4070 SUPER",
+  "torch": "2.11.0+cu128",
+  "cuda_runtime": "12.8",
+  "actual_ner_inference": true,
+  "actual_sentiment_inference": true,
+  "toyota_boeing_link_without_confirmed_company": true,
+  "dell_company_sentiment_without_parent_link": true,
+  "explicit_parent_rollup_verified": true,
+  "missing_context_uncertain_empty_skip_sentiment_load": true,
+  "direct_target_cli_verified": true,
+  "probabilities_unchanged_by_identity_policy": true,
+  "max_probability_abs_difference": 0.0,
+  "probability_tolerance": 1e-06,
+  "aliases_sha256": "6567153dfa3bcb007c78585c91d429cc377553811d2679853f37448717c3e5c5",
+  "directory_sha256": "d76a4e6fd5d7cc540b3ef6974ece2ca508b3fd16360e8d9eca7b94ddce9f528b",
+  "deployment_sha256": "e5092415a03e442852e43d503c5cab52ac3d9387d3287ef8221b499c8b6e34da",
+  "model_manifest_sha256": "2f742f69854f097b5b1351e4a1de126b54c28fe2c900edb3c2e41526cd32e855",
+  "invented_inputs_only": true,
+  "training": false,
+  "frozen_records_read": false,
+  "masking_applied": false,
+  "elapsed_seconds": 58.19758840000213,
+  "strict_result": {
+    "detector_version": "organization-ner-v2",
+    "model_id": "dslim/bert-base-NER",
+    "revision": "d1a3e8f13f8c3566299d95fcfc9a8d2382a9affc",
+    "aggregation_strategy": "first",
+    "candidate_type": "organization_not_verified_company",
+    "mentions": [
+      {
+        "text": "Toyota",
+        "start": 0,
+        "end": 6,
+        "score": 0.9985677003860474
+      },
+      {
+        "text": "Boeing",
+        "start": 32,
+        "end": 38,
+        "score": 0.9975132942199707
+      },
+      {
+        "text": "Dell",
+        "start": 56,
+        "end": 60,
+        "score": 0.9987467527389526
+      }
+    ],
+    "resolver_version": "organization-resolution-v4",
+    "registry_sha256": "3414bd464620472b37f23944f0c6d8011f77fc8460491c4001010d2aa820d285",
+    "us_directory_sha256": "d76a4e6fd5d7cc540b3ef6974ece2ca508b3fd16360e8d9eca7b94ddce9f528b",
+    "aliases_sha256": "6567153dfa3bcb007c78585c91d429cc377553811d2679853f37448717c3e5c5",
+    "resolution_policy": {
+      "company_context": true,
+      "confirmed_companies": [],
+      "allow_parent_rollup": false
+    },
+    "resolutions": [
+      {
+        "mention": {
+          "text": "Toyota",
+          "start": 0,
+          "end": 6,
+          "score": 0.9985677003860474
+        },
+        "status": "verified_company",
+        "reason": "reviewed_issuer_alias",
+        "company_id": "sec-cik:0001094517",
+        "primary_ticker": null,
+        "matched_ticker": null,
+        "registry_sha256": "3414bd464620472b37f23944f0c6d8011f77fc8460491c4001010d2aa820d285",
+        "sec_cik": "0001094517",
+        "listings": [
+          {
+            "exchange": "NYSE",
+            "ticker": "TM"
+          }
+        ],
+        "directory_sha256": "d76a4e6fd5d7cc540b3ef6974ece2ca508b3fd16360e8d9eca7b94ddce9f528b",
+        "company_type": "company",
+        "classification_reason": "accepted_identity_policy",
+        "aliases_sha256": "6567153dfa3bcb007c78585c91d429cc377553811d2679853f37448717c3e5c5",
+        "identity_status": "linked"
+      },
+      {
+        "mention": {
+          "text": "Boeing",
+          "start": 32,
+          "end": 38,
+          "score": 0.9975132942199707
+        },
+        "status": "verified_company",
+        "reason": "suffix_normalized_name",
+        "company_id": "sec-cik:0000012927",
+        "primary_ticker": null,
+        "matched_ticker": null,
+        "registry_sha256": "3414bd464620472b37f23944f0c6d8011f77fc8460491c4001010d2aa820d285",
+        "sec_cik": "0000012927",
+        "listings": [
+          {
+            "exchange": "NYSE",
+            "ticker": "BA"
+          },
+          {
+            "exchange": "NYSE",
+            "ticker": "BA-PA"
+          }
+        ],
+        "directory_sha256": "d76a4e6fd5d7cc540b3ef6974ece2ca508b3fd16360e8d9eca7b94ddce9f528b",
+        "company_type": "company",
+        "classification_reason": "accepted_identity_policy",
+        "aliases_sha256": "6567153dfa3bcb007c78585c91d429cc377553811d2679853f37448717c3e5c5",
+        "identity_status": "linked"
+      },
+      {
+        "mention": {
+          "text": "Dell",
+          "start": 56,
+          "end": 60,
+          "score": 0.9987467527389526
+        },
+        "status": "unresolved",
+        "reason": "alias_parent_rollup_required",
+        "company_id": null,
+        "primary_ticker": null,
+        "matched_ticker": null,
+        "registry_sha256": "3414bd464620472b37f23944f0c6d8011f77fc8460491c4001010d2aa820d285",
+        "sec_cik": null,
+        "listings": [],
+        "directory_sha256": "d76a4e6fd5d7cc540b3ef6974ece2ca508b3fd16360e8d9eca7b94ddce9f528b",
+        "company_type": "company",
+        "classification_reason": "source_backed_company_type",
+        "aliases_sha256": "6567153dfa3bcb007c78585c91d429cc377553811d2679853f37448717c3e5c5",
+        "identity_status": "unresolved"
+      }
+    ],
+    "company_sentiments": [
+      {
+        "target": "Toyota",
+        "company_type": "company",
+        "classification_reason": "accepted_identity_policy",
+        "identity_status": "linked",
+        "company_identity_verified": true,
+        "identity_verification_scope": "sec_issuer_association_not_security_type_verification",
+        "company_id": "sec-cik:0001094517",
+        "sec_cik": "0001094517",
+        "primary_ticker": null,
+        "matched_ticker": null,
+        "listings": [
+          {
+            "exchange": "NYSE",
+            "ticker": "TM"
+          }
+        ],
+        "registry_sha256": "3414bd464620472b37f23944f0c6d8011f77fc8460491c4001010d2aa820d285",
+        "directory_sha256": "d76a4e6fd5d7cc540b3ef6974ece2ca508b3fd16360e8d9eca7b94ddce9f528b",
+        "aliases_sha256": "6567153dfa3bcb007c78585c91d429cc377553811d2679853f37448717c3e5c5",
+        "aggregation_eligible": true,
+        "mentions": [
+          {
+            "text": "Toyota",
+            "start": 0,
+            "end": 6,
+            "score": 0.9985677003860474
+          }
+        ],
+        "sentiment": {
+          "target": "Toyota",
+          "label": "positive",
+          "probabilities": {
+            "negative": 0.002546211238950491,
+            "neutral": 0.005522063467651606,
+            "positive": 0.9919317364692688
+          },
+          "model_version": "2f742f69854f097b5b1351e4a1de126b54c28fe2c900edb3c2e41526cd32e855",
+          "deployment_sha256": "e5092415a03e442852e43d503c5cab52ac3d9387d3287ef8221b499c8b6e34da",
+          "probabilities_calibrated": false
+        }
+      },
+      {
+        "target": "Boeing",
+        "company_type": "company",
+        "classification_reason": "accepted_identity_policy",
+        "identity_status": "linked",
+        "company_identity_verified": true,
+        "identity_verification_scope": "sec_issuer_association_not_security_type_verification",
+        "company_id": "sec-cik:0000012927",
+        "sec_cik": "0000012927",
+        "primary_ticker": null,
+        "matched_ticker": null,
+        "listings": [
+          {
+            "exchange": "NYSE",
+            "ticker": "BA"
+          },
+          {
+            "exchange": "NYSE",
+            "ticker": "BA-PA"
+          }
+        ],
+        "registry_sha256": "3414bd464620472b37f23944f0c6d8011f77fc8460491c4001010d2aa820d285",
+        "directory_sha256": "d76a4e6fd5d7cc540b3ef6974ece2ca508b3fd16360e8d9eca7b94ddce9f528b",
+        "aliases_sha256": "6567153dfa3bcb007c78585c91d429cc377553811d2679853f37448717c3e5c5",
+        "aggregation_eligible": true,
+        "mentions": [
+          {
+            "text": "Boeing",
+            "start": 32,
+            "end": 38,
+            "score": 0.9975132942199707
+          }
+        ],
+        "sentiment": {
+          "target": "Boeing",
+          "label": "negative",
+          "probabilities": {
+            "negative": 0.8439987301826477,
+            "neutral": 0.12248511612415314,
+            "positive": 0.03351609408855438
+          },
+          "model_version": "2f742f69854f097b5b1351e4a1de126b54c28fe2c900edb3c2e41526cd32e855",
+          "deployment_sha256": "e5092415a03e442852e43d503c5cab52ac3d9387d3287ef8221b499c8b6e34da",
+          "probabilities_calibrated": false
+        }
+      },
+      {
+        "target": "Dell",
+        "company_type": "company",
+        "classification_reason": "source_backed_company_type",
+        "identity_status": "unresolved",
+        "company_identity_verified": false,
+        "identity_verification_scope": "not_verified",
+        "company_id": null,
+        "sec_cik": null,
+        "primary_ticker": null,
+        "matched_ticker": null,
+        "listings": [],
+        "registry_sha256": "3414bd464620472b37f23944f0c6d8011f77fc8460491c4001010d2aa820d285",
+        "directory_sha256": "d76a4e6fd5d7cc540b3ef6974ece2ca508b3fd16360e8d9eca7b94ddce9f528b",
+        "aliases_sha256": "6567153dfa3bcb007c78585c91d429cc377553811d2679853f37448717c3e5c5",
+        "aggregation_eligible": false,
+        "mentions": [
+          {
+            "text": "Dell",
+            "start": 56,
+            "end": 60,
+            "score": 0.9987467527389526
+          }
+        ],
+        "sentiment": {
+          "target": "Dell",
+          "label": "positive",
+          "probabilities": {
+            "negative": 0.004434648901224136,
+            "neutral": 0.06926774978637695,
+            "positive": 0.926297664642334
+          },
+          "model_version": "2f742f69854f097b5b1351e4a1de126b54c28fe2c900edb3c2e41526cd32e855",
+          "deployment_sha256": "e5092415a03e442852e43d503c5cab52ac3d9387d3287ef8221b499c8b6e34da",
+          "probabilities_calibrated": false
+        }
+      }
+    ],
+    "sentiment_policy": "company_mentions_only"
+  },
+  "rollup_result": {
+    "detector_version": "organization-ner-v2",
+    "model_id": "dslim/bert-base-NER",
+    "revision": "d1a3e8f13f8c3566299d95fcfc9a8d2382a9affc",
+    "aggregation_strategy": "first",
+    "candidate_type": "organization_not_verified_company",
+    "mentions": [
+      {
+        "text": "Toyota",
+        "start": 0,
+        "end": 6,
+        "score": 0.9985677003860474
+      },
+      {
+        "text": "Boeing",
+        "start": 32,
+        "end": 38,
+        "score": 0.9975132942199707
+      },
+      {
+        "text": "Dell",
+        "start": 56,
+        "end": 60,
+        "score": 0.9987467527389526
+      }
+    ],
+    "resolver_version": "organization-resolution-v4",
+    "registry_sha256": "3414bd464620472b37f23944f0c6d8011f77fc8460491c4001010d2aa820d285",
+    "us_directory_sha256": "d76a4e6fd5d7cc540b3ef6974ece2ca508b3fd16360e8d9eca7b94ddce9f528b",
+    "aliases_sha256": "6567153dfa3bcb007c78585c91d429cc377553811d2679853f37448717c3e5c5",
+    "resolution_policy": {
+      "company_context": true,
+      "confirmed_companies": [],
+      "allow_parent_rollup": true
+    },
+    "resolutions": [
+      {
+        "mention": {
+          "text": "Toyota",
+          "start": 0,
+          "end": 6,
+          "score": 0.9985677003860474
+        },
+        "status": "verified_company",
+        "reason": "reviewed_issuer_alias",
+        "company_id": "sec-cik:0001094517",
+        "primary_ticker": null,
+        "matched_ticker": null,
+        "registry_sha256": "3414bd464620472b37f23944f0c6d8011f77fc8460491c4001010d2aa820d285",
+        "sec_cik": "0001094517",
+        "listings": [
+          {
+            "exchange": "NYSE",
+            "ticker": "TM"
+          }
+        ],
+        "directory_sha256": "d76a4e6fd5d7cc540b3ef6974ece2ca508b3fd16360e8d9eca7b94ddce9f528b",
+        "company_type": "company",
+        "classification_reason": "accepted_identity_policy",
+        "aliases_sha256": "6567153dfa3bcb007c78585c91d429cc377553811d2679853f37448717c3e5c5",
+        "identity_status": "linked"
+      },
+      {
+        "mention": {
+          "text": "Boeing",
+          "start": 32,
+          "end": 38,
+          "score": 0.9975132942199707
+        },
+        "status": "verified_company",
+        "reason": "suffix_normalized_name",
+        "company_id": "sec-cik:0000012927",
+        "primary_ticker": null,
+        "matched_ticker": null,
+        "registry_sha256": "3414bd464620472b37f23944f0c6d8011f77fc8460491c4001010d2aa820d285",
+        "sec_cik": "0000012927",
+        "listings": [
+          {
+            "exchange": "NYSE",
+            "ticker": "BA"
+          },
+          {
+            "exchange": "NYSE",
+            "ticker": "BA-PA"
+          }
+        ],
+        "directory_sha256": "d76a4e6fd5d7cc540b3ef6974ece2ca508b3fd16360e8d9eca7b94ddce9f528b",
+        "company_type": "company",
+        "classification_reason": "accepted_identity_policy",
+        "aliases_sha256": "6567153dfa3bcb007c78585c91d429cc377553811d2679853f37448717c3e5c5",
+        "identity_status": "linked"
+      },
+      {
+        "mention": {
+          "text": "Dell",
+          "start": 56,
+          "end": 60,
+          "score": 0.9987467527389526
+        },
+        "status": "verified_company",
+        "reason": "reviewed_parent_rollup_alias",
+        "company_id": "sec-cik:0001571996",
+        "primary_ticker": null,
+        "matched_ticker": null,
+        "registry_sha256": "3414bd464620472b37f23944f0c6d8011f77fc8460491c4001010d2aa820d285",
+        "sec_cik": "0001571996",
+        "listings": [
+          {
+            "exchange": "NYSE",
+            "ticker": "DELL"
+          }
+        ],
+        "directory_sha256": "d76a4e6fd5d7cc540b3ef6974ece2ca508b3fd16360e8d9eca7b94ddce9f528b",
+        "company_type": "company",
+        "classification_reason": "accepted_identity_policy",
+        "aliases_sha256": "6567153dfa3bcb007c78585c91d429cc377553811d2679853f37448717c3e5c5",
+        "identity_status": "linked"
+      }
+    ],
+    "company_sentiments": [
+      {
+        "target": "Toyota",
+        "company_type": "company",
+        "classification_reason": "accepted_identity_policy",
+        "identity_status": "linked",
+        "company_identity_verified": true,
+        "identity_verification_scope": "sec_issuer_association_not_security_type_verification",
+        "company_id": "sec-cik:0001094517",
+        "sec_cik": "0001094517",
+        "primary_ticker": null,
+        "matched_ticker": null,
+        "listings": [
+          {
+            "exchange": "NYSE",
+            "ticker": "TM"
+          }
+        ],
+        "registry_sha256": "3414bd464620472b37f23944f0c6d8011f77fc8460491c4001010d2aa820d285",
+        "directory_sha256": "d76a4e6fd5d7cc540b3ef6974ece2ca508b3fd16360e8d9eca7b94ddce9f528b",
+        "aliases_sha256": "6567153dfa3bcb007c78585c91d429cc377553811d2679853f37448717c3e5c5",
+        "aggregation_eligible": true,
+        "mentions": [
+          {
+            "text": "Toyota",
+            "start": 0,
+            "end": 6,
+            "score": 0.9985677003860474
+          }
+        ],
+        "sentiment": {
+          "target": "Toyota",
+          "label": "positive",
+          "probabilities": {
+            "negative": 0.002546211238950491,
+            "neutral": 0.005522063467651606,
+            "positive": 0.9919317364692688
+          },
+          "model_version": "2f742f69854f097b5b1351e4a1de126b54c28fe2c900edb3c2e41526cd32e855",
+          "deployment_sha256": "e5092415a03e442852e43d503c5cab52ac3d9387d3287ef8221b499c8b6e34da",
+          "probabilities_calibrated": false
+        }
+      },
+      {
+        "target": "Boeing",
+        "company_type": "company",
+        "classification_reason": "accepted_identity_policy",
+        "identity_status": "linked",
+        "company_identity_verified": true,
+        "identity_verification_scope": "sec_issuer_association_not_security_type_verification",
+        "company_id": "sec-cik:0000012927",
+        "sec_cik": "0000012927",
+        "primary_ticker": null,
+        "matched_ticker": null,
+        "listings": [
+          {
+            "exchange": "NYSE",
+            "ticker": "BA"
+          },
+          {
+            "exchange": "NYSE",
+            "ticker": "BA-PA"
+          }
+        ],
+        "registry_sha256": "3414bd464620472b37f23944f0c6d8011f77fc8460491c4001010d2aa820d285",
+        "directory_sha256": "d76a4e6fd5d7cc540b3ef6974ece2ca508b3fd16360e8d9eca7b94ddce9f528b",
+        "aliases_sha256": "6567153dfa3bcb007c78585c91d429cc377553811d2679853f37448717c3e5c5",
+        "aggregation_eligible": true,
+        "mentions": [
+          {
+            "text": "Boeing",
+            "start": 32,
+            "end": 38,
+            "score": 0.9975132942199707
+          }
+        ],
+        "sentiment": {
+          "target": "Boeing",
+          "label": "negative",
+          "probabilities": {
+            "negative": 0.8439987301826477,
+            "neutral": 0.12248511612415314,
+            "positive": 0.03351609408855438
+          },
+          "model_version": "2f742f69854f097b5b1351e4a1de126b54c28fe2c900edb3c2e41526cd32e855",
+          "deployment_sha256": "e5092415a03e442852e43d503c5cab52ac3d9387d3287ef8221b499c8b6e34da",
+          "probabilities_calibrated": false
+        }
+      },
+      {
+        "target": "Dell",
+        "company_type": "company",
+        "classification_reason": "accepted_identity_policy",
+        "identity_status": "linked",
+        "company_identity_verified": true,
+        "identity_verification_scope": "sec_issuer_association_not_security_type_verification",
+        "company_id": "sec-cik:0001571996",
+        "sec_cik": "0001571996",
+        "primary_ticker": null,
+        "matched_ticker": null,
+        "listings": [
+          {
+            "exchange": "NYSE",
+            "ticker": "DELL"
+          }
+        ],
+        "registry_sha256": "3414bd464620472b37f23944f0c6d8011f77fc8460491c4001010d2aa820d285",
+        "directory_sha256": "d76a4e6fd5d7cc540b3ef6974ece2ca508b3fd16360e8d9eca7b94ddce9f528b",
+        "aliases_sha256": "6567153dfa3bcb007c78585c91d429cc377553811d2679853f37448717c3e5c5",
+        "aggregation_eligible": true,
+        "mentions": [
+          {
+            "text": "Dell",
+            "start": 56,
+            "end": 60,
+            "score": 0.9987467527389526
+          }
+        ],
+        "sentiment": {
+          "target": "Dell",
+          "label": "positive",
+          "probabilities": {
+            "negative": 0.004434648901224136,
+            "neutral": 0.06926774978637695,
+            "positive": 0.926297664642334
+          },
+          "model_version": "2f742f69854f097b5b1351e4a1de126b54c28fe2c900edb3c2e41526cd32e855",
+          "deployment_sha256": "e5092415a03e442852e43d503c5cab52ac3d9387d3287ef8221b499c8b6e34da",
+          "probabilities_calibrated": false
+        }
+      }
+    ],
+    "sentiment_policy": "company_mentions_only"
+  },
+  "skipped_results": [
+    {
+      "detector_version": "organization-ner-v2",
+      "model_id": "dslim/bert-base-NER",
+      "revision": "d1a3e8f13f8c3566299d95fcfc9a8d2382a9affc",
+      "aggregation_strategy": "first",
+      "candidate_type": "organization_not_verified_company",
+      "mentions": [
+        {
+          "text": "Dell",
+          "start": 0,
+          "end": 4,
+          "score": 0.9989683628082275
+        }
+      ],
+      "resolver_version": "organization-resolution-v4",
+      "registry_sha256": "3414bd464620472b37f23944f0c6d8011f77fc8460491c4001010d2aa820d285",
+      "us_directory_sha256": "d76a4e6fd5d7cc540b3ef6974ece2ca508b3fd16360e8d9eca7b94ddce9f528b",
+      "aliases_sha256": "6567153dfa3bcb007c78585c91d429cc377553811d2679853f37448717c3e5c5",
+      "resolution_policy": {
+        "company_context": false,
+        "confirmed_companies": [],
+        "allow_parent_rollup": false
+      },
+      "resolutions": [
+        {
+          "mention": {
+            "text": "Dell",
+            "start": 0,
+            "end": 4,
+            "score": 0.9989683628082275
+          },
+          "status": "unresolved",
+          "reason": "alias_requires_company_context",
+          "company_id": null,
+          "primary_ticker": null,
+          "matched_ticker": null,
+          "registry_sha256": "3414bd464620472b37f23944f0c6d8011f77fc8460491c4001010d2aa820d285",
+          "sec_cik": null,
+          "listings": [],
+          "directory_sha256": "d76a4e6fd5d7cc540b3ef6974ece2ca508b3fd16360e8d9eca7b94ddce9f528b",
+          "company_type": "uncertain",
+          "classification_reason": "no_company_type_evidence",
+          "aliases_sha256": "6567153dfa3bcb007c78585c91d429cc377553811d2679853f37448717c3e5c5",
+          "identity_status": "unresolved"
+        }
+      ],
+      "company_sentiments": [],
+      "sentiment_policy": "company_mentions_only"
+    },
+    {
+      "detector_version": "organization-ner-v2",
+      "model_id": "dslim/bert-base-NER",
+      "revision": "d1a3e8f13f8c3566299d95fcfc9a8d2382a9affc",
+      "aggregation_strategy": "first",
+      "candidate_type": "organization_not_verified_company",
+      "mentions": [
+        {
+          "text": "NASA",
+          "start": 0,
+          "end": 4,
+          "score": 0.9989660978317261
+        }
+      ],
+      "resolver_version": "organization-resolution-v4",
+      "registry_sha256": "3414bd464620472b37f23944f0c6d8011f77fc8460491c4001010d2aa820d285",
+      "us_directory_sha256": "d76a4e6fd5d7cc540b3ef6974ece2ca508b3fd16360e8d9eca7b94ddce9f528b",
+      "aliases_sha256": "6567153dfa3bcb007c78585c91d429cc377553811d2679853f37448717c3e5c5",
+      "resolution_policy": {
+        "company_context": true,
+        "confirmed_companies": [],
+        "allow_parent_rollup": false
+      },
+      "resolutions": [
+        {
+          "mention": {
+            "text": "NASA",
+            "start": 0,
+            "end": 4,
+            "score": 0.9989660978317261
+          },
+          "status": "unresolved",
+          "reason": "unknown_us_listed_name",
+          "company_id": null,
+          "primary_ticker": null,
+          "matched_ticker": null,
+          "registry_sha256": "3414bd464620472b37f23944f0c6d8011f77fc8460491c4001010d2aa820d285",
+          "sec_cik": null,
+          "listings": [],
+          "directory_sha256": "d76a4e6fd5d7cc540b3ef6974ece2ca508b3fd16360e8d9eca7b94ddce9f528b",
+          "company_type": "uncertain",
+          "classification_reason": "no_company_type_evidence",
+          "aliases_sha256": "6567153dfa3bcb007c78585c91d429cc377553811d2679853f37448717c3e5c5",
+          "identity_status": "unresolved"
+        }
+      ],
+      "company_sentiments": [],
+      "sentiment_policy": "company_mentions_only"
+    },
+    {
+      "detector_version": "organization-ner-v2",
+      "model_id": "dslim/bert-base-NER",
+      "revision": "d1a3e8f13f8c3566299d95fcfc9a8d2382a9affc",
+      "aggregation_strategy": "first",
+      "candidate_type": "organization_not_verified_company",
+      "mentions": [],
+      "resolver_version": "organization-resolution-v4",
+      "registry_sha256": "3414bd464620472b37f23944f0c6d8011f77fc8460491c4001010d2aa820d285",
+      "us_directory_sha256": "d76a4e6fd5d7cc540b3ef6974ece2ca508b3fd16360e8d9eca7b94ddce9f528b",
+      "aliases_sha256": "6567153dfa3bcb007c78585c91d429cc377553811d2679853f37448717c3e5c5",
+      "resolution_policy": {
+        "company_context": true,
+        "confirmed_companies": [],
+        "allow_parent_rollup": false
+      },
+      "resolutions": [],
+      "company_sentiments": [],
+      "sentiment_policy": "company_mentions_only"
+    }
+  ],
+  "launchers": {
+    "finsight-organizations.cmd": {
+      "sha256": "6f056771a5f4f35086635c6df9a97823a19308c4b36b94b71e3e396ac616ffd3",
+      "help_verified": true
+    },
+    "finsight-predict.cmd": {
+      "sha256": "262d8159b0d822d235207008ce665933fa5017a5ed1f600c3dd655ec5a0e7e9b",
+      "help_verified": true
+    }
+  },
+  "launcher_strict_and_parent_rollup_real_cuda_verified": true,
+  "launcher_alias_and_sec_defaults": true,
+  "company_context_remains_explicit": true,
+  "previous_release": "3be40da98596b9b065358bbc01bb529d04db1720e1d8b7080163362698517924",
+  "previous_launcher_sha256": {
+    "finsight-organizations.cmd": "d9cd5f6b4ba6e31f027ba148acf8aaa6d42adc72a0ab8d7a421ea9be7c611d9d",
+    "finsight-predict.cmd": "71e9238f2369f7341b765caa5873d158289ad73cba5aee3d917278f8f01b7a7c"
+  },
+  "rollback_launchers_preserved": true,
+  "archive_sha256": "ff4a336ab5ea5cbc5f136669528ccb532fe5d83f264ceb5ba90e31c774d25302",
+  "installed_source_files_verified": 142,
+  "tracked_checkout_unchanged": true,
+  "transfer_archive_removed": true,
+  "launcher_results": [
+    {
+      "detector_version": "organization-ner-v2",
+      "model_id": "dslim/bert-base-NER",
+      "revision": "d1a3e8f13f8c3566299d95fcfc9a8d2382a9affc",
+      "aggregation_strategy": "first",
+      "candidate_type": "organization_not_verified_company",
+      "mentions": [
+        {
+          "text": "Toyota",
+          "start": 0,
+          "end": 6,
+          "score": 0.9985677003860474
+        },
+        {
+          "text": "Boeing",
+          "start": 32,
+          "end": 38,
+          "score": 0.9975132942199707
+        },
+        {
+          "text": "Dell",
+          "start": 56,
+          "end": 60,
+          "score": 0.9987467527389526
+        }
+      ],
+      "resolver_version": "organization-resolution-v4",
+      "registry_sha256": "3414bd464620472b37f23944f0c6d8011f77fc8460491c4001010d2aa820d285",
+      "us_directory_sha256": "d76a4e6fd5d7cc540b3ef6974ece2ca508b3fd16360e8d9eca7b94ddce9f528b",
+      "aliases_sha256": "6567153dfa3bcb007c78585c91d429cc377553811d2679853f37448717c3e5c5",
+      "resolution_policy": {
+        "company_context": true,
+        "confirmed_companies": [],
+        "allow_parent_rollup": false
+      },
+      "resolutions": [
+        {
+          "mention": {
+            "text": "Toyota",
+            "start": 0,
+            "end": 6,
+            "score": 0.9985677003860474
+          },
+          "status": "verified_company",
+          "reason": "reviewed_issuer_alias",
+          "company_id": "sec-cik:0001094517",
+          "primary_ticker": null,
+          "matched_ticker": null,
+          "registry_sha256": "3414bd464620472b37f23944f0c6d8011f77fc8460491c4001010d2aa820d285",
+          "sec_cik": "0001094517",
+          "listings": [
+            {
+              "exchange": "NYSE",
+              "ticker": "TM"
+            }
+          ],
+          "directory_sha256": "d76a4e6fd5d7cc540b3ef6974ece2ca508b3fd16360e8d9eca7b94ddce9f528b",
+          "company_type": "company",
+          "classification_reason": "accepted_identity_policy",
+          "aliases_sha256": "6567153dfa3bcb007c78585c91d429cc377553811d2679853f37448717c3e5c5",
+          "identity_status": "linked"
+        },
+        {
+          "mention": {
+            "text": "Boeing",
+            "start": 32,
+            "end": 38,
+            "score": 0.9975132942199707
+          },
+          "status": "verified_company",
+          "reason": "suffix_normalized_name",
+          "company_id": "sec-cik:0000012927",
+          "primary_ticker": null,
+          "matched_ticker": null,
+          "registry_sha256": "3414bd464620472b37f23944f0c6d8011f77fc8460491c4001010d2aa820d285",
+          "sec_cik": "0000012927",
+          "listings": [
+            {
+              "exchange": "NYSE",
+              "ticker": "BA"
+            },
+            {
+              "exchange": "NYSE",
+              "ticker": "BA-PA"
+            }
+          ],
+          "directory_sha256": "d76a4e6fd5d7cc540b3ef6974ece2ca508b3fd16360e8d9eca7b94ddce9f528b",
+          "company_type": "company",
+          "classification_reason": "accepted_identity_policy",
+          "aliases_sha256": "6567153dfa3bcb007c78585c91d429cc377553811d2679853f37448717c3e5c5",
+          "identity_status": "linked"
+        },
+        {
+          "mention": {
+            "text": "Dell",
+            "start": 56,
+            "end": 60,
+            "score": 0.9987467527389526
+          },
+          "status": "unresolved",
+          "reason": "alias_parent_rollup_required",
+          "company_id": null,
+          "primary_ticker": null,
+          "matched_ticker": null,
+          "registry_sha256": "3414bd464620472b37f23944f0c6d8011f77fc8460491c4001010d2aa820d285",
+          "sec_cik": null,
+          "listings": [],
+          "directory_sha256": "d76a4e6fd5d7cc540b3ef6974ece2ca508b3fd16360e8d9eca7b94ddce9f528b",
+          "company_type": "company",
+          "classification_reason": "source_backed_company_type",
+          "aliases_sha256": "6567153dfa3bcb007c78585c91d429cc377553811d2679853f37448717c3e5c5",
+          "identity_status": "unresolved"
+        }
+      ],
+      "company_sentiments": [
+        {
+          "target": "Toyota",
+          "company_type": "company",
+          "classification_reason": "accepted_identity_policy",
+          "identity_status": "linked",
+          "company_identity_verified": true,
+          "identity_verification_scope": "sec_issuer_association_not_security_type_verification",
+          "company_id": "sec-cik:0001094517",
+          "sec_cik": "0001094517",
+          "primary_ticker": null,
+          "matched_ticker": null,
+          "listings": [
+            {
+              "exchange": "NYSE",
+              "ticker": "TM"
+            }
+          ],
+          "registry_sha256": "3414bd464620472b37f23944f0c6d8011f77fc8460491c4001010d2aa820d285",
+          "directory_sha256": "d76a4e6fd5d7cc540b3ef6974ece2ca508b3fd16360e8d9eca7b94ddce9f528b",
+          "aliases_sha256": "6567153dfa3bcb007c78585c91d429cc377553811d2679853f37448717c3e5c5",
+          "aggregation_eligible": true,
+          "mentions": [
+            {
+              "text": "Toyota",
+              "start": 0,
+              "end": 6,
+              "score": 0.9985677003860474
+            }
+          ],
+          "sentiment": {
+            "target": "Toyota",
+            "label": "positive",
+            "probabilities": {
+              "negative": 0.002546211238950491,
+              "neutral": 0.005522063467651606,
+              "positive": 0.9919317364692688
+            },
+            "model_version": "2f742f69854f097b5b1351e4a1de126b54c28fe2c900edb3c2e41526cd32e855",
+            "deployment_sha256": "e5092415a03e442852e43d503c5cab52ac3d9387d3287ef8221b499c8b6e34da",
+            "probabilities_calibrated": false
+          }
+        },
+        {
+          "target": "Boeing",
+          "company_type": "company",
+          "classification_reason": "accepted_identity_policy",
+          "identity_status": "linked",
+          "company_identity_verified": true,
+          "identity_verification_scope": "sec_issuer_association_not_security_type_verification",
+          "company_id": "sec-cik:0000012927",
+          "sec_cik": "0000012927",
+          "primary_ticker": null,
+          "matched_ticker": null,
+          "listings": [
+            {
+              "exchange": "NYSE",
+              "ticker": "BA"
+            },
+            {
+              "exchange": "NYSE",
+              "ticker": "BA-PA"
+            }
+          ],
+          "registry_sha256": "3414bd464620472b37f23944f0c6d8011f77fc8460491c4001010d2aa820d285",
+          "directory_sha256": "d76a4e6fd5d7cc540b3ef6974ece2ca508b3fd16360e8d9eca7b94ddce9f528b",
+          "aliases_sha256": "6567153dfa3bcb007c78585c91d429cc377553811d2679853f37448717c3e5c5",
+          "aggregation_eligible": true,
+          "mentions": [
+            {
+              "text": "Boeing",
+              "start": 32,
+              "end": 38,
+              "score": 0.9975132942199707
+            }
+          ],
+          "sentiment": {
+            "target": "Boeing",
+            "label": "negative",
+            "probabilities": {
+              "negative": 0.8439987301826477,
+              "neutral": 0.12248511612415314,
+              "positive": 0.03351609408855438
+            },
+            "model_version": "2f742f69854f097b5b1351e4a1de126b54c28fe2c900edb3c2e41526cd32e855",
+            "deployment_sha256": "e5092415a03e442852e43d503c5cab52ac3d9387d3287ef8221b499c8b6e34da",
+            "probabilities_calibrated": false
+          }
+        },
+        {
+          "target": "Dell",
+          "company_type": "company",
+          "classification_reason": "source_backed_company_type",
+          "identity_status": "unresolved",
+          "company_identity_verified": false,
+          "identity_verification_scope": "not_verified",
+          "company_id": null,
+          "sec_cik": null,
+          "primary_ticker": null,
+          "matched_ticker": null,
+          "listings": [],
+          "registry_sha256": "3414bd464620472b37f23944f0c6d8011f77fc8460491c4001010d2aa820d285",
+          "directory_sha256": "d76a4e6fd5d7cc540b3ef6974ece2ca508b3fd16360e8d9eca7b94ddce9f528b",
+          "aliases_sha256": "6567153dfa3bcb007c78585c91d429cc377553811d2679853f37448717c3e5c5",
+          "aggregation_eligible": false,
+          "mentions": [
+            {
+              "text": "Dell",
+              "start": 56,
+              "end": 60,
+              "score": 0.9987467527389526
+            }
+          ],
+          "sentiment": {
+            "target": "Dell",
+            "label": "positive",
+            "probabilities": {
+              "negative": 0.004434648901224136,
+              "neutral": 0.06926774978637695,
+              "positive": 0.926297664642334
+            },
+            "model_version": "2f742f69854f097b5b1351e4a1de126b54c28fe2c900edb3c2e41526cd32e855",
+            "deployment_sha256": "e5092415a03e442852e43d503c5cab52ac3d9387d3287ef8221b499c8b6e34da",
+            "probabilities_calibrated": false
+          }
+        }
+      ],
+      "sentiment_policy": "company_mentions_only"
+    },
+    {
+      "detector_version": "organization-ner-v2",
+      "model_id": "dslim/bert-base-NER",
+      "revision": "d1a3e8f13f8c3566299d95fcfc9a8d2382a9affc",
+      "aggregation_strategy": "first",
+      "candidate_type": "organization_not_verified_company",
+      "mentions": [
+        {
+          "text": "Toyota",
+          "start": 0,
+          "end": 6,
+          "score": 0.9985677003860474
+        },
+        {
+          "text": "Boeing",
+          "start": 32,
+          "end": 38,
+          "score": 0.9975132942199707
+        },
+        {
+          "text": "Dell",
+          "start": 56,
+          "end": 60,
+          "score": 0.9987467527389526
+        }
+      ],
+      "resolver_version": "organization-resolution-v4",
+      "registry_sha256": "3414bd464620472b37f23944f0c6d8011f77fc8460491c4001010d2aa820d285",
+      "us_directory_sha256": "d76a4e6fd5d7cc540b3ef6974ece2ca508b3fd16360e8d9eca7b94ddce9f528b",
+      "aliases_sha256": "6567153dfa3bcb007c78585c91d429cc377553811d2679853f37448717c3e5c5",
+      "resolution_policy": {
+        "company_context": true,
+        "confirmed_companies": [],
+        "allow_parent_rollup": true
+      },
+      "resolutions": [
+        {
+          "mention": {
+            "text": "Toyota",
+            "start": 0,
+            "end": 6,
+            "score": 0.9985677003860474
+          },
+          "status": "verified_company",
+          "reason": "reviewed_issuer_alias",
+          "company_id": "sec-cik:0001094517",
+          "primary_ticker": null,
+          "matched_ticker": null,
+          "registry_sha256": "3414bd464620472b37f23944f0c6d8011f77fc8460491c4001010d2aa820d285",
+          "sec_cik": "0001094517",
+          "listings": [
+            {
+              "exchange": "NYSE",
+              "ticker": "TM"
+            }
+          ],
+          "directory_sha256": "d76a4e6fd5d7cc540b3ef6974ece2ca508b3fd16360e8d9eca7b94ddce9f528b",
+          "company_type": "company",
+          "classification_reason": "accepted_identity_policy",
+          "aliases_sha256": "6567153dfa3bcb007c78585c91d429cc377553811d2679853f37448717c3e5c5",
+          "identity_status": "linked"
+        },
+        {
+          "mention": {
+            "text": "Boeing",
+            "start": 32,
+            "end": 38,
+            "score": 0.9975132942199707
+          },
+          "status": "verified_company",
+          "reason": "suffix_normalized_name",
+          "company_id": "sec-cik:0000012927",
+          "primary_ticker": null,
+          "matched_ticker": null,
+          "registry_sha256": "3414bd464620472b37f23944f0c6d8011f77fc8460491c4001010d2aa820d285",
+          "sec_cik": "0000012927",
+          "listings": [
+            {
+              "exchange": "NYSE",
+              "ticker": "BA"
+            },
+            {
+              "exchange": "NYSE",
+              "ticker": "BA-PA"
+            }
+          ],
+          "directory_sha256": "d76a4e6fd5d7cc540b3ef6974ece2ca508b3fd16360e8d9eca7b94ddce9f528b",
+          "company_type": "company",
+          "classification_reason": "accepted_identity_policy",
+          "aliases_sha256": "6567153dfa3bcb007c78585c91d429cc377553811d2679853f37448717c3e5c5",
+          "identity_status": "linked"
+        },
+        {
+          "mention": {
+            "text": "Dell",
+            "start": 56,
+            "end": 60,
+            "score": 0.9987467527389526
+          },
+          "status": "verified_company",
+          "reason": "reviewed_parent_rollup_alias",
+          "company_id": "sec-cik:0001571996",
+          "primary_ticker": null,
+          "matched_ticker": null,
+          "registry_sha256": "3414bd464620472b37f23944f0c6d8011f77fc8460491c4001010d2aa820d285",
+          "sec_cik": "0001571996",
+          "listings": [
+            {
+              "exchange": "NYSE",
+              "ticker": "DELL"
+            }
+          ],
+          "directory_sha256": "d76a4e6fd5d7cc540b3ef6974ece2ca508b3fd16360e8d9eca7b94ddce9f528b",
+          "company_type": "company",
+          "classification_reason": "accepted_identity_policy",
+          "aliases_sha256": "6567153dfa3bcb007c78585c91d429cc377553811d2679853f37448717c3e5c5",
+          "identity_status": "linked"
+        }
+      ],
+      "company_sentiments": [
+        {
+          "target": "Toyota",
+          "company_type": "company",
+          "classification_reason": "accepted_identity_policy",
+          "identity_status": "linked",
+          "company_identity_verified": true,
+          "identity_verification_scope": "sec_issuer_association_not_security_type_verification",
+          "company_id": "sec-cik:0001094517",
+          "sec_cik": "0001094517",
+          "primary_ticker": null,
+          "matched_ticker": null,
+          "listings": [
+            {
+              "exchange": "NYSE",
+              "ticker": "TM"
+            }
+          ],
+          "registry_sha256": "3414bd464620472b37f23944f0c6d8011f77fc8460491c4001010d2aa820d285",
+          "directory_sha256": "d76a4e6fd5d7cc540b3ef6974ece2ca508b3fd16360e8d9eca7b94ddce9f528b",
+          "aliases_sha256": "6567153dfa3bcb007c78585c91d429cc377553811d2679853f37448717c3e5c5",
+          "aggregation_eligible": true,
+          "mentions": [
+            {
+              "text": "Toyota",
+              "start": 0,
+              "end": 6,
+              "score": 0.9985677003860474
+            }
+          ],
+          "sentiment": {
+            "target": "Toyota",
+            "label": "positive",
+            "probabilities": {
+              "negative": 0.002546211238950491,
+              "neutral": 0.005522063467651606,
+              "positive": 0.9919317364692688
+            },
+            "model_version": "2f742f69854f097b5b1351e4a1de126b54c28fe2c900edb3c2e41526cd32e855",
+            "deployment_sha256": "e5092415a03e442852e43d503c5cab52ac3d9387d3287ef8221b499c8b6e34da",
+            "probabilities_calibrated": false
+          }
+        },
+        {
+          "target": "Boeing",
+          "company_type": "company",
+          "classification_reason": "accepted_identity_policy",
+          "identity_status": "linked",
+          "company_identity_verified": true,
+          "identity_verification_scope": "sec_issuer_association_not_security_type_verification",
+          "company_id": "sec-cik:0000012927",
+          "sec_cik": "0000012927",
+          "primary_ticker": null,
+          "matched_ticker": null,
+          "listings": [
+            {
+              "exchange": "NYSE",
+              "ticker": "BA"
+            },
+            {
+              "exchange": "NYSE",
+              "ticker": "BA-PA"
+            }
+          ],
+          "registry_sha256": "3414bd464620472b37f23944f0c6d8011f77fc8460491c4001010d2aa820d285",
+          "directory_sha256": "d76a4e6fd5d7cc540b3ef6974ece2ca508b3fd16360e8d9eca7b94ddce9f528b",
+          "aliases_sha256": "6567153dfa3bcb007c78585c91d429cc377553811d2679853f37448717c3e5c5",
+          "aggregation_eligible": true,
+          "mentions": [
+            {
+              "text": "Boeing",
+              "start": 32,
+              "end": 38,
+              "score": 0.9975132942199707
+            }
+          ],
+          "sentiment": {
+            "target": "Boeing",
+            "label": "negative",
+            "probabilities": {
+              "negative": 0.8439987301826477,
+              "neutral": 0.12248511612415314,
+              "positive": 0.03351609408855438
+            },
+            "model_version": "2f742f69854f097b5b1351e4a1de126b54c28fe2c900edb3c2e41526cd32e855",
+            "deployment_sha256": "e5092415a03e442852e43d503c5cab52ac3d9387d3287ef8221b499c8b6e34da",
+            "probabilities_calibrated": false
+          }
+        },
+        {
+          "target": "Dell",
+          "company_type": "company",
+          "classification_reason": "accepted_identity_policy",
+          "identity_status": "linked",
+          "company_identity_verified": true,
+          "identity_verification_scope": "sec_issuer_association_not_security_type_verification",
+          "company_id": "sec-cik:0001571996",
+          "sec_cik": "0001571996",
+          "primary_ticker": null,
+          "matched_ticker": null,
+          "listings": [
+            {
+              "exchange": "NYSE",
+              "ticker": "DELL"
+            }
+          ],
+          "registry_sha256": "3414bd464620472b37f23944f0c6d8011f77fc8460491c4001010d2aa820d285",
+          "directory_sha256": "d76a4e6fd5d7cc540b3ef6974ece2ca508b3fd16360e8d9eca7b94ddce9f528b",
+          "aliases_sha256": "6567153dfa3bcb007c78585c91d429cc377553811d2679853f37448717c3e5c5",
+          "aggregation_eligible": true,
+          "mentions": [
+            {
+              "text": "Dell",
+              "start": 56,
+              "end": 60,
+              "score": 0.9987467527389526
+            }
+          ],
+          "sentiment": {
+            "target": "Dell",
+            "label": "positive",
+            "probabilities": {
+              "negative": 0.004434648901224136,
+              "neutral": 0.06926774978637695,
+              "positive": 0.926297664642334
+            },
+            "model_version": "2f742f69854f097b5b1351e4a1de126b54c28fe2c900edb3c2e41526cd32e855",
+            "deployment_sha256": "e5092415a03e442852e43d503c5cab52ac3d9387d3287ef8221b499c8b6e34da",
+            "probabilities_calibrated": false
+          }
+        }
+      ],
+      "sentiment_policy": "company_mentions_only"
+    }
+  ],
+  "gpu_git_status": "?? finsight-organizations.cmd\n?? finsight-predict.cmd\n"
+}

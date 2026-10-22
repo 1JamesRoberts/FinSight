@@ -1,0 +1,163 @@
+{
+  "code_revision": "773f705a2b4a0d446cd5035a2434325bd307572b",
+  "eligible_cohorts": {
+    "train": {
+      "class_counts": {
+        "negative": 3049,
+        "neutral": 4326,
+        "positive": 4020
+      },
+      "development_only_examples": 17,
+      "development_only_headlines": 11,
+      "duplicate_groups": 8488,
+      "examples": 11395,
+      "headlines": 8497,
+      "mixed_label_examples": 2234,
+      "multi_target_examples": 5158,
+      "review_reason_headlines": {
+        "cross_corpus_overlap": 1,
+        "target_coverage_difference": 10
+      },
+      "seen_native_target_examples": 11395,
+      "unseen_native_target_examples": 0
+    },
+    "validation": {
+      "class_counts": {
+        "negative": 379,
+        "neutral": 518,
+        "positive": 499
+      },
+      "development_only_examples": 0,
+      "development_only_headlines": 0,
+      "duplicate_groups": 1044,
+      "examples": 1396,
+      "headlines": 1044,
+      "mixed_label_examples": 283,
+      "multi_target_examples": 622,
+      "review_reason_headlines": {},
+      "seen_native_target_examples": 1134,
+      "unseen_native_target_examples": 262
+    }
+  },
+  "experiment": "target-format-span-audit-v1",
+  "frozen_records_read": false,
+  "inputs": {
+    "files": {
+      "train.jsonl": {
+        "sha256": "96ebfda4540eda88a15f2c6af40c7c7eadd64e82ebaf5037c82dcd5153716fef",
+        "size_bytes": 5215961
+      },
+      "validation.jsonl": {
+        "sha256": "f3ae0e512f565cdc05c7cbc1251fcca16c8d8c8d32b9f7de81c2a4a179de5173",
+        "size_bytes": 644091
+      }
+    },
+    "manifest_sha256": "be33e779e278b2c786c48ee3205cbad4f9e6bee98839d4c3b6509009a51a856c"
+  },
+  "original_cohorts": {
+    "train": {
+      "class_counts": {
+        "negative": 3078,
+        "neutral": 4395,
+        "positive": 4074
+      },
+      "development_only_examples": 17,
+      "development_only_headlines": 11,
+      "duplicate_groups": 8589,
+      "examples": 11547,
+      "headlines": 8598,
+      "mixed_label_examples": 2276,
+      "multi_target_examples": 5248,
+      "review_reason_headlines": {
+        "cross_corpus_overlap": 1,
+        "target_coverage_difference": 10
+      },
+      "seen_native_target_examples": 11547,
+      "unseen_native_target_examples": 0
+    },
+    "validation": {
+      "class_counts": {
+        "negative": 385,
+        "neutral": 523,
+        "positive": 502
+      },
+      "development_only_examples": 0,
+      "development_only_headlines": 0,
+      "duplicate_groups": 1053,
+      "examples": 1410,
+      "headlines": 1053,
+      "mixed_label_examples": 283,
+      "multi_target_examples": 629,
+      "review_reason_headlines": {},
+      "seen_native_target_examples": 1147,
+      "unseen_native_target_examples": 263
+    }
+  },
+  "partitions": {
+    "train": {
+      "annotation_exclusion_reasons": {
+        "no_literal_boundary_match": 91,
+        "overlapping_native_targets": 20
+      },
+      "counts": {
+        "annotations": 11547,
+        "case_insensitive_only_annotations": 0,
+        "complete_eligible_headlines": 8497,
+        "excluded_annotations": 152,
+        "excluded_headlines": 101,
+        "headlines": 8598,
+        "individually_eligible_annotations": 11436,
+        "literal_aligned_annotations": 11456,
+        "repeated_target_annotations": 19,
+        "shared_eligible_annotations": 11395
+      },
+      "eligible_membership_sha256": "488b44f748bda35d731380b684cc504f15f8386f59c92461df750b5461388bde",
+      "variant_text_sha256": {
+        "target_markers": "442b5db87952817db80ddfe1d196c094383ef7dbb28f96525e3e123fcae559c3",
+        "target_pair": "ad0b5ae43238ede877e78a9b118906c3f9c4d76ede843c86ff5fce82c4a1be9e",
+        "target_replacement": "1cb00fbc7a7ac28ec2ee52e0df60a7eb3b61ddd127e73efa392238b213f329ff"
+      }
+    },
+    "validation": {
+      "annotation_exclusion_reasons": {
+        "no_literal_boundary_match": 8,
+        "overlapping_native_targets": 2
+      },
+      "counts": {
+        "annotations": 1410,
+        "case_insensitive_only_annotations": 0,
+        "complete_eligible_headlines": 1044,
+        "excluded_annotations": 14,
+        "excluded_headlines": 9,
+        "headlines": 1053,
+        "individually_eligible_annotations": 1400,
+        "literal_aligned_annotations": 1402,
+        "repeated_target_annotations": 3,
+        "shared_eligible_annotations": 1396
+      },
+      "eligible_membership_sha256": "b39a0c8539c0690d3250cffcbe3049f6acce88bb8ee2a2d12448ab735a1add23",
+      "variant_text_sha256": {
+        "target_markers": "4d432cf6bded6c911706d58c71ef794de0b11c19192a69b8f17e8a738fbacf0c",
+        "target_pair": "3f3e235b7448c172cf6d1f0cd5c519b3849994abef8e831877fe2a3840538faf",
+        "target_replacement": "2d7e70c100cb1390d813a25ff8ff378f922ca7099f49c8be00c48a5414a65250"
+      }
+    }
+  },
+  "policy": "native-literal-boundary-all-mentions-v1",
+  "private_manifest_sha256": "e05d1ae71a5ee69e587b8419b150b8ba30a3c67598354d45f944edbd619537bd",
+  "schema_version": 1,
+  "selection_unit": "complete_native_target_headline",
+  "source_sha256": {
+    "data/target_spans.py": "1e9dc4ad966ddf7af73a3cf163a11f81209b8512d60d64e14c10ca9df9c10331",
+    "sentiment/evaluation/target_data.py": "b08655b2da0d99745212cbe975475d3c67c9c699d12c91efe07e25cb72399c0f",
+    "sentiment/experiments/target_span_audit.py": "8fc8cb0aea60c70a86e220e4203681bbfbd7de7defa1680e5799d74dab772dc0"
+  },
+  "status": "character_alignment_audited_not_trained",
+  "tokenizer_eligibility_verified": false,
+  "training_performed": false,
+  "variants": [
+    "target_pair",
+    "target_markers",
+    "target_replacement"
+  ]
+}

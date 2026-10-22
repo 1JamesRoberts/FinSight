@@ -1,5 +1,7 @@
 # Phase 1 — Data curation and EDA reports
 
+**Start here:** [Final report](final-report.md). This is the canonical phase summary; the task evidence below retains its original scope.
+
 Dataset selection, rights, quality review, leakage-aware splits and benchmark freeze.
 
 [All reports](../README.md) · [Methods and reproduction guides](../../docs/phase-01-data/README.md)

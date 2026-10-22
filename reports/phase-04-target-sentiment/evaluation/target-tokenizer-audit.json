@@ -1,0 +1,203 @@
+{
+  "code_revision": "773f705a2b4a0d446cd5035a2434325bd307572b",
+  "data_manifest_sha256": "9eab447b2c6c123a5ce9fd5775a3c76a5878bc963404ce6afedce346d22a9c18",
+  "environment": {
+    "python": "3.12.2",
+    "tokenizers": "0.22.2",
+    "transformers": "4.57.6"
+  },
+  "experiment": "roberta-target-format-v1",
+  "frozen_records_read": false,
+  "inputs": {
+    "files": {
+      "train.jsonl": {
+        "sha256": "96ebfda4540eda88a15f2c6af40c7c7eadd64e82ebaf5037c82dcd5153716fef",
+        "size_bytes": 5215961
+      },
+      "validation.jsonl": {
+        "sha256": "f3ae0e512f565cdc05c7cbc1251fcca16c8d8c8d32b9f7de81c2a4a179de5173",
+        "size_bytes": 644091
+      }
+    },
+    "manifest_sha256": "be33e779e278b2c786c48ee3205cbad4f9e6bee98839d4c3b6509009a51a856c"
+  },
+  "model_weights_loaded": false,
+  "partitions": {
+    "train": {
+      "additional_excluded_annotations": 0,
+      "additional_excluded_headlines": 0,
+      "character_eligible_annotations": 11395,
+      "character_eligible_headlines": 8497,
+      "membership_sha256": "488b44f748bda35d731380b684cc504f15f8386f59c92461df750b5461388bde",
+      "retained_annotations": 11395,
+      "retained_headlines": 8497,
+      "variants": {
+        "target_markers": {
+          "all_retained_text_and_markers_preserved": true,
+          "annotation_failure_reasons": {},
+          "audited_annotations": 11395,
+          "full_pair_tokens_max_before_exclusions": 58,
+          "full_pair_tokens_max_retained": 58,
+          "headline_tokens_max": 45,
+          "individually_token_eligible_annotations": 11395,
+          "slow_fast_equivalent": true,
+          "target_tokens_max": 13
+        },
+        "target_pair": {
+          "all_retained_text_and_markers_preserved": true,
+          "annotation_failure_reasons": {},
+          "audited_annotations": 11395,
+          "full_pair_tokens_max_before_exclusions": 50,
+          "full_pair_tokens_max_retained": 50,
+          "headline_tokens_max": 37,
+          "individually_token_eligible_annotations": 11395,
+          "slow_fast_equivalent": true,
+          "target_tokens_max": 13
+        },
+        "target_replacement": {
+          "all_retained_text_and_markers_preserved": true,
+          "annotation_failure_reasons": {},
+          "audited_annotations": 11395,
+          "full_pair_tokens_max_before_exclusions": 46,
+          "full_pair_tokens_max_retained": 46,
+          "headline_tokens_max": 38,
+          "individually_token_eligible_annotations": 11395,
+          "slow_fast_equivalent": true,
+          "target_tokens_max": 4
+        }
+      }
+    },
+    "validation": {
+      "additional_excluded_annotations": 0,
+      "additional_excluded_headlines": 0,
+      "character_eligible_annotations": 1396,
+      "character_eligible_headlines": 1044,
+      "membership_sha256": "b39a0c8539c0690d3250cffcbe3049f6acce88bb8ee2a2d12448ab735a1add23",
+      "retained_annotations": 1396,
+      "retained_headlines": 1044,
+      "variants": {
+        "target_markers": {
+          "all_retained_text_and_markers_preserved": true,
+          "annotation_failure_reasons": {},
+          "audited_annotations": 1396,
+          "full_pair_tokens_max_before_exclusions": 47,
+          "full_pair_tokens_max_retained": 47,
+          "headline_tokens_max": 38,
+          "individually_token_eligible_annotations": 1396,
+          "slow_fast_equivalent": true,
+          "target_tokens_max": 9
+        },
+        "target_pair": {
+          "all_retained_text_and_markers_preserved": true,
+          "annotation_failure_reasons": {},
+          "audited_annotations": 1396,
+          "full_pair_tokens_max_before_exclusions": 39,
+          "full_pair_tokens_max_retained": 39,
+          "headline_tokens_max": 29,
+          "individually_token_eligible_annotations": 1396,
+          "slow_fast_equivalent": true,
+          "target_tokens_max": 9
+        },
+        "target_replacement": {
+          "all_retained_text_and_markers_preserved": true,
+          "annotation_failure_reasons": {},
+          "audited_annotations": 1396,
+          "full_pair_tokens_max_before_exclusions": 39,
+          "full_pair_tokens_max_retained": 39,
+          "headline_tokens_max": 31,
+          "individually_token_eligible_annotations": 1396,
+          "slow_fast_equivalent": true,
+          "target_tokens_max": 4
+        }
+      }
+    }
+  },
+  "plan_sha256": "30a729eb782cc3b4c2248bf5d5e1ec791d12ca28c3255d9f3cc42b1964f6d185",
+  "retained_cohorts": {
+    "train": {
+      "class_counts": {
+        "negative": 3049,
+        "neutral": 4326,
+        "positive": 4020
+      },
+      "development_only_examples": 17,
+      "development_only_headlines": 11,
+      "duplicate_groups": 8488,
+      "examples": 11395,
+      "headlines": 8497,
+      "mixed_label_examples": 2234,
+      "multi_target_examples": 5158,
+      "review_reason_headlines": {
+        "cross_corpus_overlap": 1,
+        "target_coverage_difference": 10
+      },
+      "seen_native_target_examples": 11395,
+      "unseen_native_target_examples": 0
+    },
+    "validation": {
+      "class_counts": {
+        "negative": 379,
+        "neutral": 518,
+        "positive": 499
+      },
+      "development_only_examples": 0,
+      "development_only_headlines": 0,
+      "duplicate_groups": 1044,
+      "examples": 1396,
+      "headlines": 1044,
+      "mixed_label_examples": 283,
+      "multi_target_examples": 622,
+      "review_reason_headlines": {},
+      "seen_native_target_examples": 1134,
+      "unseen_native_target_examples": 262
+    }
+  },
+  "schema_version": 1,
+  "source_sha256": {
+    "data/target_pairs.py": "91a850c05aec2d70debe7d0cb91bf7c14345c482142d9d8ae637594ecaf03601",
+    "data/target_spans.py": "1e9dc4ad966ddf7af73a3cf163a11f81209b8512d60d64e14c10ca9df9c10331",
+    "data/target_tokenization.py": "f4096f44513b3a4bc94750bb9854da84bc4a7643d8e91950fd0adad99e2ca537",
+    "sentiment/evaluation/target_data.py": "b08655b2da0d99745212cbe975475d3c67c9c699d12c91efe07e25cb72399c0f",
+    "sentiment/experiments/target_format_preparation.py": "7243983dc9234774ed2bf57838722fe555747fc4f55038fbc25576efc7da9dd9",
+    "sentiment/experiments/target_span_audit.py": "8fc8cb0aea60c70a86e220e4203681bbfbd7de7defa1680e5799d74dab772dc0"
+  },
+  "status": "tokenizer_verified_training_locked_not_started",
+  "tokenizer": {
+    "classes": [
+      "RobertaTokenizer",
+      "RobertaTokenizerFast"
+    ],
+    "files": {
+      "README.md": {
+        "sha256": "139c5c5c8d734a8841928308cf7f083018aa5cc49f903c5199e3f1563b3ded51",
+        "size_bytes": 9079
+      },
+      "config.json": {
+        "sha256": "ef0185e2aae6e06c5f105a285006952c340e20c7dbf43c86ec82601b13fc45e9",
+        "size_bytes": 481
+      },
+      "merges.txt": {
+        "sha256": "1ce1664773c50f3e0cc8842619a93edc4624525b728b188a9e0be33b7726adc5",
+        "size_bytes": 456318
+      },
+      "tokenizer.json": {
+        "sha256": "847bbeab6174d66a88898f729d52fa8d355fafe1bea101cf960dd404581df70e",
+        "size_bytes": 1355863
+      },
+      "tokenizer_config.json": {
+        "sha256": "994f46754c5bf4014f1aa92d34b1374319c3a6b3f702105cd5b742beaecd18ce",
+        "size_bytes": 25
+      },
+      "vocab.json": {
+        "sha256": "9e7f63c2d15d666b52e21d250d2e513b87c9b713cfa6987a82ed89e5e6e50655",
+        "size_bytes": 898823
+      }
+    },
+    "model_id": "FacebookAI/roberta-base",
+    "paired_special_tokens": 4,
+    "revision": "e2da8e2f811d1448a5b465c236feacd80ffbac7b",
+    "vocabulary_size": 50265,
+    "vocabulary_tokens_added": 0
+  },
+  "training_performed": false
+}

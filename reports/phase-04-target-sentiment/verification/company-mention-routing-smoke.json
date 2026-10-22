@@ -1,0 +1,111 @@
+{
+  "device": "cpu",
+  "actual_ner_inference": true,
+  "actual_sentiment_inference": false,
+  "predictor": "routing stub",
+  "text": "Toyota reported higher profits while Microsoft reported a loss.",
+  "confirmed_companies": [
+    "Toyota"
+  ],
+  "resolutions": [
+    {
+      "mention": {
+        "text": "Toyota",
+        "start": 0,
+        "end": 6,
+        "score": 0.9987735152244568
+      },
+      "status": "unresolved",
+      "reason": "unknown_target",
+      "company_id": null,
+      "primary_ticker": null,
+      "matched_ticker": null,
+      "registry_sha256": "3414bd464620472b37f23944f0c6d8011f77fc8460491c4001010d2aa820d285",
+      "sec_cik": null,
+      "listings": [],
+      "directory_sha256": null,
+      "company_type": "company",
+      "classification_reason": "caller_confirmed_company_name",
+      "identity_status": "unresolved"
+    },
+    {
+      "mention": {
+        "text": "Microsoft",
+        "start": 37,
+        "end": 46,
+        "score": 0.9984234571456909
+      },
+      "status": "verified_company",
+      "reason": "exact_alias",
+      "company_id": "microsoft",
+      "primary_ticker": "MSFT",
+      "matched_ticker": null,
+      "registry_sha256": "3414bd464620472b37f23944f0c6d8011f77fc8460491c4001010d2aa820d285",
+      "sec_cik": null,
+      "listings": [],
+      "directory_sha256": null,
+      "company_type": "company",
+      "classification_reason": "accepted_identity_policy",
+      "identity_status": "linked"
+    }
+  ],
+  "sentiment_routing": [
+    {
+      "target": "Toyota",
+      "company_type": "company",
+      "classification_reason": "caller_confirmed_company_name",
+      "identity_status": "unresolved",
+      "company_identity_verified": false,
+      "identity_verification_scope": "not_verified",
+      "company_id": null,
+      "sec_cik": null,
+      "primary_ticker": null,
+      "matched_ticker": null,
+      "listings": [],
+      "registry_sha256": "3414bd464620472b37f23944f0c6d8011f77fc8460491c4001010d2aa820d285",
+      "directory_sha256": null,
+      "aggregation_eligible": false,
+      "mentions": [
+        {
+          "text": "Toyota",
+          "start": 0,
+          "end": 6,
+          "score": 0.9987735152244568
+        }
+      ],
+      "sentiment": {
+        "target": "Toyota",
+        "kind": "routing_stub_not_model_prediction"
+      }
+    },
+    {
+      "target": "Microsoft",
+      "company_type": "company",
+      "classification_reason": "accepted_identity_policy",
+      "identity_status": "linked",
+      "company_identity_verified": true,
+      "identity_verification_scope": "registry_match_under_explicit_policy",
+      "company_id": "microsoft",
+      "sec_cik": null,
+      "primary_ticker": "MSFT",
+      "matched_ticker": null,
+      "listings": [],
+      "registry_sha256": "3414bd464620472b37f23944f0c6d8011f77fc8460491c4001010d2aa820d285",
+      "directory_sha256": null,
+      "aggregation_eligible": true,
+      "mentions": [
+        {
+          "text": "Microsoft",
+          "start": 37,
+          "end": 46,
+          "score": 0.9984234571456909
+        }
+      ],
+      "sentiment": {
+        "target": "Microsoft",
+        "kind": "routing_stub_not_model_prediction"
+      }
+    }
+  ],
+  "input_masking_applied": false
+}

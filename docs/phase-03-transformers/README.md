@@ -1,5 +1,7 @@
 # Phase 3 — Sentence-level transformers
 
+**Phase outcome:** [Final report](../../reports/phase-03-transformers/final-report.md) · [All final reports](../../reports/README.md).
+
 Financial/base transformer comparisons, seed studies, calibration, ensembles and locked evaluation.
 
 [All documentation](../README.md) · [Report navigation](../../reports/README.md)

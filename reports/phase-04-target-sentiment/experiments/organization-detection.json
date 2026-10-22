@@ -1,0 +1,164 @@
+{
+  "code_revision": "773f705a2b4a0d446cd5035a2434325bd307572b",
+  "configuration": {
+    "aggregation_strategy": "simple",
+    "batch_size": 16,
+    "company_target_allowlist": [
+      "Infosys",
+      "TCS",
+      "ONGC",
+      "Sun Pharma",
+      "SBI",
+      "BPCL",
+      "HUL",
+      "Tata Steel",
+      "Tech Mahindra",
+      "ICICI Bank",
+      "Wipro",
+      "HDFC Bank"
+    ],
+    "max_length": 512,
+    "partition": "validation",
+    "registry_policy": {
+      "allow_parent_rollup": false,
+      "company_context": false
+    },
+    "score_threshold": null
+  },
+  "coverage": {
+    "all_native_financial_targets": {
+      "annotations": 1410,
+      "literal_annotations": 1402,
+      "ner_org": {
+        "exact": 661,
+        "overlap": 865
+      },
+      "nonliteral_annotations": 8,
+      "registry_all_candidates": {
+        "exact": 3,
+        "overlap": 3
+      },
+      "registry_resolved": {
+        "exact": 2,
+        "overlap": 2
+      }
+    },
+    "fixed_company_allowlist": {
+      "annotations": 70,
+      "literal_annotations": 70,
+      "ner_org": {
+        "exact": 44,
+        "overlap": 62
+      },
+      "nonliteral_annotations": 0,
+      "registry_all_candidates": {
+        "exact": 0,
+        "overlap": 0
+      },
+      "registry_resolved": {
+        "exact": 0,
+        "overlap": 0
+      }
+    }
+  },
+  "experiment": "organization-ner-v1",
+  "frozen_records_read": false,
+  "inputs": {
+    "files": {
+      "train.jsonl": {
+        "sha256": "96ebfda4540eda88a15f2c6af40c7c7eadd64e82ebaf5037c82dcd5153716fef",
+        "size_bytes": 5215961
+      },
+      "validation.jsonl": {
+        "sha256": "f3ae0e512f565cdc05c7cbc1251fcca16c8d8c8d32b9f7de81c2a4a179de5173",
+        "size_bytes": 644091
+      }
+    },
+    "manifest_sha256": "be33e779e278b2c786c48ee3205cbad4f9e6bee98839d4c3b6509009a51a856c"
+  },
+  "model": {
+    "attention_heads": 12,
+    "class": "BertForTokenClassification",
+    "device": "cpu",
+    "hidden_size": 768,
+    "inference_seconds": 6.405067082960159,
+    "layers": 12,
+    "maximum_encoded_tokens": 34,
+    "parameter_bytes": 430906404,
+    "parameters": 107726601,
+    "token_classes": 9,
+    "torch_version": "2.11.0"
+  },
+  "model_files": {
+    "README.md": {
+      "sha256": "f570efa74d5f40eeafa35af45bc20ed6bdf49a5e517782218a23467d3bae576f",
+      "size_bytes": 6558
+    },
+    "added_tokens.json": {
+      "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "size_bytes": 2
+    },
+    "config.json": {
+      "sha256": "a5dc77a0d60dadf5645103017f3c7b8ece4ef1b450bc1ea68e17da1d3ae7e515",
+      "size_bytes": 829
+    },
+    "model.safetensors": {
+      "sha256": "b04492186cfb45a64908487a17a9f8d6ddec3a403ef39db5bca688f0fa702a34",
+      "size_bytes": 433292294
+    },
+    "special_tokens_map.json": {
+      "sha256": "303df45a03609e4ead04bc3dc1536d0ab19b5358db685b6f3da123d05ec200e3",
+      "size_bytes": 112
+    },
+    "tokenizer_config.json": {
+      "sha256": "4c052d60b505817149a29e88c5292d7779ddecfadbfc6208729e61403ec558ba",
+      "size_bytes": 59
+    },
+    "vocab.txt": {
+      "sha256": "eeaa9875b23b04b4c54ef759d03db9d1ba1554838f8fb26c5d96fa551df93d02",
+      "size_bytes": 213450
+    }
+  },
+  "model_id": "dslim/bert-base-NER",
+  "ner_span_annotation_relation": {
+    "exact": 661,
+    "no_literal_annotation_overlap": 130,
+    "overlap_only": 271
+  },
+  "plan_sha256": "45548b7b6384b7f367626b6ad884671c776e754e87e2a4908eb6c2d6b812fcf9",
+  "precision_recall_computed": false,
+  "private_directory_id": "8e98152d02176f1366ea8ff0d72209e31bf002dae69463cfd44c65f67b243971",
+  "private_packet_sha256": "872695f2106363c40a3dc5eb2a866dadd1139e7830c0eb9384427d9e16f60a95",
+  "registry_sha256": "3414bd464620472b37f23944f0c6d8011f77fc8460491c4001010d2aa820d285",
+  "review_counts": {
+    "missed_literal_target": 10,
+    "multiple_orgs": 10,
+    "registry_ambiguous": 1,
+    "unmatched_org": 10
+  },
+  "review_membership_sha256": "76dd3119a7b13e791a4258fa61d0956417fb961f24c510b6252890b79c4f7233",
+  "review_unique_headlines": 24,
+  "revision": "d1a3e8f13f8c3566299d95fcfc9a8d2382a9affc",
+  "sentiment_inference_on_dataset": false,
+  "source_sha256": {
+    "data/target_spans.py": "1e9dc4ad966ddf7af73a3cf163a11f81209b8512d60d64e14c10ca9df9c10331",
+    "sentiment/companies.py": "96c51568d44e45e5e973def5e945af8b6c6cee76c437e83357c9df3c59db580a",
+    "sentiment/evaluation/target_data.py": "b08655b2da0d99745212cbe975475d3c67c9c699d12c91efe07e25cb72399c0f",
+    "sentiment/experiments/organization_detection.py": "e02d19e41c329ea0674bf6b265cddc285cd7f00094b4d455726a8c0c370d5f9a",
+    "sentiment/mentions.py": "557597b5fce19b7d0881da4e32c25c06b097509752386e23e9f6b45b8dd6d39f",
+    "sentiment/organizations.py": "4366137ca267cf6adc7300cf6a8b090cd0c1a23069d9ab0c5dd0e51efb968e38"
+  },
+  "totals": {
+    "headlines": 1053,
+    "multiple_org_headlines": 217,
+    "native_annotations": 1410,
+    "ner_org_headlines": 749,
+    "ner_org_spans": 1062,
+    "ner_org_without_registry_candidate_headlines": 747,
+    "registry_ambiguous_headlines": 1,
+    "registry_ambiguous_spans": 1,
+    "registry_resolved_headlines": 2,
+    "registry_resolved_spans": 2
+  },
+  "training_performed": false
+}

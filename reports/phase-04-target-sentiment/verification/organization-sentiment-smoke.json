@@ -1,0 +1,59 @@
+{
+  "dataset_inference": false,
+  "device": "cuda",
+  "direct_prediction_equality": true,
+  "invented_input_only": true,
+  "ner_model_revision": "d1a3e8f13f8c3566299d95fcfc9a8d2382a9affc",
+  "results": [
+    {
+      "company_identity_verified": false,
+      "mentions": [
+        {
+          "end": 5,
+          "score": 0.9903146028518677,
+          "start": 0,
+          "text": "Tesla"
+        }
+      ],
+      "sentiment": {
+        "deployment_sha256": "e5092415a03e442852e43d503c5cab52ac3d9387d3287ef8221b499c8b6e34da",
+        "label": "positive",
+        "model_version": "2f742f69854f097b5b1351e4a1de126b54c28fe2c900edb3c2e41526cd32e855",
+        "probabilities": {
+          "negative": 0.0028202044777572155,
+          "neutral": 0.005360995419323444,
+          "positive": 0.9918187856674194
+        },
+        "probabilities_calibrated": false,
+        "target": "Tesla"
+      },
+      "target": "Tesla"
+    },
+    {
+      "company_identity_verified": false,
+      "mentions": [
+        {
+          "end": 45,
+          "score": 0.99864262342453,
+          "start": 36,
+          "text": "Microsoft"
+        }
+      ],
+      "sentiment": {
+        "deployment_sha256": "e5092415a03e442852e43d503c5cab52ac3d9387d3287ef8221b499c8b6e34da",
+        "label": "negative",
+        "model_version": "2f742f69854f097b5b1351e4a1de126b54c28fe2c900edb3c2e41526cd32e855",
+        "probabilities": {
+          "negative": 0.9139812588691711,
+          "neutral": 0.059503551572561264,
+          "positive": 0.026515211910009384
+        },
+        "probabilities_calibrated": false,
+        "target": "Microsoft"
+      },
+      "target": "Microsoft"
+    }
+  ],
+  "sentiment_model_version": "2f742f69854f097b5b1351e4a1de126b54c28fe2c900edb3c2e41526cd32e855",
+  "source_sha256": "4366137ca267cf6adc7300cf6a8b090cd0c1a23069d9ab0c5dd0e51efb968e38"
+}

@@ -1,5 +1,7 @@
 # Phase 2 — Traditional sentiment baselines reports
 
+**Start here:** [Final report](final-report.md). This is the canonical phase summary; the task evidence below retains its original scope.
+
 VADER, sparse classifiers, class weighting, tuning and qualitative errors.
 
 [All reports](../README.md) · [Methods and reproduction guides](../../docs/phase-02-baselines/README.md)

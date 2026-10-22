@@ -1,0 +1,83 @@
+{
+  "experiment": "issuer-alias-review-v1",
+  "headlines": 20,
+  "reference_status": "pending_new_user_review",
+  "methods": {
+    "archived_v3": {
+      "proposed_spans": 26,
+      "company_classified_spans": 8,
+      "linked_spans": 8,
+      "unlinked_company_spans": 0,
+      "reasons": {
+        "unknown_us_listed_name": 18,
+        "exact_alias": 5,
+        "exact_ticker": 2,
+        "suffix_normalized_name": 1
+      }
+    },
+    "suffix_only": {
+      "proposed_spans": 26,
+      "company_classified_spans": 12,
+      "linked_spans": 12,
+      "unlinked_company_spans": 0,
+      "reasons": {
+        "suffix_normalized_name": 5,
+        "unknown_us_listed_name": 14,
+        "exact_alias": 5,
+        "exact_ticker": 2
+      }
+    },
+    "reviewed_aliases": {
+      "proposed_spans": 26,
+      "company_classified_spans": 18,
+      "linked_spans": 15,
+      "unlinked_company_spans": 3,
+      "reasons": {
+        "suffix_normalized_name": 5,
+        "unknown_us_listed_name": 8,
+        "alias_parent_rollup_required": 3,
+        "exact_alias": 5,
+        "exact_ticker": 2,
+        "reviewed_issuer_alias": 3
+      }
+    },
+    "reviewed_aliases_parent_rollup": {
+      "proposed_spans": 26,
+      "company_classified_spans": 18,
+      "linked_spans": 18,
+      "unlinked_company_spans": 0,
+      "reasons": {
+        "suffix_normalized_name": 5,
+        "unknown_us_listed_name": 8,
+        "reviewed_parent_rollup_alias": 3,
+        "exact_alias": 5,
+        "exact_ticker": 2,
+        "reviewed_issuer_alias": 3
+      }
+    }
+  },
+  "counts_are_not_accuracy": true,
+  "provenance": {
+    "sample_manifest_sha256": "ad6bb8ddb3553db5412f480a27f0839a3d8254a3df684274a1dbd0e4fd04794b",
+    "plan_sha256": "36d783961a310d83f9a71b200b8f4f238ec712f8d3d40605f3a6d3f8099994bc",
+    "aliases_sha256": "6567153dfa3bcb007c78585c91d429cc377553811d2679853f37448717c3e5c5",
+    "baseline_release": "3be40da98596b9b065358bbc01bb529d04db1720e1d8b7080163362698517924",
+    "directory_sha256": "d76a4e6fd5d7cc540b3ef6974ece2ca508b3fd16360e8d9eca7b94ddce9f528b",
+    "registry_sha256": "3414bd464620472b37f23944f0c6d8011f77fc8460491c4001010d2aa820d285",
+    "runner_sha256": "b1b21f6c06fbeea512558d6e4f5898a24a6aa4c107bb9748efbb52f4b095d0c4",
+    "source_sha256": {
+      "src/finsight/sentiment/issuer_aliases.py": "064971b5f603c806314c919c11a6d4bc4150de7c6137599926c1c6fed7118321",
+      "src/finsight/data/us_listed_companies.py": "a83573fbd752fffaab47b20592a390604b55bd091e1d34723e3e1079cab712b3",
+      "src/finsight/sentiment/organization_resolution.py": "b8aff189c0db1ba8a2da0d94affaf4d5507523ce92573102382f5af21958b052",
+      "src/finsight/sentiment/organizations.py": "5c5a772312cb574667b18a9c4fdb3c25b3757acb4165b73158a7940e99af85c1"
+    },
+    "ner_revision": "d1a3e8f13f8c3566299d95fcfc9a8d2382a9affc",
+    "device": "cpu",
+    "uv_lock_sha256": "f1ace275d05568614b92993b8446d7323df824a8cb1dae9ac382116f906914f6",
+    "prediction_sha256": "6f39cca53ad4ebd60d2588401c860ffe531f2a430cde19f2eeb8828b0507eb2d",
+    "reference_sha256": null
+  },
+  "training": false,
+  "frozen_records_read": false,
+  "overlap_with_previous_ids_or_normalized_titles": 0
+}

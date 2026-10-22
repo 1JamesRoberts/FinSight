@@ -1,0 +1,15 @@
+{
+  "sample_manifest_sha256": "0712af66f547a820e4b6a1ac039d613e7239bea4a51ef45edb3cab251cf44fbc",
+  "reference_sha256": "f317af60c3c031b6df1712d06bdd816d35c701df2d0d0e243ef987c6c5c6929d",
+  "review_scope": "bulk accepted assistant draft, not independent annotation",
+  "all_reference_spans_types_ciks_unchanged_from_draft": true,
+  "only_uncertainty_status_and_review_metadata_finalized": true,
+  "predictions_identical_to_preapproval_run": true,
+  "issuer_link_counts_independently_recomputed": true,
+  "protected_artifact_checksums_unchanged": true,
+  "pytest_passed": 784,
+  "ruff_full": "pre-existing notebook issues only",
+  "ruff_excluding_notebook": "passed",
+  "diff_check": "passed",
+  "frozen_records_read": false
+}

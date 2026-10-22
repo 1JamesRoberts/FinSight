@@ -1,0 +1,82 @@
+{
+  "dataset_inference": false,
+  "device": "cuda",
+  "direct_prediction_equality": true,
+  "empty_cli_verified": true,
+  "full_cli_result": {
+    "aggregation_strategy": "first",
+    "candidate_sentiments": [
+      {
+        "company_identity_verified": false,
+        "mentions": [
+          {
+            "end": 7,
+            "score": 0.9989774227142334,
+            "start": 0,
+            "text": "Infosys"
+          }
+        ],
+        "sentiment": {
+          "deployment_sha256": "e5092415a03e442852e43d503c5cab52ac3d9387d3287ef8221b499c8b6e34da",
+          "label": "positive",
+          "model_version": "2f742f69854f097b5b1351e4a1de126b54c28fe2c900edb3c2e41526cd32e855",
+          "probabilities": {
+            "negative": 0.0024504659231752157,
+            "neutral": 0.0065591721795499325,
+            "positive": 0.9909902811050415
+          },
+          "probabilities_calibrated": false,
+          "target": "Infosys"
+        },
+        "target": "Infosys"
+      },
+      {
+        "company_identity_verified": false,
+        "mentions": [
+          {
+            "end": 47,
+            "score": 0.9988124370574951,
+            "start": 38,
+            "text": "Microsoft"
+          }
+        ],
+        "sentiment": {
+          "deployment_sha256": "e5092415a03e442852e43d503c5cab52ac3d9387d3287ef8221b499c8b6e34da",
+          "label": "negative",
+          "model_version": "2f742f69854f097b5b1351e4a1de126b54c28fe2c900edb3c2e41526cd32e855",
+          "probabilities": {
+            "negative": 0.8831743597984314,
+            "neutral": 0.08956886827945709,
+            "positive": 0.027256855741143227
+          },
+          "probabilities_calibrated": false,
+          "target": "Microsoft"
+        },
+        "target": "Microsoft"
+      }
+    ],
+    "candidate_type": "organization_not_verified_company",
+    "detector_version": "organization-ner-v2",
+    "mentions": [
+      {
+        "end": 7,
+        "score": 0.9989774227142334,
+        "start": 0,
+        "text": "Infosys"
+      },
+      {
+        "end": 47,
+        "score": 0.9988124370574951,
+        "start": 38,
+        "text": "Microsoft"
+      }
+    ],
+    "model_id": "dslim/bert-base-NER",
+    "revision": "d1a3e8f13f8c3566299d95fcfc9a8d2382a9affc"
+  },
+  "invented_input_only": true,
+  "model_files_verified": 7,
+  "ner_model_revision": "d1a3e8f13f8c3566299d95fcfc9a8d2382a9affc",
+  "source_archive_sha256": "53e05bf3c1a9bfa3852c04bd02ba25d15382ae82fe432905ea8d6f29725663dd",
+  "source_manifest_sha256": "54e60fb9c64b621f47f3cd1eb2a81d48219ac7c066ce06e2a816ec512aec90c5"
+}

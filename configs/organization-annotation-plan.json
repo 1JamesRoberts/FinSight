@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "experiment": "organization-mentions-dev-v1",
+  "partition": "validation",
+  "sample_size": 50,
+  "seed": 42,
+  "selection": "smallest_sha256_of_experiment_seed_record_id",
+  "sampling_uses_predictions": false,
+  "annotation_uses_native_sentiment_targets": false,
+  "previous_full_validation_inference": true,
+  "entity_types": ["company", "other_organization"],
+  "span_convention": "zero_based_character_start_inclusive_end_exclusive",
+  "aggregation_strategies": ["simple", "first"],
+  "score_threshold": null,
+  "training": false,
+  "frozen_test_access": false,
+  "deployment_change": false
+}

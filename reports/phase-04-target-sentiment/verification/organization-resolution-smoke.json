@@ -1,0 +1,137 @@
+{
+  "archive_sha256": "97cfc5ca43eb72ab5567e4e8e366640bb62a3aba0d2b7f2313fd3390698bd23f",
+  "dataset_sentiment_inference": false,
+  "device": "cuda",
+  "direct_prediction_equality": true,
+  "explicit_all_candidate_mode_verified": true,
+  "full_cli_verified": true,
+  "invented_input_only": true,
+  "source_manifest_sha256": "0defc077d350215bd60175d647b962e00e8b0ce35e5fbc182dc73c06ee565107",
+  "unresolved_only_empty_verified": true,
+  "unresolved_result": {
+    "aggregation_strategy": "first",
+    "candidate_type": "organization_not_verified_company",
+    "company_sentiments": [],
+    "detector_version": "organization-ner-v2",
+    "mentions": [
+      {
+        "end": 5,
+        "score": 0.9982215762138367,
+        "start": 0,
+        "text": "Tesla"
+      }
+    ],
+    "model_id": "dslim/bert-base-NER",
+    "registry_sha256": "3414bd464620472b37f23944f0c6d8011f77fc8460491c4001010d2aa820d285",
+    "resolution_policy": {
+      "allow_parent_rollup": false,
+      "company_context": false
+    },
+    "resolutions": [
+      {
+        "company_id": null,
+        "matched_ticker": null,
+        "mention": {
+          "end": 5,
+          "score": 0.9982215762138367,
+          "start": 0,
+          "text": "Tesla"
+        },
+        "primary_ticker": null,
+        "reason": "unknown_target",
+        "registry_sha256": "3414bd464620472b37f23944f0c6d8011f77fc8460491c4001010d2aa820d285",
+        "status": "unresolved"
+      }
+    ],
+    "resolver_version": "organization-resolution-v1",
+    "revision": "d1a3e8f13f8c3566299d95fcfc9a8d2382a9affc",
+    "sentiment_policy": "verified_companies_only"
+  },
+  "verified_result": {
+    "aggregation_strategy": "first",
+    "candidate_type": "organization_not_verified_company",
+    "company_sentiments": [
+      {
+        "company_id": "microsoft",
+        "company_identity_verified": true,
+        "identity_verification_scope": "registry_match_under_explicit_policy",
+        "mentions": [
+          {
+            "end": 9,
+            "score": 0.9988085031509399,
+            "start": 0,
+            "text": "Microsoft"
+          }
+        ],
+        "primary_ticker": "MSFT",
+        "sentiment": {
+          "deployment_sha256": "e5092415a03e442852e43d503c5cab52ac3d9387d3287ef8221b499c8b6e34da",
+          "label": "positive",
+          "model_version": "2f742f69854f097b5b1351e4a1de126b54c28fe2c900edb3c2e41526cd32e855",
+          "probabilities": {
+            "negative": 0.0022381520830094814,
+            "neutral": 0.004580697976052761,
+            "positive": 0.9931811690330505
+          },
+          "probabilities_calibrated": false,
+          "target": "Microsoft"
+        },
+        "target": "Microsoft"
+      }
+    ],
+    "detector_version": "organization-ner-v2",
+    "mentions": [
+      {
+        "end": 9,
+        "score": 0.9988085031509399,
+        "start": 0,
+        "text": "Microsoft"
+      },
+      {
+        "end": 45,
+        "score": 0.9974105954170227,
+        "start": 40,
+        "text": "Tesla"
+      }
+    ],
+    "model_id": "dslim/bert-base-NER",
+    "registry_sha256": "3414bd464620472b37f23944f0c6d8011f77fc8460491c4001010d2aa820d285",
+    "resolution_policy": {
+      "allow_parent_rollup": false,
+      "company_context": false
+    },
+    "resolutions": [
+      {
+        "company_id": "microsoft",
+        "matched_ticker": null,
+        "mention": {
+          "end": 9,
+          "score": 0.9988085031509399,
+          "start": 0,
+          "text": "Microsoft"
+        },
+        "primary_ticker": "MSFT",
+        "reason": "exact_alias",
+        "registry_sha256": "3414bd464620472b37f23944f0c6d8011f77fc8460491c4001010d2aa820d285",
+        "status": "verified_company"
+      },
+      {
+        "company_id": null,
+        "matched_ticker": null,
+        "mention": {
+          "end": 45,
+          "score": 0.9974105954170227,
+          "start": 40,
+          "text": "Tesla"
+        },
+        "primary_ticker": null,
+        "reason": "unknown_target",
+        "registry_sha256": "3414bd464620472b37f23944f0c6d8011f77fc8460491c4001010d2aa820d285",
+        "status": "unresolved"
+      }
+    ],
+    "resolver_version": "organization-resolution-v1",
+    "revision": "d1a3e8f13f8c3566299d95fcfc9a8d2382a9affc",
+    "sentiment_policy": "verified_companies_only"
+  }
+}

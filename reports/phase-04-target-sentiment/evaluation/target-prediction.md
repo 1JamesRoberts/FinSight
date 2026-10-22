@@ -2,12 +2,12 @@
 
 The local Python/CLI interface uses the saved target-aware RoBERTa checkpoint,
 with model loading performed once for repeated single/batch requests. The
-[usage guide](../../docs/phase-04-target-sentiment/prediction.md) explains inputs,
+[usage guide](../../../docs/phase-04-target-sentiment/prediction.md) explains inputs,
 output fields, pair tokenization, device overrides and optional company checks.
 
 ## Selection and scope
 
-The [deployment config](../../configs/target-roberta-inference.json) selects seed
+The [deployment config](../../../configs/target-roberta-inference.json) selects seed
 43, epoch 2, by highest unrounded saved all-target **validation** macro F1:
 
 | Seed | Validation macro F1 (%) |
@@ -19,7 +19,7 @@ The [deployment config](../../configs/target-roberta-inference.json) selects see
 Exact ties select the lowest seed. No test data/results, private predictions or
 weights are read to select the deployment checkpoint. This deployment choice was
 made after final evaluation using saved validation evidence only. The completed
-[benchmark](../experiments/phase4-target-final.md) remains a three-seed comparison;
+[benchmark](../../experiments/phase4-target-final.md) remains a three-seed comparison;
 its averaged scores are not claimed as this single checkpoint's performance.
 
 The original checkpoint version is its artifact manifest SHA-256:

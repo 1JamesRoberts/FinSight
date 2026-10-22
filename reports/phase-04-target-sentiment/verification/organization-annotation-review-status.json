@@ -1,0 +1,14 @@
+{
+  "adjudication_notes_sha256": "edf49ea53c220618b582b75d05469efc5bb48f8d9d09f92e342c1b1a00c2632f",
+  "approval_scope": "Rows 1-10 individually approved; remaining rows accepted in bulk and finalized on subsequent user authorization after evidence-based adjudication. Assistant-drafted, user-accepted development reference; not independent double annotation.",
+  "approved_headlines": 50,
+  "draft_annotation_sha256": "1a8d697985b7a39841419afefc552bfbe24e00aa67e6b45e26a5bbeb0fe0c036",
+  "experiment": "organization-mentions-dev-v1",
+  "final_reference_evaluation_performed": true,
+  "in_review_annotation_sha256": "30eeaf5c1723de62763c4756a9e50e13cf09f12c3c9c69ad236bfdda8810c6f4",
+  "pending_headlines": 0,
+  "reviewed_annotation_sha256": "9d465f9aa12f9b2d0109af86e0763a1eb5dd118085b8e0fc8b23b1a2c6ea1a67",
+  "reviewed_result_sha256": "ae4f46f90c1d812cad2de719caf8b44e1604be6933e82c2e05d4b1be17e891ff",
+  "sample_manifest_sha256": "dec8836961e3891902bd6134fdc3dd942cc4ce920c3ec9440693f272922f8b03",
+  "unresolved_uncertain_mentions": 0
+}

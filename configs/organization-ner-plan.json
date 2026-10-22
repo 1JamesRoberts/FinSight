@@ -1,0 +1,72 @@
+{
+  "aggregation_strategy": "simple",
+  "automatic_deployment_change": false,
+  "batch_size": 16,
+  "company_target_allowlist": [
+    "Infosys",
+    "TCS",
+    "ONGC",
+    "Sun Pharma",
+    "SBI",
+    "BPCL",
+    "HUL",
+    "Tata Steel",
+    "Tech Mahindra",
+    "ICICI Bank",
+    "Wipro",
+    "HDFC Bank"
+  ],
+  "entity_group": "ORG",
+  "experiment": "organization-ner-v1",
+  "files": {
+    "README.md": {
+      "sha256": "f570efa74d5f40eeafa35af45bc20ed6bdf49a5e517782218a23467d3bae576f",
+      "size_bytes": 6558
+    },
+    "added_tokens.json": {
+      "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "size_bytes": 2
+    },
+    "config.json": {
+      "sha256": "a5dc77a0d60dadf5645103017f3c7b8ece4ef1b450bc1ea68e17da1d3ae7e515",
+      "size_bytes": 829
+    },
+    "model.safetensors": {
+      "sha256": "b04492186cfb45a64908487a17a9f8d6ddec3a403ef39db5bca688f0fa702a34",
+      "size_bytes": 433292294
+    },
+    "special_tokens_map.json": {
+      "sha256": "303df45a03609e4ead04bc3dc1536d0ab19b5358db685b6f3da123d05ec200e3",
+      "size_bytes": 112
+    },
+    "tokenizer_config.json": {
+      "sha256": "4c052d60b505817149a29e88c5292d7779ddecfadbfc6208729e61403ec558ba",
+      "size_bytes": 59
+    },
+    "vocab.txt": {
+      "sha256": "eeaa9875b23b04b4c54ef759d03db9d1ba1554838f8fb26c5d96fa551df93d02",
+      "size_bytes": 213450
+    }
+  },
+  "frozen_test_access": false,
+  "license": "MIT (model-card declaration)",
+  "max_length": 512,
+  "model_id": "dslim/bert-base-NER",
+  "partition": "validation",
+  "registry_policy": {
+    "allow_parent_rollup": false,
+    "company_context": false
+  },
+  "review_categories": [
+    "unmatched_org",
+    "missed_literal_target",
+    "multiple_orgs",
+    "registry_ambiguous"
+  ],
+  "review_date": "2026-10-20",
+  "review_per_category": 10,
+  "revision": "d1a3e8f13f8c3566299d95fcfc9a8d2382a9affc",
+  "schema_version": 1,
+  "score_threshold": null,
+  "training": false
+}

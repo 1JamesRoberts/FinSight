@@ -1,5 +1,7 @@
 # Phase 2 — Traditional sentiment baselines
 
+**Phase outcome:** [Final report](../../reports/phase-02-baselines/final-report.md) · [All final reports](../../reports/README.md).
+
 VADER, sparse classifiers, class weighting, tuning and qualitative errors.
 
 [All documentation](../README.md) · [Report navigation](../../reports/README.md)

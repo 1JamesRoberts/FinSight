@@ -1,0 +1,16 @@
+{
+  "task": "us-listed-issuer-directory",
+  "pytest_passed": 774,
+  "ruff_check": "passes except nine pre-existing errors in notebooks/experiment.ipynb",
+  "ruff_format_check": "passes except pre-existing notebooks/experiment.ipynb formatting",
+  "diff_check": "passed",
+  "actual_cpu_ner_resolver_smoke": "passed",
+  "gpu_sentiment_executed": false,
+  "frozen_records_read": false,
+  "protected_file_sha256": {
+    "configs/companies.json": "3414bd464620472b37f23944f0c6d8011f77fc8460491c4001010d2aa820d285",
+    "configs/benchmark-freeze.json": "ab0c9f0581612ee52f3c03a5bbbc03e7ebc621fdf76bb00d7d85bc2973b593f7",
+    "configs/target-roberta-inference.json": "e5092415a03e442852e43d503c5cab52ac3d9387d3287ef8221b499c8b6e34da",
+    "reports/experiments/phase4-target-final.json": "cded5333aa6dc0716fbcb8ac250b3cd4a8c974c4549d1ecaaa6142a8d2f9c9cf"
+  }
+}

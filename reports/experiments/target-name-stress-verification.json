@@ -1,0 +1,13 @@
+{
+  "artifact_identities_verified": true,
+  "experiment": "target-name-stress-v1",
+  "frozen_test_read": false,
+  "membership_and_original_consistency_verified": true,
+  "metrics_recomputed": true,
+  "paired_comparisons_verified": 1206,
+  "plan_runner_dependency_hashes_verified": true,
+  "predictions_sha256": "ced7e07979e1b98d7c3af72313519942a886d70c3e61098c852091cd432d6841",
+  "preparation_manifest_sha256": "634edaf74cb58f9ef096ef7b710a179daaffd86db846698fded345965746a090",
+  "result_sha256": "9eabd893fb32e5d0e9e53ac218b638e14a9afeed5d5b0597710d31f412e11d29",
+  "trials_verified": 9
+}

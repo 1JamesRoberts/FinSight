@@ -1,5 +1,7 @@
 # Phase 3 — Sentence-level transformers reports
 
+**Start here:** [Final report](final-report.md). This is the canonical phase summary; the task evidence below retains its original scope.
+
 Financial/base transformer comparisons, seed studies, calibration, ensembles and locked evaluation.
 
 [All reports](../README.md) · [Methods and reproduction guides](../../docs/phase-03-transformers/README.md)

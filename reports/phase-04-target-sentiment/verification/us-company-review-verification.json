@@ -1,0 +1,28 @@
+{
+  "experiment": "us-company-linking-dev-v1",
+  "sample_manifest_sha256": "0712af66f547a820e4b6a1ac039d613e7239bea4a51ef45edb3cab251cf44fbc",
+  "packet_files_sha256": {
+    "sample.jsonl": "2770d2f13b30f62d288e839c33486e200278efea40a12d83675f617015037dfc",
+    "annotations.provisional.jsonl": "a8d3fa6959502fa33091c4c8db65bdfa19862e4bb4843d1a3641655736835c11",
+    "review.md": "7fbe5aadec722be2175cccd04c19f1ad071755ce7c7795a5a5f31830b1721872"
+  },
+  "pytest_passed": 784,
+  "new_tests_passed": 10,
+  "real_cpu_ner_run": true,
+  "reference_status": "pending_human_review",
+  "accuracy_metrics_computed": false,
+  "pending_review_gate_tested": true,
+  "sampling_rerun_reproduced_manifest": true,
+  "protected_sha256": {
+    "configs/companies.json": "3414bd464620472b37f23944f0c6d8011f77fc8460491c4001010d2aa820d285",
+    "configs/benchmark-freeze.json": "ab0c9f0581612ee52f3c03a5bbbc03e7ebc621fdf76bb00d7d85bc2973b593f7",
+    "configs/target-roberta-inference.json": "e5092415a03e442852e43d503c5cab52ac3d9387d3287ef8221b499c8b6e34da",
+    "reports/experiments/phase4-target-final.json": "cded5333aa6dc0716fbcb8ac250b3cd4a8c974c4549d1ecaaa6142a8d2f9c9cf"
+  },
+  "ruff_full_check": "nine pre-existing notebook errors only",
+  "ruff_full_format_check": "pre-existing notebook formatting only",
+  "ruff_excluding_notebook": "passed",
+  "git_diff_check": "passed",
+  "no_training": true,
+  "frozen_records_read": false
+}

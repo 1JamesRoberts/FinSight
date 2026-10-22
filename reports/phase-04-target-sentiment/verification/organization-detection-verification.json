@@ -1,0 +1,12 @@
+{
+  "aggregate_sha256": "d0c280e1a31c0ef97f128d40c67e8cd8a6984208989a1062eefb7903fac3d98f",
+  "coverage_and_relation_counts_recomputed": true,
+  "experiment": "organization-ner-v1",
+  "frozen_records_read": false,
+  "headline_membership_verified": 1053,
+  "native_annotations_verified": 1410,
+  "private_packet_sha256": "872695f2106363c40a3dc5eb2a866dadd1139e7830c0eb9384427d9e16f60a95",
+  "private_review_sha256": "a09aa244cbe285d1cb4b594f2c65699daccf5252db1620b3371dd2a514818958",
+  "reviewed_headlines": 24,
+  "source_and_plan_hashes_verified": true
+}

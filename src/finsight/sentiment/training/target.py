@@ -3,12 +3,13 @@
 import hashlib
 import math
 import uuid
+from collections.abc import Mapping
 from pathlib import Path
 from time import perf_counter
 from typing import Any
 
 from finsight.data.audit import text_identity
-from finsight.data.target_pairs import LABELS, TargetExample
+from finsight.data.target_pairs import LABELS, TargetExample, TargetText
 from finsight.data.target_preparation import json_bytes
 from finsight.sentiment.artifacts import save_model
 from finsight.sentiment.evaluation.metrics import classification_metrics
@@ -65,6 +66,7 @@ def fit_target(
     data_dir: Path,
     asset: dict,
     context: dict,
+    input_views: Mapping[str, TargetText] | None = None,
 ) -> dict:
     """Update every parameter; select strictly by all-target validation macro F1."""
     from transformers import get_linear_schedule_with_warmup
@@ -102,7 +104,13 @@ def fit_target(
         collate_fn=lambda rows: (
             rows,
             collate_examples(
-                torch, tokenizer, rows, mode, config.max_length, labels=True
+                torch,
+                tokenizer,
+                rows,
+                mode,
+                config.max_length,
+                labels=True,
+                input_views=input_views,
             ),
         ),
     )
@@ -150,7 +158,15 @@ def fit_target(
             torch.cuda.synchronize()
             train_peak = max(train_peak, torch.cuda.max_memory_allocated())
         # The shared scorer switches to eval/inference mode and disables gradients.
-        rows, _ = score_examples(torch, tokenizer, model, validation, mode, config)
+        rows, _ = score_examples(
+            torch,
+            tokenizer,
+            model,
+            validation,
+            mode,
+            config,
+            input_views=input_views,
+        )
         scores = classification_metrics(
             [r["gold"] for r in rows], [r["prediction"] for r in rows]
         )

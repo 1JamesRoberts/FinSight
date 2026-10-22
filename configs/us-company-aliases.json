@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "reviewed_on": "2026-10-21",
+  "directory_sha256": "d76a4e6fd5d7cc540b3ef6974ece2ca508b3fd16360e8d9eca7b94ddce9f528b",
+  "identity_scope": "current issuer associations; no historical continuity guarantee",
+  "aliases": [
+    {"name": "Boeing", "cik": "0000012927", "kind": "issuer_name", "requires_context": true, "source_urls": ["https://www.boeing.com/"], "note": "Pinned SEC conformed name BOEING CO; Co/Company are legal suffixes, not business-word removal."},
+    {"name": "Toyota", "cik": "0001094517", "kind": "issuer_name", "requires_context": true, "source_urls": ["https://global.toyota/en/album/images/43839258/"], "note": "Official statement explicitly abbreviates Toyota Motor Corporation as Toyota; no Toyota group subsidiaries implied."},
+    {"name": "Dell", "cik": "0001571996", "kind": "subsidiary", "requires_context": true, "source_urls": ["https://investors.delltechnologies.com/sec-filings/all-sec-filings/content/0001193125-26-271266/d159213d424b2.htm"], "note": "Dell Inc. is an indirect subsidiary; linking to current listed Dell Technologies requires explicit parent roll-up."},
+    {"name": "Dell Inc.", "cik": "0001571996", "kind": "subsidiary", "requires_context": true, "source_urls": ["https://investors.delltechnologies.com/sec-filings/all-sec-filings/content/0001193125-26-271266/d159213d424b2.htm"], "note": "Subsidiary name, not an assertion of identity with the listed parent."}
+  ]
+}

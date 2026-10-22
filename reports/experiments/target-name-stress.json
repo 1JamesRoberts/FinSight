@@ -1,0 +1,388 @@
+{
+  "aggregate": {
+    "target_markers": {
+      "label_flip_rate": {
+        "mean": 0.02736318407960199,
+        "sample_std": 0.015534820891538303
+      },
+      "maximum_absolute_class_probability_change": 0.944530300796032,
+      "mean_total_variation": {
+        "mean": 0.027999494334414805,
+        "sample_std": 0.007294423892389097
+      }
+    },
+    "target_pair": {
+      "label_flip_rate": {
+        "mean": 0.0472636815920398,
+        "sample_std": 0.0043085840984300435
+      },
+      "maximum_absolute_class_probability_change": 0.9970301025314257,
+      "mean_total_variation": {
+        "mean": 0.051506886226757816,
+        "sample_std": 0.005440152057377258
+      }
+    },
+    "target_replacement": {
+      "label_flip_rate": {
+        "mean": 0.0,
+        "sample_std": 0.0
+      },
+      "maximum_absolute_class_probability_change": 1.1324882507324219e-06,
+      "mean_total_variation": {
+        "mean": 8.179624310106187e-09,
+        "sample_std": 8.454743628495351e-09
+      }
+    }
+  },
+  "counterfactual_accuracy_computed": false,
+  "experiment": "target-name-stress-v1",
+  "frozen_test_evaluated": false,
+  "plan_sha256": "8bea3441785e706dfd14a7da17bd0736dac4e6ebca404ab72a50622789febc30",
+  "predictions_sha256": "ced7e07979e1b98d7c3af72313519942a886d70c3e61098c852091cd432d6841",
+  "preparation": {
+    "cases": 67,
+    "cases_sha256": "3f027acd3da2065cfc684c1f5f6c386037dfd289bbc1951413b84b6f563b858e",
+    "dependency_sha256": {
+      "data/target_pairs.py": "91a850c05aec2d70debe7d0cb91bf7c14345c482142d9d8ae637594ecaf03601",
+      "data/target_spans.py": "1e9dc4ad966ddf7af73a3cf163a11f81209b8512d60d64e14c10ca9df9c10331",
+      "data/target_tokenization.py": "f4096f44513b3a4bc94750bb9854da84bc4a7643d8e91950fd0adad99e2ca537",
+      "sentiment/experiments/target_format_preparation.py": "7243983dc9234774ed2bf57838722fe555747fc4f55038fbc25576efc7da9dd9",
+      "sentiment/experiments/target_format_training.py": "2ae844c67b61160d93b7c243f5e750559d7645b0396371b69868ca56626fbfd1",
+      "sentiment/models/target_inference.py": "39d0e5175aac68016a04aaaacf833f24e773236ff4c7ad8194981d13ba741a80",
+      "sentiment/models/transformer.py": "e08dd1812a4ad0b9f9b5060433570fbacd553f6a750b228fa6f4322ece201e80"
+    },
+    "headlines": 64,
+    "maximum_encoded_tokens": {
+      "target_markers": 41,
+      "target_pair": 33,
+      "target_replacement": 35
+    },
+    "native_target_counts": {
+      "BPCL": 6,
+      "HDFC Bank": 3,
+      "HUL": 6,
+      "ICICI Bank": 4,
+      "Infosys": 11,
+      "ONGC": 7,
+      "SBI": 6,
+      "Sun Pharma": 6,
+      "TCS": 6,
+      "Tata Steel": 4,
+      "Tech Mahindra": 4,
+      "Wipro": 4
+    },
+    "paired_comparisons_per_checkpoint": 134,
+    "plan_sha256": "8bea3441785e706dfd14a7da17bd0736dac4e6ebca404ab72a50622789febc30",
+    "runner_sha256": "ed155ad816b83ae6c97fa1d2b244f92c646926bd4886ab705f634bebf0b39591"
+  },
+  "preparation_manifest_sha256": "634edaf74cb58f9ef096ef7b710a179daaffd86db846698fded345965746a090",
+  "training_performed": false,
+  "trials": [
+    {
+      "artifact_manifest_sha256": "41973fa8e96a1829880d79d515ce83f7924e40fe69ae10de4ad39c840af69855",
+      "metrics": {
+        "comparisons": 134,
+        "label_flip_rate": 0.04477611940298507,
+        "label_flips": 6,
+        "maximum_absolute_class_probability_change": 0.972240773960948,
+        "mean_total_variation": 0.048142779044678376
+      },
+      "model": {
+        "annotations": 201,
+        "architecture": {
+          "attention_heads": 12,
+          "class": "RobertaForSequenceClassification",
+          "hidden_size": 768,
+          "intermediate_size": 3072,
+          "layers": 12,
+          "parameter_bytes": 498591756,
+          "parameters": 124647939,
+          "vocabulary_size": 50265
+        },
+        "batch_size": 32,
+        "broadcast": false,
+        "device": "cuda",
+        "inference_seconds": 0.2889952000696212,
+        "maximum_encoded_tokens": 33,
+        "peak_allocated_bytes": 574398464,
+        "probabilities_calibrated": false,
+        "unique_inputs_scored": 201
+      },
+      "original_replay_max_probability_delta": 2.3245811462402344e-06,
+      "seed": 42,
+      "variant": "target_pair"
+    },
+    {
+      "artifact_manifest_sha256": "07627708c6ccb5275902fe227170aed6376e197ac6eb5eda656dc22f80196b92",
+      "metrics": {
+        "comparisons": 134,
+        "label_flip_rate": 0.022388059701492536,
+        "label_flips": 3,
+        "maximum_absolute_class_probability_change": 0.7482718080282211,
+        "mean_total_variation": 0.023363574747467038
+      },
+      "model": {
+        "annotations": 201,
+        "architecture": {
+          "attention_heads": 12,
+          "class": "RobertaForSequenceClassification",
+          "hidden_size": 768,
+          "intermediate_size": 3072,
+          "layers": 12,
+          "parameter_bytes": 498591756,
+          "parameters": 124647939,
+          "vocabulary_size": 50265
+        },
+        "batch_size": 32,
+        "broadcast": false,
+        "device": "cuda",
+        "inference_seconds": 0.2333945999853313,
+        "maximum_encoded_tokens": 41,
+        "peak_allocated_bytes": 586468864,
+        "probabilities_calibrated": false,
+        "unique_inputs_scored": 201
+      },
+      "original_replay_max_probability_delta": 2.3543834686279297e-06,
+      "seed": 42,
+      "variant": "target_markers"
+    },
+    {
+      "artifact_manifest_sha256": "b5d1cff435b2c81ccd2e1c0dbedf31649c4b71155b5fa20b7450015009d688ef",
+      "metrics": {
+        "comparisons": 134,
+        "label_flip_rate": 0.0,
+        "label_flips": 0,
+        "maximum_absolute_class_probability_change": 1.1324882507324219e-06,
+        "mean_total_variation": 1.6888909375489647e-08
+      },
+      "model": {
+        "annotations": 201,
+        "architecture": {
+          "attention_heads": 12,
+          "class": "RobertaForSequenceClassification",
+          "hidden_size": 768,
+          "intermediate_size": 3072,
+          "layers": 12,
+          "parameter_bytes": 498591756,
+          "parameters": 124647939,
+          "vocabulary_size": 50265
+        },
+        "batch_size": 32,
+        "broadcast": false,
+        "device": "cuda",
+        "inference_seconds": 0.24373009998816997,
+        "maximum_encoded_tokens": 35,
+        "peak_allocated_bytes": 577807360,
+        "probabilities_calibrated": false,
+        "unique_inputs_scored": 201
+      },
+      "original_replay_max_probability_delta": 2.384185791015625e-06,
+      "seed": 42,
+      "variant": "target_replacement"
+    },
+    {
+      "artifact_manifest_sha256": "5ec4d5d1b9d1f4cba6e584e2c80747c4f88d26b0ab158ac7f4b02e4651096387",
+      "metrics": {
+        "comparisons": 134,
+        "label_flip_rate": 0.05223880597014925,
+        "label_flips": 7,
+        "maximum_absolute_class_probability_change": 0.9761602402140852,
+        "mean_total_variation": 0.057783212508659185
+      },
+      "model": {
+        "annotations": 201,
+        "architecture": {
+          "attention_heads": 12,
+          "class": "RobertaForSequenceClassification",
+          "hidden_size": 768,
+          "intermediate_size": 3072,
+          "layers": 12,
+          "parameter_bytes": 498591756,
+          "parameters": 124647939,
+          "vocabulary_size": 50265
+        },
+        "batch_size": 32,
+        "broadcast": false,
+        "device": "cuda",
+        "inference_seconds": 0.2354930000146851,
+        "maximum_encoded_tokens": 33,
+        "peak_allocated_bytes": 574398464,
+        "probabilities_calibrated": false,
+        "unique_inputs_scored": 201
+      },
+      "original_replay_max_probability_delta": 4.351139068603516e-06,
+      "seed": 43,
+      "variant": "target_pair"
+    },
+    {
+      "artifact_manifest_sha256": "1f78a733ef26c72c30f36dfbbab41b557e466a87a5d5418e3d20537b601c30f2",
+      "metrics": {
+        "comparisons": 134,
+        "label_flip_rate": 0.04477611940298507,
+        "label_flips": 6,
+        "maximum_absolute_class_probability_change": 0.8937148228287697,
+        "mean_total_variation": 0.03640759428303885
+      },
+      "model": {
+        "annotations": 201,
+        "architecture": {
+          "attention_heads": 12,
+          "class": "RobertaForSequenceClassification",
+          "hidden_size": 768,
+          "intermediate_size": 3072,
+          "layers": 12,
+          "parameter_bytes": 498591756,
+          "parameters": 124647939,
+          "vocabulary_size": 50265
+        },
+        "batch_size": 32,
+        "broadcast": false,
+        "device": "cuda",
+        "inference_seconds": 0.29332189995329827,
+        "maximum_encoded_tokens": 41,
+        "peak_allocated_bytes": 586468864,
+        "probabilities_calibrated": false,
+        "unique_inputs_scored": 201
+      },
+      "original_replay_max_probability_delta": 2.9802322387695312e-06,
+      "seed": 43,
+      "variant": "target_markers"
+    },
+    {
+      "artifact_manifest_sha256": "95d581486389735b609078ace1d700530507b0c0085b51a738ae5c7ed5d42e8c",
+      "metrics": {
+        "comparisons": 134,
+        "label_flip_rate": 0.0,
+        "label_flips": 0,
+        "maximum_absolute_class_probability_change": 3.4924596548080444e-10,
+        "mean_total_variation": 4.778240821254787e-12
+      },
+      "model": {
+        "annotations": 201,
+        "architecture": {
+          "attention_heads": 12,
+          "class": "RobertaForSequenceClassification",
+          "hidden_size": 768,
+          "intermediate_size": 3072,
+          "layers": 12,
+          "parameter_bytes": 498591756,
+          "parameters": 124647939,
+          "vocabulary_size": 50265
+        },
+        "batch_size": 32,
+        "broadcast": false,
+        "device": "cuda",
+        "inference_seconds": 0.2991451999405399,
+        "maximum_encoded_tokens": 35,
+        "peak_allocated_bytes": 577807360,
+        "probabilities_calibrated": false,
+        "unique_inputs_scored": 201
+      },
+      "original_replay_max_probability_delta": 4.112720489501953e-06,
+      "seed": 43,
+      "variant": "target_replacement"
+    },
+    {
+      "artifact_manifest_sha256": "233180d11d3454dd81bbae8600b6baa4fd80a3d53d3f98a828a345f83d943f18",
+      "metrics": {
+        "comparisons": 134,
+        "label_flip_rate": 0.04477611940298507,
+        "label_flips": 6,
+        "maximum_absolute_class_probability_change": 0.9970301025314257,
+        "mean_total_variation": 0.04859466712693588
+      },
+      "model": {
+        "annotations": 201,
+        "architecture": {
+          "attention_heads": 12,
+          "class": "RobertaForSequenceClassification",
+          "hidden_size": 768,
+          "intermediate_size": 3072,
+          "layers": 12,
+          "parameter_bytes": 498591756,
+          "parameters": 124647939,
+          "vocabulary_size": 50265
+        },
+        "batch_size": 32,
+        "broadcast": false,
+        "device": "cuda",
+        "inference_seconds": 0.24874589999672025,
+        "maximum_encoded_tokens": 33,
+        "peak_allocated_bytes": 574398464,
+        "probabilities_calibrated": false,
+        "unique_inputs_scored": 201
+      },
+      "original_replay_max_probability_delta": 2.4437904357910156e-06,
+      "seed": 44,
+      "variant": "target_pair"
+    },
+    {
+      "artifact_manifest_sha256": "cb01f216ee1b5cbfc006030b560f88666db15e8dd06d45c04a1973a11e21b11e",
+      "metrics": {
+        "comparisons": 134,
+        "label_flip_rate": 0.014925373134328358,
+        "label_flips": 2,
+        "maximum_absolute_class_probability_change": 0.944530300796032,
+        "mean_total_variation": 0.02422731397273853
+      },
+      "model": {
+        "annotations": 201,
+        "architecture": {
+          "attention_heads": 12,
+          "class": "RobertaForSequenceClassification",
+          "hidden_size": 768,
+          "intermediate_size": 3072,
+          "layers": 12,
+          "parameter_bytes": 498591756,
+          "parameters": 124647939,
+          "vocabulary_size": 50265
+        },
+        "batch_size": 32,
+        "broadcast": false,
+        "device": "cuda",
+        "inference_seconds": 0.2562601000536233,
+        "maximum_encoded_tokens": 41,
+        "peak_allocated_bytes": 586468864,
+        "probabilities_calibrated": false,
+        "unique_inputs_scored": 201
+      },
+      "original_replay_max_probability_delta": 2.0265579223632812e-06,
+      "seed": 44,
+      "variant": "target_markers"
+    },
+    {
+      "artifact_manifest_sha256": "1760cb2c158a29cef72a2dae8973655853be2a2e3b6ebe2da19d88fba0f51fbf",
+      "metrics": {
+        "comparisons": 134,
+        "label_flip_rate": 0.0,
+        "label_flips": 0,
+        "maximum_absolute_class_probability_change": 5.364418029785156e-07,
+        "mean_total_variation": 7.64518531400766e-09
+      },
+      "model": {
+        "annotations": 201,
+        "architecture": {
+          "attention_heads": 12,
+          "class": "RobertaForSequenceClassification",
+          "hidden_size": 768,
+          "intermediate_size": 3072,
+          "layers": 12,
+          "parameter_bytes": 498591756,
+          "parameters": 124647939,
+          "vocabulary_size": 50265
+        },
+        "batch_size": 32,
+        "broadcast": false,
+        "device": "cuda",
+        "inference_seconds": 0.2768172000069171,
+        "maximum_encoded_tokens": 35,
+        "peak_allocated_bytes": 577807360,
+        "probabilities_calibrated": false,
+        "unique_inputs_scored": 201
+      },
+      "original_replay_max_probability_delta": 2.4437904357910156e-06,
+      "seed": 44,
+      "variant": "target_replacement"
+    }
+  ]
+}

@@ -1,0 +1,57 @@
+{
+  "experiment": "us-company-linking-dev-v1",
+  "headlines": 20,
+  "category_counts": {
+    "Apple Inc.": 4,
+    "Boeing": 4,
+    "General Motors": 4,
+    "Microsoft": 4,
+    "Tesla Motors": 4
+  },
+  "reference_status": "pending_human_review",
+  "counts_are_not_accuracy": true,
+  "methods": {
+    "registry_only": {
+      "proposed_spans": 21,
+      "linked_spans": 5,
+      "decision_reasons": {
+        "exact_alias": 5,
+        "unknown_target": 16
+      }
+    },
+    "registry_plus_sec": {
+      "proposed_spans": 21,
+      "linked_spans": 8,
+      "decision_reasons": {
+        "exact_alias": 5,
+        "exact_ticker": 1,
+        "suffix_normalized_name": 2,
+        "unknown_us_listed_name": 13
+      }
+    }
+  },
+  "provenance": {
+    "sample_manifest_sha256": "0712af66f547a820e4b6a1ac039d613e7239bea4a51ef45edb3cab251cf44fbc",
+    "plan_sha256": "62e245689c10073f2a0d2d96a1cbba5bad97e9df0cc27913e828a7f610f57dad",
+    "directory_sha256": "d76a4e6fd5d7cc540b3ef6974ece2ca508b3fd16360e8d9eca7b94ddce9f528b",
+    "registry_sha256": "3414bd464620472b37f23944f0c6d8011f77fc8460491c4001010d2aa820d285",
+    "ner_revision": "d1a3e8f13f8c3566299d95fcfc9a8d2382a9affc",
+    "device": "cpu",
+    "prediction_sha256": "79d942f008cb83e393710add2023bace80c29e9cdf72492638d98a46d7a75674",
+    "annotation_sha256": null,
+    "runner_sha256": "1a6a960525cdece398be73ee44d038bc6ffac7f72f2d98af187dcea2ceb27610",
+    "source_sha256": {
+      "src/finsight/sentiment/organizations.py": "5ee810cd3e4b213a4de5a2cf7c9c5867c5245494a100335ad75acf4ee9b2b448",
+      "src/finsight/sentiment/organization_resolution.py": "9d7483f2078373ca3e617a81aaa7a475fcca9d1a9bb7783a66bdcd9ee8206276",
+      "src/finsight/data/us_listed_companies.py": "cb1bc26524ebb4d90cd95397f5c6ab848fbf0c81f4a0a29ffead3d2ed1421dc6",
+      "src/finsight/sentiment/evaluation/company_linking.py": "db3d86aef510edab64da625c642185fcb8971d96d19cd051ca84d96ea9e3414b"
+    },
+    "uv_lock_sha256": "f1ace275d05568614b92993b8446d7323df824a8cb1dae9ac382116f906914f6"
+  },
+  "training": false,
+  "frozen_records_read": false,
+  "draft_annotations_sha256": "a8d3fa6959502fa33091c4c8db65bdfa19862e4bb4843d1a3641655736835c11",
+  "sample_manifest_sha256": "0712af66f547a820e4b6a1ac039d613e7239bea4a51ef45edb3cab251cf44fbc",
+  "review_packet_relative_path": "data/interim/us-company-review/0712af66f547a820e4b6a1ac039d613e7239bea4a51ef45edb3cab251cf44fbc",
+  "draft_headlines_with_uncertainty": 5
+}

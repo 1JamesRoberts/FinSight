@@ -46,7 +46,9 @@ def test_rejects_invalid_training_or_validation_membership(failure: str) -> None
 
 
 @pytest.mark.filterwarnings("ignore:.*torch.jit.script.*deprecated:DeprecationWarning")
-@pytest.mark.parametrize("mode", ["matched_headline_only", "target_pair"])
+@pytest.mark.parametrize(
+    "mode", ["matched_headline_only", "target_pair", "prepared_target_pair"]
+)
 @pytest.mark.parametrize("backbone", ["deberta", "bert", "roberta"])
 def test_tiny_training_updates_encoder_and_reloads_best_without_validation_gradients(
     tmp_path, mode: str, backbone: str
@@ -100,6 +102,16 @@ def test_tiny_training_updates_encoder_and_reloads_best_without_validation_gradi
         learning_rate=0.01,
     )
     train, val = examples("train"), examples("validation")
+    input_views = None
+    if mode == "prepared_target_pair":
+        from finsight.data.target_pairs import TargetText
+
+        mode = "target_pair"
+        # Deliberately identical transformed text across native partitions:
+        # membership guards and output cohorts must still use original metadata.
+        input_views = {
+            e.example_id: TargetText(e.example_id, "gain", "alpha") for e in train + val
+        }
     original = model.base_model.embeddings.word_embeddings.weight.detach().clone()
     initial_sha = state_sha256(model)
     observations = []
@@ -110,11 +122,23 @@ def test_tiny_training_updates_encoder_and_reloads_best_without_validation_gradi
         with_kwargs=True,
     )
     first = collate_examples(
-        torch, tokenizer, train[:2], mode, config.max_length, labels=True
+        torch,
+        tokenizer,
+        train[:2],
+        mode,
+        config.max_length,
+        labels=True,
+        input_views=input_views,
     )
     changed = tuple(replace(e, label="neutral") for e in train[:2])
     second = collate_examples(
-        torch, tokenizer, changed, mode, config.max_length, labels=True
+        torch,
+        tokenizer,
+        changed,
+        mode,
+        config.max_length,
+        labels=True,
+        input_views=input_views,
     )
     assert torch.equal(first["input_ids"], second["input_ids"])
     assert not torch.equal(first["labels"], second["labels"])
@@ -134,6 +158,7 @@ def test_tiny_training_updates_encoder_and_reloads_best_without_validation_gradi
         data_dir=tmp_path,
         asset=asset,
         context=context,
+        input_views=input_views,
     )
     handle.remove()
     assert not torch.equal(original, model.base_model.embeddings.word_embeddings.weight)
@@ -151,7 +176,14 @@ def test_tiny_training_updates_encoder_and_reloads_best_without_validation_gradi
         fit["artifact_directory"], fit["artifact_manifest_sha256"], asset, config
     )
     assert manifest["context"] == context
-    rows, profile = score_examples(torch, tokenizer, loaded, val, mode, config)
+    rows, profile = score_examples(
+        torch, tokenizer, loaded, val, mode, config, input_views=input_views
+    )
+    assert [r["target"] for r in rows] == [e.target for e in val]
+    assert [r["headline"] for r in rows] == [e.headline for e in val]
+    if input_views:
+        assert tokenizer.convert_tokens_to_ids("validation") not in first["input_ids"]
+        assert tokenizer.convert_tokens_to_ids("beta") not in first["input_ids"]
     assert len(rows) == 6 and profile["architecture"]["layers"] == 1
     from finsight.sentiment.validation import classification_metrics
 

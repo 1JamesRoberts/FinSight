@@ -1,0 +1,16 @@
+{
+  "all_metrics_independently_recomputed": true,
+  "annotation_sha256": "1a8d697985b7a39841419afefc552bfbe24e00aa67e6b45e26a5bbeb0fe0c036",
+  "experiment": "organization-mentions-dev-v1",
+  "frozen_records_read": false,
+  "headlines_per_method": 50,
+  "human_approved_headlines": 0,
+  "methods": 4,
+  "predictions_sha256": "1d5c929bfc2d0febb43ed3bb055c06cb31e52b1f9e785efe1442e5ea31886553",
+  "previous_assistant_review_overlap_headlines": 2,
+  "reference_status": "assistant_provisional",
+  "result_sha256": "a7c85bf2053751a1b8e98eaa921b431671ecdf16e994cebb2865f36e3827df03",
+  "sample_manifest_sha256": "dec8836961e3891902bd6134fdc3dd942cc4ce920c3ec9440693f272922f8b03",
+  "simple_spans_match_previous_validation_cache": true,
+  "source_plan_and_reference_hashes_verified": true
+}

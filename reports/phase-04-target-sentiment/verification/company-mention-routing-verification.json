@@ -1,0 +1,25 @@
+{
+  "task": "company-type-identity-sentiment-separation",
+  "resolver_version": "organization-resolution-v3",
+  "pytest_passed": 795,
+  "added_tests": 11,
+  "ruff_full": "nine pre-existing scratch notebook errors only",
+  "ruff_format_full": "pre-existing scratch notebook formatting only",
+  "ruff_excluding_notebook": "passed",
+  "diff_check": "passed",
+  "actual_cpu_ner_inference": true,
+  "sentiment_routing_stub_tested": true,
+  "actual_sentiment_inference": false,
+  "gpu_machine_updated": false,
+  "masking_applied": false,
+  "protected_artifacts_unchanged": true,
+  "reviewed_news_reference_unchanged": true,
+  "frozen_records_read": false,
+  "files_sha256": {
+    "src/finsight/sentiment/organization_resolution.py": "ba405b76127035d3e89b7dead32721d36124ef6c81b7214682a375cd7b57548d",
+    "src/finsight/sentiment/organizations.py": "b01bd16bd4956b70ec3572ce071c0c8faa7edaf95be75b60dca47e1cd271afed",
+    "tests/unit/test_organization_resolution.py": "64295f5d38db7d23d0653ceec05fc95ef9e07a1811dcbc5572220f0ce5a3b0c8",
+    "tests/unit/test_organizations.py": "b91bea36d9da706053323ba2a299c085ebb331502a2b08451d753339b8d3441b",
+    "reports/phase-04-target-sentiment/company-mention-routing-smoke.json": "38e2ade2c7e755cd5713ffc2b34db1b038f5f5da00334af41083ece041045db3"
+  }
+}
